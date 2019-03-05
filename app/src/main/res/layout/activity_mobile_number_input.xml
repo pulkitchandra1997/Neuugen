@@ -1,9 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MobileNumberInput">
+    tools:context=".MobileNumberInput"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="@color/colorAccent"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    android:gravity="center">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter 10-digit phone number to start"
+        android:textSize="20sp"
+        android:fontFamily="@font/quicksandbold"
+        android:textColor="@color/PrimaryText"
+        android:paddingBottom="20dp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        app:boxStrokeColor="@color/design_default_color_primary"
+        app:hintTextAppearance="@style/MyAppearance"
+        app:hintEnabled="true"
+        app:errorEnabled="true"
+        android:focusedByDefault="false"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            android:inputType="number"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:textSize="20sp"
+            android:maxLength="10"
+            android:padding="15dp"
+            android:id="@+id/phonenum"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:textSize="20sp"
+        android:fontFamily="@font/quicksandbold"
+        android:textColor="@color/PrimaryText"
+        android:layout_marginTop="30dp"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:backgroundTint="@color/DividerColor"
+        android:padding="15dp"
+        android:id="@+id/nextbtn"
+        />
+
+</LinearLayout>
+
+
+
+
+</LinearLayout>
