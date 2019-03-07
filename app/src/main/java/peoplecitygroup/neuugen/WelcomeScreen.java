@@ -91,10 +91,16 @@ public class WelcomeScreen extends AppCompatActivity {
         if( !haveConnectedWifi && !haveConnectedMobile)
         {
             AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-            alertDialog.setMessage("No Internet Connection");
+            alertDialog.setMessage("No Internet Connection! Check your connection and Try again");
             alertDialog.setIcon(R.mipmap.ic_launcher_round);
             alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
             alertDialog.show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    finish();
+                }
+            },6000);
             return false;
         }
         else
