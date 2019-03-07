@@ -12,7 +12,7 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
 
     androidx.appcompat.widget.AppCompatTextView timer,phone,resendotp;
     PinView pinView;
-    String phonetext;
+    String phonetext,otptext,timertext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

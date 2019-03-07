@@ -133,7 +133,6 @@ public class MobileNumberInput extends AppCompatActivity implements View.OnClick
                     } else {
                         startActivity(intent);
                     }
-
                 }
             }
 
