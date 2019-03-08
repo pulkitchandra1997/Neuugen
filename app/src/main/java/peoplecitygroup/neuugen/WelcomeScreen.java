@@ -36,7 +36,6 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class WelcomeScreen extends AppCompatActivity {
     Intent intent=null;
-    private static final int PERMISSION_REQUEST_CODE = 200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,79 +129,34 @@ public class WelcomeScreen extends AppCompatActivity {
         int result9 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_SMS);
         int result10=ContextCompat.checkSelfPermission(getApplicationContext(), READ_PHONE_STATE);
         int result11=ContextCompat.checkSelfPermission(getApplicationContext(), READ_PHONE_NUMBERS);
-        if (!(result1 == PackageManager.PERMISSION_GRANTED && result2 == PackageManager.PERMISSION_GRANTED && result3 == PackageManager.PERMISSION_GRANTED && result4 == PackageManager.PERMISSION_GRANTED && result5 == PackageManager.PERMISSION_GRANTED && result6 == PackageManager.PERMISSION_GRANTED && result7 == PackageManager.PERMISSION_GRANTED) && result8 == PackageManager.PERMISSION_GRANTED && result9 == PackageManager.PERMISSION_GRANTED && result10 == PackageManager.PERMISSION_GRANTED && result11 == PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, new String[]{CAMERA,READ_EXTERNAL_STORAGE,CALL_PHONE,WRITE_EXTERNAL_STORAGE,ACCESS_NETWORK_STATE,INTERNET,READ_CONTACTS,GET_ACCOUNTS,READ_SMS,READ_PHONE_STATE,READ_PHONE_NUMBERS}, PERMISSION_REQUEST_CODE);
+        if (!(result1 == PackageManager.PERMISSION_GRANTED && result2 == PackageManager.PERMISSION_GRANTED && result3 == PackageManager.PERMISSION_GRANTED && result4 == PackageManager.PERMISSION_GRANTED && result5 == PackageManager.PERMISSION_GRANTED && result6 == PackageManager.PERMISSION_GRANTED && result7 == PackageManager.PERMISSION_GRANTED && result8 == PackageManager.PERMISSION_GRANTED && result9 == PackageManager.PERMISSION_GRANTED && result10 == PackageManager.PERMISSION_GRANTED && result11 == PackageManager.PERMISSION_GRANTED)){
+            new AlertDialog.Builder(WelcomeScreen.this,R.style.Theme_AppCompat_DayNight_Dialog_Alert)
+                    .setMessage("Grant Permission to access all features of the App.")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent=new Intent(WelcomeScreen.this,UserPermission.class);
+                            startActivity(intent);
+                        }
+                    })
+                    .setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            openNextActivity(intent);
+                        }
+                    })
+                    .setIcon(R.mipmap.ic_launcher_round)
+                    .setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"))
+                    .create()
+                    .show();
         }
         else
             openNextActivity(intent);
     }
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case PERMISSION_REQUEST_CODE:
-                if (grantResults.length > 0) {
-                    boolean readExternalStorage = grantResults[1] == PackageManager.PERMISSION_GRANTED;
-                    boolean callPhone = grantResults[2] == PackageManager.PERMISSION_GRANTED;
-                    boolean camera = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                    boolean writeExternalStorage=grantResults[3]==PackageManager.PERMISSION_GRANTED;
-                    boolean accessNetworkState=grantResults[4]==PackageManager.PERMISSION_GRANTED;
-                    boolean internet=grantResults[5]==PackageManager.PERMISSION_GRANTED;
-                    boolean readContacts=grantResults[6]==PackageManager.PERMISSION_GRANTED;
-                    boolean getAccounts=grantResults[7]==PackageManager.PERMISSION_GRANTED;
-                    boolean readSms=grantResults[8]==PackageManager.PERMISSION_GRANTED;
-                    boolean readPhoneState=grantResults[9]==PackageManager.PERMISSION_GRANTED;
-                    boolean readPhoneNumbers=grantResults[10]==PackageManager.PERMISSION_GRANTED;
-                    if (!(camera&&readExternalStorage&&callPhone&&writeExternalStorage&&accessNetworkState&&internet&&readContacts&&getAccounts&&readSms&&readPhoneState&&readPhoneNumbers))
-                    {
-                        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-                        alertDialog.setMessage("Permission Denied");
-                        alertDialog.setIcon(R.mipmap.ic_launcher_round);
-                        alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @Override
-                            public void onDismiss(DialogInterface dialog) {
-                                //openNextActivity(intent);
-                            }
-                        });
-                        alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>NeuuGen</font>"));
-                        alertDialog.show();
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            if (shouldShowRequestPermissionRationale(CAMERA)) {
-                                showMessageOKCancel("You need to allow access to all the permissions",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                                    requestPermissions(new String[]{CAMERA,READ_EXTERNAL_STORAGE,CALL_PHONE,WRITE_EXTERNAL_STORAGE,ACCESS_NETWORK_STATE,INTERNET,READ_CONTACTS,GET_ACCOUNTS,READ_SMS,READ_PHONE_STATE,READ_PHONE_NUMBERS},
-                                                            PERMISSION_REQUEST_CODE);
-                                                }
-                                            }
-                                        });
-                                return;
-                            }
-                        }
-                    }
-                }
-                break;
-            case 123:
-                Toast.makeText(this, "check", Toast.LENGTH_SHORT).show();
-                break;
-        }
-    }
-    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
-      new AlertDialog.Builder(WelcomeScreen.this)
-                .setMessage(message)
-                .setPositiveButton("OK", okListener)
-                .setNegativeButton("Cancel", null)
-                .setIcon(R.mipmap.ic_launcher_round)
-              .setOnDismissListener(new DialogInterface.OnDismissListener() {
-              @Override
-                  public void onDismiss(DialogInterface dialog) {
-                     openNextActivity(intent);
-                }
-                 })
-                .setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"))
-                .create()
-                .show();
-    }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        checkPermission();
+    }
 }
