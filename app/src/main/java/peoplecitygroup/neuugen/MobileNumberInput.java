@@ -55,6 +55,8 @@ public class MobileNumberInput extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mobile_number_input);
 
+        phonenum.setSelected(false);
+
         idLink();
         listenerLink();
         checkPermission();
