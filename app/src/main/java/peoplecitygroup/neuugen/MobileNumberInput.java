@@ -122,11 +122,11 @@ public class MobileNumberInput extends AppCompatActivity implements View.OnClick
 
     private void createDialog() {
         if(!numbers.isEmpty()) {
-            AlertDialog.Builder builderSingle = new AlertDialog.Builder(MobileNumberInput.this);
+            AlertDialog.Builder builderSingle = new AlertDialog.Builder(MobileNumberInput.this,R.style.Theme_AppCompat_DayNight_Dialog);
             builderSingle.setIcon(R.mipmap.ic_launcher);
             builderSingle.setTitle("Select Mobile Number:-");
 
-            final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MobileNumberInput.this, android.R.layout.select_dialog_singlechoice);
+            final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MobileNumberInput.this, android.R.layout.simple_list_item_single_choice);
             for(String num:numbers)
                 arrayAdapter.add(num);
             builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {

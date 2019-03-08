@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.chaos.view.PinView;
 
@@ -25,8 +27,6 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
         Intent intent=getIntent();
         phonetext=intent.getStringExtra("phone");
         phone.setText(phonetext);
-
-
 
     }
 
