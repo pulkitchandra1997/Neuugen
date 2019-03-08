@@ -91,13 +91,15 @@ public class MobileNumberInput extends AppCompatActivity implements View.OnClick
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
                 }
+                else{
+                    List<SubscriptionInfo> subsInfoList = subscriptionManager.getActiveSubscriptionInfoList();
+                    Log.d("Test", "Current list = " + subsInfoList);
+                    for (SubscriptionInfo subscriptionInfo : subsInfoList) {
+                        String number = subscriptionInfo.getNumber();
+                        clearnumber(number);
+                        Log.d("Test", " Number is  " + number);
+                }
             }
-            List<SubscriptionInfo> subsInfoList = subscriptionManager.getActiveSubscriptionInfoList();
-            Log.d("Test", "Current list = " + subsInfoList);
-            for (SubscriptionInfo subscriptionInfo : subsInfoList) {
-                String number = subscriptionInfo.getNumber();
-                clearnumber(number);
-                Log.d("Test", " Number is  " + number);
             }
         }
     }

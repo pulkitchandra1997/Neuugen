@@ -33,6 +33,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class WelcomeScreen extends AppCompatActivity {
     Intent intent=null;
+    private static final int PERMISSION_REQUEST_CODE = 200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +42,20 @@ public class WelcomeScreen extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         if(haveNetworkConnection()) {
             checkLatestVersion();
-            if (checkLoggedInProfile()) {
+            if (checkLoggedInProfile())
                 intent = new Intent(WelcomeScreen.this, null);
-            } else
+            else
                 intent = new Intent(WelcomeScreen.this, MobileNumberInput.class);
-            openNextActivity(intent);
+            //openNextActivity(intent);
+            checkPermission();
+        }
+        else{
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    finish();
+                }
+            },6000);
         }
     }
 
@@ -95,15 +105,93 @@ public class WelcomeScreen extends AppCompatActivity {
             alertDialog.setIcon(R.mipmap.ic_launcher_round);
             alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
             alertDialog.show();
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    finish();
-                }
-            },6000);
+
             return false;
         }
         else
             return true;
+    }
+
+
+
+    //PERMISSION CHECK AND ASK FOR IT
+    private void checkPermission() {
+        int result1 = ContextCompat.checkSelfPermission(getApplicationContext(), CAMERA);
+        int result2 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_EXTERNAL_STORAGE);
+        int result3 = ContextCompat.checkSelfPermission(getApplicationContext(), CALL_PHONE);
+        int result4 = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
+        int result5 = ContextCompat.checkSelfPermission(getApplicationContext(), ACCESS_NETWORK_STATE);
+        int result6 = ContextCompat.checkSelfPermission(getApplicationContext(), INTERNET);
+        int result7 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_CONTACTS);
+        int result8 = ContextCompat.checkSelfPermission(getApplicationContext(), GET_ACCOUNTS);
+        int result9 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_SMS);
+        if (!(result1 == PackageManager.PERMISSION_GRANTED && result2 == PackageManager.PERMISSION_GRANTED && result3 == PackageManager.PERMISSION_GRANTED && result4 == PackageManager.PERMISSION_GRANTED && result5 == PackageManager.PERMISSION_GRANTED && result6 == PackageManager.PERMISSION_GRANTED && result7 == PackageManager.PERMISSION_GRANTED)){
+            ActivityCompat.requestPermissions(this, new String[]{CAMERA,READ_EXTERNAL_STORAGE,CALL_PHONE,WRITE_EXTERNAL_STORAGE,ACCESS_NETWORK_STATE,INTERNET,READ_CONTACTS,GET_ACCOUNTS,READ_SMS}, PERMISSION_REQUEST_CODE);
+        }
+        else
+            openNextActivity(intent);
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_REQUEST_CODE:
+                if (grantResults.length > 0) {
+                    boolean readExternalStorage = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+                    boolean callPhone = grantResults[2] == PackageManager.PERMISSION_GRANTED;
+                    boolean camera = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    boolean writeExternalStorage=grantResults[3]==PackageManager.PERMISSION_GRANTED;
+                    boolean accessNetworkState=grantResults[4]==PackageManager.PERMISSION_GRANTED;
+                    boolean internet=grantResults[5]==PackageManager.PERMISSION_GRANTED;
+                    boolean readContacts=grantResults[6]==PackageManager.PERMISSION_GRANTED;
+                    boolean getAccounts=grantResults[7]==PackageManager.PERMISSION_GRANTED;
+                    boolean readSms=grantResults[8]==PackageManager.PERMISSION_GRANTED;
+                    if (!(camera&&readExternalStorage&&callPhone&&writeExternalStorage&&accessNetworkState&&internet&&readContacts&&getAccounts&&readSms))
+                    {
+                        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+                        alertDialog.setMessage("Permission Denied");
+                        alertDialog.setIcon(R.mipmap.ic_launcher_round);
+                        alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                                openNextActivity(intent);
+                            }
+                        });
+                        alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>NeuuGen</font>"));
+                        alertDialog.show();
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            if (shouldShowRequestPermissionRationale(CAMERA)) {
+                                showMessageOKCancel("You need to allow access to all the permissions",
+                                        new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                                    requestPermissions(new String[]{CAMERA,READ_EXTERNAL_STORAGE,CALL_PHONE,WRITE_EXTERNAL_STORAGE,ACCESS_NETWORK_STATE,INTERNET,READ_CONTACTS,GET_ACCOUNTS,READ_SMS},
+                                                            PERMISSION_REQUEST_CODE);
+                                                }
+                                            }
+                                        });
+                                return;
+                            }
+                        }
+                    }
+                }
+                break;
+        }
+    }
+    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
+      new AlertDialog.Builder(WelcomeScreen.this)
+                .setMessage(message)
+                .setPositiveButton("OK", okListener)
+                .setNegativeButton("Cancel", null)
+                .setIcon(R.mipmap.ic_launcher_round)
+              .setOnDismissListener(new DialogInterface.OnDismissListener() {
+              @Override
+                  public void onDismiss(DialogInterface dialog) {
+                     openNextActivity(intent);
+                }
+                 })
+                .setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"))
+                .create()
+                .show();
     }
 }
