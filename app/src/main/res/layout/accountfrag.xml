@@ -74,17 +74,16 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|right"
-            android:gravity="center_horizontal|center">
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|center"
+            android:gravity="center_horizontal|right">
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/baseline_edit_black_18dp"
                 android:layout_gravity="center_horizontal|center"
-                android:padding="10dp"
-                android:layout_marginTop="10dp"
                 android:id="@+id/editprofile"
+                android:padding="20dp"
                 />
 
         </LinearLayout>
@@ -282,7 +281,7 @@
             android:text="Logout"
             android:textSize="25dp"
             android:fontFamily="@font/quicksandbold"
-            android:textColor="@color/design_default_color_primary"
+            android:textColor="@color/DividerColor"
             android:id="@+id/logout"
             />
     </LinearLayout>
