@@ -49,7 +49,12 @@ public class WelcomeScreen extends AppCompatActivity {
             else
                 intent = new Intent(WelcomeScreen.this, MobileNumberInput.class);
             //openNextActivity(intent);
-            checkPermission();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    checkPermission();
+                }
+            },3000);
         }
         else{
             new Handler().postDelayed(new Runnable() {

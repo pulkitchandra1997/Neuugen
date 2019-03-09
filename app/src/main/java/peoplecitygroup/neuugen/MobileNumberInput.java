@@ -92,7 +92,7 @@ public class MobileNumberInput extends AppCompatActivity implements View.OnClick
                 }
                 else{
                     List<SubscriptionInfo> subsInfoList = subscriptionManager.getActiveSubscriptionInfoList();
-                    Log.d("Test", "Current list = " + subsInfoList);
+                    if(subsInfoList!=null)
                     for (SubscriptionInfo subscriptionInfo : subsInfoList) {
                         String number = subscriptionInfo.getNumber();
                         clearnumber(number);
