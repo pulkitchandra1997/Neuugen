@@ -26,7 +26,13 @@
         <activity android:name=".SearchActivity" />
         <activity
             android:name=".UserMainActivity"
-            android:label="@string/title_activity_user_main"></activity>
+            android:label="@string/title_activity_user_main">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".UserDetails" />
         <activity android:name=".OtpInputActivity" />
         <activity android:name=".MobileNumberInput" />

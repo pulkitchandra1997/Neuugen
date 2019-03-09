@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:orientation="vertical"
     tools:context=".SearchActivity">
 
     <LinearLayout
@@ -36,12 +36,13 @@
             android:queryHint="Search"
             android:pointerIcon="vertical_text"
             android:drawingCacheQuality="high"
-
-
             >
-
         </SearchView>
-    </LinearLayout>
 
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#c0c0c0"/>
 
 </LinearLayout>

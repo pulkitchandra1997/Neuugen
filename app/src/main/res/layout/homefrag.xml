@@ -74,7 +74,7 @@
                 android:background="@color/colorAccent"
                 android:text="Search"
                 android:textColor="@color/SecondaryText"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 android:fontFamily="@font/quicksand"
                 android:id="@+id/searchbox"
                 android:padding="10dp"/>
