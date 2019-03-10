@@ -283,7 +283,7 @@
             android:fontFamily="@font/quicksandbold"
             android:textColor="@color/DividerColor"
             android:id="@+id/logout"
-            />
+        />
     </LinearLayout>
 
 </LinearLayout>

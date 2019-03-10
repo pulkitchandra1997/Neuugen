@@ -24,6 +24,8 @@
         android:theme="@style/AppTheme">
         <meta-data android:name="sendotp.key" android:value="@string/OTP_AUTH_KEY" />
         <activity android:name=".UserPermission"></activity>
+        <activity android:name=".EditProfile"></activity>
+        <activity android:name=".UserPermission" />
         <activity android:name=".SearchActivity" />
         <activity
             android:name=".UserMainActivity"
