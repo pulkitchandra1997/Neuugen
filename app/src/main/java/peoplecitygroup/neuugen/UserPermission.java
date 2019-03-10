@@ -26,6 +26,7 @@ import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.READ_PHONE_NUMBERS;
 import static android.Manifest.permission.READ_PHONE_STATE;
 import static android.Manifest.permission.READ_SMS;
+import static android.Manifest.permission.RECEIVE_SMS;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class UserPermission extends AppCompatActivity implements View.OnClickListener {
@@ -61,8 +62,9 @@ public class UserPermission extends AppCompatActivity implements View.OnClickLis
         int result9 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_SMS);
         int result10 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_PHONE_STATE);
         int result11 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_PHONE_NUMBERS);
-        if (!(result1 == PackageManager.PERMISSION_GRANTED && result2 == PackageManager.PERMISSION_GRANTED && result3 == PackageManager.PERMISSION_GRANTED && result4 == PackageManager.PERMISSION_GRANTED && result5 == PackageManager.PERMISSION_GRANTED && result6 == PackageManager.PERMISSION_GRANTED && result7 == PackageManager.PERMISSION_GRANTED && result8 == PackageManager.PERMISSION_GRANTED && result9 == PackageManager.PERMISSION_GRANTED && result10 == PackageManager.PERMISSION_GRANTED && result11 == PackageManager.PERMISSION_GRANTED)) {
-            ActivityCompat.requestPermissions(this, new String[]{CAMERA, READ_EXTERNAL_STORAGE, CALL_PHONE, WRITE_EXTERNAL_STORAGE, ACCESS_NETWORK_STATE, INTERNET, READ_CONTACTS, GET_ACCOUNTS, READ_SMS, READ_PHONE_STATE, READ_PHONE_NUMBERS}, PERMISSION_REQUEST_CODE);
+        int result12 = ContextCompat.checkSelfPermission(getApplicationContext(), RECEIVE_SMS);
+        if (!(result1 == PackageManager.PERMISSION_GRANTED && result2 == PackageManager.PERMISSION_GRANTED && result3 == PackageManager.PERMISSION_GRANTED && result4 == PackageManager.PERMISSION_GRANTED && result5 == PackageManager.PERMISSION_GRANTED && result6 == PackageManager.PERMISSION_GRANTED && result7 == PackageManager.PERMISSION_GRANTED && result8 == PackageManager.PERMISSION_GRANTED && result9 == PackageManager.PERMISSION_GRANTED && result10 == PackageManager.PERMISSION_GRANTED && result11 == PackageManager.PERMISSION_GRANTED && result12 == PackageManager.PERMISSION_GRANTED)) {
+            ActivityCompat.requestPermissions(this, new String[]{CAMERA, READ_EXTERNAL_STORAGE, CALL_PHONE, WRITE_EXTERNAL_STORAGE, ACCESS_NETWORK_STATE, INTERNET, READ_CONTACTS, GET_ACCOUNTS, READ_SMS, READ_PHONE_STATE, READ_PHONE_NUMBERS, RECEIVE_SMS}, PERMISSION_REQUEST_CODE);
         } else {
             finish();
         }
@@ -83,7 +85,8 @@ public class UserPermission extends AppCompatActivity implements View.OnClickLis
                     boolean readSms=grantResults[8]==PackageManager.PERMISSION_GRANTED;
                     boolean readPhoneState=grantResults[9]==PackageManager.PERMISSION_GRANTED;
                     boolean readPhoneNumbers=grantResults[10]==PackageManager.PERMISSION_GRANTED;
-                    if (!(camera&&readExternalStorage&&callPhone&&writeExternalStorage&&accessNetworkState&&internet&&readContacts&&getAccounts&&readSms&&readPhoneState&&readPhoneNumbers))
+                    boolean receiveSms=grantResults[11]==PackageManager.PERMISSION_GRANTED;
+                    if (!(camera&&readExternalStorage&&callPhone&&writeExternalStorage&&accessNetworkState&&internet&&readContacts&&getAccounts&&readSms&&readPhoneState&&readPhoneNumbers&&receiveSms))
                     {
                         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
                         alertDialog.setMessage("Permission Denied");
@@ -103,7 +106,7 @@ public class UserPermission extends AppCompatActivity implements View.OnClickLis
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                                    requestPermissions(new String[]{CAMERA,READ_EXTERNAL_STORAGE,CALL_PHONE,WRITE_EXTERNAL_STORAGE,ACCESS_NETWORK_STATE,INTERNET,READ_CONTACTS,GET_ACCOUNTS,READ_SMS,READ_PHONE_STATE,READ_PHONE_NUMBERS},
+                                                    requestPermissions(new String[]{CAMERA,READ_EXTERNAL_STORAGE,CALL_PHONE,WRITE_EXTERNAL_STORAGE,ACCESS_NETWORK_STATE,INTERNET,READ_CONTACTS,GET_ACCOUNTS,READ_SMS,READ_PHONE_STATE,READ_PHONE_NUMBERS,RECEIVE_SMS},
                                                             PERMISSION_REQUEST_CODE);
                                                 }
                                             }
