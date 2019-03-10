@@ -26,33 +26,18 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.chaos.view.PinView;
-import com.msg91.sendotp.library.SendOtpVerification;
-import com.msg91.sendotp.library.Verification;
-import com.msg91.sendotp.library.VerificationListener;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static android.Manifest.permission.ACCESS_NETWORK_STATE;
-import static android.Manifest.permission.CALL_PHONE;
-import static android.Manifest.permission.CAMERA;
-import static android.Manifest.permission.GET_ACCOUNTS;
-import static android.Manifest.permission.INTERNET;
-import static android.Manifest.permission.READ_CONTACTS;
-import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
-import static android.Manifest.permission.READ_PHONE_NUMBERS;
-import static android.Manifest.permission.READ_PHONE_STATE;
-import static android.Manifest.permission.READ_SMS;
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-
-public class OtpInputActivity extends AppCompatActivity implements View.OnClickListener, VerificationListener {
+public class OtpInputActivity extends AppCompatActivity implements View.OnClickListener {
 
     androidx.appcompat.widget.AppCompatTextView timer,phone,resendotp;
     PinView pinView;
     String phonetext,timertext;
     int otptext;
-    private static final int PERMISSION_REQUEST_CODE = 200;
-
+    boolean FLAG=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,67 +51,65 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
         phone.setText(phonetext);
         otptext=OTP_GENERATION.generateRandomNumber();
         sendOtp();
+        if(FLAG){
+
+        }
+        else{
+
+        }
     }
 
     private void sendOtp() {
-        Verification mVerification= SendOtpVerification.createSmsVerification
-                (SendOtpVerification
-                        .config("+91" + phonetext)
-                        .context(this)
-                        .autoVerification(true)
-                        .build(), this);
-        mVerification.initiate();
-        checkPermission();
-    }
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, UrlNeuugen.send_otp, new Response.Listener<String>()
+        {
+            @Override
+            public void onResponse(String response) {
 
-    private void checkPermission() {
-        int result = ContextCompat.checkSelfPermission(getApplicationContext(), READ_SMS);
-        if(result!= PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this,new String[]{READ_SMS},PERMISSION_REQUEST_CODE);
-        }
-    }
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case PERMISSION_REQUEST_CODE:
-                if (grantResults.length > 0) {
-                    boolean readSms=grantResults[0]==PackageManager.PERMISSION_GRANTED;
-                    if (!(readSms))
-                    {
-                        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-                        alertDialog.setMessage("Permission Denied");
-                        alertDialog.setIcon(R.mipmap.ic_launcher_round);
-                        alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>NeuuGen</font>"));
-                        alertDialog.show();
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            if (shouldShowRequestPermissionRationale(READ_SMS)) {
-                                showMessageOKCancel("You need to allow access to auto detect OTP",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                                    requestPermissions(new String[]{READ_SMS},
-                                                            PERMISSION_REQUEST_CODE);
-                                                }
-                                            }
-                                        });
-                                return;
-                            }
-                        }
-                    }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+                boolean haveConnectedWifi = false;
+                boolean haveConnectedMobile = false;
+                ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+                for (NetworkInfo ni : netInfo) {
+                    if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+                        if (ni.isConnected())
+                            haveConnectedWifi = true;
+                    if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+                        if (ni.isConnected())
+                            haveConnectedMobile = true;
                 }
-                break;
-        }
-    }
-    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
-        new AlertDialog.Builder(OtpInputActivity.this)
-                .setMessage(message)
-                .setPositiveButton("OK", okListener)
-                .setNegativeButton("Cancel", null)
-                .setIcon(R.mipmap.ic_launcher_round)
-                .setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"))
-                .create()
-                .show();
+                if( !haveConnectedWifi && !haveConnectedMobile)
+                {
+                    AlertDialog alertDialog = new AlertDialog.Builder(OtpInputActivity.this).create();
+                    alertDialog.setMessage("No Internet Connection");
+                    alertDialog.setIcon(R.mipmap.ic_launcher_round);
+                    alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                    alertDialog.show();
+                }
+                else {
+                    AlertDialog builder = new AlertDialog.Builder(OtpInputActivity.this).create();
+                    builder.setIcon(R.mipmap.ic_launcher_round);
+                    builder.setTitle(Html.fromHtml("<font color='#FF0000'>RentZHub</font>"));
+                    builder.setMessage("Connection error! Retry");
+                    builder.show();
+                }
+            }
+        })
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError
+            {
+                Map<String, String> params = new HashMap<>();
+                params.put("number", phonetext);
+                params.put("otp", String.valueOf(otptext));
+                return params;
+            }
+        };
+        MySingleton.getInstance(OtpInputActivity.this).addToRequestQueue(stringRequest);
     }
 
     public void idLink() {
@@ -142,25 +125,5 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
 
-    }
-
-    @Override
-    public void onInitiated(String response) {
-        Log.i( "OTP: Initialized!" , response);
-    }
-
-    @Override
-    public void onInitiationFailed(Exception paramException) {
-        Log.i( "OTP:initialization fail" , paramException.getMessage());
-    }
-
-    @Override
-    public void onVerified(String response) {
-        Log.i("OTP: Verified!" , response);
-    }
-
-    @Override
-    public void onVerificationFailed(Exception paramException) {
-        Log.i("OTP: Verification fail" , paramException.getMessage());
     }
 }

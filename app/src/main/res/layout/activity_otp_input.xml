@@ -110,7 +110,8 @@
             android:id="@+id/resendotpbtn"
             android:fontFamily="@font/quicksandbold"
             android:textColor="@color/design_default_color_primary"
-            android:paddingBottom="20dp"/>
+            android:paddingBottom="20dp"
+            />
 
  </LinearLayout>
 
