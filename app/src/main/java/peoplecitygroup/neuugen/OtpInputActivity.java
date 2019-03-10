@@ -288,8 +288,6 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onResume() {
         super.onResume();
-        cancelTimer();
-        resendotp.setVisibility(View.INVISIBLE);
         LocalBroadcastManager.getInstance(this).
                 registerReceiver(receiver, new IntentFilter("otp"));
     }
@@ -297,8 +295,6 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onRestart() {
         super.onRestart();
-        cancelTimer();
-        resendotp.setVisibility(View.INVISIBLE);
     }
 
     @Override
