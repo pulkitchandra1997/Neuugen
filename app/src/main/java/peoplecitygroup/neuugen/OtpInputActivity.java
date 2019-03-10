@@ -34,7 +34,6 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
     String phonetext,timertext;
     int otptext;
     boolean FLAG=false;
-    MaterialButton callotpbtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,12 +113,10 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
         timer = findViewById(R.id.timer);
         resendotp=findViewById(R.id.resendotpbtn);
         pinView=findViewById(R.id.pinview);
-        callotpbtn=findViewById(R.id.callotpbtn);
     }
 
     public void listenerLink() {
         resendotp.setOnClickListener(this);
-        callotpbtn.setOnClickListener(this);
     }
     @Override
     public void onClick(View v) {
