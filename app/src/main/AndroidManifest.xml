@@ -22,6 +22,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data android:name="sendotp.key" android:value="@string/OTP_AUTH_KEY" />
         <activity android:name=".UserPermission"></activity>
         <activity android:name=".SearchActivity" />
         <activity
