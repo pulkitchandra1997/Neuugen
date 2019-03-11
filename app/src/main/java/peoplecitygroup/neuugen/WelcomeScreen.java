@@ -64,8 +64,11 @@ public class WelcomeScreen extends AppCompatActivity {
                 public void run() {
                     finish();
                 }
-            },6000);
+            },5000);
         }
+
+
+
     }
 
     private void checkLatestVersion() {
@@ -137,8 +140,10 @@ public class WelcomeScreen extends AppCompatActivity {
         int result10=ContextCompat.checkSelfPermission(getApplicationContext(), READ_PHONE_STATE);
         int result11=ContextCompat.checkSelfPermission(getApplicationContext(), READ_PHONE_NUMBERS);
         if (!(result1 == PackageManager.PERMISSION_GRANTED && result2 == PackageManager.PERMISSION_GRANTED && result3 == PackageManager.PERMISSION_GRANTED && result4 == PackageManager.PERMISSION_GRANTED && result5 == PackageManager.PERMISSION_GRANTED && result6 == PackageManager.PERMISSION_GRANTED && result7 == PackageManager.PERMISSION_GRANTED && result8 == PackageManager.PERMISSION_GRANTED && result9 == PackageManager.PERMISSION_GRANTED && result10 == PackageManager.PERMISSION_GRANTED && result11 == PackageManager.PERMISSION_GRANTED)){
-            new AlertDialog.Builder(WelcomeScreen.this,R.style.Theme_AppCompat_DayNight_Dialog_Alert)
-                    .setMessage("Grant Permission to access all features of the App.")
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+            builder.setMessage("Grant Permission to access all features of the App.")
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -152,10 +157,15 @@ public class WelcomeScreen extends AppCompatActivity {
                             openNextActivity(intent);
                         }
                     })
-                    .setIcon(R.mipmap.ic_launcher_round)
-                    .setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"))
-                    .create()
-                    .show();
+                    .setIcon(R.mipmap.ic_launcher_round);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            Button neutralButton = dialog.getButton(AlertDialog.BUTTON_NEUTRAL);
+
+            positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+
+            neutralButton.setTextColor(Color.parseColor("#FF12B2FA"));
         }
         else
             openNextActivity(intent);
