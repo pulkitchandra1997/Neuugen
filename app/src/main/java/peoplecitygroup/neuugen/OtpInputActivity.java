@@ -242,7 +242,56 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void nextActivity() {
+        //PROGRESS DIALOG
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, UrlNeuugen.get_profile_login, new Response.Listener<String>()
+        {
+            @Override
+            public void onResponse(String response) {
 
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+                boolean haveConnectedWifi = false;
+                boolean haveConnectedMobile = false;
+                ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+                for (NetworkInfo ni : netInfo) {
+                    if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+                        if (ni.isConnected())
+                            haveConnectedWifi = true;
+                    if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+                        if (ni.isConnected())
+                            haveConnectedMobile = true;
+                }
+                if( !haveConnectedWifi && !haveConnectedMobile)
+                {
+                    AlertDialog alertDialog = new AlertDialog.Builder(OtpInputActivity.this).create();
+                    alertDialog.setMessage("No Internet Connection");
+                    alertDialog.setIcon(R.mipmap.ic_launcher_round);
+                    alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                    alertDialog.show();
+                }
+                else {
+                    AlertDialog alertDialog = new AlertDialog.Builder(OtpInputActivity.this).create();
+                    alertDialog.setMessage("Connection Error!");
+                    alertDialog.setIcon(R.mipmap.ic_launcher_round);
+                    alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                    alertDialog.show();
+                }
+            }
+        })
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError
+            {
+                Map<String, String> params = new HashMap<>();
+                params.put("number", phonetext);
+                return params;
+            }
+        };
+        MySingleton.getInstance(OtpInputActivity.this).addToRequestQueue(stringRequest);
     }
 
     public void idLink() {
