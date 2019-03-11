@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -243,6 +244,13 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
 
     private void nextActivity() {
         //PROGRESS DIALOG
+        ProgressDialog loading = null;
+        loading = new ProgressDialog(OtpInputActivity.this,R.style.AppCompatAlertDialogStyle);
+        loading.setCancelable(false);
+        loading.setMessage("Loading");
+        loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        loading.show();
+
         StringRequest stringRequest=new StringRequest(Request.Method.POST, UrlNeuugen.get_profile_login, new Response.Listener<String>()
         {
             @Override

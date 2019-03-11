@@ -9,6 +9,7 @@ import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.ActivityOptions;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -58,6 +59,7 @@ public class MobileNumberInput extends AppCompatActivity implements View.OnClick
 
         idLink();
         listenerLink();
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
