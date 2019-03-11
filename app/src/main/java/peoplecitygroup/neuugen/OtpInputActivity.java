@@ -33,6 +33,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.chaos.view.PinView;
+import com.google.android.material.snackbar.Snackbar;
 
 
 import java.util.HashMap;
@@ -104,7 +105,9 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
                 Log.i("OTP: Response",response);
                 if(response.length()==24){
                     resendotp.setVisibility(View.INVISIBLE);
-                    Toast.makeText(OtpInputActivity.this, "Otp Sent", Toast.LENGTH_SHORT).show();
+
+                    Snackbar.make(findViewById(R.id.parentview), "OTP sent", Snackbar.LENGTH_LONG)
+                            .show();
                     checkPermission();
                     startTimer();
 

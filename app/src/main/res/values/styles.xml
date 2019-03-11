@@ -18,4 +18,6 @@
     <style name="MyAppearance" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/design_default_color_primary</item>
     </style>
+
+
 </resources>
