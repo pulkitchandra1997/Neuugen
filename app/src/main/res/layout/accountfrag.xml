@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:text="My Account"
             android:padding="15dp"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:fontFamily="@font/quicksandbold"
             android:textColor="@color/colorAccent"
             />

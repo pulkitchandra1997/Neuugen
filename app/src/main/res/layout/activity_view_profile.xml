@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:text="&#xf060;"
             android:padding="15dp"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:fontFamily="@font/quicksandbold"
             android:textColor="@color/colorAccent"
             android:id="@+id/backtoaccount"
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:text="Your Details"
             android:padding="15dp"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:fontFamily="@font/quicksandbold"
             android:textColor="@color/colorAccent"
             />
