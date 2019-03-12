@@ -10,6 +10,7 @@ import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
@@ -23,6 +24,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
+
+import java.io.Serializable;
 
 import static android.Manifest.permission.ACCESS_NETWORK_STATE;
 import static android.Manifest.permission.CALL_PHONE;
@@ -38,7 +41,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class WelcomeScreen extends AppCompatActivity {
     Intent intent=null;
-
+    PROFILE profile=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +49,10 @@ public class WelcomeScreen extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         if(haveNetworkConnection()) {
             checkLatestVersion();
-            if (checkLoggedInProfile())
-                intent = new Intent(WelcomeScreen.this, null);
+            if (checkLoggedInProfile()) {
+                intent = new Intent(WelcomeScreen.this, UserMainActivity.class);
+                intent.putExtra("profile", profile);
+            }
             else
                 intent = new Intent(WelcomeScreen.this, MobileNumberInput.class);
             //openNextActivity(intent);
@@ -90,7 +95,27 @@ public class WelcomeScreen extends AppCompatActivity {
     }
 
     private boolean checkLoggedInProfile() {
-        return false;
+        SharedPreferences sp;
+        sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
+        if(sp!=null){
+            profile = new PROFILE(
+                    sp.getString("mobileno", null),sp.getString("name", null),
+                    sp.getString("email", null),
+                    sp.getString("city", null),
+                    sp.getString("address", null),
+                    sp.getString("state", null),
+                    sp.getString("pincode", null),
+                    sp.getString("gender", null),
+                    sp.getString("dob", null),
+                    sp.getString("emailverified", null),
+                    sp.getString("profileflag",null),sp.getString("addressverified",null),sp.getString("pic",null));
+            if(sp.getString("mobileno",null)!=null&&sp.getString("name",null)!=null&&sp.getString("email",null)!=null&&sp.getString("city",null)!=null)
+            return true;
+            else
+                return false;
+        }
+        else
+            return false;
     }
 
 

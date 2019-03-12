@@ -6,15 +6,18 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import android.app.ActivityOptions;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -26,21 +29,27 @@ import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.chaos.view.PinView;
 import com.google.android.material.snackbar.Snackbar;
 
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 import static android.Manifest.permission.READ_SMS;
 import static android.Manifest.permission.RECEIVE_SMS;
+import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
 public class OtpInputActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -50,7 +59,8 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
     int otptext;
     LinearLayout linearLayout;
     private static final int PERMISSION_REQUEST_CODE = 200;
-
+    ProgressDialog loading = null;
+    PROFILE profile=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -60,6 +70,10 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
         idLink();
         listenerLink();
 
+        loading = new ProgressDialog(OtpInputActivity.this,R.style.AppCompatAlertDialogStyle);
+        loading.setCancelable(false);
+        loading.setMessage("Loading");
+        loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
         resendotp.setVisibility(View.INVISIBLE);
         Intent intent=getIntent();
@@ -243,24 +257,46 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void nextActivity() {
-        //PROGRESS DIALOG
-        ProgressDialog loading = null;
-        loading = new ProgressDialog(OtpInputActivity.this,R.style.AppCompatAlertDialogStyle);
-        loading.setCancelable(false);
-        loading.setMessage("Loading");
-        loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+
         loading.show();
 
         StringRequest stringRequest=new StringRequest(Request.Method.POST, UrlNeuugen.get_profile_login, new Response.Listener<String>()
         {
             @Override
             public void onResponse(String response) {
+                loading.dismiss();
+                if(response.toLowerCase().contains("error in server")){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
 
+                    builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                    builder.setMessage("Error in server. Try Again")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                }
+                            })
+                            .setIcon(R.mipmap.ic_launcher_round);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                    positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+                }
+                else{
+                    if(response.toLowerCase().contains("noprofile"))
+                        if(response.toLowerCase().equalsIgnoreCase("noprofile"))
+                            nextActivity(true);
+                        else
+                            checkProfile(response);
+                    else
+                        checkProfile(response);
+                }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error)
             {
+                loading.dismiss();
                 boolean haveConnectedWifi = false;
                 boolean haveConnectedMobile = false;
                 ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -299,7 +335,105 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
                 return params;
             }
         };
+        stringRequest.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
+
+                builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                builder.setMessage("Connection")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        })
+                        .setIcon(R.mipmap.ic_launcher_round);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+
+            }
+        });
         MySingleton.getInstance(OtpInputActivity.this).addToRequestQueue(stringRequest);
+    }
+
+    private void nextActivity(boolean b) {
+        Intent intent=null;
+        if(b){//true: new profile
+            intent = new Intent(OtpInputActivity.this, UserDetails.class);
+            intent.putExtra("number",phonetext);
+            ActivityOptions options = ActivityOptions.makeCustomAnimation(OtpInputActivity.this, R.anim.fade_in, R.anim.fade_out);
+            startActivity(intent, options.toBundle());
+        }
+        else{
+            intent = new Intent(OtpInputActivity.this, UserMainActivity.class);
+            intent.putExtra("profile",profile);
+            ActivityOptions options = ActivityOptions.makeCustomAnimation(OtpInputActivity.this, R.anim.fade_in, R.anim.fade_out);
+            startActivity(intent);
+
+        }
+    }
+
+    private void checkProfile(String response) {
+        try {
+            JSONObject jsonObject=new JSONObject(response);
+            tosharedpreference(jsonObject);
+            profile=new PROFILE(phonetext,jsonObject.getString("name"),jsonObject.getString("email"),jsonObject.getString("city"),jsonObject.getString("address"),jsonObject.getString("state"),jsonObject.getString("pincode"),jsonObject.getString("gender"),jsonObject.getString("dob"),jsonObject.getString("emailverified"),jsonObject.getString("profileverified"),jsonObject.getString("addressverified"),jsonObject.getString("pic"));
+            nextActivity(false);
+        } catch (JSONException e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    private void tosharedpreference(JSONObject jsonObject) {
+        SharedPreferences sp;
+        SharedPreferences.Editor se;
+        sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
+        se=sp.edit();
+        try {
+            se.putString("mobileno", phonetext);
+            se.putString("name", jsonObject.getString("name"));
+            se.putString("email", jsonObject.getString("email"));
+            se.putString("city", jsonObject.getString("city"));
+            se.putString("address", jsonObject.getString("address"));
+            se.putString("state", jsonObject.getString("state"));
+            se.putString("pincode", jsonObject.getString("pincode"));
+            se.putString("gender", jsonObject.getString("gender"));
+            se.putString("dob", jsonObject.getString("dob"));
+            se.putString("emailverified", jsonObject.getString("emailverified"));
+            se.putString("profileflag", jsonObject.getString("profileflag"));
+            se.putString("addressverified", jsonObject.getString("addressverified"));
+            se.putString("pic",jsonObject.getString("pic"));
+            se.commit();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
+
+            builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+            builder.setMessage("Error. Try again!!")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    })
+                    .setIcon(R.mipmap.ic_launcher_round);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+        }
     }
 
     public void idLink() {
