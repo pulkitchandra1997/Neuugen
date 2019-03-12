@@ -69,25 +69,6 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="10dp">
-
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                android:text="Search"
-                android:textColor="@color/SecondaryText"
-                android:textSize="15dp"
-                android:fontFamily="@font/quicksand"
-                android:id="@+id/searchbox"
-                android:padding="10dp"/>
-
-        </LinearLayout>
 
     </LinearLayout>
         </LinearLayout>

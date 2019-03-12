@@ -19,7 +19,7 @@ import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
 public class HomeFrag extends Fragment implements View.OnClickListener {
 
-    androidx.appcompat.widget.AppCompatTextView locationicon,searchbox;
+    androidx.appcompat.widget.AppCompatTextView locationicon;
 
     LinearLayout location;
     View v;
@@ -43,27 +43,15 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     {
         locationicon=v.findViewById(R.id.locationicon);
         location=v.findViewById(R.id.location);
-        searchbox=v.findViewById(R.id.searchbox);
     }
 
     public void listenerLink()
     {
-        searchbox.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
-        if(v.getId()==R.id.searchbox)
-        {
-            Intent intent = new Intent(getActivity(), SearchActivity.class);
-            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.fade_in, R.anim.fade_out);
-                startActivity(intent, options.toBundle());
-            } else {
-                startActivity(intent);
-            }
 
-        }
     }
 }
