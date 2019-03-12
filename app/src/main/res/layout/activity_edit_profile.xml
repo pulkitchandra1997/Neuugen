@@ -5,7 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EditProfile"
+    android:id="@+id/editlayout"
     android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -216,9 +225,50 @@
                 android:maxLines="1"
                 android:singleLine="true"
                 android:id="@+id/dob"
+                android:focusable="false"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gender"
+            android:textSize="20dp"
+            android:fontFamily="@font/quicksandbold"
+            android:textColor="@color/PrimaryText"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/gender">
+
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Male"
+                    android:textSize="18sp"
+                    android:id="@+id/male"
+                    android:padding="5dp"
+                    android:buttonTint="@color/colorPrimaryDark"
+                    />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Female"
+                    android:textSize="18sp"
+                    android:id="@+id/female"
+                    android:padding="5dp"
+                    android:buttonTint="@color/colorPrimaryDark"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -226,12 +276,13 @@
             android:textSize="20sp"
             android:fontFamily="@font/quicksandbold"
             android:textColor="@color/colorAccent"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:backgroundTint="@color/DividerColor"
             android:padding="15dp"
             android:id="@+id/update"
             />
     </LinearLayout>
-
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

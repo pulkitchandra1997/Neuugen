@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewProfile"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&#xf060;"
+            android:padding="15dp"
+            android:textSize="25dp"
+            android:fontFamily="@font/quicksandbold"
+            android:textColor="@color/colorAccent"
+            android:id="@+id/backtoaccount"
+            />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Details"
+            android:padding="15dp"
+            android:textSize="25dp"
+            android:fontFamily="@font/quicksandbold"
+            android:textColor="@color/colorAccent"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/colorPrimaryDark">
+
+        <com.beardedhen.androidbootstrap.BootstrapCircleThumbnail
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            app:hasBorder="false"
+            android:src="@drawable/defaultpic"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pranjal Verma"
+                android:padding="15dp"
+                android:textSize="25dp"
+                android:id="@+id/nametext"
+                android:fontFamily="@font/quicksandbold"
+                android:textColor="@color/colorAccent"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="&#xf303;"
+                android:gravity="right"
+                android:padding="15dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="25dp"
+                android:id="@+id/editprofileicon"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/GreyColor">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Primary Information"
+                    android:padding="10dp"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/quicksandbold"
+                    android:textColor="@color/colorAccent"
+                    />
+            </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/emailicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="&#xf0e0;"
+            android:textColor="@color/PrimaryText"
+            android:textSize="15dp" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:padding="10dp"
+            android:textSize="15dp"
+            android:id="@+id/emailtext"
+            android:fontFamily="@font/quicksand"
+            android:textColor="@color/PrimaryText"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&#xf3cd;"
+            android:padding="10dp"
+            android:textColor="@color/PrimaryText"
+            android:textSize="15dp"
+            android:id="@+id/phoneicon"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone"
+            android:padding="10dp"
+            android:textSize="15dp"
+            android:id="@+id/phonetext"
+            android:fontFamily="@font/quicksand"
+            android:textColor="@color/PrimaryText"
+            />
+    </LinearLayout>
+
+</LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/GreyColor">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Your Address"
+                    android:padding="10dp"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/quicksandbold"
+                    android:textColor="@color/colorAccent"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="&#xf3c5;"
+                        android:padding="10dp"
+                        android:textColor="@color/PrimaryText"
+                        android:textSize="15dp"
+                        android:id="@+id/addressicon"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Address"
+                        android:id="@+id/addresstext"
+                        android:padding="10dp"
+                        android:textSize="15dp"
+                        android:fontFamily="@font/quicksand"
+                        android:textColor="@color/PrimaryText"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="&#xf2bb;"
+                        android:padding="10dp"
+                        android:textColor="@color/PrimaryText"
+                        android:textSize="15dp"
+                        android:id="@+id/cityicon"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="City"
+                        android:padding="10dp"
+                        android:textSize="15dp"
+                        android:fontFamily="@font/quicksand"
+                        android:textColor="@color/PrimaryText"
+                        android:id="@+id/citytext"
+                        />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="State"
+                        android:padding="10dp"
+                        android:textSize="15dp"
+                        android:id="@+id/statetext"
+                        android:fontFamily="@font/quicksand"
+                        android:textColor="@color/PrimaryText"
+                        />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pincode"
+                        android:padding="10dp"
+                        android:textSize="15dp"
+                        android:id="@+id/pincodetext"
+                        android:fontFamily="@font/quicksand"
+                        android:textColor="@color/PrimaryText"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/GreyColor">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Other Information"
+                android:padding="10dp"
+                android:textSize="20dp"
+                android:fontFamily="@font/quicksandbold"
+                android:textColor="@color/colorAccent"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="&#xf224;"
+                    android:padding="10dp"
+                    android:textColor="@color/PrimaryText"
+                    android:textSize="15dp"
+                    android:id="@+id/gendericon"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gender"
+                    android:id="@+id/gendertext"
+                    android:padding="10dp"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/quicksand"
+                    android:textColor="@color/PrimaryText"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="&#xf1fd;"
+                    android:padding="10dp"
+                    android:textColor="@color/PrimaryText"
+                    android:textSize="15dp"
+                    android:id="@+id/bdayicon"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Birthday"
+                    android:padding="10dp"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/quicksand"
+                    android:textColor="@color/PrimaryText"
+                    android:id="@+id/bdaytext"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

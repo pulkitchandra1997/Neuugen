@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.beardedhen.androidbootstrap.BootstrapCircleThumbnail;
+import com.beardedhen.androidbootstrap.BootstrapThumbnail;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -19,6 +22,7 @@ public class ProfileFrag extends Fragment implements View.OnClickListener {
 
     ImageView editprofile;
     androidx.appcompat.widget.AppCompatTextView logout;
+    BootstrapCircleThumbnail profilepic;
 
     View v;
     @Nullable
@@ -37,11 +41,13 @@ public class ProfileFrag extends Fragment implements View.OnClickListener {
     {
         editprofile=v.findViewById(R.id.editprofile);
         logout=v.findViewById(R.id.logout);
+        profilepic=v.findViewById(R.id.profilepic);
     }
     public void listenerLink()
     {
         logout.setOnClickListener(this);
         editprofile.setOnClickListener(this);
+        profilepic.setOnClickListener(this);
     }
 
     @Override
@@ -60,6 +66,16 @@ public class ProfileFrag extends Fragment implements View.OnClickListener {
         if (v.getId()==R.id.logout)
         {
 
+        }
+        if (v.getId()==R.id.profilepic)
+        {
+            Intent intent = new Intent(getActivity(), ViewProfile.class);
+            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                ActivityOptions options = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.fade_in, R.anim.fade_out);
+                startActivity(intent, options.toBundle());
+            } else {
+                startActivity(intent);
+            }
         }
     }
 }
