@@ -44,23 +44,39 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:background="@color/colorPrimaryDark">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
 
         <com.beardedhen.androidbootstrap.BootstrapCircleThumbnail
             android:layout_width="180dp"
             android:layout_height="180dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
             app:hasBorder="false"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/profileimg"
             android:src="@drawable/defaultpic"
+            />
+        <com.beardedhen.androidbootstrap.BootstrapCircleThumbnail
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            app:hasBorder="false"
+            android:id="@+id/profileimgbtn"
+            android:src="@drawable/camera"
+            android:layout_alignBottom="@+id/profileimg"
+
+            android:layout_alignEnd="@+id/profileimg"
             />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@+id/profileimg"
             >
-
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -82,7 +98,7 @@
                 android:id="@+id/editprofileicon"/>
 
         </LinearLayout>
-
+        </RelativeLayout>
     </LinearLayout>
 
             <LinearLayout
