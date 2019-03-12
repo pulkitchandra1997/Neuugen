@@ -1,6 +1,7 @@
 package peoplecitygroup.neuugen;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatTextView;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
@@ -39,13 +40,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         if (v.getId()==R.id.backbtn)
         {
-            Intent intent = new Intent(SearchActivity.this, UserMainActivity.class);
-            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(SearchActivity.this, R.anim.fade_in, R.anim.fade_out);
-                startActivity(intent, options.toBundle());
-            } else {
-                startActivity(intent);
-            }
+            onBackPressed();
         }
     }
 }
