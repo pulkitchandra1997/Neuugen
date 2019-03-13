@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:grid="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@color/colorAccent">
+    android:background="@color/bootstrap_brand_secondary_fill">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -65,12 +67,188 @@
                     />
 
             </LinearLayout>
-
-
         </LinearLayout>
-
-
     </LinearLayout>
+
+            <include layout="@layout/content_main" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/GreyColor">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SERVICES"
+                    android:padding="10dp"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/quicksandbold"
+                    android:textColor="@color/colorAccent"
+                    />
+            </LinearLayout>
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*"
+                android:layout_marginTop="10dp"
+                >
+                <TableRow>
+                    <LinearLayout
+                        android:layout_height="150dp"
+                        android:layout_width="0dp"
+                        android:orientation="vertical"
+                        grid:layout_columnWeight="1"
+                        grid:layout_rowWeight="1"
+                        >
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:src="@drawable/propertiesicon"
+                            grid:layout_columnWeight="1" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Properties"
+                            android:textSize="15dp"
+                            android:layout_gravity="center"
+                            android:padding="5dp"
+                            android:fontFamily="@font/quicksandbold"
+                            android:textColor="@color/PrimaryText"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_height="150dp"
+                        android:layout_width="0dp"
+                        android:orientation="vertical"
+                        grid:layout_columnWeight="1"
+                        grid:layout_rowWeight="1"
+                        >
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:src="@drawable/massagelogo"
+                            grid:layout_columnWeight="1" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Massage &amp; Spa"
+                            android:textSize="15dp"
+                            android:layout_gravity="center"
+                            android:padding="5dp"
+                            android:fontFamily="@font/quicksandbold"
+                            android:textColor="@color/PrimaryText"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_height="150dp"
+                        android:layout_width="0dp"
+                        android:orientation="vertical"
+                        grid:layout_columnWeight="1"
+                        grid:layout_rowWeight="1"
+                        >
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:src="@drawable/eventicon"
+                            grid:layout_columnWeight="1" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Weddings &amp; Events"
+                            android:textSize="15dp"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:fontFamily="@font/quicksandbold"
+                            android:textColor="@color/PrimaryText"
+                            />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow>
+                    <LinearLayout
+                        android:layout_height="150dp"
+                        android:layout_width="0dp"
+                        android:orientation="vertical"
+                        grid:layout_columnWeight="1"
+                        grid:layout_rowWeight="1"
+                        >
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:src="@drawable/applianceicon"
+                            grid:layout_columnWeight="1" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Appliance Repair"
+                            android:textSize="15dp"
+                            android:layout_gravity="center"
+                            android:padding="5dp"
+                            android:fontFamily="@font/quicksandbold"
+                            android:textColor="@color/PrimaryText"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_height="150dp"
+                        android:layout_width="0dp"
+                        android:orientation="vertical"
+                        grid:layout_columnWeight="1"
+                        grid:layout_rowWeight="1"
+                        >
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:src="@drawable/renovationicon"
+                            grid:layout_columnWeight="1" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Home Renovation"
+                            android:textSize="15dp"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:fontFamily="@font/quicksandbold"
+                            android:textColor="@color/PrimaryText"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_height="150dp"
+                        android:layout_width="0dp"
+                        android:orientation="vertical"
+                        grid:layout_columnWeight="1"
+                        grid:layout_rowWeight="1"
+                        >
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:src="@drawable/holidayicon"
+                            grid:layout_columnWeight="1" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Holiday Planner"
+                            android:textSize="15dp"
+                            android:layout_gravity="center"
+                            android:padding="5dp"
+                            android:fontFamily="@font/quicksandbold"
+                            android:textColor="@color/PrimaryText"
+                            />
+                    </LinearLayout>
+                </TableRow>
+            </TableLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="5dp"
+                android:background="#E4E1E1"/>
+
+
         </LinearLayout>
     </ScrollView>
 
