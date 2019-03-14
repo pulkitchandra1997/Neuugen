@@ -31,4 +31,12 @@ public class Validation {
             return android.util.Patterns.PHONE.matcher(target).matches();
         }
     }
+
+    public static boolean isValidCity(String citytext) {
+        String Cities[]=LinkCities.cities.split(",");
+        for (String name:Cities)
+            if(citytext.equalsIgnoreCase(name))
+                return true;
+         return false;
+    }
 }
