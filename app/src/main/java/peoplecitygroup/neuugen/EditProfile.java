@@ -136,7 +136,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                     state.requestFocus();
                 }
 
-                if (!male.isChecked()|| !female.isChecked())
+                if (!male.isChecked()&& !female.isChecked())
                 {
                     Snackbar.make(findViewById(R.id.editlayout), "Please Select Gender", Snackbar.LENGTH_LONG)
                             .show();

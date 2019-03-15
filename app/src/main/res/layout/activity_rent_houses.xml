@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RentHouses"
+    android:id="@+id/rhmainlayout"
+    android:orientation="vertical"
+    android:background="@color/colorAccent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&#xf060;"
+            android:padding="15dp"
+            android:textSize="20dp"
+            android:fontFamily="@font/quicksandbold"
+            android:textColor="@color/colorAccent"
+            android:id="@+id/backtopost"
+            />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rent House Advertisement"
+            android:padding="15dp"
+            android:textSize="20dp"
+            android:fontFamily="@font/quicksandbold"
+            android:textColor="@color/colorAccent"
+            />
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="25dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location"
+        android:textSize="25dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/quicksandbold"
+        android:textColor="@color/PrimaryText"
+        />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        app:boxStrokeColor="@color/colorPrimaryDark"
+        app:hintTextAppearance="@style/MyAppearance"
+        app:hintEnabled="true"
+        app:errorEnabled="true"
+        app:boxBackgroundMode="outline"
+        android:focusedByDefault="false"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="House No."
+            android:inputType="text"
+            android:fontFamily="@font/quicksandregular"
+            android:textCursorDrawable="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:padding="10dp"
+            android:id="@+id/housenorh"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        app:boxStrokeColor="@color/colorPrimaryDark"
+        app:hintTextAppearance="@style/MyAppearance"
+        app:hintEnabled="true"
+        app:errorEnabled="true"
+        app:boxBackgroundMode="outline"
+        android:focusedByDefault="false"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Area / Locality"
+            android:inputType="text"
+            android:fontFamily="@font/quicksandregular"
+            android:textCursorDrawable="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:padding="10dp"
+            android:id="@+id/arearh"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        app:boxStrokeColor="@color/colorPrimaryDark"
+        app:hintTextAppearance="@style/MyAppearance"
+        app:hintEnabled="true"
+        app:errorEnabled="true"
+        app:boxBackgroundMode="outline"
+        android:focusedByDefault="false"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="City"
+            android:inputType="text"
+            android:fontFamily="@font/quicksandregular"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:textCursorDrawable="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:padding="10dp"
+            android:id="@+id/cityrh"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        app:boxStrokeColor="@color/colorPrimaryDark"
+        app:hintTextAppearance="@style/MyAppearance"
+        app:hintEnabled="true"
+        app:errorEnabled="true"
+        app:boxBackgroundMode="outline"
+        android:focusedByDefault="false"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Landmark (Optional)"
+            android:inputType="text"
+            android:fontFamily="@font/quicksandregular"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:textCursorDrawable="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:padding="10dp"
+            android:id="@+id/landmarkrh"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Property Type"
+        android:textSize="25dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/quicksandbold"
+        android:textColor="@color/PrimaryText"
+        />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/propertytype"
+        android:padding="10dp"
+        android:id="@+id/propertytyperh"
+        android:background="@drawable/spinnerborder"
+        >
+
+    </androidx.appcompat.widget.AppCompatSpinner>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bedrooms"
+        android:textSize="25dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/quicksandbold"
+        android:textColor="@color/PrimaryText"
+        />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/roomslist"
+        android:padding="10dp"
+        android:id="@+id/numofbedrh"
+        android:background="@drawable/spinnerborder"
+        >
+
+    </androidx.appcompat.widget.AppCompatSpinner>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bathrooms"
+        android:textSize="25dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/quicksandbold"
+        android:textColor="@color/PrimaryText"
+        />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/roomslist"
+        android:padding="10dp"
+        android:id="@+id/numofbathrh"
+        android:background="@drawable/spinnerborder"
+        >
+    </androidx.appcompat.widget.AppCompatSpinner>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Furnish Type"
+        android:textSize="25dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/quicksandbold"
+        android:textColor="@color/PrimaryText"
+        />
+<HorizontalScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none">
+
+    <com.google.android.material.chip.ChipGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:singleSelection="true"
+        app:singleLine="true"
+        android:id="@+id/rhfurnishtype"
+        >
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fully Furnished"
+            android:padding="15dp"
+            app:chipCornerRadius="20dp"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            style="@style/CustomChipChoice"
+            android:id="@+id/rhfullyfurnish"
+            />
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Semi Furnished"
+            android:padding="15dp"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            app:chipCornerRadius="20dp"
+            style="@style/CustomChipChoice"
+            android:id="@+id/rhsemifurnish"
+            />
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Unfurnished"
+            android:padding="15dp"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            app:chipCornerRadius="20dp"
+            style="@style/CustomChipChoice"
+            android:id="@+id/rhunfurnish"
+            />
+
+    </com.google.android.material.chip.ChipGroup>
+</HorizontalScrollView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Builtup Area"
+        android:textSize="25dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/quicksandbold"
+        android:textColor="@color/PrimaryText"
+        />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        app:boxStrokeColor="@color/colorPrimaryDark"
+        app:hintTextAppearance="@style/MyAppearance"
+        app:hintEnabled="true"
+        app:errorEnabled="true"
+        app:boxBackgroundMode="outline"
+        android:focusedByDefault="false"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Area (in Sq. ft.)"
+            android:inputType="numberDecimal"
+            android:fontFamily="@font/quicksandregular"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:textCursorDrawable="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:padding="10dp"
+            android:id="@+id/builtarearh"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Monthly Rent"
+        android:textSize="25dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/quicksandbold"
+        android:textColor="@color/PrimaryText"
+        />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        app:boxStrokeColor="@color/colorPrimaryDark"
+        app:hintTextAppearance="@style/MyAppearance"
+        app:hintEnabled="true"
+        app:errorEnabled="true"
+        app:boxBackgroundMode="outline"
+        android:focusedByDefault="false"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Rent"
+            android:inputType="number"
+            android:fontFamily="@font/quicksandregular"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:textCursorDrawable="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:padding="10dp"
+            android:id="@+id/monthlyrentrh"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/DividerColor"
+        android:text="Submit"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:fontFamily="@font/quicksandbold"
+        android:padding="15dp"
+        android:id="@+id/submitrhform"
+        android:textSize="18sp"/>
+
+</LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

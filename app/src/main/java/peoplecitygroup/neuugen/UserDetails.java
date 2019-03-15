@@ -87,6 +87,35 @@ public class UserDetails extends AppCompatActivity implements View.OnClickListen
 
     }
 
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(UserDetails.this);
+
+        builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+        builder.setMessage("Are you sure you want to end the registration?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(UserDetails.this, MobileNumberInput.class);
+                        ActivityOptions options = ActivityOptions.makeCustomAnimation(UserDetails.this, R.anim.fade_in, R.anim.fade_out);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setIcon(R.mipmap.ic_launcher_round);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+        Button negativeButton = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+        negativeButton.setTextColor(Color.parseColor("#FF12B2FA"));
+    }
+
     private void sendData() {
         loading.show();
 

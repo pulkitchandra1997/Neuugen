@@ -23,20 +23,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewProfile"></activity>
+        <activity android:name=".SellPlots"></activity>
+        <activity android:name=".SellHouses" />
+        <activity android:name=".RentOffice" />
+        <activity android:name=".RentHouses" />
+        <activity android:name=".PostAd" />
+        <activity android:name=".ViewProfile" />
         <activity android:name=".UserPermission" />
         <activity android:name=".EditProfile" />
         <activity
             android:name=".UserMainActivity"
-            android:label="@string/title_activity_user_main">
+            android:label="@string/title_activity_user_main" />
 
-        </activity>
-        <activity android:name=".UserDetails" >
-        </activity>
-        <activity android:name=".OtpInputActivity"
-            android:noHistory="true"/>
-        <activity android:name=".MobileNumberInput"
-            />
+        <activity
+            android:name=".UserDetails"
+            android:noHistory="true" />
+        <activity
+            android:name=".OtpInputActivity"
+            android:noHistory="true" />
+        <activity android:name=".MobileNumberInput" />
         <activity android:name=".WelcomeScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

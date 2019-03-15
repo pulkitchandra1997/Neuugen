@@ -6,4 +6,40 @@
     <string name="title_bookings">Bookings</string>
     <string name="title_accounts">My Account</string>
     <string name="OTP_PRETEXT">Welcome to Neuugen. Verify your Login using OTP: </string>
+
+    <array name="propertytype">
+        <item>Select Property Type</item>
+        <item>Apartment</item>
+        <item>Independent House</item>
+        <item>Villa</item>
+        <item>Hostel</item>
+    </array>
+
+    <array name="sellpropertytype">
+        <item>Select Property Type</item>
+        <item>Apartment</item>
+        <item>Independent House</item>
+        <item>Villa</item>
+    </array>
+    <array name="rentofficetype">
+        <item>Select Property Type</item>
+        <item>Apartment</item>
+        <item>Independent House</item>
+        <item>Villa</item>
+    </array>
+
+
+    <array name="roomslist">
+        <item>Select Number</item>
+        <item>One</item>
+        <item>Two</item>
+        <item>Three</item>
+        <item>Four</item>
+        <item>Five</item>
+        <item>Six</item>
+        <item>Seven</item>
+        <item>Eight</item>
+        <item>Nine</item>
+        <item>Ten</item>
+    </array>
 </resources>

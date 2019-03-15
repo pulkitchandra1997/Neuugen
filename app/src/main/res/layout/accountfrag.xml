@@ -52,15 +52,15 @@
                 android:fontFamily="@font/quicksand"
                 android:textColor="@color/PrimaryText"
                 />
+
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/emailid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="pranjalv206@gmail.com"
-                android:textSize="15dp"
-                android:id="@+id/emailid"
                 android:fontFamily="@font/quicksand"
+                android:text="pranjalv206@gmail.com"
                 android:textColor="@color/PrimaryText"
-                />
+                android:textSize="15dp" />
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -107,6 +107,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="10dp"
+            android:id="@+id/postad"
             android:background="@color/colorPrimaryDark">
 
             <ImageView
@@ -116,7 +117,6 @@
                 />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/postad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center"
@@ -135,7 +135,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp">
+            android:padding="10dp"
+            android:id="@+id/manageads"
+            >
 
             <ImageView
                 android:layout_width="26dp"
@@ -152,7 +154,6 @@
                 android:textSize="15dp"
                 android:fontFamily="@font/quicksand"
                 android:textColor="@color/PrimaryText"
-                android:id="@+id/manageads"
                 android:layout_gravity="center_horizontal|center"
                 />
         </LinearLayout>
@@ -166,7 +167,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp">
+            android:padding="10dp"
+            android:id="@+id/help"
+            >
 
             <ImageView
                 android:layout_width="26dp"
@@ -183,7 +186,6 @@
                 android:textSize="15dp"
                 android:fontFamily="@font/quicksand"
                 android:textColor="@color/PrimaryText"
-                android:id="@+id/help"
                 android:layout_gravity="center_horizontal|center"
                 />
         </LinearLayout>
@@ -198,7 +200,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:id="@+id/customersupport"
+            >
 
             <ImageView
                 android:layout_width="26dp"
@@ -215,7 +219,6 @@
                 android:textSize="15dp"
                 android:fontFamily="@font/quicksand"
                 android:textColor="@color/PrimaryText"
-                android:id="@+id/customersupport"
                 android:layout_gravity="center_horizontal|center"
                 />
         </LinearLayout>
@@ -228,7 +231,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:id="@+id/shareapp"
+            >
 
             <ImageView
                 android:layout_width="26dp"
@@ -244,7 +249,6 @@
                 android:layout_marginLeft="15dp"
                 android:fontFamily="@font/quicksand"
                 android:textColor="@color/PrimaryText"
-                android:id="@+id/shareapp"
                 android:layout_gravity="center_horizontal|center"
                 />
         </LinearLayout>
@@ -256,7 +260,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:id="@+id/rateus"
+            >
 
             <ImageView
                 android:layout_width="26dp"
@@ -270,7 +276,6 @@
                 android:textSize="15dp"
                 android:fontFamily="@font/quicksand"
                 android:textColor="@color/PrimaryText"
-                android:id="@+id/rateus"
                 android:layout_marginLeft="15dp"
                 android:layout_gravity="center_horizontal|center"
                 />
@@ -283,7 +288,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:id="@+id/termsofuse"
+            >
 
             <ImageView
                 android:layout_width="26dp"
@@ -297,7 +304,6 @@
                 android:textSize="15dp"
                 android:fontFamily="@font/quicksand"
                 android:textColor="@color/PrimaryText"
-                android:id="@+id/termsofuse"
                 android:layout_marginLeft="15dp"
                 android:layout_gravity="center_horizontal|center"
                 />
@@ -310,7 +316,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:id="@+id/aboutus"
+            >
 
             <ImageView
                 android:layout_width="26dp"
@@ -319,7 +327,6 @@
                 />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/aboutus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center"
