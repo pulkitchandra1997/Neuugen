@@ -91,7 +91,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:stretchColumns="*"
-                android:layout_marginTop="10dp"
                 >
                 <TableRow>
                     <LinearLayout
@@ -100,6 +99,7 @@
                         android:orientation="vertical"
                         grid:layout_columnWeight="1"
                         grid:layout_rowWeight="1"
+                        android:background="@drawable/cellshape"
                         >
 
                         <androidx.appcompat.widget.AppCompatImageView
@@ -118,12 +118,14 @@
                             android:textColor="@color/PrimaryText"
                             />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_height="100dp"
                         android:layout_width="0dp"
                         android:orientation="vertical"
                         grid:layout_columnWeight="1"
                         grid:layout_rowWeight="1"
+                        android:background="@drawable/cellshape"
                         >
 
                         <androidx.appcompat.widget.AppCompatImageView
@@ -148,6 +150,7 @@
                         android:orientation="vertical"
                         grid:layout_columnWeight="1"
                         grid:layout_rowWeight="1"
+                        android:background="@drawable/cellshape"
                         >
 
                         <androidx.appcompat.widget.AppCompatImageView
@@ -169,12 +172,14 @@
                 </TableRow>
 
                 <TableRow>
+
                     <LinearLayout
                         android:layout_height="100dp"
                         android:layout_width="0dp"
                         android:orientation="vertical"
                         grid:layout_columnWeight="1"
                         grid:layout_rowWeight="1"
+                        android:background="@drawable/cellshape"
                         >
 
                         <androidx.appcompat.widget.AppCompatImageView
@@ -199,6 +204,7 @@
                         android:orientation="vertical"
                         grid:layout_columnWeight="1"
                         grid:layout_rowWeight="1"
+                        android:background="@drawable/cellshape"
                         >
 
                         <androidx.appcompat.widget.AppCompatImageView
@@ -223,6 +229,7 @@
                         android:layout_width="0dp"
                         android:orientation="vertical"
                         grid:layout_columnWeight="1"
+                        android:background="@drawable/cellshape"
                         grid:layout_rowWeight="1"
                         >
 
@@ -244,11 +251,6 @@
                     </LinearLayout>
                 </TableRow>
             </TableLayout>
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="5dp"
-                android:layout_marginTop="10dp"
-                android:background="#E4E1E1"/>
 
 
         </LinearLayout>

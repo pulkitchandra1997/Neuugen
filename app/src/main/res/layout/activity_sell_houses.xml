@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".SellHouses"
     android:orientation="vertical"
-    android:id="@+id/shmainlayout"
-    android:background="@color/colorAccent">
+    android:id="@+id/shmainlayout">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".RentHouses"
     android:id="@+id/rhmainlayout"
-    android:orientation="vertical"
-    android:background="@color/colorAccent">
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
