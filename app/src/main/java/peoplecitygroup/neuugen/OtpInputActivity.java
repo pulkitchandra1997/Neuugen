@@ -264,6 +264,7 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
         {
             @Override
             public void onResponse(String response) {
+                Log.i("checkerror",response);
                 loading.dismiss();
                 if(response.toLowerCase().contains("error in server")){
                     AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
@@ -368,20 +369,19 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void nextActivity(boolean b) {
+        Log.i("checkerror",String.valueOf(b));
         Intent intent=null;
         if(b){//true: new profile
             intent = new Intent(OtpInputActivity.this, UserDetails.class);
             intent.putExtra("number",phonetext);
             ActivityOptions options = ActivityOptions.makeCustomAnimation(OtpInputActivity.this, R.anim.fade_in, R.anim.fade_out);
             startActivity(intent, options.toBundle());
-            finish();
         }
         else{
             intent = new Intent(OtpInputActivity.this, UserMainActivity.class);
             intent.putExtra("profile",profile);
             ActivityOptions options = ActivityOptions.makeCustomAnimation(OtpInputActivity.this, R.anim.fade_in, R.anim.fade_out);
             startActivity(intent);
-            finish();
         }
     }
 
@@ -389,7 +389,7 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
         try {
             JSONObject jsonObject=new JSONObject(response);
             tosharedpreference(jsonObject);
-            profile=new PROFILE(phonetext,jsonObject.getString("name"),jsonObject.getString("email"),jsonObject.getString("city"),jsonObject.getString("address"),jsonObject.getString("state"),jsonObject.getString("pincode"),jsonObject.getString("gender"),jsonObject.getString("dob"),jsonObject.getString("emailverified"),jsonObject.getString("profileverified"),jsonObject.getString("addressverified"),jsonObject.getString("pic"));
+            profile=new PROFILE(phonetext,jsonObject.getString("name"),jsonObject.getString("email"),jsonObject.getString("city"),jsonObject.getString("address"),jsonObject.getString("state"),jsonObject.getString("pincode"),jsonObject.getString("gender"),jsonObject.getString("dob"),jsonObject.getString("emailverified"),jsonObject.getString("profileflag"),jsonObject.getString("addressverified"),jsonObject.getString("pic"));
             nextActivity(false);
         } catch (JSONException e) {
             e.printStackTrace();

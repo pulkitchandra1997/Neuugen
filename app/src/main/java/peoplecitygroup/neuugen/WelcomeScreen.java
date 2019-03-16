@@ -20,12 +20,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.Serializable;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static android.Manifest.permission.ACCESS_NETWORK_STATE;
 import static android.Manifest.permission.CALL_PHONE;
@@ -42,6 +45,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 public class WelcomeScreen extends AppCompatActivity {
     Intent intent=null;
     PROFILE profile=null;
+    boolean flag=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,19 +53,13 @@ public class WelcomeScreen extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         if(haveNetworkConnection()) {
             checkLatestVersion();
-            if (checkLoggedInProfile()) {
-                intent = new Intent(WelcomeScreen.this, UserMainActivity.class);
-                intent.putExtra("profile", profile);
-            }
-            else
-                intent = new Intent(WelcomeScreen.this, MobileNumberInput.class);
-            //openNextActivity(intent);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     checkPermission();
                 }
             },3000);
+
         }
         else{
             new Handler().postDelayed(new Runnable() {
@@ -75,20 +73,27 @@ public class WelcomeScreen extends AppCompatActivity {
 
 
     }
-
+    public void checkspcheck(){
+        if (checkLoggedInProfile()) {
+            intent = new Intent(WelcomeScreen.this, UserMainActivity.class);
+            intent.putExtra("profile", profile);
+        } else
+            intent = new Intent(WelcomeScreen.this, MobileNumberInput.class);
+        openNextActivity(intent);
+    }
     private void checkLatestVersion() {
     }
 
-    private void openNextActivity(Intent intent) {
+    private void openNextActivity(final Intent intent) {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                switchScreen();
+                switchScreen(intent);
             }
         },3000);
     }
 
-    private void switchScreen() {
+    private void switchScreen(Intent intent) {
         ActivityOptions options = ActivityOptions.makeCustomAnimation(WelcomeScreen.this, R.anim.fade_in, R.anim.fade_out);
         startActivity(intent, options.toBundle());
         finish();
@@ -109,8 +114,9 @@ public class WelcomeScreen extends AppCompatActivity {
                     sp.getString("dob", null),
                     sp.getString("emailverified", null),
                     sp.getString("profileflag",null),sp.getString("addressverified",null),sp.getString("pic",null));
-            if(sp.getString("mobileno",null)!=null&&sp.getString("name",null)!=null&&sp.getString("email",null)!=null&&sp.getString("city",null)!=null)
-            return true;
+            if(sp.getString("mobileno",null)!=null&&sp.getString("name",null)!=null&&sp.getString("email",null)!=null&&sp.getString("city",null)!=null) {
+                return true;
+            }
             else
                 return false;
         }
@@ -179,7 +185,8 @@ public class WelcomeScreen extends AppCompatActivity {
                     .setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            openNextActivity(intent);
+                            //openNextActivity(intent);
+                        checkspcheck();
                         }
                     })
                     .setIcon(R.mipmap.ic_launcher_round);
@@ -193,12 +200,14 @@ public class WelcomeScreen extends AppCompatActivity {
             neutralButton.setTextColor(Color.parseColor("#FF12B2FA"));
         }
         else
-            openNextActivity(intent);
+            //openNextActivity(intent);
+            checkspcheck();
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        checkPermission();
+        //checkPermission();
+        checkspcheck();
     }
 }
