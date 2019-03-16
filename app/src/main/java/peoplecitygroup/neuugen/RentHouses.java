@@ -1,6 +1,7 @@
 package peoplecitygroup.neuugen;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.AppCompatTextView;
 
@@ -24,7 +25,7 @@ public class RentHouses extends AppCompatActivity implements View.OnClickListene
 
     TextInputEditText arearh,cityrh,landmarkrh,builtarearh,monthlyrentrh,housenorh;
 
-    MaterialButton submitrhform;
+    MaterialButton submitrhform,addimgrh1,addimgrh2,addimgrh3;
 
     AppCompatSpinner propertytyperh,numofbedrh,numofbathrh;
 
@@ -33,6 +34,8 @@ public class RentHouses extends AppCompatActivity implements View.OnClickListene
     Chip rhfullyfurnish,rhsemifurnish,rhunfurnish;
 
     LinearLayout rhmainlayout;
+
+    AppCompatImageView imgrh1,imgrh2,imgrh3;
 
     String arearhtext,cityrhtext,landmarkrhtext,builtarearhtext,monthlyrentrhtext,housenorhtext,propertytyperhtext,numofbedrhtext,numofbathrhtext,rhfurnishtyypetext;
 
@@ -43,16 +46,27 @@ public class RentHouses extends AppCompatActivity implements View.OnClickListene
 
         idLink();
         listenerLink();
+        hideSoftKeyboard();
 
         Typeface font = Typeface.createFromAsset(getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
         backtopost.setTypeface(font);
     }
 
+    public void hideSoftKeyboard() {
+        if (getCurrentFocus() != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+    }
 
     public void listenerLink()
     {
         backtopost.setOnClickListener(this);
         submitrhform.setOnClickListener(this);
+        addimgrh1.setOnClickListener(this);
+        addimgrh2.setOnClickListener(this);
+        addimgrh3.setOnClickListener(this);
+
     }
 
     public void idLink()
@@ -73,6 +87,12 @@ public class RentHouses extends AppCompatActivity implements View.OnClickListene
         rhunfurnish=findViewById(R.id.rhunfurnish);
         housenorh=findViewById(R.id.housenorh);
         rhmainlayout=findViewById(R.id.rhmainlayout);
+        imgrh1=findViewById(R.id.imgrh1);
+        imgrh2=findViewById(R.id.imgrh2);
+        imgrh3=findViewById(R.id.imgrh3);
+        addimgrh1=findViewById(R.id.addimgrh1);
+        addimgrh2=findViewById(R.id.addimgrh2);
+        addimgrh3=findViewById(R.id.addimgrh3);
 
     }
 

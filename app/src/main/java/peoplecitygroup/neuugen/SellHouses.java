@@ -1,13 +1,16 @@
 package peoplecitygroup.neuugen;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.AppCompatTextView;
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 
 import com.google.android.material.button.MaterialButton;
@@ -22,7 +25,7 @@ public class SellHouses extends AppCompatActivity implements View.OnClickListene
 
     TextInputEditText areash,citysh,landmarksh,builtareash,costsh,housenosh,ageofpropertysh;
 
-    MaterialButton submitshform;
+    MaterialButton submitshform,addimgsh1,addimgsh2,addimgsh3;
 
     AppCompatSpinner propertytypesh,numofbedsh,numofbathsh;
 
@@ -31,6 +34,8 @@ public class SellHouses extends AppCompatActivity implements View.OnClickListene
     Chip shfullyfurnish,shsemifurnish,shunfurnish,readytomove,undercon;
 
     LinearLayout shmainlayout;
+
+    AppCompatImageView imgsh1,imgsh2,imgsh3;
 
     String areashtext,cityshtext,landmarkshtext,builtareashtext,costshtext,housenoshtext,propertytypeshtext,numofbedshtext,numofbathshtext,shfurnishtyypetext,constatustext,ageofpropertyshtext;
 
@@ -41,15 +46,25 @@ public class SellHouses extends AppCompatActivity implements View.OnClickListene
 
         idLink();
         listenerLink();
+        hideSoftKeyboard();
 
         Typeface font = Typeface.createFromAsset(getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
         backtopost3.setTypeface(font);
+    }
+    public void hideSoftKeyboard() {
+        if (getCurrentFocus() != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
     }
 
     public void listenerLink()
     {
         backtopost3.setOnClickListener(this);
         submitshform.setOnClickListener(this);
+        addimgsh1.setOnClickListener(this);
+        addimgsh2.setOnClickListener(this);
+        addimgsh3.setOnClickListener(this);
     }
 
     public void idLink()
@@ -74,6 +89,12 @@ public class SellHouses extends AppCompatActivity implements View.OnClickListene
         undercon=findViewById(R.id.undercon);
         ageofpropertysh=findViewById(R.id.ageofpropertysh);
         shmainlayout=findViewById(R.id.shmainlayout);
+        imgsh1=findViewById(R.id.imgsh1);
+        imgsh2=findViewById(R.id.imgsh2);
+        imgsh3=findViewById(R.id.imgsh3);
+        addimgsh1=findViewById(R.id.addimgsh1);
+        addimgsh2=findViewById(R.id.addimgsh2);
+        addimgsh3=findViewById(R.id.addimgsh3);
 
     }
 

@@ -1,13 +1,16 @@
 package peoplecitygroup.neuugen;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.AppCompatTextView;
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 
 import com.google.android.material.button.MaterialButton;
@@ -22,7 +25,7 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
 
     TextInputEditText arearo,cityro,landmarkro,builtarearo,monthlyrentro,shopno;
 
-    MaterialButton submitroform;
+    MaterialButton submitroform,addimgro1,addimgro2,addimgro3;
 
     AppCompatSpinner propertytypero;
 
@@ -31,6 +34,8 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
     Chip readytomovero,underconro;
 
     LinearLayout romainlayout;
+
+    AppCompatImageView imgro1,imgro2,imgro3;
 
     String arearotext,cityrotext,landmarkrotext,builtarearotext,monthlyrentrotext,shopnorotext,propertytyperotext,constatusrotext;
 
@@ -42,14 +47,25 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
 
         idLink();
         listenerLink();
+        hideSoftKeyboard();
 
         Typeface font = Typeface.createFromAsset(getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
         backtopost2.setTypeface(font);
+    }
+
+    public void hideSoftKeyboard() {
+        if (getCurrentFocus() != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
     }
     public void listenerLink()
     {
         backtopost2.setOnClickListener(this);
         submitroform.setOnClickListener(this);
+        addimgro1.setOnClickListener(this);
+        addimgro2.setOnClickListener(this);
+        addimgro3.setOnClickListener(this);
     }
 
     public void idLink()
@@ -67,6 +83,12 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
         underconro=findViewById(R.id.underconro);
         shopno=findViewById(R.id.shopno);
         romainlayout=findViewById(R.id.romainlayout);
+        imgro1=findViewById(R.id.imgro1);
+        imgro2=findViewById(R.id.imgro2);
+        imgro3=findViewById(R.id.imgro3);
+        addimgro1=findViewById(R.id.addimgro1);
+        addimgro2=findViewById(R.id.addimgro2);
+        addimgro3=findViewById(R.id.addimgro3);
 
     }
 

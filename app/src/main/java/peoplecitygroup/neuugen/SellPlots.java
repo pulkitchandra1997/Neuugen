@@ -1,13 +1,16 @@
 package peoplecitygroup.neuugen;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.AppCompatTextView;
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 
 import com.google.android.material.button.MaterialButton;
@@ -22,7 +25,7 @@ public class SellPlots extends AppCompatActivity implements View.OnClickListener
 
     TextInputEditText areasp,citysp,landmarksp,plotarea,plotprice,plotno,lengthofplot,widthofplot,widthofroad,propertytypesp;
 
-    MaterialButton submitspform;
+    MaterialButton submitspform,addimgsp1,addimgsp2;
 
     ChipGroup posesnstatus;
 
@@ -30,23 +33,36 @@ public class SellPlots extends AppCompatActivity implements View.OnClickListener
 
     LinearLayout spmainlayout;
 
+    AppCompatImageView imgsp1,imgsp2;
+
     String areasptext,citysptext,landmarksptext,plotareatext,plotpricetext,plotnotext,lengthofplottext,widthofplottext,widthofroadtext,propertytypesptext,posesnstatustext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sell_plots);
+
         idLink();
         listenerLink();
+        hideSoftKeyboard();
 
         Typeface font = Typeface.createFromAsset(getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
         backtopost4.setTypeface(font);
+    }
+
+    public void hideSoftKeyboard() {
+        if (getCurrentFocus() != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
     }
 
     public void listenerLink()
     {
         backtopost4.setOnClickListener(this);
         submitspform.setOnClickListener(this);
+        addimgsp1.setOnClickListener(this);
+        addimgsp2.setOnClickListener(this);
     }
 
     public void idLink()
@@ -67,6 +83,10 @@ public class SellPlots extends AppCompatActivity implements View.OnClickListener
         immediate=findViewById(R.id.immediate);
         infuture=findViewById(R.id.infuture);
         spmainlayout=findViewById(R.id.spmainlayout);
+        imgsp1=findViewById(R.id.imgsp1);
+        imgsp2=findViewById(R.id.imgsp2);
+        addimgsp1=findViewById(R.id.addimgsp1);
+        addimgsp2=findViewById(R.id.addimgsp2);
 
     }
 

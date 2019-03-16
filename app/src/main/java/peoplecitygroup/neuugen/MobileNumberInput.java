@@ -24,6 +24,7 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
@@ -59,6 +60,7 @@ public class MobileNumberInput extends AppCompatActivity implements View.OnClick
 
         idLink();
         listenerLink();
+        hideSoftKeyboard();
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -66,6 +68,13 @@ public class MobileNumberInput extends AppCompatActivity implements View.OnClick
                 checkMobileNumber();
             }
         }, 1000);
+    }
+
+    public void hideSoftKeyboard() {
+        if (getCurrentFocus() != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
     }
 
     private void checkMobileNumber() {

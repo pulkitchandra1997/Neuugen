@@ -97,16 +97,13 @@
                         android:layout_height="100dp"
                         android:layout_width="0dp"
                         android:orientation="vertical"
-                        grid:layout_columnWeight="1"
-                        grid:layout_rowWeight="1"
                         android:background="@drawable/cellshape"
                         >
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="match_parent"
                             android:layout_height="70dp"
-                            android:src="@drawable/propertiesicon"
-                            grid:layout_columnWeight="1" />
+                            android:src="@drawable/propertiesicon" />
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -123,16 +120,13 @@
                         android:layout_height="100dp"
                         android:layout_width="0dp"
                         android:orientation="vertical"
-                        grid:layout_columnWeight="1"
-                        grid:layout_rowWeight="1"
                         android:background="@drawable/cellshape"
                         >
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="match_parent"
                             android:layout_height="70dp"
-                            android:src="@drawable/massagelogo"
-                            grid:layout_columnWeight="1" />
+                            android:src="@drawable/massagelogo" />
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -148,16 +142,13 @@
                         android:layout_height="100dp"
                         android:layout_width="0dp"
                         android:orientation="vertical"
-                        grid:layout_columnWeight="1"
-                        grid:layout_rowWeight="1"
                         android:background="@drawable/cellshape"
                         >
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="match_parent"
                             android:layout_height="70dp"
-                            android:src="@drawable/eventicon"
-                            grid:layout_columnWeight="1" />
+                            android:src="@drawable/eventicon" />
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -177,16 +168,13 @@
                         android:layout_height="100dp"
                         android:layout_width="0dp"
                         android:orientation="vertical"
-                        grid:layout_columnWeight="1"
-                        grid:layout_rowWeight="1"
                         android:background="@drawable/cellshape"
                         >
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="match_parent"
                             android:layout_height="70dp"
-                            android:src="@drawable/applianceicon"
-                            grid:layout_columnWeight="1" />
+                            android:src="@drawable/applianceicon" />
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -202,16 +190,13 @@
                         android:layout_height="100dp"
                         android:layout_width="0dp"
                         android:orientation="vertical"
-                        grid:layout_columnWeight="1"
-                        grid:layout_rowWeight="1"
                         android:background="@drawable/cellshape"
                         >
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="match_parent"
                             android:layout_height="70dp"
-                            android:src="@drawable/renovationicon"
-                            grid:layout_columnWeight="1" />
+                            android:src="@drawable/renovationicon"/>
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
@@ -228,16 +213,13 @@
                         android:layout_height="100dp"
                         android:layout_width="0dp"
                         android:orientation="vertical"
-                        grid:layout_columnWeight="1"
                         android:background="@drawable/cellshape"
-                        grid:layout_rowWeight="1"
                         >
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="match_parent"
                             android:layout_height="70dp"
-                            android:src="@drawable/holidayicon"
-                            grid:layout_columnWeight="1" />
+                            android:src="@drawable/holidayicon" />
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

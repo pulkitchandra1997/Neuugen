@@ -23,25 +23,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SellPlots"></activity>
-        <activity android:name=".SellHouses" />
-        <activity android:name=".RentOffice" />
-        <activity android:name=".RentHouses" />
+        <activity android:name=".SellPlots"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".SellHouses"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".RentOffice"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".RentHouses"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".PostAd" />
         <activity android:name=".ViewProfile" />
         <activity android:name=".UserPermission" />
-        <activity android:name=".EditProfile" />
+        <activity android:name=".EditProfile"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".UserMainActivity"
             android:label="@string/title_activity_user_main" />
 
         <activity
             android:name=".UserDetails"
-            android:noHistory="true" />
+            android:noHistory="true"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".OtpInputActivity"
             android:noHistory="true" />
-        <activity android:name=".MobileNumberInput" />
+        <activity android:name=".MobileNumberInput"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".WelcomeScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

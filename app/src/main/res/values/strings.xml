@@ -23,9 +23,8 @@
     </array>
     <array name="rentofficetype">
         <item>Select Property Type</item>
-        <item>Apartment</item>
-        <item>Independent House</item>
-        <item>Villa</item>
+        <item>Office Area</item>
+        <item>Shop Area</item>
     </array>
 
 
