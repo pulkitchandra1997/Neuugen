@@ -374,13 +374,14 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
             intent.putExtra("number",phonetext);
             ActivityOptions options = ActivityOptions.makeCustomAnimation(OtpInputActivity.this, R.anim.fade_in, R.anim.fade_out);
             startActivity(intent, options.toBundle());
+            finish();
         }
         else{
             intent = new Intent(OtpInputActivity.this, UserMainActivity.class);
             intent.putExtra("profile",profile);
             ActivityOptions options = ActivityOptions.makeCustomAnimation(OtpInputActivity.this, R.anim.fade_in, R.anim.fade_out);
             startActivity(intent);
-
+            finish();
         }
     }
 
