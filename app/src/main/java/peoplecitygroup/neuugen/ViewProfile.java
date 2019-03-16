@@ -5,15 +5,25 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+
+import com.beardedhen.androidbootstrap.BootstrapCircleThumbnail;
 
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
 public class ViewProfile extends AppCompatActivity implements View.OnClickListener {
 
-    AppCompatTextView editprofileicon,backtoaccount,emailtext,phonetext,citytext,addresstext,statetext,pincodetext,emailicon,phoneicon,addressicon,cityicon,nametext,gendertext,gendericon,bdaytext,bdayicon;
+    AppCompatTextView emailverify,addverify,phoneverify,editprofileicon,backtoaccount,emailtext,phonetext,citytext,addresstext,statetext,pincodetext,emailicon,phoneicon,addressicon,cityicon,nametext,gendertext,gendericon,bdaytext,bdayicon;
+
+    BootstrapCircleThumbnail profileimg,profileimgbtn;
+
+    SharedPreferences sp;
+
+    SharedPreferences.Editor se;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +32,11 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
 
         idLink();
         listenerLink();
+
+        sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
+        se=sp.edit();
+
+        fill();
 
         Typeface font = Typeface.createFromAsset(getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
         editprofileicon.setTypeface(font);
@@ -32,6 +47,70 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
         addressicon.setTypeface(font);
         gendericon.setTypeface(font);
         bdayicon.setTypeface(font);
+
+    }
+
+    public void fill()
+    {
+        nametext.setText(sp.getString("name","name"));
+        emailtext.setText(sp.getString("email","email"));
+        phonetext.setText(sp.getString("mobileno","mobileno"));
+        citytext.setText(sp.getString("city","city"));
+        if (sp.getString("address","address").equalsIgnoreCase("null"))
+        {
+            addresstext.setText("Address not yet filled");
+        }else
+        {
+            addresstext.setText(sp.getString("address",""));
+        }
+        if (sp.getString("state","state").equalsIgnoreCase("null"))
+        {
+            statetext.setText("");
+        }
+        else
+        {
+            statetext.setText(sp.getString("state", " "));
+        }
+        if (sp.getString("gender","gender").equalsIgnoreCase("null"))
+        {
+            gendertext.setText("Gender not yet filled");
+        }
+        else
+        {
+            gendertext.setText(sp.getString("gender", "gender not yet filled"));
+        }
+        if (sp.getString("pincode","pincode").equalsIgnoreCase("null"))
+        {
+            pincodetext.setText(" ");
+        }
+        else
+        {
+            pincodetext.setText(sp.getString("pincode"," "));
+        }
+        if (sp.getString("dob","dob").equalsIgnoreCase("null"))
+        {
+            bdaytext.setText("DOB not yet filled");
+        }
+        else
+        {
+            bdaytext.setText(sp.getString("dob",""));
+        }
+        if (sp.getString("emailverified","emailverified").equalsIgnoreCase("1"))
+        {
+            emailverify.setText("Verified");
+        }
+        else
+        {
+            emailverify.setText("Not Verified");
+        }
+        if (sp.getString("addressverified","addressverified").equalsIgnoreCase("1"))
+        {
+            addverify.setText("Verified");
+        }
+        else
+        {
+            addverify.setText("Not Verified");
+        }
 
 
     }
@@ -55,6 +134,11 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
         bdaytext=findViewById(R.id.bdaytext);
         gendericon=findViewById(R.id.gendericon);
         gendertext=findViewById(R.id.gendertext);
+        profileimg=findViewById(R.id.profileimg);
+        profileimgbtn=findViewById(R.id.profileimgbtn);
+        emailverify=findViewById(R.id.emailverify);
+        phoneverify=findViewById(R.id.phoneverify);
+        addverify=findViewById(R.id.addverify);
 
 
     }
@@ -62,12 +146,9 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
     {
         editprofileicon.setOnClickListener(this);
         backtoaccount.setOnClickListener(this);
+        profileimgbtn.setOnClickListener(this);
     }
 
-    public void fill()
-    {
-
-    }
 
     @Override
     public void onClick(View v) {

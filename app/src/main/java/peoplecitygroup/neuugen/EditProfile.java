@@ -6,6 +6,7 @@ import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import android.app.DatePickerDialog;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
@@ -35,6 +36,10 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
     RadioGroup gender;
     AppCompatRadioButton male,female;
 
+    SharedPreferences sp;
+
+    SharedPreferences.Editor se;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +48,11 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         idLink();
         listenerLink();
         hideSoftKeyboard();
+
+        sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
+        se=sp.edit();
         fill();
+
 
         Typeface font = Typeface.createFromAsset(getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
         backtoprofile.setTypeface(font);
@@ -80,7 +89,38 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
 
     public void fill()
     {
-
+        name.setText(sp.getString("name","name"));
+        email.setText(sp.getString("email","email"));
+        city.setText(sp.getString("city","city"));
+        dob.setText(sp.getString("dob","dob"));
+        if (sp.getString("address","address").equalsIgnoreCase("null"))
+        {
+        }else
+        {
+            address.setText(sp.getString("address",""));
+        }
+        if (sp.getString("state","state").equalsIgnoreCase("null"))
+        {
+        }
+        else
+        {
+            state.setText(sp.getString("state", " "));
+        }
+        if (sp.getString("pincode","pincode").equalsIgnoreCase("null"))
+        {
+        }
+        else
+        {
+            pincode.setText(sp.getString("pincode"," "));
+        }
+        if (sp.getString("dob","dob").equalsIgnoreCase("null"))
+        {
+            dob.setText("");
+        }
+        else
+        {
+            dob.setText(sp.getString("dob",""));
+        }
     }
 
     public String getDate(){
@@ -90,6 +130,9 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         builder.append(year);
         return builder.toString();
     }
+
+
+
     @Override
     public void onClick(View v) {
         if(v.getId()==R.id.backtoprofile)

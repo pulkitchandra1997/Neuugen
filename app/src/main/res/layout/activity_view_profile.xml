@@ -145,6 +145,18 @@
             android:fontFamily="@font/quicksand"
             android:textColor="@color/PrimaryText"
             />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email Verify"
+            android:padding="10dp"
+            android:gravity="end"
+            android:layout_weight="1"
+            android:textSize="15dp"
+            android:id="@+id/emailverify"
+            android:fontFamily="@font/quicksand"
+            android:textColor="@color/DividerColor"
+            />
 
     </LinearLayout>
 
@@ -169,6 +181,18 @@
             android:id="@+id/phonetext"
             android:fontFamily="@font/quicksand"
             android:textColor="@color/PrimaryText"
+            />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Verified"
+            android:padding="10dp"
+            android:gravity="end"
+            android:layout_weight="1"
+            android:textSize="15dp"
+            android:id="@+id/phoneverify"
+            android:fontFamily="@font/quicksand"
+            android:textColor="@color/DividerColor"
             />
     </LinearLayout>
 
@@ -207,15 +231,27 @@
                         android:textColor="@color/PrimaryText"
                         android:textSize="15dp"
                         android:id="@+id/addressicon"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/addresstext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/quicksand"
+                        android:padding="10dp"
+                        android:text="Address"
+                        android:textColor="@color/PrimaryText"
+                        android:textSize="15dp" />
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Address"
-                        android:id="@+id/addresstext"
+                        android:text="Address Verify"
                         android:padding="10dp"
+                        android:gravity="end"
+                        android:layout_weight="1"
                         android:textSize="15dp"
+                        android:id="@+id/addverify"
                         android:fontFamily="@font/quicksand"
-                        android:textColor="@color/PrimaryText"
+                        android:textColor="@color/DividerColor"
                         />
 
                 </LinearLayout>
@@ -242,26 +278,27 @@
                         android:textColor="@color/PrimaryText"
                         android:id="@+id/citytext"
                         />
+
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="State"
-                        android:padding="10dp"
-                        android:textSize="15dp"
-                        android:id="@+id/statetext"
-                        android:fontFamily="@font/quicksand"
-                        android:textColor="@color/PrimaryText"
-                        />
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Pincode"
-                        android:padding="10dp"
-                        android:textSize="15dp"
                         android:id="@+id/pincodetext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:fontFamily="@font/quicksand"
+                        android:padding="10dp"
+                        android:text="Pincode"
                         android:textColor="@color/PrimaryText"
-                        />
+                        android:textSize="15dp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/statetext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/quicksand"
+                        android:padding="10dp"
+                        android:text="State"
+                        android:textColor="@color/PrimaryText"
+                        android:textSize="15dp" />
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -299,16 +336,16 @@
                     android:textColor="@color/PrimaryText"
                     android:textSize="15dp"
                     android:id="@+id/gendericon"/>
+
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/gendertext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gender"
-                    android:id="@+id/gendertext"
-                    android:padding="10dp"
-                    android:textSize="15dp"
                     android:fontFamily="@font/quicksand"
+                    android:padding="10dp"
+                    android:text="Gender"
                     android:textColor="@color/PrimaryText"
-                    />
+                    android:textSize="15dp" />
 
             </LinearLayout>
 
