@@ -94,6 +94,7 @@ public class UserPermission extends AppCompatActivity implements View.OnClickLis
                         alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                             @Override
                             public void onDismiss(DialogInterface dialog) {
+                                backtowelcome();
                                 //openNextActivity(intent);
                             }
                         });
@@ -119,11 +120,21 @@ public class UserPermission extends AppCompatActivity implements View.OnClickLis
                 break;
         }
     }
+
+    private void backtowelcome() {
+        finish();
+    }
+
     private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
         new AlertDialog.Builder(UserPermission.this)
                 .setMessage(message)
                 .setPositiveButton("OK", okListener)
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        backtowelcome();
+                    }
+                })
                 .setIcon(R.mipmap.ic_launcher_round)
                 .setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
