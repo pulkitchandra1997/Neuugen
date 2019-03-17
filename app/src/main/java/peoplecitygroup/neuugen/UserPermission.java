@@ -139,7 +139,9 @@ public class UserPermission extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onResume() {
         super.onResume();
-        if(flag)
+        if(!flag)
         checkPermission();
+        else
+            finish();
     }
 }
