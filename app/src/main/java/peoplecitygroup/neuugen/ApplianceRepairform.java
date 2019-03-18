@@ -15,8 +15,10 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
@@ -32,6 +34,7 @@ public class ApplianceRepairform extends AppCompatActivity implements View.OnCli
     MaterialButton requestservice;
     int day,year,month;
     String areatext,citytext,landmarktext,dostext,pincodetext,housenotext,appliancetext;
+    LinearLayout appliancelayout;
 
 
     public String getDate(){
@@ -87,6 +90,7 @@ public class ApplianceRepairform extends AppCompatActivity implements View.OnCli
         pincodeAS=findViewById(R.id.pincodeAS);
         requestservice=findViewById(R.id.requestservice);
         housenoAS=findViewById(R.id.housenoAS);
+        appliancelayout=findViewById(R.id.appliancelayout);
 
     }
     public void listenerLink()
@@ -114,6 +118,43 @@ public class ApplianceRepairform extends AppCompatActivity implements View.OnCli
                 appliancetext=installappliances.getSelectedItem().toString().trim();
             }
             if (TextUtils.isEmpty(areatext) || TextUtils.isEmpty(housenotext)||TextUtils.isEmpty(citytext)||TextUtils.isEmpty(pincodetext)||TextUtils.isEmpty(dostext)||servicetext.equalsIgnoreCase("Repairing Service")&&appliancetext.equalsIgnoreCase("Select Appliance Type")||servicetext.equalsIgnoreCase("Installation Service")&&appliancetext.equalsIgnoreCase("Select Appliance Type"))
+            {
+                if (TextUtils.isEmpty(areatext) )
+                {
+                    areaAS.setError("Enter Area");
+                    areaAS.requestFocus();
+                }
+                if (TextUtils.isEmpty(housenotext) )
+                {
+                    housenoAS.setError("Enter House Number");
+                    housenoAS.requestFocus();
+                }
+                if (TextUtils.isEmpty(citytext) )
+                {
+                    cityAS.setError("Enter City");
+                    cityAS.requestFocus();
+                }
+                if (TextUtils.isEmpty(pincodetext) )
+                {
+                    pincodeAS.setError("Enter Pincode");
+                    pincodeAS.requestFocus();
+                }
+                if (servicetext.equalsIgnoreCase("Repairing Service")&&appliancetext.equalsIgnoreCase("Select Appliance Type"))
+                {
+                    Snackbar.make(appliancelayout, "Select Property Type", Snackbar.LENGTH_LONG)
+                            .show();
+
+                    repairappliances.requestFocus();
+                }
+                if (servicetext.equalsIgnoreCase("Installation Service")&&appliancetext.equalsIgnoreCase("Select Appliance Type"))
+                {
+                    Snackbar.make(appliancelayout, "Select Property Type", Snackbar.LENGTH_LONG)
+                            .show();
+
+                    installappliances.requestFocus();
+                }
+
+            }else
             {
 
             }
