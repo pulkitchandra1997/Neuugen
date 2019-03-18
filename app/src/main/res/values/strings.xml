@@ -6,7 +6,9 @@
     <string name="title_bookings">Bookings</string>
     <string name="title_accounts">My Account</string>
     <string name="OTP_PRETEXT">Welcome to Neuugen. Verify your Login using OTP: </string>
-
+    <string name="repairtext">1. Rs. 249 visiting charges.\n2. Final Pricing will be based on inspection.\n3. Service available between 11 am to 7 pm.\n4. Surcharge of Rs. 200 for timings between 9pm to 11 pm.</string>
+    <string name="installationtext">1. Rs. 499 visiting charges.\n2. Final Pricing will be based on inspection and appliance.\n3. Service available between 11 am to 7 pm.\n4. Surcharge of Rs. 200 for timings between 9pm to 11 pm.</string>
+    <string name="appliancerepairhead">Appliance Repairing | Servicing | Spare Parts Replacement | Installation</string>
     <array name="propertytype">
         <item>Select Property Type</item>
         <item>Apartment</item>
@@ -25,6 +27,26 @@
         <item>Select Property Type</item>
         <item>Office Area</item>
         <item>Shop Area</item>
+    </array>
+
+    <array name="repairappliances">
+        <item>Select Appliance Type</item>
+        <item>Mobiles</item>
+        <item>Laptops &amp; Computers </item>
+        <item>Geysers</item>
+        <item>Televisions</item>
+        <item>Microwave Oven</item>
+        <item>RO &amp; Water Purifier</item>
+        <item>Air Conditioners</item>
+        <item>Refrigerator</item>
+        <item>Washing Machine</item>
+    </array>
+    <array name="installationappliances">
+        <item>Select Appliance Type</item>
+        <item>Geysers</item>
+        <item>Televisions</item>
+        <item>RO &amp; Water Purifier</item>
+        <item>Air Conditioners</item>
     </array>
 
 

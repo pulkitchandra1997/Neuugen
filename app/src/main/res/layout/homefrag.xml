@@ -91,12 +91,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:stretchColumns="*"
+                android:layout_marginTop="10dp"
                 >
                 <TableRow>
                     <LinearLayout
-                        android:layout_height="100dp"
+                        android:layout_height="120dp"
                         android:layout_width="0dp"
                         android:orientation="vertical"
+                        android:padding="3dp"
+                        android:id="@+id/properties"
                         android:background="@drawable/cellshape"
                         >
 
@@ -117,20 +120,22 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_height="100dp"
+                        android:layout_height="120dp"
                         android:layout_width="0dp"
                         android:orientation="vertical"
+                        android:padding="5dp"
+                        android:id="@+id/salon"
                         android:background="@drawable/cellshape"
                         >
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="match_parent"
                             android:layout_height="70dp"
-                            android:src="@drawable/massagelogo" />
+                            android:src="@drawable/beautyicon" />
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Massage &amp; Spa"
+                            android:text="Home Salon"
                             android:textSize="15dp"
                             android:layout_gravity="center"
                             android:padding="5dp"
@@ -139,9 +144,11 @@
                             />
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_height="100dp"
+                        android:layout_height="120dp"
                         android:layout_width="0dp"
                         android:orientation="vertical"
+                        android:padding="3dp"
+                        android:id="@+id/events"
                         android:background="@drawable/cellshape"
                         >
 
@@ -152,9 +159,9 @@
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Weddings &amp; Events"
+                            android:text="Events"
                             android:textSize="15dp"
-                            android:gravity="center"
+                            android:layout_gravity="center"
                             android:padding="5dp"
                             android:fontFamily="@font/quicksandbold"
                             android:textColor="@color/PrimaryText"
@@ -165,9 +172,11 @@
                 <TableRow>
 
                     <LinearLayout
-                        android:layout_height="100dp"
+                        android:layout_height="120dp"
                         android:layout_width="0dp"
                         android:orientation="vertical"
+                        android:padding="3dp"
+                        android:id="@+id/appliancerepair"
                         android:background="@drawable/cellshape"
                         >
 
@@ -180,16 +189,18 @@
                             android:layout_height="wrap_content"
                             android:text="Appliance Repair"
                             android:textSize="15dp"
-                            android:layout_gravity="center"
+                            android:gravity="center"
                             android:padding="5dp"
                             android:fontFamily="@font/quicksandbold"
                             android:textColor="@color/PrimaryText"
                             />
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_height="100dp"
+                        android:layout_height="120dp"
                         android:layout_width="0dp"
                         android:orientation="vertical"
+                        android:padding="3dp"
+                        android:id="@+id/homerenovation"
                         android:background="@drawable/cellshape"
                         >
 
@@ -210,9 +221,11 @@
                             />
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_height="100dp"
+                        android:layout_height="120dp"
                         android:layout_width="0dp"
                         android:orientation="vertical"
+                        android:padding="3dp"
+                        android:id="@+id/holidayplanner"
                         android:background="@drawable/cellshape"
                         >
 
@@ -233,6 +246,22 @@
                     </LinearLayout>
                 </TableRow>
             </TableLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/postformfab"
+                style="@style/Widget.MaterialComponents.FloatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:layout_margin="16dp"
+                app:srcCompat="@drawable/postform"
+                app:rippleColor="@color/colorPrimary"
+                app:fabCustomSize="70dp"
+                app:maxImageSize="40dp"
+                android:tooltipText="Post Your Advertisement"
+
+                />
 
 
         </LinearLayout>

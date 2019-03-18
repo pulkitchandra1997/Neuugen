@@ -23,7 +23,7 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
 
     AppCompatTextView backtopost2;
 
-    TextInputEditText arearo,cityro,landmarkro,builtarearo,monthlyrentro,shopno;
+    TextInputEditText arearo,cityro,landmarkro,builtarearo,monthlyrentro,shopno,pincodero;
 
     MaterialButton submitroform,addimgro1,addimgro2,addimgro3;
 
@@ -37,7 +37,7 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
 
     AppCompatImageView imgro1,imgro2,imgro3;
 
-    String arearotext,cityrotext,landmarkrotext,builtarearotext,monthlyrentrotext,shopnorotext,propertytyperotext,constatusrotext;
+    String arearotext,cityrotext,landmarkrotext,pincoderotext,builtarearotext,monthlyrentrotext,shopnorotext,propertytyperotext,constatusrotext;
 
 
     @Override
@@ -89,6 +89,7 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
         addimgro1=findViewById(R.id.addimgro1);
         addimgro2=findViewById(R.id.addimgro2);
         addimgro3=findViewById(R.id.addimgro3);
+        pincodero=findViewById(R.id.pincodero);
 
     }
 
@@ -107,6 +108,8 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
             builtarearotext=builtarearo.getText().toString().trim();
             monthlyrentrotext=monthlyrentro.getText().toString().trim();
             propertytyperotext=propertytypero.getSelectedItem().toString();
+            pincoderotext=pincodero.getText().toString().trim();
+
             if (constatusro.getCheckedChipId()==R.id.readytomove)
             {
                 constatusrotext="Ready to move";
@@ -116,7 +119,7 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
                 constatusrotext="Under Construction";
             }
 
-            if (TextUtils.isEmpty(arearotext) || TextUtils.isEmpty(shopnorotext)||TextUtils.isEmpty(cityrotext)||TextUtils.isEmpty(builtarearotext)||TextUtils.isEmpty(monthlyrentrotext)||propertytyperotext.equalsIgnoreCase("Select Property Type")||!(constatusro.getCheckedChipId()==R.id.undercon)&&!(constatusro.getCheckedChipId()==R.id.readytomove))
+            if (TextUtils.isEmpty(pincoderotext) ||TextUtils.isEmpty(arearotext) || TextUtils.isEmpty(shopnorotext)||TextUtils.isEmpty(cityrotext)||TextUtils.isEmpty(builtarearotext)||TextUtils.isEmpty(monthlyrentrotext)||propertytyperotext.equalsIgnoreCase("Select Property Type")||!(constatusro.getCheckedChipId()==R.id.undercon)&&!(constatusro.getCheckedChipId()==R.id.readytomove))
             {
                 if (TextUtils.isEmpty(arearotext) )
                 {
@@ -132,6 +135,11 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
                 {
                     cityro.setError("Enter City");
                     cityro.requestFocus();
+                }
+                if (TextUtils.isEmpty(pincoderotext) )
+                {
+                    pincodero.setError("Enter Pincode");
+                    pincodero.requestFocus();
                 }
                 if (TextUtils.isEmpty(builtarearotext) )
                 {

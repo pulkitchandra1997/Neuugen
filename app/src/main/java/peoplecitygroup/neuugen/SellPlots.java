@@ -23,7 +23,7 @@ public class SellPlots extends AppCompatActivity implements View.OnClickListener
 
     AppCompatTextView backtopost4;
 
-    TextInputEditText areasp,citysp,landmarksp,plotarea,plotprice,plotno,lengthofplot,widthofplot,widthofroad,propertytypesp;
+    TextInputEditText pincodesp,areasp,citysp,landmarksp,plotarea,plotprice,plotno,lengthofplot,widthofplot,widthofroad,propertytypesp;
 
     MaterialButton submitspform,addimgsp1,addimgsp2;
 
@@ -35,7 +35,7 @@ public class SellPlots extends AppCompatActivity implements View.OnClickListener
 
     AppCompatImageView imgsp1,imgsp2;
 
-    String areasptext,citysptext,landmarksptext,plotareatext,plotpricetext,plotnotext,lengthofplottext,widthofplottext,widthofroadtext,propertytypesptext,posesnstatustext;
+    String areasptext,citysptext,landmarksptext,plotareatext,plotpricetext,plotnotext,lengthofplottext,widthofplottext,widthofroadtext,propertytypesptext,posesnstatustext,pincodesptext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +87,7 @@ public class SellPlots extends AppCompatActivity implements View.OnClickListener
         imgsp2=findViewById(R.id.imgsp2);
         addimgsp1=findViewById(R.id.addimgsp1);
         addimgsp2=findViewById(R.id.addimgsp2);
+        pincodesp=findViewById(R.id.pincodesp);
 
     }
 
@@ -108,6 +109,7 @@ public class SellPlots extends AppCompatActivity implements View.OnClickListener
             lengthofplottext=lengthofplot.getText().toString().trim();
             widthofplottext=widthofplot.getText().toString().trim();
             widthofroadtext=widthofroad.getText().toString().trim();
+            pincodesptext=pincodesp.getText().toString().trim();
             if (posesnstatus.getCheckedChipId()==R.id.immediate)
             {
                 posesnstatustext="Immediate";
@@ -117,7 +119,7 @@ public class SellPlots extends AppCompatActivity implements View.OnClickListener
                 posesnstatustext="In Future";
             }
 
-            if (TextUtils.isEmpty(areasptext) || TextUtils.isEmpty(plotnotext)||TextUtils.isEmpty(citysptext)||TextUtils.isEmpty(plotareatext)||TextUtils.isEmpty(plotpricetext)||propertytypesptext.equalsIgnoreCase("Select Property Type")||!(posesnstatus.getCheckedChipId()==R.id.undercon)&&!(posesnstatus.getCheckedChipId()==R.id.readytomove))
+            if (TextUtils.isEmpty(pincodesptext) ||TextUtils.isEmpty(areasptext) || TextUtils.isEmpty(plotnotext)||TextUtils.isEmpty(citysptext)||TextUtils.isEmpty(plotareatext)||TextUtils.isEmpty(plotpricetext)||propertytypesptext.equalsIgnoreCase("Select Property Type")||!(posesnstatus.getCheckedChipId()==R.id.undercon)&&!(posesnstatus.getCheckedChipId()==R.id.readytomove))
             {
                 if (TextUtils.isEmpty(areasptext) )
                 {
@@ -133,6 +135,11 @@ public class SellPlots extends AppCompatActivity implements View.OnClickListener
                 {
                     citysp.setError("Enter City");
                     citysp.requestFocus();
+                }
+                if (TextUtils.isEmpty(pincodesptext) )
+                {
+                    pincodesp.setError("Enter Pincode");
+                    pincodesp.requestFocus();
                 }
                 if (TextUtils.isEmpty(plotareatext) )
                 {

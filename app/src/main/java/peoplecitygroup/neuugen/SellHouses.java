@@ -23,7 +23,7 @@ public class SellHouses extends AppCompatActivity implements View.OnClickListene
 
     AppCompatTextView backtopost3;
 
-    TextInputEditText areash,citysh,landmarksh,builtareash,costsh,housenosh,ageofpropertysh;
+    TextInputEditText areash,citysh,landmarksh,builtareash,costsh,housenosh,ageofpropertysh,pincodesh;
 
     MaterialButton submitshform,addimgsh1,addimgsh2,addimgsh3;
 
@@ -37,7 +37,7 @@ public class SellHouses extends AppCompatActivity implements View.OnClickListene
 
     AppCompatImageView imgsh1,imgsh2,imgsh3;
 
-    String areashtext,cityshtext,landmarkshtext,builtareashtext,costshtext,housenoshtext,propertytypeshtext,numofbedshtext,numofbathshtext,shfurnishtyypetext,constatustext,ageofpropertyshtext;
+    String areashtext,cityshtext,landmarkshtext,builtareashtext,costshtext,housenoshtext,pincodeshtext,propertytypeshtext,numofbedshtext,numofbathshtext,shfurnishtyypetext,constatustext,ageofpropertyshtext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +95,7 @@ public class SellHouses extends AppCompatActivity implements View.OnClickListene
         addimgsh1=findViewById(R.id.addimgsh1);
         addimgsh2=findViewById(R.id.addimgsh2);
         addimgsh3=findViewById(R.id.addimgsh3);
+        pincodesh=findViewById(R.id.pincodesh);
 
     }
 
@@ -116,6 +117,9 @@ public class SellHouses extends AppCompatActivity implements View.OnClickListene
             numofbedshtext=numofbedsh.getSelectedItem().toString();
             numofbathshtext=numofbathsh.getSelectedItem().toString();
             ageofpropertyshtext=ageofpropertysh.getText().toString().trim();
+            pincodeshtext=pincodesh.getText().toString().trim();
+
+
             if (furnishtypesh.getCheckedChipId()==R.id.shfullyfurnish)
             {
                 shfurnishtyypetext="Fully furnished";
@@ -137,7 +141,7 @@ public class SellHouses extends AppCompatActivity implements View.OnClickListene
                 constatustext="Under Construction";
             }
 
-            if (TextUtils.isEmpty(areashtext) || TextUtils.isEmpty(housenoshtext)||TextUtils.isEmpty(cityshtext)||TextUtils.isEmpty(builtareashtext)||TextUtils.isEmpty(costshtext)||propertytypeshtext.equalsIgnoreCase("Select Property Type")||numofbathshtext.equalsIgnoreCase("Select Number")||numofbedshtext.equalsIgnoreCase("Select Number")||TextUtils.isEmpty(ageofpropertyshtext)||!(furnishtypesh.getCheckedChipId()==R.id.shfullyfurnish)&&!(furnishtypesh.getCheckedChipId()==R.id.shsemifurnish)&&!(furnishtypesh.getCheckedChipId()==R.id.shunfurnish)||!(constatus.getCheckedChipId()==R.id.undercon)&&!(constatus.getCheckedChipId()==R.id.readytomove))
+            if (TextUtils.isEmpty(pincodeshtext) ||TextUtils.isEmpty(areashtext) || TextUtils.isEmpty(housenoshtext)||TextUtils.isEmpty(cityshtext)||TextUtils.isEmpty(builtareashtext)||TextUtils.isEmpty(costshtext)||propertytypeshtext.equalsIgnoreCase("Select Property Type")||numofbathshtext.equalsIgnoreCase("Select Number")||numofbedshtext.equalsIgnoreCase("Select Number")||TextUtils.isEmpty(ageofpropertyshtext)||!(furnishtypesh.getCheckedChipId()==R.id.shfullyfurnish)&&!(furnishtypesh.getCheckedChipId()==R.id.shsemifurnish)&&!(furnishtypesh.getCheckedChipId()==R.id.shunfurnish)||!(constatus.getCheckedChipId()==R.id.undercon)&&!(constatus.getCheckedChipId()==R.id.readytomove))
             {
                 if (TextUtils.isEmpty(areashtext) )
                 {
@@ -153,6 +157,11 @@ public class SellHouses extends AppCompatActivity implements View.OnClickListene
                 {
                     citysh.setError("Enter City");
                     citysh.requestFocus();
+                }
+                if (TextUtils.isEmpty(pincodeshtext) )
+                {
+                    pincodesh.setError("Enter Pincode");
+                    pincodesh.requestFocus();
                 }
                 if (TextUtils.isEmpty(builtareashtext) )
                 {

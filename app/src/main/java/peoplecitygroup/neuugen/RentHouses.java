@@ -23,7 +23,7 @@ public class RentHouses extends AppCompatActivity implements View.OnClickListene
 
     AppCompatTextView backtopost;
 
-    TextInputEditText arearh,cityrh,landmarkrh,builtarearh,monthlyrentrh,housenorh;
+    TextInputEditText arearh,cityrh,landmarkrh,builtarearh,monthlyrentrh,housenorh,pincoderh;
 
     MaterialButton submitrhform,addimgrh1,addimgrh2,addimgrh3;
 
@@ -37,7 +37,7 @@ public class RentHouses extends AppCompatActivity implements View.OnClickListene
 
     AppCompatImageView imgrh1,imgrh2,imgrh3;
 
-    String arearhtext,cityrhtext,landmarkrhtext,builtarearhtext,monthlyrentrhtext,housenorhtext,propertytyperhtext,numofbedrhtext,numofbathrhtext,rhfurnishtyypetext;
+    String arearhtext,cityrhtext,landmarkrhtext,builtarearhtext,pincoderhtext,monthlyrentrhtext,housenorhtext,propertytyperhtext,numofbedrhtext,numofbathrhtext,rhfurnishtyypetext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +93,7 @@ public class RentHouses extends AppCompatActivity implements View.OnClickListene
         addimgrh1=findViewById(R.id.addimgrh1);
         addimgrh2=findViewById(R.id.addimgrh2);
         addimgrh3=findViewById(R.id.addimgrh3);
+        pincoderh=findViewById(R.id.pincoderh);
 
     }
 
@@ -113,6 +114,8 @@ public class RentHouses extends AppCompatActivity implements View.OnClickListene
             propertytyperhtext=propertytyperh.getSelectedItem().toString();
             numofbedrhtext=numofbedrh.getSelectedItem().toString();
             numofbathrhtext=numofbathrh.getSelectedItem().toString();
+            pincoderhtext=pincoderh.getText().toString().trim();
+
             if (rhfurnishtype.getCheckedChipId()==R.id.rhfullyfurnish)
             {
                 rhfurnishtyypetext="Fully furnished";
@@ -126,7 +129,7 @@ public class RentHouses extends AppCompatActivity implements View.OnClickListene
                 rhfurnishtyypetext="Unfurnished";
             }
 
-            if (TextUtils.isEmpty(arearhtext) || TextUtils.isEmpty(housenorhtext)||TextUtils.isEmpty(cityrhtext)||TextUtils.isEmpty(builtarearhtext)||TextUtils.isEmpty(monthlyrentrhtext)||propertytyperhtext.equalsIgnoreCase("Select Property Type")||numofbathrhtext.equalsIgnoreCase("Select Number")||numofbedrhtext.equalsIgnoreCase("Select Number")||!(rhfurnishtype.getCheckedChipId()==R.id.rhfullyfurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhsemifurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhunfurnish))
+            if (TextUtils.isEmpty(pincoderhtext) ||TextUtils.isEmpty(arearhtext) || TextUtils.isEmpty(housenorhtext)||TextUtils.isEmpty(cityrhtext)||TextUtils.isEmpty(builtarearhtext)||TextUtils.isEmpty(monthlyrentrhtext)||propertytyperhtext.equalsIgnoreCase("Select Property Type")||numofbathrhtext.equalsIgnoreCase("Select Number")||numofbedrhtext.equalsIgnoreCase("Select Number")||!(rhfurnishtype.getCheckedChipId()==R.id.rhfullyfurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhsemifurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhunfurnish))
             {
                 if (TextUtils.isEmpty(arearhtext) )
                 {
@@ -142,6 +145,11 @@ public class RentHouses extends AppCompatActivity implements View.OnClickListene
                 {
                     cityrh.setError("Enter City");
                     cityrh.requestFocus();
+                }
+                if (TextUtils.isEmpty(pincoderhtext) )
+                {
+                    pincoderh.setError("Enter Pincode");
+                    pincoderh.requestFocus();
                 }
                 if (TextUtils.isEmpty(builtarearhtext) )
                 {

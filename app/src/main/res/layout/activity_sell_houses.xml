@@ -153,6 +153,32 @@
                         android:id="@+id/landmarksh"
                         />
                 </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    app:boxStrokeColor="@color/colorPrimaryDark"
+                    app:hintTextAppearance="@style/MyAppearance"
+                    app:hintEnabled="true"
+                    app:errorEnabled="true"
+                    app:boxBackgroundMode="outline"
+                    android:focusedByDefault="false"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Pincode"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:fontFamily="@font/quicksandregular"
+                        android:textCursorDrawable="@color/colorPrimaryDark"
+                        android:textSize="18sp"
+                        android:padding="10dp"
+                        android:id="@+id/pincodesh"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"

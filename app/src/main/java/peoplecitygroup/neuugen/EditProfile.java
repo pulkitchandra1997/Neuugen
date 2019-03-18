@@ -241,11 +241,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
             negativeButton.setTextSize(15);
             negativeButton.setTextColor(Color.BLUE);
             }
-        if (v.getId()==R.id.update)
-        {
 
-
-        }
 
     }
 }

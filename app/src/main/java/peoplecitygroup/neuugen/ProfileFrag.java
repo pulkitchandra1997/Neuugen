@@ -44,10 +44,19 @@ public class ProfileFrag extends Fragment implements View.OnClickListener {
 
        idLink();
        listenerLink();
+
         sp=getActivity().getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
         se=sp.edit();
 
+        fill();
+
         return v;
+    }
+
+    public void fill() {
+        username.setText(sp.getString("name", "name"));
+        emailid.setText(sp.getString("email", "email"));
+        mobilenum.setText(sp.getString("mobileno", "mobileno"));
     }
 
     public void idLink()
