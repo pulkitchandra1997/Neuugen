@@ -96,6 +96,7 @@ public class ApplianceRepairform extends AppCompatActivity implements View.OnCli
     public void listenerLink()
     {
         requestservice.setOnClickListener(this);
+        dos.setOnClickListener(this);
 
     }
 
