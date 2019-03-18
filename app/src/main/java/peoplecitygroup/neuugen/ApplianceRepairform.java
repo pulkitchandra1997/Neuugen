@@ -141,14 +141,14 @@ public class ApplianceRepairform extends AppCompatActivity implements View.OnCli
                 }
                 if (servicetext.equalsIgnoreCase("Repairing Service")&&appliancetext.equalsIgnoreCase("Select Appliance Type"))
                 {
-                    Snackbar.make(appliancelayout, "Select Property Type", Snackbar.LENGTH_LONG)
+                    Snackbar.make(appliancelayout, "Select Appliance Type", Snackbar.LENGTH_LONG)
                             .show();
 
                     repairappliances.requestFocus();
                 }
                 if (servicetext.equalsIgnoreCase("Installation Service")&&appliancetext.equalsIgnoreCase("Select Appliance Type"))
                 {
-                    Snackbar.make(appliancelayout, "Select Property Type", Snackbar.LENGTH_LONG)
+                    Snackbar.make(appliancelayout, "Select Appliance Type", Snackbar.LENGTH_LONG)
                             .show();
 
                     installappliances.requestFocus();
