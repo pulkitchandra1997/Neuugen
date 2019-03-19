@@ -67,7 +67,7 @@ public class WelcomeScreen extends AppCompatActivity {
                 public void run() {
                     finish();
                 }
-            },5000);
+            },3000);
         }
 
 

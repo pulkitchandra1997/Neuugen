@@ -23,8 +23,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ApplianceRepairform"
+        <activity android:name=".SalonServiceForm"
             android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".SalonServices" />
+        <activity android:name=".HomeSalon" />
+        <activity
+            android:name=".ApplianceRepairform"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".Appliancerepair" />
         <activity
             android:name=".SellPlots"

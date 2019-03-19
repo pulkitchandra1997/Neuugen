@@ -9,6 +9,19 @@
     <string name="repairtext">1. Rs. 249 visiting charges.\n2. Final Pricing will be based on inspection.\n3. Service available between 11 am to 7 pm.\n4. Surcharge of Rs. 200 for timings between 9pm to 11 pm.</string>
     <string name="installationtext">1. Rs. 499 visiting charges.\n2. Final Pricing will be based on inspection and appliance.\n3. Service available between 11 am to 7 pm.\n4. Surcharge of Rs. 200 for timings between 9pm to 11 pm.</string>
     <string name="appliancerepairhead">Appliance Repairing | Servicing | Spare Parts Replacement | Installation</string>
+
+    <string name="mensalontext">1. Complete setup will be carried by our specialist.\n2. No hair and mess will be left behind.\n3. Verified trained specialists.</string>
+    <string name="womensalontext">1. Complete setup will be carried by our specialist.\n2. Branded products will be used for one time packs. \n3. No hair and mess will be left behind.\n4. Verified trained women specialists.</string>
+    <string name="salonservicetext">Men\'s Haircut &amp; Grooming | Women\'s makeup &amp; Hairstyling | Wedding Makeup &amp; Grooming </string>
+
+    <string name="menhaircuttext">1. No mess left behind.\n2. Complete setup carried by specialist.</string>
+    <string name="menbeardtext">1. No mess left behind.\n2. Complete setup carried by specialist.\n3. Beard Styling.</string>
+    <string name="mengroomingtext">1. Free Haircut.\n2. Sunsafe Facial.\n3. Beard Styling.\n4. Hands Manicure.\n5. Face Detan Pack.6. Feet Pedicure.</string>
+    <string name="womenhaircuttext">1. No mess left behind.\n2. Complete setup carried by specialist.\n3. Trained women specialists.</string>
+    <string name="womenpartymakeuptext">1. Professional makeup for any party or events.\n2. Hair- straightening , blow-dry, soft Curls.</string>
+    <string name="womenweddingmakeuptext">1. Professional makeup for your special day.\n2. Hair- straightening , blow-dry, soft Curls.\n3. Free Saree Draping.\n4. Quality False lashes included.\n5. HD Airbrush products available.\n6.Mehendi design included.</string>
+
+
     <array name="propertytype">
         <item>Select Property Type</item>
         <item>Apartment</item>
@@ -32,7 +45,7 @@
     <array name="repairappliances">
         <item>Select Appliance Type</item>
         <item>Mobiles</item>
-        <item>Laptops &amp; Computers </item>
+        <item>Laptops &amp; Computers</item>
         <item>Geysers</item>
         <item>Televisions</item>
         <item>Microwave Oven</item>

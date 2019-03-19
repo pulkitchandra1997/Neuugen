@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SalonServices">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:padding="15dp"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/quicksandbold"
+                    android:textColor="@color/colorAccent"
+                    android:id="@+id/salonservicehead"
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/Greybg">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/mensalonlayout"
+                    android:visibility="gone">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Choose a service"
+                        android:gravity="start"
+                        android:textColor="@color/PrimaryText"
+                        android:textSize="25dp"
+                        android:fontFamily="@font/quicksandbold"
+                        />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:backgroundTint="#fff"
+                        app:cardUseCompatPadding="true"
+                        >
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Men's Haircut"
+                                    android:gravity="start"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:textSize="20dp"
+                                    android:fontFamily="@font/quicksandbold"
+                                    />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/menhaircuttext"
+                                android:layout_marginTop="10dp"
+                                android:lineSpacingExtra="10dp"
+                                android:gravity="start"
+                                android:textColor="@color/SecondaryText"
+                                android:textSize="15dp"
+                                android:fontFamily="@font/quicksand"
+                                />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Rs. 399"
+                                    android:gravity="start"
+                                    android:textColor="@color/PrimaryText"
+                                    android:textSize="20dp"
+                                    android:padding="10dp"
+                                    android:fontFamily="@font/quicksandbold"
+                                    />
+                                <com.google.android.material.button.MaterialButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Request"
+                                    android:layout_alignParentRight="true"
+                                    android:id="@+id/menhaircutbtn"
+                                    android:textColor="@color/colorAccent"
+                                    android:textSize="15dp"
+                                    android:backgroundTint="@color/DividerColor"
+                                    android:fontFamily="@font/quicksandbold"
+                                    />
+                            </RelativeLayout>
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:backgroundTint="#fff"
+                        app:cardUseCompatPadding="true"
+                        >
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Men's Haircut &amp; Beard"
+                                    android:gravity="start"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:textSize="20dp"
+                                    android:fontFamily="@font/quicksandbold"
+                                    />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/menbeardtext"
+                                android:lineSpacingExtra="10dp"
+                                android:layout_marginTop="10dp"
+                                android:gravity="start"
+                                android:textColor="@color/SecondaryText"
+                                android:textSize="15dp"
+                                android:fontFamily="@font/quicksand"
+                                />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Rs. 499"
+                                    android:gravity="start"
+                                    android:textColor="@color/PrimaryText"
+                                    android:textSize="20dp"
+                                    android:padding="10dp"
+                                    android:fontFamily="@font/quicksandbold"
+                                    />
+                                <com.google.android.material.button.MaterialButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Request"
+                                    android:layout_alignParentRight="true"
+                                    android:id="@+id/menbeardbtn"
+                                    android:textColor="@color/colorAccent"
+                                    android:textSize="15dp"
+                                    android:backgroundTint="@color/DividerColor"
+                                    android:fontFamily="@font/quicksandbold"
+                                    />
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:backgroundTint="#fff"
+                        app:cardUseCompatPadding="true"
+                        >
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Men's Party Grooming"
+                                    android:gravity="start"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:textSize="20dp"
+                                    android:fontFamily="@font/quicksandbold"
+                                    />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/mengroomingtext"
+                                android:lineSpacingExtra="10dp"
+                                android:layout_marginTop="10dp"
+                                android:gravity="start"
+                                android:textColor="@color/SecondaryText"
+                                android:textSize="15dp"
+                                android:fontFamily="@font/quicksand"
+                                />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Rs. 1999"
+                                    android:gravity="start"
+                                    android:textColor="@color/PrimaryText"
+                                    android:textSize="20dp"
+                                    android:padding="10dp"
+                                    android:fontFamily="@font/quicksandbold"
+                                    />
+                                <com.google.android.material.button.MaterialButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Request"
+                                    android:layout_alignParentRight="true"
+                                    android:id="@+id/menpartybtn"
+                                    android:textColor="@color/colorAccent"
+                                    android:textSize="15dp"
+                                    android:backgroundTint="@color/DividerColor"
+                                    android:fontFamily="@font/quicksandbold"
+                                    />
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/womensalonlayout">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Choose a service"
+                        android:gravity="start"
+                        android:textColor="@color/PrimaryText"
+                        android:textSize="25dp"
+                        android:fontFamily="@font/quicksandbold"
+                        />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:backgroundTint="#fff"
+                        app:cardUseCompatPadding="true"
+                        >
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Women's Haircut &amp; styling"
+                                android:gravity="start"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="20dp"
+                                android:fontFamily="@font/quicksandbold"
+                                />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/womenhaircuttext"
+                                android:layout_marginTop="10dp"
+                                android:lineSpacingExtra="10dp"
+                                android:gravity="start"
+                                android:textColor="@color/SecondaryText"
+                                android:textSize="15dp"
+                                android:fontFamily="@font/quicksand"
+                                />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Rs. 599"
+                                    android:gravity="start"
+                                    android:textColor="@color/PrimaryText"
+                                    android:textSize="20dp"
+                                    android:padding="10dp"
+                                    android:id="@+id/womenhaircutprice"
+                                    android:fontFamily="@font/quicksandbold"
+                                    />
+                                <com.google.android.material.button.MaterialButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Request"
+                                    android:layout_alignParentRight="true"
+                                    android:id="@+id/womenhaircutbtn"
+                                    android:textColor="@color/colorAccent"
+                                    android:textSize="15dp"
+                                    android:backgroundTint="@color/DividerColor"
+                                    android:fontFamily="@font/quicksandbold"
+                                    />
+                            </RelativeLayout>
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:backgroundTint="#fff"
+                        app:cardUseCompatPadding="true"
+                        >
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Women's Party makeup"
+                                android:gravity="start"
+                                android:id="@+id/womenpartymakeuptext"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="20dp"
+                                android:fontFamily="@font/quicksandbold"
+                                />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/womenpartymakeuptext"
+                                android:lineSpacingExtra="10dp"
+                                android:layout_marginTop="10dp"
+                                android:gravity="start"
+                                android:textColor="@color/SecondaryText"
+                                android:textSize="15dp"
+                                android:fontFamily="@font/quicksand"
+                                />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Rs. 2999"
+                                    android:gravity="start"
+                                    android:textColor="@color/PrimaryText"
+                                    android:textSize="20dp"
+                                    android:padding="10dp"
+                                    android:fontFamily="@font/quicksandbold"
+                                    />
+                                <com.google.android.material.button.MaterialButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Request"
+                                    android:layout_alignParentRight="true"
+                                    android:id="@+id/womenpartymakeupbtn"
+                                    android:textColor="@color/colorAccent"
+                                    android:textSize="15dp"
+                                    android:backgroundTint="@color/DividerColor"
+                                    android:fontFamily="@font/quicksandbold"
+                                    />
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:backgroundTint="#fff"
+                        app:cardUseCompatPadding="true"
+                        >
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Women's Wedding makeup"
+                                android:gravity="start"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="20dp"
+                                android:fontFamily="@font/quicksandbold"
+                                />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/womenweddingmakeuptext"
+                                android:lineSpacingExtra="10dp"
+                                android:layout_marginTop="10dp"
+                                android:gravity="start"
+                                android:textColor="@color/SecondaryText"
+                                android:textSize="15dp"
+                                android:fontFamily="@font/quicksand"
+                                />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Rs. 5499"
+                                    android:gravity="start"
+                                    android:textColor="@color/PrimaryText"
+                                    android:textSize="20dp"
+                                    android:padding="10dp"
+                                    android:fontFamily="@font/quicksandbold"
+                                    />
+                                <com.google.android.material.button.MaterialButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Request"
+                                    android:layout_alignParentRight="true"
+                                    android:id="@+id/womenweddingmakeupbtn"
+                                    android:textColor="@color/colorAccent"
+                                    android:textSize="15dp"
+                                    android:backgroundTint="@color/DividerColor"
+                                    android:fontFamily="@font/quicksandbold"
+                                    />
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
