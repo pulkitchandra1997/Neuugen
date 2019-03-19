@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.SearchView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.synnapps.carouselview.CarouselView;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,7 +22,6 @@ import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
-import com.synnapps.carouselview.ImageListener;
 
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
@@ -38,10 +37,6 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
 
     LinearLayout properties,salon,events,appliancerepair,homerenovation,holidayplanner;
 
-    CarouselView carouselView;
-
-    int[] sampleImages = {R.drawable.defaultpic, R.drawable.camera, R.drawable.defaultpic, R.drawable.camera};
-
 
     @Nullable
     @Override
@@ -50,22 +45,6 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
 
         idLink();
         listenerLink();
-
-
-
-
-        carouselView = v.findViewById(R.id.carouselView);
-        carouselView.setPageCount(sampleImages.length);
-
-        ImageListener imageListener = new ImageListener() {
-            @Override
-            public void setImageForPosition(int position, ImageView imageView) {
-                imageView.setImageResource(sampleImages[position]);
-            }
-        };
-        carouselView.setImageListener(imageListener);
-
-
 
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
         locationicon.setTypeface(font);
