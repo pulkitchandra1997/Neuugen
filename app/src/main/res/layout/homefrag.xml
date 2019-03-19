@@ -252,15 +252,15 @@
                 style="@style/Widget.MaterialComponents.FloatingActionButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:layout_margin="16dp"
+                android:layout_gravity="right|bottom"
+                android:backgroundTint="@color/DividerColor"
+                android:layout_margin="25dp"
                 app:srcCompat="@drawable/postform"
                 app:rippleColor="@color/colorPrimary"
-                app:fabCustomSize="70dp"
+                app:fabCustomSize="80dp"
                 app:maxImageSize="40dp"
+                android:elevation="6dp"
                 android:tooltipText="Post Your Advertisement"
-
                 />
 
 

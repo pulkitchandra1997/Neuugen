@@ -88,7 +88,7 @@ public class ApplianceRepairform extends AppCompatActivity implements View.OnCli
         cityAS=findViewById(R.id.cityAS);
         landmarkAS=findViewById(R.id.landmarkAS);
         pincodeAS=findViewById(R.id.pincodeAS);
-        requestservice=findViewById(R.id.requestservice);
+        requestservice=findViewById(R.id.requestserviceAS);
         housenoAS=findViewById(R.id.housenoAS);
         appliancelayout=findViewById(R.id.appliancelayout);
 
@@ -102,7 +102,7 @@ public class ApplianceRepairform extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        if (v.getId()==R.id.requestservice)
+        if (v.getId()==R.id.requestserviceAS)
         {
             areatext=areaAS.getText().toString().trim();
             housenotext=housenoAS.getText().toString().trim();
