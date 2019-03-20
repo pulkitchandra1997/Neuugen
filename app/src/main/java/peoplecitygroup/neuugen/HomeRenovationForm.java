@@ -97,7 +97,7 @@ public class HomeRenovationForm extends AppCompatActivity implements View.OnClic
         pincodeHR=findViewById(R.id.pincodeHR);
         requestserviceHR=findViewById(R.id.requestserviceHR);
         housenoHR=findViewById(R.id.housenoHR);
-        renovationlayout=findViewById(R.id.appliancelayout);
+        renovationlayout=findViewById(R.id.renovationlayout);
 
     }
     public void listenerLink()
