@@ -417,6 +417,7 @@
                 android:layout_width="0dp"
                 android:orientation="vertical"
                 android:background="@drawable/cellshape"
+                android:padding="2dp"
                 >
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -442,6 +443,7 @@
                 android:layout_width="0dp"
                 android:orientation="vertical"
                 android:background="@drawable/cellshape"
+                android:padding="2dp"
                 >
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -465,6 +467,7 @@
             <LinearLayout
                 android:layout_height="180dp"
                 android:layout_width="0dp"
+                android:padding="2dp"
                 android:orientation="vertical"
                 android:background="@drawable/cellshape"
                 >

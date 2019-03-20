@@ -361,6 +361,7 @@
                             android:layout_width="0dp"
                             android:orientation="vertical"
                             android:background="@drawable/cellshape"
+                            android:padding="2dp"
                             >
 
                             <androidx.appcompat.widget.AppCompatImageView
@@ -386,6 +387,7 @@
                             android:layout_width="0dp"
                             android:orientation="vertical"
                             android:background="@drawable/cellshape"
+                            android:padding="2dp"
                             >
 
                             <androidx.appcompat.widget.AppCompatImageView
@@ -411,6 +413,7 @@
                             android:layout_width="0dp"
                             android:orientation="vertical"
                             android:background="@drawable/cellshape"
+                            android:padding="2dp"
                             >
 
                             <androidx.appcompat.widget.AppCompatImageView
