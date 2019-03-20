@@ -489,7 +489,7 @@
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="120dp"
-                                android:src="@drawable/defaultpic"
+                                android:src="@drawable/imgplaceholder"
                                 android:id="@+id/imgsp1"/>
 
                             <com.google.android.material.button.MaterialButton
@@ -514,7 +514,7 @@
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="120dp"
-                                android:src="@drawable/defaultpic"
+                                android:src="@drawable/imgplaceholder"
                                 android:id="@+id/imgsp2"/>
 
                             <com.google.android.material.button.MaterialButton

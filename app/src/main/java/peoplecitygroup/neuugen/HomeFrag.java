@@ -31,7 +31,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
 
     LinearLayout location;
 
-    FloatingActionButton postformfab;
+    /*FloatingActionButton postformfab;*/
 
     View v;
 
@@ -41,7 +41,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.homefrag, container, false);
+        v = inflater.inflate(R.layout.homefragment, container, false);
 
         idLink();
         listenerLink();
@@ -57,7 +57,9 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     {
         locationicon=v.findViewById(R.id.locationicon);
         location=v.findViewById(R.id.location);
+/*
         postformfab=v.findViewById(R.id.postformfab);
+*/
         properties=v.findViewById(R.id.properties);
         events=v.findViewById(R.id.events);
         homerenovation=v.findViewById(R.id.homerenovation);
@@ -68,7 +70,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
 
     public void listenerLink()
     {
-        postformfab.setOnClickListener(this);
+        /*postformfab.setOnClickListener(this);*/
         properties.setOnClickListener(this);
         events.setOnClickListener(this);
         homerenovation.setOnClickListener(this);
@@ -82,7 +84,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-        if (v.getId()==R.id.postformfab)
+      /*  if (v.getId()==R.id.postformfab)
         {
             Intent intent = new Intent(getActivity(), PostAd.class);
             if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
@@ -91,7 +93,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
             } else {
                 startActivity(intent);
             }
-        }
+        }*/
         if (v.getId()==R.id.appliancerepair)
         {
             Intent intent = new Intent(getActivity(), Appliancerepair.class);
