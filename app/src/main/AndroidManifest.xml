@@ -23,8 +23,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SalonServiceForm"
+        <activity android:name=".HomeRenovationForm"
             android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".HomeRenovation" />
+        <activity
+            android:name=".SalonServiceForm"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".SalonServices" />
         <activity android:name=".HomeSalon" />
         <activity

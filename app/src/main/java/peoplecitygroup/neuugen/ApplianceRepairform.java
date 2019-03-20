@@ -140,6 +140,11 @@ public class ApplianceRepairform extends AppCompatActivity implements View.OnCli
                     pincodeAS.setError("Enter Pincode");
                     pincodeAS.requestFocus();
                 }
+                if (TextUtils.isEmpty(dostext) )
+                {
+                    dos.setError("Select Date");
+                    dos.requestFocus();
+                }
                 if (servicetext.equalsIgnoreCase("Repairing Service")&&appliancetext.equalsIgnoreCase("Select Appliance Type"))
                 {
                     Snackbar.make(appliancelayout, "Select Appliance Type", Snackbar.LENGTH_LONG)

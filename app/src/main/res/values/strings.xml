@@ -21,7 +21,30 @@
     <string name="womenpartymakeuptext">1. Professional makeup for any party or events.\n2. Hair- straightening , blow-dry, soft Curls.</string>
     <string name="womenweddingmakeuptext">1. Professional makeup for your special day.\n2. Hair- straightening , blow-dry, soft Curls.\n3. Free Saree Draping.\n4. Quality False lashes included.\n5. HD Airbrush products available.\n6.Mehendi design included.</string>
 
+    <string name="electriciantext">1. Rs. 249 visiting charges.\n2. Final Pricing will be based on inspection.\n3. Service available between 11 am to 7 pm.\n4. Surcharge of Rs. 200 for timings between 9pm to 11 pm.\n5. Trained and Certified Workers.</string>
+    <string name="plumbingtext">1. Rs. 499 visiting charges.\n2. Final Pricing will be based on inspection.\n3. Service available between 11 am to 7 pm.\n4. Surcharge of Rs. 200 for timings between 9pm to 11 pm.\n5. Tools are carried by our specialist.</string>
+    <string name="carpentrytext">1. Rs. 399 visiting charges.\n2. Final Pricing will be based on inspection.\n3. Service available between 11 am to 7 pm.\n4. Surcharge of Rs. 200 for timings between 9pm to 11 pm.</string>
 
+    <array name="electriciantype">
+        <item>Select Service Type</item>
+        <item>Switches, meters and 	fuses</item>
+        <item>Fans , Wiring &amp; Inverters</item>
+        <item>Other electrical services</item>
+    </array>
+    <array name="plumbingtype">
+        <item>Select Service Type</item>
+        <item>Taps, Wash basin and Sinks</item>
+        <item>Blocks &amp; leakages</item>
+        <item>Pipelines and Pumps</item>
+        <item>Toilet &amp; sanitary work</item>
+        <item>Bathroom fittings</item>
+    </array>
+    <array name="carpentrytype">
+        <item>Select Service Type</item>
+        <item>Bolt, latch,handle work</item>
+        <item>Furniture installation and assembly</item>
+        <item>Other capentring sevices</item>
+    </array>
     <array name="propertytype">
         <item>Select Property Type</item>
         <item>Apartment</item>

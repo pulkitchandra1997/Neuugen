@@ -118,6 +118,11 @@ public class SalonServiceForm extends AppCompatActivity implements View.OnClickL
                     pincodeSS.setError("Enter Pincode");
                     pincodeSS.requestFocus();
                 }
+                if (TextUtils.isEmpty(dostext) )
+                {
+                    salondos.setError("Select Date");
+                    salondos.requestFocus();
+                }
                
 
             }else
