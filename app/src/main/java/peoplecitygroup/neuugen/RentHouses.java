@@ -30,6 +30,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -58,6 +59,8 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -82,7 +85,6 @@ public class RentHouses extends AppCompatActivity implements View.OnClickListene
     Bitmap img1,img2,img3;
     String arearhtext,cityrhtext,landmarkrhtext,builtarearhtext,pincoderhtext,monthlyrentrhtext,housenorhtext,propertytyperhtext,numofbedrhtext,numofbathrhtext,rhfurnishtyypetext;
     ProgressDialog loading = null;
-
 JSONObject jsonObject= new JSONObject();
 String uniqueid=null;
 
@@ -284,7 +286,6 @@ String uniqueid=null;
 
                     rhfurnishtype.requestFocus();
                 }
-
             }
             else
             {
@@ -297,7 +298,7 @@ String uniqueid=null;
     private void toServer() {
         loading.show();
         if (createJsonObject()) {
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.set_basic_userdetails, new Response.Listener<String>() {
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.fill_RentHouses, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     if (response.toLowerCase().contains("error")) {
@@ -314,10 +315,10 @@ String uniqueid=null;
                     } else {
                         if(response.toLowerCase().contains("success")){
                             uniqueid=response.substring(7);
-                            uploadPic(img1);
-                            uploadPic(img2);
-                            uploadPic(img3);
                             loading.dismiss();
+                            uploadPic(img1,"Uploading 1st Image.Please Wait!",false);
+                            uploadPic(img2,"Uploading 2nd Image.Please Wait!",false);
+                            uploadPic(img3,"Uploading last Image.Please Wait!",true);
                         }
                     }
                 }
@@ -356,6 +357,7 @@ String uniqueid=null;
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<>();
                     params.put("data", jsonObject.toString());
+                    params.put("flag", "1");
                     return params;
                 }
             };
@@ -402,7 +404,7 @@ String uniqueid=null;
         }
     }
 
-    private void uploadPic(Bitmap img) {
+    private void uploadPic(Bitmap img, final String message, final boolean flag) {
         if (img != null) {
             ByteArrayOutputStream byteArrayOutputStreamObject;
             byteArrayOutputStreamObject = new ByteArrayOutputStream();
@@ -413,16 +415,21 @@ String uniqueid=null;
                 @Override
                 protected void onPreExecute() {
                     super.onPreExecute();
+                    loading.setMessage(message);
+                    loading.show();
                 }
                 @Override
                 protected void onPostExecute(String string1) {
                     super.onPostExecute(string1);
                     // Dismiss the progress dialog after done uploading.
                     if(string1.equalsIgnoreCase("success")){
-
+                        loading.dismiss();
+                        if(flag)
+                            Toast.makeText(RentHouses.this, "FORM FILLED.", Toast.LENGTH_SHORT).show();
                     }
                     else {
                         if(string1.contains("error")){
+                            //loading.dismiss();
                             errorReceived();
                         }
                     }
@@ -433,7 +440,7 @@ String uniqueid=null;
                     HashMap<String, String> HashMapParams = new HashMap<String, String>();
                     HashMapParams.put("uniqueid", uniqueid);
                     HashMapParams.put("image_path", ConvertImage);
-                    HashMapParams.put("dbSelect", "ads");
+                    HashMapParams.put("dbselect", "ads");
                     String FinalData = imageProcessClass.ImageHttpRequest(UrlNeuugen.uploadPic, HashMapParams);
                     return FinalData;
                 }
@@ -445,7 +452,94 @@ String uniqueid=null;
 
     private void errorReceived() {
         //clear predata
-        loading.dismiss();
+        //loading.dismiss();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.fill_RentHouses, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if (response.toLowerCase().contains("error")) {
+                    loading.dismiss();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
+                    builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                    builder.setMessage("Error in server. Try Again")
+                            .setPositiveButton("OK",null)
+                            .setIcon(R.mipmap.ic_launcher_round);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                    positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+                } else {
+                    if(response.toLowerCase().contains("success")){
+                        loading.dismiss();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                loading.dismiss();
+                boolean haveConnectedWifi = false;
+                boolean haveConnectedMobile = false;
+                ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+                for (NetworkInfo ni : netInfo) {
+                    if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+                        if (ni.isConnected())
+                            haveConnectedWifi = true;
+                    if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+                        if (ni.isConnected())
+                            haveConnectedMobile = true;
+                }
+                if (!haveConnectedWifi && !haveConnectedMobile) {
+                    AlertDialog alertDialog = new AlertDialog.Builder(RentHouses.this).create();
+                    alertDialog.setMessage("No Internet Connection");
+                    alertDialog.setIcon(R.mipmap.ic_launcher_round);
+                    alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                    alertDialog.show();
+                } else {
+                    AlertDialog alertDialog = new AlertDialog.Builder(RentHouses.this).create();
+                    alertDialog.setMessage("Connection Error!");
+                    alertDialog.setIcon(R.mipmap.ic_launcher_round);
+                    alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                    alertDialog.show();
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("uniqueid", uniqueid);
+                params.put("flag", "0");
+                return params;
+            }
+        };
+        stringRequest.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
+                builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                builder.setMessage("Connection")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        })
+                        .setIcon(R.mipmap.ic_launcher_round);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+            }
+        });
+        MySingleton.getInstance(RentHouses.this).addToRequestQueue(stringRequest);
     }
 
     private boolean createJsonObject() {
