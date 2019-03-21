@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@color/Greybg">
+                android:background="@color/colorPrimary">
 
 
                 <LinearLayout
@@ -327,7 +327,6 @@
                                     android:textColor="@color/PrimaryText"
                                     android:textSize="20dp"
                                     android:padding="10dp"
-                                    android:id="@+id/womenhaircutprice"
                                     android:fontFamily="@font/quicksandbold"
                                     />
                                 <com.google.android.material.button.MaterialButton

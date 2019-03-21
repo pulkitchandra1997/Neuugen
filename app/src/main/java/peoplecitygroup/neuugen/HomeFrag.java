@@ -104,6 +104,16 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
                 startActivity(intent);
             }
         }
+        if (v.getId()==R.id.properties)
+        {
+            Intent intent = new Intent(getActivity(), PropertiesForm.class);
+            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                ActivityOptions options = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.fade_in, R.anim.fade_out);
+                startActivity(intent, options.toBundle());
+            } else {
+                startActivity(intent);
+            }
+        }
         if (v.getId()==R.id.salon)
         {
             Intent intent = new Intent(getActivity(), HomeSalon.class);
@@ -117,6 +127,16 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         if (v.getId()==R.id.homerenovation)
         {
             Intent intent = new Intent(getActivity(), HomeRenovation.class);
+            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                ActivityOptions options = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.fade_in, R.anim.fade_out);
+                startActivity(intent, options.toBundle());
+            } else {
+                startActivity(intent);
+            }
+        }
+        if (v.getId()==R.id.events)
+        {
+            Intent intent = new Intent(getActivity(), EventsActivity.class);
             if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
                 ActivityOptions options = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.fade_in, R.anim.fade_out);
                 startActivity(intent, options.toBundle());

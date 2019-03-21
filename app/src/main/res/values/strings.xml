@@ -25,9 +25,17 @@
     <string name="plumbingtext">1. Rs. 499 visiting charges.\n2. Final Pricing will be based on inspection.\n3. Service available between 11 am to 7 pm.\n4. Surcharge of Rs. 200 for timings between 9pm to 11 pm.\n5. Tools are carried by our specialist.</string>
     <string name="carpentrytext">1. Rs. 399 visiting charges.\n2. Final Pricing will be based on inspection.\n3. Service available between 11 am to 7 pm.\n4. Surcharge of Rs. 200 for timings between 9pm to 11 pm.</string>
 
+    <string name="eventservicetext">Pre-Wedding Shoot | Traditional &amp; Candid Photography | Event Managements</string>
+
+    <string name="normalpkgtext">1. Traditional &amp; Candid Photography.\n2. HD Traditional &amp; Candid Videography.\n3. Photo Albums</string>
+    <string name="standardpkgtext"> 1. Traditional &amp; Candid Photography.\n2. HD Traditional &amp; Candid Videography.\n3. 3-minute Teaser video\n4. Photo Albums</string>
+    <string name="premiumpkgtext"> 1. Traditional &amp; Candid Photography.\n2. HD Traditional &amp; Candid Videography.\n3. 5-minute Teaser video\n4. Drone shooting in one function \n5. Photo Albums.\n6. HD Cinematography</string>
+
+    <string name="weddingpkgtext">Wedding Photography &amp; Videography | Candid &amp; Traditional | Cinematography Videos</string>
+
     <array name="electriciantype">
         <item>Select Service Type</item>
-        <item>Switches, meters and 	fuses</item>
+        <item>Switches, meters and fuses</item>
         <item>Fans , Wiring &amp; Inverters</item>
         <item>Other electrical services</item>
     </array>
@@ -99,4 +107,46 @@
         <item>Nine</item>
         <item>Ten</item>
     </array>
+
+    <array name="photoservice">
+        <item>Select Service Type</item>
+        <item>Only Videography</item>
+        <item>Only Photography</item>
+        <item>Both Photography and Videography</item>
+
+    </array>
+
+    <array name="eventnodays">
+        <item>Select Number of Days</item>
+        <item>1 day</item>
+        <item>2 days</item>
+        <item>3+ days</item>
+    </array>
+
+    <array name="wednodays">
+        <item>Select Number of Days</item>
+        <item>1 day</item>
+        <item>2 days</item>
+        <item>3 days</item>
+        <item>4 days</item>
+        <item>5+ days</item>
+    </array>
+
+    <array name="rentpropertytype">
+        <item>Select Property Type</item>
+        <item>Apartment</item>
+        <item>Independent House</item>
+        <item>Villa</item>
+        <item>Hostel</item>
+        <item>Shop Area</item>
+        <item>Office Area</item>
+    </array>
+    <array name="buypropertytype">
+        <item>Select Property Type</item>
+        <item>Apartment</item>
+        <item>Independent House</item>
+        <item>Villa</item>
+        <item>Plots</item>
+    </array>
+
 </resources>

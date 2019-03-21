@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EventPhotographyForm"
+    android:orientation="vertical"
+    android:id="@+id/eventphotolayout">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:text="Event Photography"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/quicksandbold"
+                    android:textColor="@color/colorAccent"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="25dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Which service do you need?"
+                    android:textSize="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/quicksandbold"
+                    android:textColor="@color/PrimaryText"
+                    />
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/photoservice"
+                    android:padding="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/bothservicepv"
+                    android:background="@drawable/spinnerborder"
+                    >
+                </androidx.appcompat.widget.AppCompatSpinner>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Number of Days"
+                    android:textSize="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/quicksandbold"
+                    android:textColor="@color/PrimaryText"
+                    />
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/eventnodays"
+                    android:padding="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/eventnumofdays"
+                    android:background="@drawable/spinnerborder"
+                    >
+                </androidx.appcompat.widget.AppCompatSpinner>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Event type"
+                    android:textSize="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/quicksandbold"
+                    android:textColor="@color/PrimaryText"
+                    />
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Corporate Event"
+                    android:id="@+id/corporate"
+                    android:buttonTint="@color/colorPrimaryDark"
+                    />
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Outing-Picnic"
+                    android:id="@+id/picnic"
+                    android:buttonTint="@color/colorPrimaryDark"
+                    />
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Birthday Party"
+                    android:id="@+id/birthday"
+                    android:buttonTint="@color/colorPrimaryDark"
+                    />
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Anniversary Party"
+                    android:id="@+id/anniversary"
+                    android:buttonTint="@color/colorPrimaryDark"
+                    />
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Other Parties"
+                    android:id="@+id/otherparty"
+                    android:buttonTint="@color/colorPrimaryDark"
+                    android:layout_marginBottom="10dp"
+                    />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="When do you need service?"
+                    android:textSize="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/quicksandbold"
+                    android:textColor="@color/PrimaryText"
+                    />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    app:boxStrokeColor="@color/colorPrimaryDark"
+                    app:hintTextAppearance="@style/MyAppearance"
+                    app:hintEnabled="true"
+                    app:errorEnabled="true"
+                    app:boxBackgroundMode="outline"
+                    android:focusedByDefault="false"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Date of Service"
+                        android:inputType="text"
+                        android:fontFamily="@font/quicksandregular"
+                        android:textCursorDrawable="@color/colorPrimaryDark"
+                        android:textSize="18sp"
+                        android:padding="10dp"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:id="@+id/dosEP"
+                        android:focusable="false"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Location"
+                    android:textSize="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/quicksandbold"
+                    android:textColor="@color/PrimaryText"
+                    />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    app:boxStrokeColor="@color/colorPrimaryDark"
+                    app:hintTextAppearance="@style/MyAppearance"
+                    app:hintEnabled="true"
+                    app:errorEnabled="true"
+                    app:boxBackgroundMode="outline"
+                    android:focusedByDefault="false"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="House No."
+                        android:inputType="text"
+                        android:fontFamily="@font/quicksandregular"
+                        android:textCursorDrawable="@color/colorPrimaryDark"
+                        android:textSize="18sp"
+                        android:padding="10dp"
+                        android:id="@+id/housenoEP"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    app:boxStrokeColor="@color/colorPrimaryDark"
+                    app:hintTextAppearance="@style/MyAppearance"
+                    app:hintEnabled="true"
+                    app:errorEnabled="true"
+                    app:boxBackgroundMode="outline"
+                    android:focusedByDefault="false"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Area / Locality"
+                        android:inputType="text"
+                        android:fontFamily="@font/quicksandregular"
+                        android:textCursorDrawable="@color/colorPrimaryDark"
+                        android:textSize="18sp"
+                        android:padding="10dp"
+                        android:id="@+id/areaEP"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    app:boxStrokeColor="@color/colorPrimaryDark"
+                    app:hintTextAppearance="@style/MyAppearance"
+                    app:hintEnabled="true"
+                    app:errorEnabled="true"
+                    app:boxBackgroundMode="outline"
+                    android:focusedByDefault="false"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="City"
+                        android:inputType="text"
+                        android:fontFamily="@font/quicksandregular"
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:textCursorDrawable="@color/colorPrimaryDark"
+                        android:textSize="18sp"
+                        android:padding="10dp"
+                        android:id="@+id/cityEP"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    app:boxStrokeColor="@color/colorPrimaryDark"
+                    app:hintTextAppearance="@style/MyAppearance"
+                    app:hintEnabled="true"
+                    app:errorEnabled="true"
+                    app:boxBackgroundMode="outline"
+                    android:focusedByDefault="false"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Landmark (Optional)"
+                        android:inputType="text"
+                        android:fontFamily="@font/quicksandregular"
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:textCursorDrawable="@color/colorPrimaryDark"
+                        android:textSize="18sp"
+                        android:padding="10dp"
+                        android:id="@+id/landmarkEP"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    app:boxStrokeColor="@color/colorPrimaryDark"
+                    app:hintTextAppearance="@style/MyAppearance"
+                    app:hintEnabled="true"
+                    app:errorEnabled="true"
+                    app:boxBackgroundMode="outline"
+                    android:focusedByDefault="false"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Pincode"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:fontFamily="@font/quicksandregular"
+                        android:textCursorDrawable="@color/colorPrimaryDark"
+                        android:textSize="18sp"
+                        android:padding="10dp"
+                        android:id="@+id/pincodeEP"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Request Service"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/quicksandbold"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginTop="15dp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:backgroundTint="@color/DividerColor"
+                    android:padding="15dp"
+                    android:id="@+id/requestserviceEP"
+                    />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

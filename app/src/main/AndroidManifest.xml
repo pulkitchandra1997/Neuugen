@@ -23,8 +23,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomeRenovationForm"
-            android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".PropertiesForm"></activity>
+        <activity android:name=".WeddingPackages" />
+        <activity
+            android:name=".EventPhotographyForm"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".WeddingShootForm"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PreWedShootForm"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".EventArrangementForm"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".EventsActivity" />
+        <activity
+            android:name=".HomeRenovationForm"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".HomeRenovation" />
         <activity
             android:name=".SalonServiceForm"

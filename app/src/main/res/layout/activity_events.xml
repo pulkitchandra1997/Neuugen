@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeSalon"
-    android:orientation="vertical">
-
+    tools:context=".EventsActivity"
+    android:orientation="vertical"
+    android:id="@+id/eventlayout">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -24,7 +24,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Home Salon Services"
+                    android:text="Event Services"
                     android:padding="15dp"
                     android:textSize="20dp"
                     android:fontFamily="@font/quicksandbold"
@@ -74,40 +74,64 @@
                             android:orientation="vertical"
                             android:padding="10dp">
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+
                                 <androidx.appcompat.widget.AppCompatTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Men's salon at home"
+                                    android:text="Photography &amp; Videography"
                                     android:gravity="start"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="25dp"
+                                    android:textSize="20dp"
                                     android:fontFamily="@font/quicksandbold"
                                     />
-                                <androidx.appcompat.widget.AppCompatTextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="&#xf35a;"
-                                    android:gravity="end"
-                                    android:id="@+id/mensalonicon"
-                                    android:textColor="@color/PrimaryText"
-                                    android:textSize="25dp"
-                                    android:fontFamily="@font/quicksandbold"
-                                    />
-                            </LinearLayout>
-                            <androidx.appcompat.widget.AppCompatTextView
+                            <RadioGroup
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/mensalontext"
-                                android:layout_marginTop="10dp"
-                                android:lineSpacingExtra="5dp"
-                                android:gravity="start"
-                                android:textColor="@color/SecondaryText"
+                                android:id="@+id/shootoptions">
+
+
+                                <androidx.appcompat.widget.AppCompatRadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Pre Wedding Shoot"
+                                    android:textSize="15dp"
+                                    android:id="@+id/prewedshoot"
+                                    android:padding="10dp"
+                                    android:fontFamily="@font/quicksand"
+                                    android:buttonTint="@color/colorPrimaryDark"
+                                    />
+
+                                <androidx.appcompat.widget.AppCompatRadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Wedding Shoot"
+                                    android:textSize="15dp"
+                                    android:id="@+id/wedshoot"
+                                    android:padding="10dp"
+                                    android:fontFamily="@font/quicksand"
+                                    android:buttonTint="@color/colorPrimaryDark"/>
+
+                                <androidx.appcompat.widget.AppCompatRadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Event Photography"
+                                    android:textSize="15dp"
+                                    android:id="@+id/eventshoot"
+                                    android:padding="10dp"
+                                    android:fontFamily="@font/quicksand"
+                                    android:buttonTint="@color/colorPrimaryDark"
+                                    />
+
+                            </RadioGroup>
+                            <com.google.android.material.button.MaterialButton
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="PROCEED"
+                                android:id="@+id/photoproceedbtn"
+                                android:textColor="@color/colorAccent"
                                 android:textSize="15dp"
-                                android:fontFamily="@font/quicksand"
+                                android:backgroundTint="@color/DividerColor"
+                                android:fontFamily="@font/quicksandbold"
                                 />
 
 
@@ -129,43 +153,74 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:padding="10dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
                                 <androidx.appcompat.widget.AppCompatTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Women's salon at home"
+                                    android:text="Events Arrangements"
                                     android:gravity="start"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="25dp"
+                                    android:textSize="20dp"
                                     android:fontFamily="@font/quicksandbold"
                                     />
-                                <androidx.appcompat.widget.AppCompatTextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="&#xf35a;"
-                                    android:id="@+id/womensalonicon"
-                                    android:gravity="end"
-                                    android:textColor="@color/PrimaryText"
-                                    android:textSize="25dp"
-                                    android:fontFamily="@font/quicksandbold"
-                                    />
-                            </LinearLayout>
-                            <androidx.appcompat.widget.AppCompatTextView
+                            <RadioGroup
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/womensalontext"
-                                android:lineSpacingExtra="5dp"
-                                android:layout_marginTop="10dp"
-                                android:gravity="start"
-                                android:textColor="@color/SecondaryText"
-                                android:textSize="15dp"
-                                android:fontFamily="@font/quicksand"
-                                />
+                                android:id="@+id/eventarrangements">
 
+
+                                <androidx.appcompat.widget.AppCompatRadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Dance Performers"
+                                    android:textSize="15dp"
+                                    android:id="@+id/dancers"
+                                    android:padding="10dp"
+                                    android:fontFamily="@font/quicksand"
+                                    android:buttonTint="@color/colorPrimaryDark"
+                                    />
+
+                                <androidx.appcompat.widget.AppCompatRadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Anchors OR Hosts"
+                                    android:textSize="15dp"
+                                    android:id="@+id/anchors"
+                                    android:padding="10dp"
+                                    android:fontFamily="@font/quicksand"
+                                    android:buttonTint="@color/colorPrimaryDark"/>
+
+                                <androidx.appcompat.widget.AppCompatRadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Singers"
+                                    android:textSize="15dp"
+                                    android:id="@+id/singers"
+                                    android:padding="10dp"
+                                    android:fontFamily="@font/quicksand"
+                                    android:buttonTint="@color/colorPrimaryDark"
+                                    />
+                                <androidx.appcompat.widget.AppCompatRadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Bands &amp; Musicians"
+                                    android:textSize="15dp"
+                                    android:id="@+id/bands"
+                                    android:padding="10dp"
+                                    android:fontFamily="@font/quicksand"
+                                    android:buttonTint="@color/colorPrimaryDark"
+                                    />
+
+                            </RadioGroup>
+                            <com.google.android.material.button.MaterialButton
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="PROCEED"
+                                android:id="@+id/eventproceedbtn"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="15dp"
+                                android:backgroundTint="@color/DividerColor"
+                                android:fontFamily="@font/quicksandbold"
+                                />
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -183,7 +238,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/salonservicetext"
+                    android:text="@string/eventservicetext"
                     android:gravity="start"
                     android:textColor="@color/PrimaryText"
                     android:textSize="15dp"
@@ -214,7 +269,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Availability from 9 am to 8 pm."
+                        android:text="Availabile all seasons"
                         android:textColor="@color/PrimaryText"
                         android:textSize="15dp"
                         android:layout_marginLeft="15dp"
@@ -240,7 +295,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Trained specialist for every service."
+                        android:text="Trained and expert Phtographers and Management."
                         android:textColor="@color/PrimaryText"
                         android:textSize="15dp"
                         android:layout_marginLeft="15dp"
@@ -265,7 +320,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="No mess left behind."
+                        android:text="Quality Work"
                         android:textColor="@color/PrimaryText"
                         android:textSize="15dp"
                         android:layout_marginLeft="15dp"
