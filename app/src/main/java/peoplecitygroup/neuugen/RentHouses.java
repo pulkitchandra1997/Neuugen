@@ -303,15 +303,14 @@ String uniqueid=null;
                 public void onResponse(String response) {
                     if (response.toLowerCase().contains("error")) {
                         loading.dismiss();
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
-                        builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
-                        builder.setMessage("Error in server. Try Again")
-                                .setPositiveButton("OK",null)
-                                .setIcon(R.mipmap.ic_launcher_round);
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
-                        Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
-                        positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+
+                        new AlertDialog.Builder(getApplication())
+                                .setMessage("Error in server. Try Again")
+                                .setPositiveButton("OK", null)
+                                .setIcon(R.mipmap.ic_launcher_round)
+                                .setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"))
+                                .create()
+                                .show();
                     } else {
                         if(response.toLowerCase().contains("success")){
                             uniqueid=response.substring(7);

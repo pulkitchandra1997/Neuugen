@@ -252,43 +252,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scrollbars="none">
-
-                </HorizontalScrollView>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/quicksandbold"
-                    android:text="Builtup Area"
-                    android:textColor="@color/PrimaryText"
-                    android:textSize="25dp" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:focusedByDefault="false"
-                    app:boxBackgroundMode="outline"
-                    app:boxStrokeColor="@color/colorPrimaryDark"
-                    app:errorEnabled="true"
-                    app:hintEnabled="true"
-                    app:hintTextAppearance="@style/MyAppearance">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/builtarearh"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/quicksandregular"
-                        android:hint="Area (in Sq. ft.)"
-                        android:inputType="numberDecimal"
-                        android:maxLines="1"
-                        android:padding="10dp"
-                        android:singleLine="true"
-                        android:textCursorDrawable="@color/colorPrimaryDark"
-                        android:textSize="18sp" />
-
                     <com.google.android.material.chip.ChipGroup
                         android:id="@+id/rhfurnishtype"
                         android:layout_width="match_parent"
@@ -333,6 +296,43 @@
                             app:chipCornerRadius="20dp" />
 
                     </com.google.android.material.chip.ChipGroup>
+
+                </HorizontalScrollView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/quicksandbold"
+                    android:text="Builtup Area"
+                    android:textColor="@color/PrimaryText"
+                    android:textSize="25dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusedByDefault="false"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="@color/colorPrimaryDark"
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/MyAppearance">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/builtarearh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/quicksandregular"
+                        android:hint="Area (in Sq. ft.)"
+                        android:inputType="numberDecimal"
+                        android:maxLines="1"
+                        android:padding="10dp"
+                        android:singleLine="true"
+                        android:textCursorDrawable="@color/colorPrimaryDark"
+                        android:textSize="18sp" />
+
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatTextView
