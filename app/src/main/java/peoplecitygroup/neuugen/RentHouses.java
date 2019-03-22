@@ -288,6 +288,8 @@ int numofbed;
 
                     rhfurnishtype.requestFocus();
                 }
+                //add this
+                //Validation.isValidCity(cityrhtext)
             }
             else
             {
