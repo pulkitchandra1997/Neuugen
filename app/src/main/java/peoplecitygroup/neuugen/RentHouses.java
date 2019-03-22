@@ -87,7 +87,7 @@ public class RentHouses extends AppCompatActivity implements View.OnClickListene
     ProgressDialog loading = null;
 JSONObject jsonObject= new JSONObject();
 String uniqueid=null;
-
+int numofbed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -209,9 +209,11 @@ String uniqueid=null;
             builtarearhtext=builtarearh.getText().toString().trim();
             monthlyrentrhtext=monthlyrentrh.getText().toString().trim();
             propertytyperhtext=propertytyperh.getSelectedItem().toString();
-            numofbedrhtext=numofbedrh.getSelectedItem().toString();
-            numofbathrhtext=numofbathrh.getSelectedItem().toString();
+            numofbedrhtext=String.valueOf(numofbedrh.getSelectedItemPosition());
+            numofbathrhtext=String.valueOf(numofbathrh.getSelectedItemPosition());
             pincoderhtext=pincoderh.getText().toString().trim();
+
+            Toast.makeText(this, numofbedrhtext, Toast.LENGTH_SHORT).show();
 
             if (rhfurnishtype.getCheckedChipId()==R.id.rhfullyfurnish)
             {
@@ -226,7 +228,7 @@ String uniqueid=null;
                 rhfurnishtyypetext="Unfurnished";
             }
 
-            if (TextUtils.isEmpty(pincoderhtext) ||TextUtils.isEmpty(arearhtext) || TextUtils.isEmpty(housenorhtext)||TextUtils.isEmpty(cityrhtext)||TextUtils.isEmpty(builtarearhtext)||TextUtils.isEmpty(monthlyrentrhtext)||propertytyperhtext.equalsIgnoreCase("Select Property Type")||numofbathrhtext.equalsIgnoreCase("Select Number")||numofbedrhtext.equalsIgnoreCase("Select Number")||!(rhfurnishtype.getCheckedChipId()==R.id.rhfullyfurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhsemifurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhunfurnish))
+            if (TextUtils.isEmpty(pincoderhtext) ||TextUtils.isEmpty(arearhtext) || TextUtils.isEmpty(housenorhtext)||TextUtils.isEmpty(cityrhtext)||TextUtils.isEmpty(builtarearhtext)||TextUtils.isEmpty(monthlyrentrhtext)||propertytyperhtext.equalsIgnoreCase("Select Property Type")||numofbathrh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||numofbedrh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||!(rhfurnishtype.getCheckedChipId()==R.id.rhfullyfurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhsemifurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhunfurnish))
             {
                 if (TextUtils.isEmpty(arearhtext) )
                 {

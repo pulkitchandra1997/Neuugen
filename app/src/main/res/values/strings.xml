@@ -98,14 +98,14 @@
         <item>Select Number</item>
         <item value="1">One</item>
         <item value="2">Two</item>
-        <item>Three</item>
-        <item>Four</item>
-        <item>Five</item>
-        <item>Six</item>
-        <item>Seven</item>
-        <item>Eight</item>
-        <item>Nine</item>
-        <item>Ten</item>
+        <item value="3">Three</item>
+        <item value="4">Four</item>
+        <item value="5">Five</item>
+        <item value="6">Six</item>
+        <item value="7">Seven</item>
+        <item value="8">Eight</item>
+        <item value="9">Nine</item>
+        <item value="10">Ten</item>
     </array>
 
     <array name="photoservice">
@@ -118,18 +118,18 @@
 
     <array name="eventnodays">
         <item>Select Number of Days</item>
-        <item>1 day</item>
-        <item>2 days</item>
-        <item>3+ days</item>
+        <item value="1">1 day</item>
+        <item value="2">2 days</item>
+        <item value="3">3 days</item>
     </array>
 
     <array name="wednodays">
         <item>Select Number of Days</item>
-        <item>1 day</item>
-        <item>2 days</item>
-        <item>3 days</item>
-        <item>4 days</item>
-        <item>5+ days</item>
+        <item value="1">1 day</item>
+        <item value="2">2 days</item>
+        <item value="3">3 days</item>
+        <item value="4">4 days</item>
+        <item value="5">5 days</item>
     </array>
 
     <array name="rentpropertytype">

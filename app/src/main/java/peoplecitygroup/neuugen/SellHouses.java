@@ -114,8 +114,8 @@ public class SellHouses extends AppCompatActivity implements View.OnClickListene
             builtareashtext=builtareash.getText().toString().trim();
             costshtext=costsh.getText().toString().trim();
             propertytypeshtext=propertytypesh.getSelectedItem().toString();
-            numofbedshtext=numofbedsh.getSelectedItem().toString();
-            numofbathshtext=numofbathsh.getSelectedItem().toString();
+            numofbedshtext=String.valueOf(numofbedsh.getSelectedItemPosition());
+            numofbathshtext=String.valueOf(numofbathsh.getSelectedItemPosition());
             ageofpropertyshtext=ageofpropertysh.getText().toString().trim();
             pincodeshtext=pincodesh.getText().toString().trim();
 
@@ -141,7 +141,7 @@ public class SellHouses extends AppCompatActivity implements View.OnClickListene
                 constatustext="Under Construction";
             }
 
-            if (TextUtils.isEmpty(pincodeshtext) ||TextUtils.isEmpty(areashtext) || TextUtils.isEmpty(housenoshtext)||TextUtils.isEmpty(cityshtext)||TextUtils.isEmpty(builtareashtext)||TextUtils.isEmpty(costshtext)||propertytypeshtext.equalsIgnoreCase("Select Property Type")||numofbathshtext.equalsIgnoreCase("Select Number")||numofbedshtext.equalsIgnoreCase("Select Number")||TextUtils.isEmpty(ageofpropertyshtext)||!(furnishtypesh.getCheckedChipId()==R.id.shfullyfurnish)&&!(furnishtypesh.getCheckedChipId()==R.id.shsemifurnish)&&!(furnishtypesh.getCheckedChipId()==R.id.shunfurnish)||!(constatus.getCheckedChipId()==R.id.undercon)&&!(constatus.getCheckedChipId()==R.id.readytomove))
+            if (TextUtils.isEmpty(pincodeshtext) ||TextUtils.isEmpty(areashtext) || TextUtils.isEmpty(housenoshtext)||TextUtils.isEmpty(cityshtext)||TextUtils.isEmpty(builtareashtext)||TextUtils.isEmpty(costshtext)||propertytypeshtext.equalsIgnoreCase("Select Property Type")||numofbathsh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||numofbedsh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||TextUtils.isEmpty(ageofpropertyshtext)||!(furnishtypesh.getCheckedChipId()==R.id.shfullyfurnish)&&!(furnishtypesh.getCheckedChipId()==R.id.shsemifurnish)&&!(furnishtypesh.getCheckedChipId()==R.id.shunfurnish)||!(constatus.getCheckedChipId()==R.id.undercon)&&!(constatus.getCheckedChipId()==R.id.readytomove))
             {
                 if (TextUtils.isEmpty(areashtext) )
                 {
