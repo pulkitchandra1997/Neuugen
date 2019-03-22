@@ -96,8 +96,8 @@
 
     <array name="roomslist">
         <item>Select Number</item>
-        <item>One</item>
-        <item>Two</item>
+        <item value="1">One</item>
+        <item value="2">Two</item>
         <item>Three</item>
         <item>Four</item>
         <item>Five</item>

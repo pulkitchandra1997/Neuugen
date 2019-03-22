@@ -355,6 +355,7 @@ String uniqueid=null;
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<>();
+                    Log.i("dataflag",jsonObject.toString());
                     params.put("data", jsonObject.toString());
                     params.put("flag", "1");
                     return params;
