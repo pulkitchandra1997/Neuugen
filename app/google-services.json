@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "775055734144",
+    "firebase_url": "https://neuugen.firebaseio.com",
+    "project_id": "neuugen",
+    "storage_bucket": "neuugen.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:775055734144:android:b5a0c02c39d01b18",
+        "android_client_info": {
+          "package_name": "peoplecitygroup.neuugen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "775055734144-f96lfdkua42uiv123vdkg0i9kut7be8d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4XWYXwnOKZI2u43lQtFoGWz6K5k_Ak64"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

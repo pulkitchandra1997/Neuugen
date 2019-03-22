@@ -7,4 +7,5 @@ public class UrlNeuugen {
     public static final String set_basic_userdetails=URL+"setBasicUserDetails.php";
     public static final String fill_RentHouses=URL+"fillRentHouses.php";
     public static final String uploadPic=URL+"uploadPics.php";
+    public static final String profilenewpic=URL+"profilenewpic.php";
 }
