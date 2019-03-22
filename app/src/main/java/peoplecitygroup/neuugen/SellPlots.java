@@ -125,40 +125,39 @@ public class SellPlots extends AppCompatActivity implements View.OnClickListener
                 {
                     areasp.setError("Enter Area");
                     areasp.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(plotnotext) )
                 {
                     plotno.setError("Enter Plot Number");
                     plotno.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(citysptext) )
                 {
                     citysp.setError("Enter City");
                     citysp.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(pincodesptext) )
                 {
                     pincodesp.setError("Enter Pincode");
                     pincodesp.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(plotareatext) )
                 {
                     plotarea.setError("Enter Plot Area");
                     plotarea.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(plotpricetext) )
                 {
                     plotprice.setError("Enter Plot Price");
                     plotprice.requestFocus();
-                }
-
+                }else
                 if (propertytypesptext.equalsIgnoreCase("Select Property Type"))
                 {
                     Snackbar.make(spmainlayout, "Select Property Type", Snackbar.LENGTH_LONG)
                             .show();
 
                     propertytypesp.requestFocus();
-                }
+                }else
 
                 if (!(posesnstatus.getCheckedChipId()==R.id.undercon)&&!(posesnstatus.getCheckedChipId()==R.id.readytomove)) {
                     Snackbar.make(spmainlayout, "Select Possession Status", Snackbar.LENGTH_LONG)

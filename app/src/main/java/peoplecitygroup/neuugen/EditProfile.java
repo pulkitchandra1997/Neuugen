@@ -162,32 +162,32 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                 if(TextUtils.isEmpty(nametext)){
                     name.setError("Enter Name");
                     name.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(emailtext)) {
                     email.setError("Enter Email");
                     email.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(pincodetext)) {
                     pincode.setError("Enter phone number");
                     pincode.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(dobtext)) {
                     dob.setError("Select DOB");
                     dob.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(addresstext)) {
                     address.setError("Enter Address");
                     address.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(citytext)) {
                     city.setError("Enter City");
                     city.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(statetext)) {
                     state.setError("Enter State");
                     state.requestFocus();
                 }
-
+                else
                 if (!male.isChecked()&& !female.isChecked())
                 {
                     Snackbar.make(findViewById(R.id.editlayout), "Please Select Gender", Snackbar.LENGTH_LONG)
@@ -200,7 +200,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                 if(!Validation.isValidPhone(emailtext)){
                     email.setError("Enter Valid Email Id");
                     email.requestFocus();
-                }
+                }else
                 if(!Validation.isValidName(nametext)){
                     name.setError("Enter Valid Name");
                     name.requestFocus();

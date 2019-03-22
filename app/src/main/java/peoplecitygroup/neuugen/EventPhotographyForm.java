@@ -135,39 +135,39 @@ public class EventPhotographyForm extends AppCompatActivity implements View.OnCl
                 {
                     areaEP.setError("Enter Area");
                     areaEP.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(housenotext) )
                 {
                     housenoEP.setError("Enter House Number");
                     housenoEP.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(citytext) )
                 {
                     cityEP.setError("Enter City");
                     cityEP.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(pincodetext) )
                 {
                     pincodeEP.setError("Enter Pincode");
                     pincodeEP.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(dostext) )
                 {
                     dosEP.setError("Select Date");
                     dosEP.requestFocus();
-                }
+                }else
                 if (bothservicepvtext.equalsIgnoreCase("Select Service Type"))
                 {
                     Snackbar.make(eventphotolayout, "Select Service Type", Snackbar.LENGTH_LONG)
                             .show();
 
                     bothservicepv.requestFocus();
-                }
+                }else
                 if (!birthday.isChecked()&&!corporate.isChecked()&&!anniversary.isChecked()&&!picnic.isChecked()&&!otherparty.isChecked())
                 {
                     Snackbar.make(eventphotolayout, "Select Event Type", Snackbar.LENGTH_LONG)
                             .show();
-                }
+                }else
                 if (eventnumofdaystext.equalsIgnoreCase("Select Number of Days"))
                 {
                     Snackbar.make(eventphotolayout, "Select Number of Days", Snackbar.LENGTH_LONG)

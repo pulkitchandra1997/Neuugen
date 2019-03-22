@@ -102,28 +102,27 @@ public class SalonServiceForm extends AppCompatActivity implements View.OnClickL
                 {
                     areaSS.setError("Enter Area");
                     areaSS.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(housenotext) )
                 {
                     housenoSS.setError("Enter House Number");
                     housenoSS.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(citytext) )
                 {
                     citySS.setError("Enter City");
                     citySS.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(pincodetext) )
                 {
                     pincodeSS.setError("Enter Pincode");
                     pincodeSS.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(dostext) )
                 {
                     salondos.setError("Select Date");
                     salondos.requestFocus();
                 }
-               
 
             }else
             {

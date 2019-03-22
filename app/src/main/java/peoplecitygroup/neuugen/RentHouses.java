@@ -231,53 +231,53 @@ int numofbed;
                 {
                     arearh.setError("Enter Area");
                     arearh.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(housenorhtext) )
                 {
                     housenorh.setError("Enter House Number");
                     housenorh.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(cityrhtext) )
                 {
                     cityrh.setError("Enter City");
                     cityrh.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(pincoderhtext) )
                 {
                     pincoderh.setError("Enter Pincode");
                     pincoderh.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(builtarearhtext) )
                 {
                     builtarearh.setError("Enter Built Area");
                     builtarearh.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(monthlyrentrhtext) )
                 {
                     monthlyrentrh.setError("Enter Monthly Rent");
                     monthlyrentrh.requestFocus();
-                }
+                }else
                 if (propertytyperhtext.equalsIgnoreCase("Select Property Type"))
                 {
                     Snackbar.make(rhmainlayout, "Select Property Type", Snackbar.LENGTH_LONG)
                             .show();
 
                     propertytyperh.requestFocus();
-                }
+                }else
                 if (numofbedrhtext.equalsIgnoreCase("Select Number"))
                 {
                     Snackbar.make(rhmainlayout, "Select Number of Bedrooms", Snackbar.LENGTH_LONG)
                             .show();
 
                     numofbedrh.requestFocus();
-                }
+                }else
                 if (numofbathrhtext.equalsIgnoreCase("Select Number"))
                 {
                     Snackbar.make(rhmainlayout, "Select Number of Bathrooms", Snackbar.LENGTH_LONG)
                             .show();
 
                     numofbathrh.requestFocus();
-                }
+                }else
                 if (!(rhfurnishtype.getCheckedChipId()==R.id.rhfullyfurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhsemifurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhunfurnish))
                 {
                     Snackbar.make(rhmainlayout, "Select Furnish Type", Snackbar.LENGTH_LONG)

@@ -125,32 +125,32 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
                 {
                     arearo.setError("Enter Area");
                     arearo.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(shopnorotext) )
                 {
                     shopno.setError("Enter Shop Number");
                     shopno.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(cityrotext) )
                 {
                     cityro.setError("Enter City");
                     cityro.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(pincoderotext) )
                 {
                     pincodero.setError("Enter Pincode");
                     pincodero.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(builtarearotext) )
                 {
                     builtarearo.setError("Enter Built Area");
                     builtarearo.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(monthlyrentrotext) )
                 {
                     monthlyrentro.setError("Enter Monthly Rent");
                     monthlyrentro.requestFocus();
-                }
+                }else
 
                 if (propertytyperotext.equalsIgnoreCase("Select Property Type"))
                 {
@@ -158,7 +158,7 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
                             .show();
 
                     propertytypero.requestFocus();
-                }
+                }else
 
                 if (!(constatusro.getCheckedChipId()==R.id.undercon)&&!(constatusro.getCheckedChipId()==R.id.readytomove)) {
                     Snackbar.make(romainlayout, "Select Construction Status", Snackbar.LENGTH_LONG)

@@ -147,32 +147,32 @@ public class WeddingShootForm extends AppCompatActivity implements View.OnClickL
                 {
                     areaWP.setError("Enter Area");
                     areaWP.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(housenotext) )
                 {
                     housenoWP.setError("Enter House Number");
                     housenoWP.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(citytext) )
                 {
                     cityWP.setError("Enter City");
                     cityWP.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(pincodetext) )
                 {
                     pincodeWP.setError("Enter Pincode");
                     pincodeWP.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(dostext) )
                 {
                     dosWP.setError("Select Date");
                     dosWP.requestFocus();
-                }
+                }else
                 if (!engagement.isChecked()&&!mehendi.isChecked()&&!sangeet.isChecked()&&!marriage.isChecked()&&!others.isChecked()&&!reception.isChecked())
                 {
                     Snackbar.make(weddingformlayout, "Select Event Type", Snackbar.LENGTH_LONG)
                             .show();
-                }
+                }else
                 if (wednumofdaystext.equalsIgnoreCase("Select Number of Days"))
                 {
                     Snackbar.make(weddingformlayout, "Select  Number of Days", Snackbar.LENGTH_LONG)

@@ -97,27 +97,27 @@ public class PreWedShootForm extends AppCompatActivity implements View.OnClickLi
                 {
                     areaPWS.setError("Enter Area");
                     areaPWS.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(housenotext) )
                 {
                     housenoPWS.setError("Enter House Number");
                     housenoPWS.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(citytext) )
                 {
                     cityPWS.setError("Enter City");
                     cityPWS.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(pincodetext) )
                 {
                     pincodePWS.setError("Enter Pincode");
                     pincodePWS.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(dostext) )
                 {
                     dosPWS.setError("Select Date");
                     dosPWS.requestFocus();
-                }
+                }else
                 if (bothpvservicetext.equalsIgnoreCase("Select Service Type"))
                 {
                     Snackbar.make(prewedshootlayout, "Select Service Type", Snackbar.LENGTH_LONG)
@@ -125,8 +125,6 @@ public class PreWedShootForm extends AppCompatActivity implements View.OnClickLi
 
                     bothpvservice.requestFocus();
                 }
-
-
             }else
             {
 

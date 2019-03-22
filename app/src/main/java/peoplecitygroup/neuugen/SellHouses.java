@@ -147,65 +147,65 @@ public class SellHouses extends AppCompatActivity implements View.OnClickListene
                 {
                     areash.setError("Enter Area");
                     areash.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(housenoshtext) )
                 {
                     housenosh.setError("Enter House Number");
                     housenosh.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(cityshtext) )
                 {
                     citysh.setError("Enter City");
                     citysh.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(pincodeshtext) )
                 {
                     pincodesh.setError("Enter Pincode");
                     pincodesh.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(builtareashtext) )
                 {
                     builtareash.setError("Enter Built Area");
                     builtareash.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(costshtext) )
                 {
                     costsh.setError("Enter Cost");
                     costsh.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(ageofpropertyshtext) )
                 {
                     ageofpropertysh.setError("Enter Age of Property");
                     ageofpropertysh.requestFocus();
-                }
+                }else
                 if (propertytypeshtext.equalsIgnoreCase("Select Property Type"))
                 {
                     Snackbar.make(shmainlayout, "Select Property Type", Snackbar.LENGTH_LONG)
                             .show();
 
                     propertytypesh.requestFocus();
-                }
+                }else
                 if (numofbedshtext.equalsIgnoreCase("Select Number"))
                 {
                     Snackbar.make(shmainlayout, "Select Number of Bedrooms", Snackbar.LENGTH_LONG)
                             .show();
 
                     numofbedsh.requestFocus();
-                }
+                }else
                 if (numofbathshtext.equalsIgnoreCase("Select Number"))
                 {
                     Snackbar.make(shmainlayout, "Select Number of Bathrooms", Snackbar.LENGTH_LONG)
                             .show();
 
                     numofbathsh.requestFocus();
-                }
+                }else
                 if (!(furnishtypesh.getCheckedChipId()==R.id.shfullyfurnish)&&!(furnishtypesh.getCheckedChipId()==R.id.shsemifurnish)&&!(furnishtypesh.getCheckedChipId()==R.id.shunfurnish))
                 {
                     Snackbar.make(shmainlayout, "Select Furnish Type", Snackbar.LENGTH_LONG)
                             .show();
 
                     furnishtypesh.requestFocus();
-                }
+                }else
                 if (!(constatus.getCheckedChipId()==R.id.undercon)&&!(constatus.getCheckedChipId()==R.id.readytomove)) {
                     Snackbar.make(shmainlayout, "Select Construction Status", Snackbar.LENGTH_LONG)
                             .show();

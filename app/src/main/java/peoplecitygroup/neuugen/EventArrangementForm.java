@@ -109,29 +109,27 @@ public class EventArrangementForm extends AppCompatActivity implements View.OnCl
                 {
                     areaEAF.setError("Enter Area");
                     areaEAF.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(housenotext) )
                 {
                     housenoEAF.setError("Enter House Number");
                     housenoEAF.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(citytext) )
                 {
                     cityEAF.setError("Enter City");
                     cityEAF.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(pincodetext) )
                 {
                     pincodeEAF.setError("Enter Pincode");
                     pincodeEAF.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(dostext) )
                 {
                     dosEAF.setError("Select Date");
                     dosEAF.requestFocus();
-                }
-
-
+                }else
                 if (eventnumofdaystext.equalsIgnoreCase("Select Number of Days"))
                 {
                     Snackbar.make(eventarrformlayout, "Select Number of Days", Snackbar.LENGTH_LONG)

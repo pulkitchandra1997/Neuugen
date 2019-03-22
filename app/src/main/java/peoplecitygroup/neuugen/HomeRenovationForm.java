@@ -164,41 +164,41 @@ public class HomeRenovationForm extends AppCompatActivity implements View.OnClic
                 {
                     areaHR.setError("Enter Area");
                     areaHR.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(housenotext) )
                 {
                     housenoHR.setError("Enter House Number");
                     housenoHR.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(citytext) )
                 {
                     cityHR.setError("Enter City");
                     cityHR.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(pincodetext) )
                 {
                     pincodeHR.setError("Enter Pincode");
                     pincodeHR.requestFocus();
-                }
+                }else
                 if (TextUtils.isEmpty(dostext) )
                 {
                     dos.setError("Select Date");
                     dos.requestFocus();
-                }
+                }else
                 if (servicetext.equalsIgnoreCase("Carpentry Service")&&servicetypetext.equalsIgnoreCase("Select Service Type"))
                 {
                     Snackbar.make(renovationlayout, "Select Service Type", Snackbar.LENGTH_LONG)
                             .show();
 
                     carpentrytype.requestFocus();
-                }
+                }else
                 if (servicetext.equalsIgnoreCase("Plumbing Service")&&servicetypetext.equalsIgnoreCase("Select Service Type"))
                 {
                     Snackbar.make(renovationlayout, "Select Service Type", Snackbar.LENGTH_LONG)
                             .show();
 
                     plumbingtype.requestFocus();
-                }
+                }else
                 if (servicetext.equalsIgnoreCase("Electrician Service")&&servicetypetext.equalsIgnoreCase("Select Service Type"))
                 {
                     Snackbar.make(renovationlayout, "Select Service Type", Snackbar.LENGTH_LONG)
