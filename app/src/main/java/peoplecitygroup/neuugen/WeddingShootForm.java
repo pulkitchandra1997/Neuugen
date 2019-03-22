@@ -109,7 +109,7 @@ public class WeddingShootForm extends AppCompatActivity implements View.OnClickL
             pincodetext=pincodeWP.getText().toString().trim();
             dostext=dosWP.getText().toString().trim();
             
-            wednumofdaystext=wednumofdays.getSelectedItem().toString().trim();
+            wednumofdaystext=String.valueOf(wednumofdays.getSelectedItemPosition());
             if (engagement.isChecked())
             {
                engagementid="1";
@@ -141,7 +141,7 @@ public class WeddingShootForm extends AppCompatActivity implements View.OnClickL
             }else
                 othersid="0";
 
-            if (TextUtils.isEmpty(areatext) || TextUtils.isEmpty(housenotext)||TextUtils.isEmpty(citytext)||TextUtils.isEmpty(pincodetext)||TextUtils.isEmpty(dostext)||wednumofdaystext.equalsIgnoreCase("Select Number of Days")||!engagement.isChecked()&&!mehendi.isChecked()&&!sangeet.isChecked()&&!marriage.isChecked()&&!others.isChecked()&&!reception.isChecked())
+            if (TextUtils.isEmpty(areatext) || TextUtils.isEmpty(housenotext)||TextUtils.isEmpty(citytext)||TextUtils.isEmpty(pincodetext)||TextUtils.isEmpty(dostext)||wednumofdays.getSelectedItem().toString().equalsIgnoreCase("Select Number of Days")||!engagement.isChecked()&&!mehendi.isChecked()&&!sangeet.isChecked()&&!marriage.isChecked()&&!others.isChecked()&&!reception.isChecked())
             {
                 if (TextUtils.isEmpty(areatext) )
                 {

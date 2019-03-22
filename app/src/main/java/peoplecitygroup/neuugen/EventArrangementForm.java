@@ -100,10 +100,10 @@ public class EventArrangementForm extends AppCompatActivity implements View.OnCl
             landmarktext=landmarkEAF.getText().toString().trim();
             pincodetext=pincodeEAF.getText().toString().trim();
             dostext=dosEAF.getText().toString().trim();
-            eventnumofdaystext=eventnumofdays.getSelectedItem().toString().trim();
+            eventnumofdaystext=String.valueOf(eventnumofdays.getSelectedItemPosition());
 
 
-            if (TextUtils.isEmpty(areatext) || TextUtils.isEmpty(housenotext)||TextUtils.isEmpty(citytext)||TextUtils.isEmpty(pincodetext)||TextUtils.isEmpty(dostext)||eventnumofdaystext.equalsIgnoreCase("Select Number of Days"))
+            if (TextUtils.isEmpty(areatext) || TextUtils.isEmpty(housenotext)||TextUtils.isEmpty(citytext)||TextUtils.isEmpty(pincodetext)||TextUtils.isEmpty(dostext)||eventnumofdays.getSelectedItem().toString().equalsIgnoreCase("Select Number of Days"))
             {
                 if (TextUtils.isEmpty(areatext) )
                 {
