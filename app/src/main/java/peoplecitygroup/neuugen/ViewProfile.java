@@ -77,10 +77,12 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         fill();
         if(sp.getString("pic",null)!=null) {
-            ContextWrapper cw = new ContextWrapper(this);
-            File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
-            File myImageFile = new File(directory, "profilepic.jpeg");
-            Picasso.with(this).load(myImageFile).into(profileimg);
+            Picasso.with(this).load(sp.getString("pic",null))
+                    .skipMemoryCache()
+                    .placeholder(R.drawable.defaultpic)
+                    .fit()
+                    .into(profileimg);
+
         }
         else
             profileimg.setImageResource(R.drawable.defaultpic);
@@ -275,7 +277,6 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
                 if(string.equalsIgnoreCase("success")) {
                     se.putString("pic", ConvertImage);
                     se.commit();
-                    saveToInternalStorage(bitmap);
                     Toast.makeText(ViewProfile.this, "Profile Pic Changed", Toast.LENGTH_SHORT).show();
                 }
                 else{
@@ -311,7 +312,7 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
 
             }
 
-            private String saveToInternalStorage(Bitmap bitmapImage){
+/*            private String saveToInternalStorage(Bitmap bitmapImage){
                 ContextWrapper cw = new ContextWrapper(getApplicationContext());
                 // path to /data/data/yourapp/app_data/imageDir
                 File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
@@ -332,7 +333,7 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
                     }
                 }
                 return directory.getAbsolutePath();
-            }
+            }*/
 
             @Override
             protected String doInBackground(Void... params) {

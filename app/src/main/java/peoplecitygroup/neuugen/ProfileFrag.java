@@ -64,10 +64,11 @@ public class ProfileFrag extends Fragment implements View.OnClickListener {
         mobilenum.setText(sp.getString("mobileno", "mobileno"));
 
         if(sp.getString("pic",null)!=null) {
-            ContextWrapper cw = new ContextWrapper(getActivity());
-            File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
-            File myImageFile = new File(directory, "profilepic.jpeg");
-            Picasso.with(getActivity()).load(myImageFile).into(profilepic);
+            Picasso.with(getContext()).load(sp.getString("pic",null))
+                    .skipMemoryCache()
+                    .placeholder(R.drawable.defaultpic)
+                    .fit()
+                    .into(profilepic);
         }
         else
             profilepic.setImageResource(R.drawable.defaultpic);
