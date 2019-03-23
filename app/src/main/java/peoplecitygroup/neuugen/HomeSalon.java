@@ -8,7 +8,11 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
@@ -31,7 +35,18 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
         trainericon.setTypeface(font);
         mensalonicon.setTypeface(font);
         womensalonicon.setTypeface(font);
+        checkActive();
+    }
 
+    private void checkActive() {
+        ServiceCheck serviceCheck=new ServiceCheck();
+        serviceCheck.check(UrlNeuugen.salonServiceId,this);
+        try {
+            JSONObject jsonObject=new JSONObject(serviceCheck.finalResponse);
+            Log.i("checkservice",jsonObject.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public void listenerLink() {

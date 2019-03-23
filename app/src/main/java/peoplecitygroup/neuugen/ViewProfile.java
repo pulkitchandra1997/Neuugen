@@ -1,5 +1,6 @@
 package peoplecitygroup.neuugen;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
 
@@ -7,9 +8,11 @@ import android.app.ActivityOptions;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -19,6 +22,7 @@ import android.provider.MediaStore;
 import android.text.Html;
 import android.util.Base64;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.BootstrapCircleThumbnail;
@@ -221,7 +225,25 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 profileimg.setImageBitmap(bitmap);
+                if(bitmap!=null)
                 ImageUploadToServerFunction();
+                else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ViewProfile.this);
+
+                    builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                    builder.setMessage("Error in image. Select another")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //finish
+                                }
+                            })
+                            .setIcon(R.mipmap.ic_launcher_round);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                    positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -241,19 +263,37 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
                 progressDialog = ProgressDialog.show(ViewProfile.this,"Image is Uploading","Please Wait",false,false);
             }
             @Override
-            protected void onPostExecute(String string1) {
-                super.onPostExecute(string1);
+            protected void onPostExecute(String string) {
+                super.onPostExecute(string);
                 // Dismiss the progress dialog after done uploading.
                 progressDialog.dismiss();
                 // Printing uploading success message coming from server on android app.
-                if(string1.equalsIgnoreCase("success")) {
+                if(string.equalsIgnoreCase("success")) {
                     se.putString("pic", ConvertImage);
                     se.commit();
                     saveToInternalStorage(bitmap);
                     Toast.makeText(ViewProfile.this, "Profile Pic Changed", Toast.LENGTH_SHORT).show();
                 }
                 else{
+                    if(string.toLowerCase().contains("error")){
+                        profileimg.setImageResource(R.drawable.defaultpic);
+                        bitmap=null;
+                        AlertDialog.Builder builder = new AlertDialog.Builder(ViewProfile.this);
 
+                        builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                        builder.setMessage("Error in uploading. Try again!")
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        //finish
+                                    }
+                                })
+                                .setIcon(R.mipmap.ic_launcher_round);
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                        Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                        positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+                    }
                 }
                 // Setting image as transparent after done uploading.
                 new Handler().postDelayed(new Runnable() {

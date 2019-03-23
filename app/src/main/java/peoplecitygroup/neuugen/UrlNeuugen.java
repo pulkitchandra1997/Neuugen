@@ -8,4 +8,11 @@ public class UrlNeuugen {
     public static final String fill_RentHouses=URL+"fillRentHouses.php";
     public static final String uploadPic=URL+"uploadPics.php";
     public static final String profilenewpic=URL+"profilenewpic.php";
+    public static final String chechActiveService=URL+"checkActiveService.php";
+
+
+
+
+
+    public static final String salonServiceId="1";
 }
