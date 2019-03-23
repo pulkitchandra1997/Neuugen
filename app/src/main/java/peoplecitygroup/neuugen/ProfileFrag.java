@@ -1,6 +1,8 @@
 package peoplecitygroup.neuugen;
 
 import android.app.ActivityOptions;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,6 +18,9 @@ import android.widget.LinearLayout;
 
 import com.beardedhen.androidbootstrap.BootstrapCircleThumbnail;
 import com.beardedhen.androidbootstrap.BootstrapThumbnail;
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -57,6 +62,15 @@ public class ProfileFrag extends Fragment implements View.OnClickListener {
         username.setText(sp.getString("name", "name"));
         emailid.setText(sp.getString("email", "email"));
         mobilenum.setText(sp.getString("mobileno", "mobileno"));
+
+        if(sp.getString("pic",null)!=null) {
+            ContextWrapper cw = new ContextWrapper(getActivity());
+            File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+            File myImageFile = new File(directory, "profilepic.jpeg");
+            Picasso.with(getActivity()).load(myImageFile).into(profilepic);
+        }
+        else
+            profilepic.setImageResource(R.drawable.defaultpic);
     }
 
     public void idLink()

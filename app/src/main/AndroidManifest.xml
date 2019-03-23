@@ -23,8 +23,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PropertiesForm"
-            android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".PropertyDetails">
+        </activity>
+        <activity android:name=".PropertyList" />
+        <activity
+            android:name=".PropertiesForm"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".WeddingPackages" />
         <activity
             android:name=".EventPhotographyForm"
