@@ -461,7 +461,7 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
                         FileOutputStream fos = null;
                         try {
                             fos = new FileOutputStream(myImageFile);
-                            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                            bitmap.compress(Bitmap.CompressFormat.PNG, 40, fos);
                         } catch (IOException e) {
                             e.printStackTrace();
                         } finally {
