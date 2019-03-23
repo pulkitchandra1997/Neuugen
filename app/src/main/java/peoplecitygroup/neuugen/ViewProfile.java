@@ -256,7 +256,7 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
     public void ImageUploadToServerFunction(){
         ByteArrayOutputStream byteArrayOutputStreamObject ;
         byteArrayOutputStreamObject = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStreamObject);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 35, byteArrayOutputStreamObject);
         byte[] byteArrayVar = byteArrayOutputStreamObject.toByteArray();
         final String ConvertImage = Base64.encodeToString(byteArrayVar, Base64.DEFAULT);
         class AsyncTaskUploadClass extends AsyncTask<Void,Void,String> {
