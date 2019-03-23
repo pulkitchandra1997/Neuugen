@@ -10,6 +10,7 @@ import android.app.ActivityOptions;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -17,13 +18,16 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Environment;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
@@ -40,11 +44,16 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.chaos.view.PinView;
 import com.google.android.material.snackbar.Snackbar;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import static android.Manifest.permission.READ_SMS;
@@ -415,6 +424,9 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
             se.putString("emailverified", jsonObject.getString("emailverified"));
             se.putString("profileflag", jsonObject.getString("profileflag"));
             se.putString("addressverified", jsonObject.getString("addressverified"));
+            if(jsonObject.getString("pic")!=null&&jsonObject.getString("pic")!=""){
+                Picasso.with(this).load(jsonObject.getString("pic")).into(picassoImageTarget(getApplicationContext(), "imageDir", "profilepic.jpeg"));
+            }
             se.putString("pic",jsonObject.getString("pic"));
             se.commit();
         } catch (JSONException e) {
@@ -435,6 +447,43 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
             Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
             positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
         }
+    }
+    private Target picassoImageTarget(Context context, final String imageDir, final String imageName) {
+        ContextWrapper cw = new ContextWrapper(context);
+        final File directory = cw.getDir(imageDir, Context.MODE_PRIVATE); // path to /data/data/yourapp/app_imageDir
+        return new Target() {
+            @Override
+            public void onBitmapLoaded(final Bitmap bitmap, Picasso.LoadedFrom from) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        final File myImageFile = new File(directory, imageName); // Create image file
+                        FileOutputStream fos = null;
+                        try {
+                            fos = new FileOutputStream(myImageFile);
+                            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } finally {
+                            try {
+                                fos.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        Log.i("image", "image saved to >>>" + myImageFile.getAbsolutePath());
+                    }
+                }).start();
+            }
+
+            @Override
+            public void onBitmapFailed(Drawable errorDrawable) {
+            }
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+                if (placeHolderDrawable != null) {}
+            }
+        };
     }
 
     public void idLink() {
@@ -507,4 +556,7 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
         super.onPause();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
     }
+
+
+
 }
