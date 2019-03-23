@@ -78,7 +78,6 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
         fill();
         if(sp.getString("pic",null)!=null) {
             Picasso.with(this).load(sp.getString("pic",null))
-                    .skipMemoryCache()
                     .placeholder(R.drawable.defaultpic)
                     .fit()
                     .into(profileimg);

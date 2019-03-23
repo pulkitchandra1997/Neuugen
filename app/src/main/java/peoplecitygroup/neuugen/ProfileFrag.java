@@ -65,7 +65,6 @@ public class ProfileFrag extends Fragment implements View.OnClickListener {
 
         if(sp.getString("pic",null)!=null) {
             Picasso.with(getContext()).load(sp.getString("pic",null))
-                    .skipMemoryCache()
                     .placeholder(R.drawable.defaultpic)
                     .fit()
                     .into(profilepic);
