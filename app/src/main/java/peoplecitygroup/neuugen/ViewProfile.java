@@ -52,11 +52,11 @@ import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 public class ViewProfile extends AppCompatActivity implements View.OnClickListener {
 
     AppCompatTextView emailverify,addverify,phoneverify,editprofileicon,backtoaccount,emailtext,phonetext,citytext,addresstext,statetext,pincodetext,emailicon,phoneicon,addressicon,cityicon,nametext,gendertext,gendericon,bdaytext,bdayicon;
-    ProgressDialog progressDialog ;
     boolean chk = true;
     BootstrapCircleThumbnail profileimg,profileimgbtn;
     String ImagePath = "image_path" ;
     SharedPreferences sp;
+    ProgressDialog loading = null;
 
     SharedPreferences.Editor se;
     Bitmap bitmap;
@@ -71,7 +71,10 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
 
         sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
         se=sp.edit();
-
+        loading = new ProgressDialog(ViewProfile.this,R.style.AppCompatAlertDialogStyle);
+        loading.setCancelable(false);
+        loading.setMessage("Loading");
+        loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         fill();
         if(sp.getString("pic",null)!=null) {
             ContextWrapper cw = new ContextWrapper(this);
@@ -260,13 +263,14 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                progressDialog = ProgressDialog.show(ViewProfile.this,"Image is Uploading","Please Wait",false,false);
+                loading.setMessage("Image is loading. Please Wait!");
+                loading.show();
             }
             @Override
             protected void onPostExecute(String string) {
                 super.onPostExecute(string);
                 // Dismiss the progress dialog after done uploading.
-                progressDialog.dismiss();
+                loading.dismiss();
                 // Printing uploading success message coming from server on android app.
                 if(string.equalsIgnoreCase("success")) {
                     se.putString("pic", ConvertImage);
@@ -317,7 +321,7 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
                 try {
                     fos = new FileOutputStream(mypath);
                     // Use the compress method on the BitMap object to write image to the OutputStream
-                    bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                    bitmapImage.compress(Bitmap.CompressFormat.PNG, 40, fos);
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {

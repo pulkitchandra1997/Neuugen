@@ -177,4 +177,10 @@ public class ProfileFrag extends Fragment implements View.OnClickListener {
             }
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        fill();
+    }
 }
