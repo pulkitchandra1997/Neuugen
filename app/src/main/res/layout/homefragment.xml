@@ -270,18 +270,18 @@
                 android:layout_width="0dp"
                 android:orientation="vertical"
                 android:padding="3dp"
-                android:id="@+id/holidayplanner"
+                android:id="@+id/learning"
                 android:background="@drawable/cellshape"
                 >
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
-                    android:src="@drawable/holidayicon" />
+                    android:src="@drawable/learningicon" />
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Holiday Planner"
+                    android:text="Learning"
                     android:textSize="15dp"
                     android:layout_gravity="center"
                     android:padding="5dp"

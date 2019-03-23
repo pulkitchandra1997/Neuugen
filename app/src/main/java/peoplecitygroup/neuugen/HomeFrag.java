@@ -35,7 +35,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
 
     View v;
 
-    LinearLayout properties,salon,events,appliancerepair,homerenovation,holidayplanner;
+    LinearLayout properties,salon,events,appliancerepair,homerenovation,learning;
 
 
     @Nullable
@@ -64,7 +64,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         events=v.findViewById(R.id.events);
         homerenovation=v.findViewById(R.id.homerenovation);
         appliancerepair=v.findViewById(R.id.appliancerepair);
-        holidayplanner=v.findViewById(R.id.holidayplanner);
+        learning=v.findViewById(R.id.learning);
         salon=v.findViewById(R.id.salon);
     }
 
@@ -74,7 +74,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         properties.setOnClickListener(this);
         events.setOnClickListener(this);
         homerenovation.setOnClickListener(this);
-        holidayplanner.setOnClickListener(this);
+        learning.setOnClickListener(this);
         salon.setOnClickListener(this);
         appliancerepair.setOnClickListener(this);
 
@@ -137,6 +137,16 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         if (v.getId()==R.id.events)
         {
             Intent intent = new Intent(getActivity(), EventsActivity.class);
+            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                ActivityOptions options = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.fade_in, R.anim.fade_out);
+                startActivity(intent, options.toBundle());
+            } else {
+                startActivity(intent);
+            }
+        }
+        if (v.getId()==R.id.learning)
+        {
+            Intent intent = new Intent(getActivity(), LearningActivity.class);
             if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
                 ActivityOptions options = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.fade_in, R.anim.fade_out);
                 startActivity(intent, options.toBundle());

@@ -33,6 +33,10 @@
 
     <string name="weddingpkgtext">Wedding Photography &amp; Videography | Candid &amp; Traditional | Cinematography Videos</string>
 
+    <string name="actingtext">1. Experienced professionals.\n2. Acting workshops.\n3. Personalised training programmes.</string>
+    <string name="makeuptext">1. Trained and experienced tutors.\n2. Monthly grooming workshops.\n3. Personal level of attention is given to each individual.</string>
+    <string name="dancingtext">1. Trained and Experienced faculties.\n2. Awesome Studios will all Facilities.\n3. Demo classes also available. </string>
+
     <array name="electriciantype">
         <item>Select Service Type</item>
         <item>Switches, meters and fuses</item>
