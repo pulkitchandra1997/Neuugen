@@ -79,7 +79,6 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
         if(sp.getString("pic",null)!=null) {
             Picasso.with(this).load(sp.getString("pic",null))
                     .placeholder(R.drawable.defaultpic)
-                    .centerCrop()
                     .into(profileimg);
         }
         else
