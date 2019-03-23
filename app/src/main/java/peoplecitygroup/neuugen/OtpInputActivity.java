@@ -102,6 +102,9 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
                     boolean isFound = pinView.getText().toString().indexOf(String.valueOf(otptext)) !=-1? true: false;
                     if(isFound)
                         nextActivity();
+                    else{
+                        Toast.makeText(OtpInputActivity.this, "Incorrect OTP", Toast.LENGTH_SHORT).show();
+                }
                 }
             }
 
