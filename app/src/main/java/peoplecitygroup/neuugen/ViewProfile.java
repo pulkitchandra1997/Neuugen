@@ -336,7 +336,7 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
                 HashMap<String,String> HashMapParams = new HashMap<String,String>();
                 HashMapParams.put("mobileno", sp.getString("mobileno",null));
                 HashMapParams.put(ImagePath, ConvertImage);
-                String FinalData = imageProcessClass.ImageHttpRequest("http://rentzhub.co.in/temp/profilenewpic.php", HashMapParams);
+                String FinalData = imageProcessClass.ImageHttpRequest(UrlNeuugen.profilenewpic, HashMapParams);
                 return FinalData;
             }
         }
