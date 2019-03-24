@@ -34,8 +34,8 @@ public class UrlNeuugen {
     public static final String electricianId="15";
     public static final String carpentryId="16";
     public static final String learningServiceId="17";
-    public static final String dancingClassId="18";
-    public static final String actingClassId="19";
+    public static final String actingClassId="18";
+    public static final String dancingClassId="19";
     public static final String groomingClassId="20";
     public static final String eventsServiceId="21";
     public static final String photoVideoServiceId="22";
