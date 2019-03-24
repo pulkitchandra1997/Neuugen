@@ -180,7 +180,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Home Salon"
+                    android:text="Grooming"
                     android:textSize="15dp"
                     android:layout_gravity="center"
                     android:padding="5dp"

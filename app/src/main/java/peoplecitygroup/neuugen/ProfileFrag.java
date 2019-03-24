@@ -96,6 +96,10 @@ public class ProfileFrag extends Fragment implements View.OnClickListener {
         editprofile.setOnClickListener(this);
         profilepic.setOnClickListener(this);
         postad.setOnClickListener(this);
+        customersupport.setOnClickListener(this);
+        help.setOnClickListener(this);
+        termsofuse.setOnClickListener(this);
+        aboutus.setOnClickListener(this);
     }
 
     @Override
@@ -169,6 +173,36 @@ public class ProfileFrag extends Fragment implements View.OnClickListener {
         if (v.getId()==R.id.postad)
         {
             Intent intent = new Intent(getActivity(), PostAd.class);
+            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                ActivityOptions options = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.fade_in, R.anim.fade_out);
+                startActivity(intent, options.toBundle());
+            } else {
+                startActivity(intent);
+            }
+        }
+        if (v.getId()==R.id.customersupport)
+        {
+            Intent intent = new Intent(getActivity(), Customercare.class);
+            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                ActivityOptions options = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.fade_in, R.anim.fade_out);
+                startActivity(intent, options.toBundle());
+            } else {
+                startActivity(intent);
+            }
+        }
+        if (v.getId()==R.id.aboutus)
+        {
+            Intent intent = new Intent(getActivity(), AboutUs.class);
+            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                ActivityOptions options = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.fade_in, R.anim.fade_out);
+                startActivity(intent, options.toBundle());
+            } else {
+                startActivity(intent);
+            }
+        }
+        if (v.getId()==R.id.termsofuse)
+        {
+            Intent intent = new Intent(getActivity(), Termsofuse.class);
             if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
                 ActivityOptions options = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.fade_in, R.anim.fade_out);
                 startActivity(intent, options.toBundle());

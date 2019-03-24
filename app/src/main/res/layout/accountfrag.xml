@@ -44,12 +44,13 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Namw"
+                android:text="Name"
                 android:textSize="20dp"
                 android:id="@+id/username"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/quicksand"
                 android:textColor="@color/PrimaryText"
+
                 />
 
             <androidx.appcompat.widget.AppCompatTextView
