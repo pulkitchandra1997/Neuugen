@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -31,11 +32,19 @@ public class Customercare extends AppCompatActivity implements View.OnClickListe
 
         idLink();
         listenerLink();
+        hideSoftKeyboard();
 
         Typeface font = Typeface.createFromAsset(getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
         callbtn.setTypeface(font);
         mailbtn.setTypeface(font);
     }
+    public void hideSoftKeyboard() {
+        if (getCurrentFocus() != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+    }
+
 
     private void idLink() {
         callbtn=findViewById(R.id.callbtn);
