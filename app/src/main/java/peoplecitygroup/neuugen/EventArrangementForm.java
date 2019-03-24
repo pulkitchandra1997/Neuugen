@@ -105,16 +105,17 @@ public class EventArrangementForm extends AppCompatActivity implements View.OnCl
 
             if (TextUtils.isEmpty(areatext) || TextUtils.isEmpty(housenotext)||TextUtils.isEmpty(citytext)||TextUtils.isEmpty(pincodetext)||TextUtils.isEmpty(dostext)||eventnumofdays.getSelectedItem().toString().equalsIgnoreCase("Select Number of Days"))
             {
-                if (TextUtils.isEmpty(areatext) )
-                {
-                    areaEAF.setError("Enter Area");
-                    areaEAF.requestFocus();
-                }else
                 if (TextUtils.isEmpty(housenotext) )
                 {
                     housenoEAF.setError("Enter House Number");
                     housenoEAF.requestFocus();
                 }else
+                if (TextUtils.isEmpty(areatext) )
+                {
+                    areaEAF.setError("Enter Area");
+                    areaEAF.requestFocus();
+                }else
+
                 if (TextUtils.isEmpty(citytext) )
                 {
                     cityEAF.setError("Enter City");

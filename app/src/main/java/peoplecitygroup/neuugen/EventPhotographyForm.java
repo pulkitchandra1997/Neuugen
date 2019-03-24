@@ -131,16 +131,17 @@ public class EventPhotographyForm extends AppCompatActivity implements View.OnCl
 
             if (TextUtils.isEmpty(areatext) || TextUtils.isEmpty(housenotext)||TextUtils.isEmpty(citytext)||TextUtils.isEmpty(pincodetext)||TextUtils.isEmpty(dostext)||bothservicepvtext.equalsIgnoreCase("Select Service Type")||eventnumofdaystext.equalsIgnoreCase("Select Number of Days")||!birthday.isChecked()&&!corporate.isChecked()&&!anniversary.isChecked()&&!picnic.isChecked()&&!otherparty.isChecked())
             {
-                if (TextUtils.isEmpty(areatext) )
-                {
-                    areaEP.setError("Enter Area");
-                    areaEP.requestFocus();
-                }else
                 if (TextUtils.isEmpty(housenotext) )
                 {
                     housenoEP.setError("Enter House Number");
                     housenoEP.requestFocus();
                 }else
+                if (TextUtils.isEmpty(areatext) )
+                {
+                    areaEP.setError("Enter Area");
+                    areaEP.requestFocus();
+                }else
+
                 if (TextUtils.isEmpty(citytext) )
                 {
                     cityEP.setError("Enter City");

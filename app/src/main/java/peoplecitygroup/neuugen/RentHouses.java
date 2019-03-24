@@ -64,6 +64,8 @@ import java.util.TimerTask;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import static android.os.Build.VERSION_CODES.JELLY_BEAN;
+
 public class RentHouses extends AppCompatActivity implements View.OnClickListener {
 
     AppCompatTextView backtopost;
@@ -225,18 +227,19 @@ int numofbed;
                 rhfurnishtyypetext="Unfurnished";
             }
 
-            if (TextUtils.isEmpty(pincoderhtext) ||TextUtils.isEmpty(arearhtext) || TextUtils.isEmpty(housenorhtext)||TextUtils.isEmpty(cityrhtext)||TextUtils.isEmpty(builtarearhtext)||TextUtils.isEmpty(monthlyrentrhtext)||propertytyperhtext.equalsIgnoreCase("Select Property Type")||numofbathrh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||numofbedrh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||!(rhfurnishtype.getCheckedChipId()==R.id.rhfullyfurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhsemifurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhunfurnish))
+            if (TextUtils.isEmpty(pincoderhtext) ||TextUtils.isEmpty(arearhtext) || TextUtils.isEmpty(housenorhtext)||TextUtils.isEmpty(cityrhtext)||TextUtils.isEmpty(builtarearhtext)||TextUtils.isEmpty(monthlyrentrhtext)||propertytyperhtext.equalsIgnoreCase("Select Property Type")||numofbathrh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||numofbedrh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||!(rhfurnishtype.getCheckedChipId()==R.id.rhfullyfurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhsemifurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhunfurnish)||(img1==null)&&(img2==null)&&(img3==null))
             {
-                if (TextUtils.isEmpty(arearhtext) )
-                {
-                    arearh.setError("Enter Area");
-                    arearh.requestFocus();
-                }else
                 if (TextUtils.isEmpty(housenorhtext) )
                 {
                     housenorh.setError("Enter House Number");
                     housenorh.requestFocus();
                 }else
+                if (TextUtils.isEmpty(arearhtext) )
+                {
+                    arearh.setError("Enter Area");
+                    arearh.requestFocus();
+                }else
+
                 if (TextUtils.isEmpty(cityrhtext) )
                 {
                     cityrh.setError("Enter City");
@@ -284,11 +287,19 @@ int numofbed;
                             .show();
                     rhfurnishtype.requestFocus();
                 }
+                if ((img1==null)&&(img2==null)&&(img3==null))
+                {
+                    AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+                    alertDialog.setMessage(Html.fromHtml("<b>Select all images</b>"));
+                    alertDialog.setIcon(R.mipmap.ic_launcher_round);
+                    alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>NeuuGen</font>"));
+                    alertDialog.show();
+                }
             }
             else
             {
                 if(Validation.isValidCity(cityrhtext)){
-                    if(pincoderhtext.charAt(0)!='0')
+                    if(pincoderhtext.charAt(0)!='0'&&pincoderhtext.length()<6)
                         toServer();
                     else{
                         Snackbar.make(rhmainlayout, "Enter Valid Pincode", Snackbar.LENGTH_LONG)
@@ -429,13 +440,26 @@ int numofbed;
     }
 
     private void success() {
-//SNACKBAR
+
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setMessage(Html.fromHtml("<b>Your ad has been posted. Our customer executive will contact you soon to verify your property.</b>"));
+        alertDialog.setIcon(R.mipmap.ic_launcher_round);
+        alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>NeuuGen</font>"));
+        alertDialog.show();
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                Intent intent = new Intent(RentHouses.this, UserMainActivity.class);
+                 if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                    ActivityOptions options = ActivityOptions.makeCustomAnimation(RentHouses.this, R.anim.fade_in, R.anim.fade_out);
+                    startActivity(intent, options.toBundle());
+                } else {
+                    startActivity(intent);
+                }
                 finish();
             }
-        },2000);
+        },4000);
  }
 
     private void uploadPic(Bitmap img,final String message,final int flag ) {

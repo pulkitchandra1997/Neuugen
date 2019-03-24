@@ -143,16 +143,17 @@ public class SellHouses extends AppCompatActivity implements View.OnClickListene
 
             if (TextUtils.isEmpty(pincodeshtext) ||TextUtils.isEmpty(areashtext) || TextUtils.isEmpty(housenoshtext)||TextUtils.isEmpty(cityshtext)||TextUtils.isEmpty(builtareashtext)||TextUtils.isEmpty(costshtext)||propertytypeshtext.equalsIgnoreCase("Select Property Type")||numofbathsh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||numofbedsh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||TextUtils.isEmpty(ageofpropertyshtext)||!(furnishtypesh.getCheckedChipId()==R.id.shfullyfurnish)&&!(furnishtypesh.getCheckedChipId()==R.id.shsemifurnish)&&!(furnishtypesh.getCheckedChipId()==R.id.shunfurnish)||!(constatus.getCheckedChipId()==R.id.undercon)&&!(constatus.getCheckedChipId()==R.id.readytomove))
             {
-                if (TextUtils.isEmpty(areashtext) )
-                {
-                    areash.setError("Enter Area");
-                    areash.requestFocus();
-                }else
                 if (TextUtils.isEmpty(housenoshtext) )
                 {
                     housenosh.setError("Enter House Number");
                     housenosh.requestFocus();
                 }else
+                if (TextUtils.isEmpty(areashtext) )
+                {
+                    areash.setError("Enter Area");
+                    areash.requestFocus();
+                }else
+
                 if (TextUtils.isEmpty(cityshtext) )
                 {
                     citysh.setError("Enter City");

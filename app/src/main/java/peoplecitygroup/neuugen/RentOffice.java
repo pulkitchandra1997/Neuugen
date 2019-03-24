@@ -121,16 +121,17 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
 
             if (TextUtils.isEmpty(pincoderotext) ||TextUtils.isEmpty(arearotext) || TextUtils.isEmpty(shopnorotext)||TextUtils.isEmpty(cityrotext)||TextUtils.isEmpty(builtarearotext)||TextUtils.isEmpty(monthlyrentrotext)||propertytyperotext.equalsIgnoreCase("Select Property Type")||!(constatusro.getCheckedChipId()==R.id.undercon)&&!(constatusro.getCheckedChipId()==R.id.readytomove))
             {
-                if (TextUtils.isEmpty(arearotext) )
-                {
-                    arearo.setError("Enter Area");
-                    arearo.requestFocus();
-                }else
                 if (TextUtils.isEmpty(shopnorotext) )
                 {
                     shopno.setError("Enter Shop Number");
                     shopno.requestFocus();
                 }else
+                if (TextUtils.isEmpty(arearotext) )
+                {
+                    arearo.setError("Enter Area");
+                    arearo.requestFocus();
+                }else
+
                 if (TextUtils.isEmpty(cityrotext) )
                 {
                     cityro.setError("Enter City");

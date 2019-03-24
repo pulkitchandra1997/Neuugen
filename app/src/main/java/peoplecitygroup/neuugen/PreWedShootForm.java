@@ -93,16 +93,17 @@ public class PreWedShootForm extends AppCompatActivity implements View.OnClickLi
 
             if (TextUtils.isEmpty(areatext) || TextUtils.isEmpty(housenotext)||TextUtils.isEmpty(citytext)||TextUtils.isEmpty(pincodetext)||TextUtils.isEmpty(dostext)||bothpvservicetext.equalsIgnoreCase("Select Service Type"))
             {
-                if (TextUtils.isEmpty(areatext) )
-                {
-                    areaPWS.setError("Enter Area");
-                    areaPWS.requestFocus();
-                }else
                 if (TextUtils.isEmpty(housenotext) )
                 {
                     housenoPWS.setError("Enter House Number");
                     housenoPWS.requestFocus();
                 }else
+                if (TextUtils.isEmpty(areatext) )
+                {
+                    areaPWS.setError("Enter Area");
+                    areaPWS.requestFocus();
+                }else
+
                 if (TextUtils.isEmpty(citytext) )
                 {
                     cityPWS.setError("Enter City");

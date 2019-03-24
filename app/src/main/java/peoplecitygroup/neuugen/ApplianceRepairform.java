@@ -120,16 +120,17 @@ public class ApplianceRepairform extends AppCompatActivity implements View.OnCli
             }
             if (TextUtils.isEmpty(areatext) || TextUtils.isEmpty(housenotext)||TextUtils.isEmpty(citytext)||TextUtils.isEmpty(pincodetext)||TextUtils.isEmpty(dostext)||servicetext.equalsIgnoreCase("Repairing Service")&&appliancetext.equalsIgnoreCase("Select Appliance Type")||servicetext.equalsIgnoreCase("Installation Service")&&appliancetext.equalsIgnoreCase("Select Appliance Type"))
             {
-                if (TextUtils.isEmpty(areatext) )
-                {
-                    areaAS.setError("Enter Area");
-                    areaAS.requestFocus();
-                }else
                 if (TextUtils.isEmpty(housenotext) )
                 {
                     housenoAS.setError("Enter House Number");
                     housenoAS.requestFocus();
                 }else
+                if (TextUtils.isEmpty(areatext) )
+                {
+                    areaAS.setError("Enter Area");
+                    areaAS.requestFocus();
+                }else
+
                 if (TextUtils.isEmpty(citytext) )
                 {
                     cityAS.setError("Enter City");

@@ -143,16 +143,17 @@ public class WeddingShootForm extends AppCompatActivity implements View.OnClickL
 
             if (TextUtils.isEmpty(areatext) || TextUtils.isEmpty(housenotext)||TextUtils.isEmpty(citytext)||TextUtils.isEmpty(pincodetext)||TextUtils.isEmpty(dostext)||wednumofdays.getSelectedItem().toString().equalsIgnoreCase("Select Number of Days")||!engagement.isChecked()&&!mehendi.isChecked()&&!sangeet.isChecked()&&!marriage.isChecked()&&!others.isChecked()&&!reception.isChecked())
             {
-                if (TextUtils.isEmpty(areatext) )
-                {
-                    areaWP.setError("Enter Area");
-                    areaWP.requestFocus();
-                }else
                 if (TextUtils.isEmpty(housenotext) )
                 {
                     housenoWP.setError("Enter House Number");
                     housenoWP.requestFocus();
                 }else
+                if (TextUtils.isEmpty(areatext) )
+                {
+                    areaWP.setError("Enter Area");
+                    areaWP.requestFocus();
+                }else
+
                 if (TextUtils.isEmpty(citytext) )
                 {
                     cityWP.setError("Enter City");

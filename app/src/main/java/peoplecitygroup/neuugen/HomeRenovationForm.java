@@ -160,15 +160,15 @@ public class HomeRenovationForm extends AppCompatActivity implements View.OnClic
             }
             if (TextUtils.isEmpty(areatext) || TextUtils.isEmpty(housenotext)||TextUtils.isEmpty(citytext)||TextUtils.isEmpty(pincodetext)||TextUtils.isEmpty(dostext)||servicetext.equalsIgnoreCase("Plumbing Service")&&servicetypetext.equalsIgnoreCase("Select Service Type")||servicetext.equalsIgnoreCase("Carpentry Service")&&servicetypetext.equalsIgnoreCase("Select Service Type")||servicetext.equalsIgnoreCase("Electrician Service")&&servicetypetext.equalsIgnoreCase("Select Service Type"))
             {
-                if (TextUtils.isEmpty(areatext) )
-                {
-                    areaHR.setError("Enter Area");
-                    areaHR.requestFocus();
-                }else
                 if (TextUtils.isEmpty(housenotext) )
                 {
                     housenoHR.setError("Enter House Number");
                     housenoHR.requestFocus();
+                }else
+                if (TextUtils.isEmpty(areatext) )
+                {
+                    areaHR.setError("Enter Area");
+                    areaHR.requestFocus();
                 }else
                 if (TextUtils.isEmpty(citytext) )
                 {

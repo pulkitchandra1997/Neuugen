@@ -121,16 +121,17 @@ public class SellPlots extends AppCompatActivity implements View.OnClickListener
 
             if (TextUtils.isEmpty(pincodesptext) ||TextUtils.isEmpty(areasptext) || TextUtils.isEmpty(plotnotext)||TextUtils.isEmpty(citysptext)||TextUtils.isEmpty(plotareatext)||TextUtils.isEmpty(plotpricetext)||propertytypesptext.equalsIgnoreCase("Select Property Type")||!(posesnstatus.getCheckedChipId()==R.id.undercon)&&!(posesnstatus.getCheckedChipId()==R.id.readytomove))
             {
-                if (TextUtils.isEmpty(areasptext) )
-                {
-                    areasp.setError("Enter Area");
-                    areasp.requestFocus();
-                }else
                 if (TextUtils.isEmpty(plotnotext) )
                 {
                     plotno.setError("Enter Plot Number");
                     plotno.requestFocus();
                 }else
+                if (TextUtils.isEmpty(areasptext) )
+                {
+                    areasp.setError("Enter Area");
+                    areasp.requestFocus();
+                }else
+
                 if (TextUtils.isEmpty(citysptext) )
                 {
                     citysp.setError("Enter City");
