@@ -289,7 +289,7 @@ int numofbed;
             }
             else
             {
-                if(!Validation.isValidCity(cityrhtext))
+                if(Validation.isValidCity(cityrhtext)){
                     if(pincoderhtext.charAt(0)!='0')
                         toServer();
                     else{
@@ -298,6 +298,7 @@ int numofbed;
 
                         pincoderh.requestFocus();
                     }
+                }
                 else {
                     Snackbar.make(rhmainlayout, "Enter Valid City Name", Snackbar.LENGTH_LONG)
                             .show();
