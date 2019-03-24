@@ -23,8 +23,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LearningActivity"></activity>
-        <activity android:name=".PropertyDetails"></activity>
+        <activity android:name=".Customercare"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".Termsofuse" />
+        <activity android:name=".AboutUs" />
+        <activity android:name=".LearningActivity" />
+        <activity android:name=".PropertyDetails" />
         <activity android:name=".PropertyList" />
         <activity
             android:name=".PropertiesForm"

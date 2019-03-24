@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Customercare"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Customer Care"
+            android:padding="15dp"
+            android:textSize="20dp"
+            android:fontFamily="@font/quicksandbold"
+            android:textColor="@color/colorAccent"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Call us:"
+            android:padding="15dp"
+            android:textSize="20dp"
+            android:fontFamily="@font/quicksandbold"
+            android:textColor="@color/PrimaryText"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="&#xf095;"
+                android:textSize="20sp"
+                android:fontFamily="@font/quicksandbold"
+                android:textColor="@color/colorAccent"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:backgroundTint="@color/DividerColor"
+                android:padding="10dp"
+                android:id="@+id/callbtn"
+                />
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mail us:"
+                android:padding="15dp"
+                android:textSize="20dp"
+                android:fontFamily="@font/quicksandbold"
+                android:textColor="@color/PrimaryText"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end">
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="&#xf0e0;"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/quicksandbold"
+                    android:textColor="@color/colorAccent"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:backgroundTint="@color/DividerColor"
+                    android:padding="10dp"
+                    android:id="@+id/mailbtn"
+                    />
+
+
+            </LinearLayout>
+        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OR"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:fontFamily="@font/quicksand"
+            android:textColor="@color/PrimaryText"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send Your Query -"
+            android:padding="15dp"
+            android:textSize="20dp"
+            android:fontFamily="@font/quicksandbold"
+            android:textColor="@color/PrimaryText"
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:boxStrokeColor="@color/colorPrimaryDark"
+            app:hintTextAppearance="@style/MyAppearance"
+            app:hintEnabled="true"
+            app:errorEnabled="true"
+            app:boxBackgroundMode="outline"
+            android:focusedByDefault="false"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                android:inputType="text"
+                android:singleLine="true"
+                android:textCursorDrawable="@color/colorPrimaryDark"
+                android:maxLines="1"
+                android:textSize="18sp"
+                android:padding="10dp"
+                android:fontFamily="@font/quicksandregular"
+                android:id="@+id/namecs"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:boxStrokeColor="@color/colorPrimaryDark"
+            app:hintTextAppearance="@style/MyAppearance"
+            app:hintEnabled="true"
+            app:errorEnabled="true"
+            app:boxBackgroundMode="outline"
+            android:focusedByDefault="false"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email Address"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:textSize="18sp"
+                android:fontFamily="@font/quicksandregular"
+                android:padding="10dp"
+                android:textCursorDrawable="@color/colorPrimaryDark"
+                android:id="@+id/emailcs"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:boxStrokeColor="@color/colorPrimaryDark"
+            app:hintTextAppearance="@style/MyAppearance"
+            app:hintEnabled="true"
+            app:errorEnabled="true"
+            app:boxBackgroundMode="outline"
+            android:focusedByDefault="false"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Subject"
+                android:inputType="text"
+                android:singleLine="true"
+                android:textCursorDrawable="@color/colorPrimaryDark"
+                android:maxLines="1"
+                android:textSize="18sp"
+                android:padding="10dp"
+                android:fontFamily="@font/quicksandregular"
+                android:id="@+id/subjectcs"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:boxStrokeColor="@color/colorPrimaryDark"
+            app:hintTextAppearance="@style/MyAppearance"
+            app:hintEnabled="true"
+            app:errorEnabled="true"
+            app:boxBackgroundMode="outline"
+            android:focusedByDefault="false"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Message"
+                android:inputType="textEmailAddress"
+                android:textSize="18sp"
+                android:fontFamily="@font/quicksandregular"
+                android:padding="10dp"
+                android:textCursorDrawable="@color/colorPrimaryDark"
+                android:id="@+id/messagecs"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/quicksandbold"
+            android:textColor="@color/colorAccent"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:backgroundTint="@color/DividerColor"
+            android:padding="10dp"
+            android:id="@+id/msgbtn"
+            />
+
+
+
+
+    </LinearLayout>
+</LinearLayout>
