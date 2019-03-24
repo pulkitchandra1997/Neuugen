@@ -316,7 +316,6 @@ int numofbed;
                         if(response.toLowerCase().contains("success")){
                             uniqueid=response.substring(7);
                             loading.dismiss();
-                            Toast.makeText(RentHouses.this, uniqueid, Toast.LENGTH_SHORT).show();
                             picuploadfuntion(1);
 
                         }
@@ -418,14 +417,20 @@ int numofbed;
     }
 
     private void success() {
-        Toast.makeText(this, "Filled", Toast.LENGTH_SHORT).show();
-    }
+//SNACKBAR
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                finish();
+            }
+        },2000);
+ }
 
     private void uploadPic(Bitmap img,final String message,final int flag ) {
         if (img != null) {
             ByteArrayOutputStream byteArrayOutputStreamObject;
             byteArrayOutputStreamObject = new ByteArrayOutputStream();
-            img.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStreamObject);
+            img.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStreamObject);
             byte[] byteArrayVar = byteArrayOutputStreamObject.toByteArray();
             final String ConvertImage = Base64.encodeToString(byteArrayVar, Base64.DEFAULT);
             class AsyncTaskUploadClass extends AsyncTask<Void, Void, String> {
@@ -440,9 +445,9 @@ int numofbed;
                     super.onPostExecute(string1);
                     Log.i("formerror1",string1);
                     // Dismiss the progress dialog after done uploading.
-                    if(string1.equalsIgnoreCase("success")){
-                        picuploadfuntion(flag+1);
+                    if(string1.toLowerCase().contains("success")){
                         loading.dismiss();
+                        picuploadfuntion(flag+1);
                     }
                     else {
                         if(string1.contains("error")){

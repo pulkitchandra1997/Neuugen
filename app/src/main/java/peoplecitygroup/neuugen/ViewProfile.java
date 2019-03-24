@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.ImageFormat;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -21,6 +22,7 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.Html;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -57,10 +59,9 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
     String ImagePath = "image_path" ;
     SharedPreferences sp;
     ProgressDialog loading = null;
-
     SharedPreferences.Editor se;
     Bitmap bitmap;
-
+    static int quality=100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -251,11 +252,41 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
             }
         }
     }
+    private static Bitmap resize(Bitmap image, int maxWidth, int maxHeight) {
+        if (maxHeight > 0 && maxWidth > 0) {
+            int width = image.getWidth();
+            int height = image.getHeight();
+            float ratioBitmap = (float) width / (float) height;
+            float ratioMax = (float) maxWidth / (float) maxHeight;
 
+            int finalWidth = maxWidth;
+            int finalHeight = maxHeight;
+            if (ratioMax > ratioBitmap) {
+                finalWidth = (int) ((float)maxHeight * ratioBitmap);
+            } else {
+                finalHeight = (int) ((float)maxWidth / ratioBitmap);
+            }
+            image = Bitmap.createScaledBitmap(image, finalWidth, finalHeight, true);
+            return compress(image);
+        } else {
+            return compress(image);
+        }
+    }
+    private static Bitmap compress(Bitmap bitmap){
+        if(bitmap.getByteCount()>1024*1024*10)
+            quality=50;
+        else
+            if(bitmap.getByteCount()>1024*1024*5)
+                quality=25;
+            else
+                quality=20;
+       return bitmap;
+    }
     public void ImageUploadToServerFunction(){
+        compress(bitmap);
         ByteArrayOutputStream byteArrayOutputStreamObject ;
         byteArrayOutputStreamObject = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStreamObject);
+        resize(bitmap,profileimg.getWidth(),profileimg.getHeight()).compress(Bitmap.CompressFormat.PNG, quality, byteArrayOutputStreamObject);
         byte[] byteArrayVar = byteArrayOutputStreamObject.toByteArray();
         final String ConvertImage = Base64.encodeToString(byteArrayVar, Base64.DEFAULT);
         class AsyncTaskUploadClass extends AsyncTask<Void,Void,String> {
