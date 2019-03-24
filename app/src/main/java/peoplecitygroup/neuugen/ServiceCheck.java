@@ -44,6 +44,7 @@ public class ServiceCheck {
                     Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
                     positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
                 } else {
+                    return response;
                     finalResponse=response;
                 }
             }

@@ -282,10 +282,8 @@ int numofbed;
                 {
                     Snackbar.make(rhmainlayout, "Select Furnish Type", Snackbar.LENGTH_LONG)
                             .show();
-
                     rhfurnishtype.requestFocus();
                 }
-
             }
             else
             {
