@@ -21,31 +21,15 @@ import java.util.Map;
 import androidx.appcompat.app.AlertDialog;
 
 public class ServiceCheck {
-    public String finalResponse=null;
-    public void check(final String serviceId, final Context context) {
+    public void check(final String serviceId, final Context context,final VolleyCallback volleyCallback) {
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.chechActiveService, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if (response.toLowerCase().contains("error")) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(context.getApplicationContext());
-
-                    builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
-                    builder.setMessage("Error in server. Try Again")
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    //finish
-                                }
-                            })
-                            .setIcon(R.mipmap.ic_launcher_round);
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                    Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
-                    positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+                    volleyCallback.onError(response);
                 } else {
-
-                    finalResponse=response;
+                    volleyCallback.onSuccess(response);
                 }
             }
         }, new Response.ErrorListener() {

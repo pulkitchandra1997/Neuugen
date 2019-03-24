@@ -1,15 +1,20 @@
 package peoplecitygroup.neuugen;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.cardview.widget.CardView;
 
 import android.app.ActivityOptions;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,13 +44,80 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
     }
 
     private void checkActive() {
+
         ServiceCheck serviceCheck=new ServiceCheck();
-        serviceCheck.check(UrlNeuugen.salonServiceId,this);
+        serviceCheck.check(UrlNeuugen.salonServiceId, this, new VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+                serviceDecode(result);
+            }
+
+            @Override
+            public void onError(String response) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
+
+                builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                builder.setMessage("Error in server. Try Again")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //finish
+                            }
+                        })
+                        .setIcon(R.mipmap.ic_launcher_round);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+            }
+        });
+    }
+
+    private void serviceDecode(String result) {
         try {
-            JSONObject jsonObject=new JSONObject(serviceCheck.finalResponse);
-            Log.i("checkservice",jsonObject.toString());
+            JSONObject jsonObject=new JSONObject(result);
+            String id[]=jsonObject.getString("id").split("#");
+            String title[]=jsonObject.getString("id").split("#");
+            String active[]=jsonObject.getString("id").split("#");
+            String cost[]=jsonObject.getString("id").split("#");
+            String pic1[]=jsonObject.getString("id").split("#");
+            String pic2[]=jsonObject.getString("id").split("#");
+            String pic3[]=jsonObject.getString("id").split("#");
+            checkParentActive(active[0]);
+            if(active.length>1){
+                for(int i=1;i<active.length;i++){
+                    checkSubActive(id[i],active[i]);
+                }
+            }
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void checkSubActive(String id, String active) {
+        if(active.equalsIgnoreCase("0")){
+            //inactive
+            //get id
+        }
+    }
+
+    private void checkParentActive(String s) {
+        if(s.equalsIgnoreCase("0")){
+            AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
+
+            builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+            builder.setMessage("Service is currently not available. Try after some time OR contact info@neuugen.com")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    })
+                    .setIcon(R.mipmap.ic_launcher_round);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
         }
     }
 
