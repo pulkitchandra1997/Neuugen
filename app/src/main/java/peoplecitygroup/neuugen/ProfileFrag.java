@@ -99,6 +99,7 @@ public class ProfileFrag extends Fragment implements View.OnClickListener {
         customersupport.setOnClickListener(this);
         help.setOnClickListener(this);
         termsofuse.setOnClickListener(this);
+        manageads.setOnClickListener(this);
         aboutus.setOnClickListener(this);
     }
 
