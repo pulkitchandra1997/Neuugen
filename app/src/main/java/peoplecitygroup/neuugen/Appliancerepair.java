@@ -1,6 +1,7 @@
 package peoplecitygroup.neuugen;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.cardview.widget.CardView;
 
@@ -16,6 +17,8 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
 
     AppCompatTextView repairicon,installicon,servicegrntyicon,sparepartsicon,custprotecticon;
     CardView repairingservice,installationservice;
+    AppCompatImageView arimg1,arimg2,arimg3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,9 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
         servicegrntyicon=findViewById(R.id.servicegrntyicon);
         repairingservice=findViewById(R.id.repairingservice);
         installationservice=findViewById(R.id.installationservice);
+        arimg1=findViewById(R.id.arimg1);
+        arimg2=findViewById(R.id.arimg2);
+        arimg3=findViewById(R.id.arimg3);
 
     }
     public void listenerLink()

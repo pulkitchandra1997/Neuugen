@@ -1,6 +1,7 @@
 package peoplecitygroup.neuugen;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,8 @@ import com.google.android.material.button.MaterialButton;
 public class LearningActivity extends AppCompatActivity implements View.OnClickListener {
 
     MaterialButton actingbtn,dancingbtn,makeupbtn;
+
+    AppCompatImageView lcimg1,lcimg2,lcimg3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,9 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
         actingbtn=findViewById(R.id.actingbtn);
         dancingbtn=findViewById(R.id.dancingbtn);
         makeupbtn=findViewById(R.id.makeupbtn);
+        lcimg1=findViewById(R.id.lcimg1);
+        lcimg2=findViewById(R.id.lcimg2);
+        lcimg3=findViewById(R.id.lcimg3);
     }
 
     private void listenerLink() {

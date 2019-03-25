@@ -32,35 +32,83 @@
                     android:textColor="@color/colorAccent"
                     />
             </LinearLayout>
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:id="@+id/homecarousel"
+                android:layout_below="@+id/homeheadlayout">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="start">
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="400dp"
+                        android:layout_height="200dp"
+                        android:layout_margin="10dp"
+                        android:id="@+id/lcimg1"
+                        android:theme="@style/Base.Widget.AppCompat.ImageButton"
+                        android:src="@drawable/imgplaceholder"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="400dp"
+                        android:layout_margin="10dp"
+                        android:layout_height="200dp"
+                        android:id="@+id/lcimg2"
+                        android:theme="@style/Base.Widget.AppCompat.ImageButton"
+                        android:src="@drawable/imgplaceholder"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="400dp"
+                        android:layout_height="200dp"
+                        android:layout_margin="10dp"
+                        android:id="@+id/lcimg3"
+                        android:theme="@style/Base.Widget.AppCompat.ImageButton"
+                        android:src="@drawable/imgplaceholder"
+                        />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="400dp"
+                        android:layout_height="200dp"
+                        android:layout_margin="10dp"
+                        android:theme="@style/Base.Widget.AppCompat.ImageButton"
+                        android:src="@drawable/imgplaceholder"
+                        />
+                </LinearLayout>
+            </HorizontalScrollView>
 
             <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp"
-        android:layout_marginTop="10dp"
-        android:id="@+id/womensalonlayout">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:id="@+id/womensalonlayout">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Choose a Course"
-            android:gravity="start"
-            android:textColor="@color/PrimaryText"
-            android:textSize="25dp"
-            android:layout_marginLeft="10dp"
-            android:fontFamily="@font/quicksandbold"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Choose a Course"
+                android:gravity="start"
+                android:textColor="@color/PrimaryText"
+                android:textSize="25dp"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/quicksandbold"
             />
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp"
-            android:backgroundTint="#fff"
-            app:cardUseCompatPadding="true"
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp"
+                android:backgroundTint="#fff"
+                app:cardUseCompatPadding="true"
             >
             <LinearLayout
                 android:layout_width="match_parent"

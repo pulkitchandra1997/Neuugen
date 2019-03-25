@@ -2,6 +2,7 @@ package peoplecitygroup.neuugen;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.appcompat.widget.AppCompatTextView;
 
@@ -26,6 +27,7 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
     AppCompatTextView cleanicon,trainericon,timericon;
     LinearLayout eventlayout;
 
+    AppCompatImageView esimg1,esimg2,esimg3;
     String servicetypetext;
 
     @Override
@@ -60,6 +62,9 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
         anchors=findViewById(R.id.anchors);
         eventproceedbtn=findViewById(R.id.eventproceedbtn);
         photoproceedbtn=findViewById(R.id.photoproceedbtn);
+        esimg1=findViewById(R.id.esimg1);
+        esimg2=findViewById(R.id.esimg2);
+        esimg3=findViewById(R.id.esimg3);
 
     }
 

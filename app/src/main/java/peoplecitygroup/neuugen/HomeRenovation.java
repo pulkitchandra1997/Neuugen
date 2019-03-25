@@ -1,6 +1,7 @@
 package peoplecitygroup.neuugen;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.cardview.widget.CardView;
 
@@ -16,6 +17,7 @@ public class HomeRenovation extends AppCompatActivity implements View.OnClickLis
 
     AppCompatTextView electricianicon,plumbingicon,carpentryicon,servicegrntyiconHR,sparepartsiconHR,custprotecticonHR;
     CardView electricianservice,plumbingservice,carpentryservice;
+    AppCompatImageView hrimg1,hrimg2,hrimg3;
 
 
     @Override
@@ -45,7 +47,9 @@ public class HomeRenovation extends AppCompatActivity implements View.OnClickLis
         plumbingservice=findViewById(R.id.plumbingservice);
         electricianservice=findViewById(R.id.electricianservice);
         carpentryservice=findViewById(R.id.carpentryservice);
-
+        hrimg1=findViewById(R.id.hrimg1);
+        hrimg2=findViewById(R.id.hrimg2);
+        hrimg3=findViewById(R.id.hrimg3);
 
     }
     public void listenerLink()

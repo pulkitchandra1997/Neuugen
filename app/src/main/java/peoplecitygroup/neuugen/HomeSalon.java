@@ -2,6 +2,7 @@ package peoplecitygroup.neuugen;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.cardview.widget.CardView;
 
@@ -25,7 +26,7 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
 
     AppCompatTextView trainericon,timericon,cleanicon,mensalonicon,womensalonicon;
     CardView mensalonservice,womensalonservice;
-
+    AppCompatImageView hsimg1,hsimg2,hsimg3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,6 +138,9 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
         womensalonicon=findViewById(R.id.womensalonicon);
         mensalonservice=findViewById(R.id.mensalonservice);
         womensalonservice=findViewById(R.id.womensalonservice);
+        hsimg1=findViewById(R.id.hsimg1);
+        hsimg2=findViewById(R.id.hsimg2);
+        hsimg3=findViewById(R.id.hsimg3);
 
     }
 

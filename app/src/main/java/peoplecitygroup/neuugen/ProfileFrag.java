@@ -210,6 +210,26 @@ public class ProfileFrag extends Fragment implements View.OnClickListener {
                 startActivity(intent);
             }
         }
+        if (v.getId()==R.id.help)
+        {
+            Intent intent = new Intent(getActivity(), HelpSupportActivity.class);
+            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                ActivityOptions options = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.fade_in, R.anim.fade_out);
+                startActivity(intent, options.toBundle());
+            } else {
+                startActivity(intent);
+            }
+        }
+        if (v.getId()==R.id.manageads)
+        {
+            Intent intent = new Intent(getActivity(), ManageYourAds.class);
+            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                ActivityOptions options = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.fade_in, R.anim.fade_out);
+                startActivity(intent, options.toBundle());
+            } else {
+                startActivity(intent);
+            }
+        }
     }
 
     @Override

@@ -19,6 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
@@ -30,6 +31,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     androidx.appcompat.widget.AppCompatTextView locationicon;
 
     LinearLayout location;
+    AppCompatImageView homeimg1,homeimg2,homeimg3;
 
     /*FloatingActionButton postformfab;*/
 
@@ -66,6 +68,9 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         appliancerepair=v.findViewById(R.id.appliancerepair);
         learning=v.findViewById(R.id.learning);
         salon=v.findViewById(R.id.salon);
+        homeimg1=v.findViewById(R.id.homeimg1);
+        homeimg2=v.findViewById(R.id.homeimg2);
+        homeimg3=v.findViewById(R.id.homeimg3);
     }
 
     public void listenerLink()
