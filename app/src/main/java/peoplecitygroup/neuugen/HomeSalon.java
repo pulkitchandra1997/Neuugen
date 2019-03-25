@@ -7,6 +7,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.cardview.widget.CardView;
 
 import android.app.ActivityOptions;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -27,6 +28,7 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
     AppCompatTextView trainericon,timericon,cleanicon,mensalonicon,womensalonicon;
     CardView mensalonservice,womensalonservice;
     AppCompatImageView hsimg1,hsimg2,hsimg3;
+    ProgressDialog loading = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,15 +43,21 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
         trainericon.setTypeface(font);
         mensalonicon.setTypeface(font);
         womensalonicon.setTypeface(font);
+
+        loading = new ProgressDialog(HomeSalon.this,R.style.AppCompatAlertDialogStyle);
+        loading.setCancelable(false);
+        loading.setMessage("Loading");
+        loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         checkActive();
     }
 
     private void checkActive() {
-
+        loading.show();
         ServiceCheck serviceCheck=new ServiceCheck();
         serviceCheck.check(UrlNeuugen.salonServiceId, this, new VolleyCallback() {
             @Override
             public void onSuccess(String result) {
+                loading.dismiss();
                 serviceDecode(result);
             }
 
