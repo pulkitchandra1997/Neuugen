@@ -72,13 +72,6 @@
                         android:theme="@style/Base.Widget.AppCompat.ImageButton"
                         android:src="@drawable/imgplaceholder"
                         />
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="400dp"
-                        android:layout_height="200dp"
-                        android:layout_margin="10dp"
-                        android:theme="@style/Base.Widget.AppCompat.ImageButton"
-                        android:src="@drawable/imgplaceholder"
-                        />
                 </LinearLayout>
             </HorizontalScrollView>
 
