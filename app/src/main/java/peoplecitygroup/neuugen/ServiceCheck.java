@@ -48,13 +48,13 @@ public class ServiceCheck {
                             haveConnectedMobile = true;
                 }
                 if (!haveConnectedWifi && !haveConnectedMobile) {
-                    AlertDialog alertDialog = new AlertDialog.Builder(context.getApplicationContext()).create();
+                    AlertDialog alertDialog = new AlertDialog.Builder(context).create();
                     alertDialog.setMessage("No Internet Connection");
                     alertDialog.setIcon(R.mipmap.ic_launcher_round);
                     alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                     alertDialog.show();
                 } else {
-                    AlertDialog alertDialog = new AlertDialog.Builder(context.getApplicationContext()).create();
+                    AlertDialog alertDialog = new AlertDialog.Builder(context).create();
                     alertDialog.setMessage("Connection Error!");
                     alertDialog.setIcon(R.mipmap.ic_launcher_round);
                     alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
@@ -82,7 +82,7 @@ public class ServiceCheck {
 
             @Override
             public void retry(VolleyError error) throws VolleyError {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context.getApplicationContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
                 builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                 builder.setMessage("Connection")
