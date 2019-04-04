@@ -51,6 +51,7 @@ public class UrlNeuugen {
     public static final String anchorshostid="31";
     public static final String singersid="32";
     public static final String bandsmusiciansid="33";
+    public static final String propertiesserviceid="34";
 
 
 
