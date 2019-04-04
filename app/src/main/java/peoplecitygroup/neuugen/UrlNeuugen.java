@@ -36,8 +36,8 @@ public class UrlNeuugen {
     public static final String carpentryId="16";
     public static final String learningServiceId="17";
     public static final String actingClassId="18";
-    public static final String dancingClassId="19";
-    public static final String groomingClassId="20";
+    public static final String dancingClassId="20";
+    public static final String groomingClassId="19";
     public static final String eventsServiceId="21";
     public static final String photoVideoServiceId="22";
     public static final String eventArrangementId="23";
@@ -47,6 +47,10 @@ public class UrlNeuugen {
     public static final String normalWedShootId="27";
     public static final String standardWedShootId="28";
     public static final String premiumWedShootId="29";
+    public static final String danceperformid="30";
+    public static final String anchorshostid="31";
+    public static final String singersid="32";
+    public static final String bandsmusiciansid="33";
 
 
 
