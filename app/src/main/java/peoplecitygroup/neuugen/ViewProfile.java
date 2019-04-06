@@ -102,12 +102,12 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
         emailtext.setText(sp.getString("email","email"));
         phonetext.setText(sp.getString("mobileno","mobileno"));
         citytext.setText(sp.getString("city","city"));
-        if (sp.getString("address","address").equalsIgnoreCase("null"))
+        if (sp.getString("address","").equalsIgnoreCase("null"))
         {
             addresstext.setText("Address not yet filled");
         }else
         {
-            addresstext.setText(sp.getString("address",""));
+            addresstext.setText(sp.getString("address","Address not yet filled"));
         }
         if (sp.getString("state","state").equalsIgnoreCase("null"))
         {
@@ -123,7 +123,7 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
         }
         else
         {
-            gendertext.setText(sp.getString("gender", "gender not yet filled"));
+            gendertext.setText(sp.getString("gender", "Gender not yet filled"));
         }
         if (sp.getString("pincode","pincode").equalsIgnoreCase("null"))
         {
