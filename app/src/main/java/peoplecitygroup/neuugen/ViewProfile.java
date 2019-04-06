@@ -117,13 +117,17 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
         {
             statetext.setText(sp.getString("state", " "));
         }
-        if (sp.getString("gender","gender").equalsIgnoreCase("null"))
+        if (sp.getString("gender","gender").equalsIgnoreCase("1"))
         {
-            gendertext.setText("Gender not yet filled");
+            gendertext.setText("Male");
+        }
+        else if (sp.getString("gender","gender").equalsIgnoreCase("0"))
+        {
+            gendertext.setText("Female");
         }
         else
         {
-            gendertext.setText(sp.getString("gender", "Gender not yet filled"));
+            gendertext.setText("Gender not yet filled");
         }
         if (sp.getString("pincode","pincode").equalsIgnoreCase("null"))
         {
@@ -149,6 +153,7 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
         {
             emailverify.setText("Not Verified");
         }
+
         if (sp.getString("addressverified","addressverified").equalsIgnoreCase("1"))
         {
             addverify.setText("Verified");
