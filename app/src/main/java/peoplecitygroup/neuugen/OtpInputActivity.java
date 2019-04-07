@@ -158,6 +158,7 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onErrorResponse(VolleyError error)
             {
+                Log.i("ErrorOTP",error.toString());
                 boolean haveConnectedWifi = false;
                 boolean haveConnectedMobile = false;
                 ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

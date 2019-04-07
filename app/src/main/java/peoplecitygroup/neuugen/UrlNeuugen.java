@@ -13,9 +13,9 @@ public class UrlNeuugen {
     public static final String termsofuse="http://neuugen.com/termsofuse.html";
     public static final String helpSupportActivity="http://neuugen.com/termsofuse.html";
 
+
     public static final String csemail="";
     public static final String csphone="";
-
 
 
     public static final String salonServiceId="1";
