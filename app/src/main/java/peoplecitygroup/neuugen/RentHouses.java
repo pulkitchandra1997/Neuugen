@@ -609,7 +609,8 @@ int numofbed;
                 jsonObject.put("mobileno",sp.getString("mobileno",null));
                 jsonObject.put("houseno",housenorhtext);
                 jsonObject.put("area",arearhtext);
-                jsonObject.put("city",cityrhtext);
+                //jsonObject.put("city_id",cityrhtext);
+                jsonObject.put("city_id","11");
                 jsonObject.put("landmark",landmarkrhtext);
                 jsonObject.put("pincode",pincoderhtext);
                 jsonObject.put("propertytype",propertytyperhtext);
@@ -617,7 +618,7 @@ int numofbed;
                 jsonObject.put("bathrooms",numofbathrhtext);
                 jsonObject.put("furnishtype",rhfurnishtyypetext);
                 jsonObject.put("builtuparea",builtarearhtext);
-                jsonObject.put("monthlyrent",monthlyrentrhtext);
+                jsonObject.put("price",monthlyrentrhtext);
                 return true;
             } catch (Exception e) {
                 Log.i("errorrent",e.getMessage());
