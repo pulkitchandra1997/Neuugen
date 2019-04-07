@@ -67,10 +67,10 @@ public class Customercare extends AppCompatActivity implements View.OnClickListe
         if (v.getId()==R.id.callbtn)
         {
 
-                Intent i = new Intent(Intent.ACTION_CALL);
+                Intent i = new Intent(Intent.ACTION_DIAL);
                 Uri u = Uri.parse("tel:"+UrlNeuugen.csphone);
                 i.setData(u);
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                /*if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
                     //    ActivityCompat#requestPermissions
                     // here to request the missing permissions, and then overriding
@@ -79,16 +79,15 @@ public class Customercare extends AppCompatActivity implements View.OnClickListe
                     // to handle the case where the user grants the permission. See the documentation
                     // for ActivityCompat#requestPermissions for more details.
                     return;
-                }
+                }*/
                 startActivity(i);
 
         }
         if (v.getId()==R.id.mailbtn)
         {
             Intent intent = new Intent(Intent.ACTION_SEND);
-            intent.putExtra(Intent.EXTRA_EMAIL, UrlNeuugen.csemail);
-            intent.setData(Uri.parse(emailtext));
-            //intent.putExtra(Intent.Action_Send,useremail);
+            String[] recipients={UrlNeuugen.csemail};
+            intent.putExtra(Intent.EXTRA_EMAIL, recipients);
             intent.putExtra(Intent.EXTRA_SUBJECT,subtext);
         /*intent.putExtra(Intent.EXTRA_TEXT,"Body of the content here...");
         intent.putExtra(Intent.EXTRA_CC,"mailcc@gmail.com");*/

@@ -14,7 +14,7 @@ public class UrlNeuugen {
     public static final String helpSupportActivity="http://neuugen.com/termsofuse.html";
 
 
-    public static final String csemail="";
+    public static final String csemail="peoplecitygroup@gmail.com";
     public static final String csphone="";
 
 
