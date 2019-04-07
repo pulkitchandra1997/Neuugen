@@ -117,11 +117,11 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
         {
             statetext.setText(sp.getString("state", " "));
         }
-        if (sp.getString("gender","gender").equalsIgnoreCase("1"))
+        if (sp.getString("gender","gender").equalsIgnoreCase("M"))
         {
             gendertext.setText("Male");
         }
-        else if (sp.getString("gender","gender").equalsIgnoreCase("0"))
+        else if (sp.getString("gender","gender").equalsIgnoreCase("F"))
         {
             gendertext.setText("Female");
         }
