@@ -317,7 +317,7 @@ int numofbed;
             else
             {
                 if(Validation.isValidCity(cityrhtext)){
-                    if(pincoderhtext.charAt(0)!='0'&&pincoderhtext.length()<6)
+                    if(pincoderhtext.charAt(0)!='0'&&pincoderhtext.length()==6)
                         toServer();
                     else{
                         Snackbar.make(rhmainlayout, "Enter Valid Pincode", Snackbar.LENGTH_LONG)
