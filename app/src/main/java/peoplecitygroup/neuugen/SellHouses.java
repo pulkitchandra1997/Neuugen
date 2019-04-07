@@ -37,7 +37,7 @@ public class SellHouses extends AppCompatActivity implements View.OnClickListene
 
     AppCompatImageView imgsh1,imgsh2,imgsh3;
 
-    String areashtext,cityshtext,landmarkshtext,builtareashtext,costshtext,housenoshtext,pincodeshtext,propertytypeshtext,numofbedshtext,numofbathshtext,shfurnishtyypetext,constatustext,ageofpropertyshtext;
+    String propertytype,areashtext,cityshtext,landmarkshtext,builtareashtext,costshtext,housenoshtext,pincodeshtext,propertytypeshtext,numofbedshtext,numofbathshtext,shfurnishtyypetext,constatustext,ageofpropertyshtext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +107,7 @@ public class SellHouses extends AppCompatActivity implements View.OnClickListene
         }
         if (v.getId()==R.id.submitshform)
         {
+
             areashtext=areash.getText().toString().trim();
             housenoshtext=housenosh.getText().toString().trim();
             cityshtext=citysh.getText().toString().trim();
@@ -119,26 +120,38 @@ public class SellHouses extends AppCompatActivity implements View.OnClickListene
             ageofpropertyshtext=ageofpropertysh.getText().toString().trim();
             pincodeshtext=pincodesh.getText().toString().trim();
 
+            if (propertytypeshtext.equalsIgnoreCase("Apartment"))
+            {
+                propertytype="0";
+            }else
+            if (propertytypeshtext.equalsIgnoreCase("Independent House"))
+            {
+                propertytype="1";
+            }else
+            if (propertytypeshtext.equalsIgnoreCase("Villa"))
+            {
+                propertytype="2";
+            }
 
             if (furnishtypesh.getCheckedChipId()==R.id.shfullyfurnish)
             {
-                shfurnishtyypetext="Fully furnished";
+                shfurnishtyypetext="0";
             }else
             if (furnishtypesh.getCheckedChipId()==R.id.shsemifurnish)
             {
-                shfurnishtyypetext="Semi furnished";
+                shfurnishtyypetext="1";
             }else
             if (furnishtypesh.getCheckedChipId()==R.id.shunfurnish)
             {
-                shfurnishtyypetext="Unfurnished";
+                shfurnishtyypetext="2";
             }
             if (constatus.getCheckedChipId()==R.id.readytomove)
             {
-                constatustext="Ready to move";
+                constatustext="0";
             }else
             if (constatus.getCheckedChipId()==R.id.undercon)
             {
-                constatustext="Under Construction";
+                constatustext="1";
             }
 
             if (TextUtils.isEmpty(pincodeshtext) ||TextUtils.isEmpty(areashtext) || TextUtils.isEmpty(housenoshtext)||TextUtils.isEmpty(cityshtext)||TextUtils.isEmpty(builtareashtext)||TextUtils.isEmpty(costshtext)||propertytypeshtext.equalsIgnoreCase("Select Property Type")||numofbathsh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||numofbedsh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||TextUtils.isEmpty(ageofpropertyshtext)||!(furnishtypesh.getCheckedChipId()==R.id.shfullyfurnish)&&!(furnishtypesh.getCheckedChipId()==R.id.shsemifurnish)&&!(furnishtypesh.getCheckedChipId()==R.id.shunfurnish)||!(constatus.getCheckedChipId()==R.id.undercon)&&!(constatus.getCheckedChipId()==R.id.readytomove))

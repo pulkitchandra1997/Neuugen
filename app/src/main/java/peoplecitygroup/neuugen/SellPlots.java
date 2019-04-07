@@ -35,7 +35,7 @@ public class SellPlots extends AppCompatActivity implements View.OnClickListener
 
     AppCompatImageView imgsp1,imgsp2;
 
-    String areasptext,citysptext,landmarksptext,plotareatext,plotpricetext,plotnotext,lengthofplottext,widthofplottext,widthofroadtext,propertytypesptext,posesnstatustext,pincodesptext;
+    String propertytype,areasptext,citysptext,landmarksptext,plotareatext,plotpricetext,plotnotext,lengthofplottext,widthofplottext,widthofroadtext,propertytypesptext,posesnstatustext,pincodesptext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,13 +110,15 @@ public class SellPlots extends AppCompatActivity implements View.OnClickListener
             widthofplottext=widthofplot.getText().toString().trim();
             widthofroadtext=widthofroad.getText().toString().trim();
             pincodesptext=pincodesp.getText().toString().trim();
+
+            propertytype="6";
             if (posesnstatus.getCheckedChipId()==R.id.immediate)
             {
-                posesnstatustext="Immediate";
+                posesnstatustext="0";
             }else
             if (posesnstatus.getCheckedChipId()==R.id.infuture)
             {
-                posesnstatustext="In Future";
+                posesnstatustext="1";
             }
 
             if (TextUtils.isEmpty(pincodesptext) ||TextUtils.isEmpty(areasptext) || TextUtils.isEmpty(plotnotext)||TextUtils.isEmpty(citysptext)||TextUtils.isEmpty(plotareatext)||TextUtils.isEmpty(plotpricetext)||propertytypesptext.equalsIgnoreCase("Select Property Type")||!(posesnstatus.getCheckedChipId()==R.id.undercon)&&!(posesnstatus.getCheckedChipId()==R.id.readytomove))

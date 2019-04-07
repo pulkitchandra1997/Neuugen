@@ -37,7 +37,7 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
 
     AppCompatImageView imgro1,imgro2,imgro3;
 
-    String arearotext,cityrotext,landmarkrotext,pincoderotext,builtarearotext,monthlyrentrotext,shopnorotext,propertytyperotext,constatusrotext;
+    String propertytype,arearotext,cityrotext,landmarkrotext,pincoderotext,builtarearotext,monthlyrentrotext,shopnorotext,propertytyperotext,constatusrotext;
 
 
     @Override
@@ -112,13 +112,21 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
 
             if (constatusro.getCheckedChipId()==R.id.readytomove)
             {
-                constatusrotext="Ready to move";
+                constatusrotext="0";
             }else
             if (constatusro.getCheckedChipId()==R.id.undercon)
             {
-                constatusrotext="Under Construction";
+                constatusrotext="1";
             }
 
+            if (propertytyperotext.equalsIgnoreCase("Office Area"))
+            {
+                propertytype="4";
+            }else
+            if (propertytyperotext.equalsIgnoreCase("Shop Area"))
+            {
+                propertytype="5";
+            }
             if (TextUtils.isEmpty(pincoderotext) ||TextUtils.isEmpty(arearotext) || TextUtils.isEmpty(shopnorotext)||TextUtils.isEmpty(cityrotext)||TextUtils.isEmpty(builtarearotext)||TextUtils.isEmpty(monthlyrentrotext)||propertytyperotext.equalsIgnoreCase("Select Property Type")||!(constatusro.getCheckedChipId()==R.id.undercon)&&!(constatusro.getCheckedChipId()==R.id.readytomove))
             {
                 if (TextUtils.isEmpty(shopnorotext) )

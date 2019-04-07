@@ -85,7 +85,7 @@ public class RentHouses extends AppCompatActivity implements View.OnClickListene
     AppCompatImageView imgrh1,imgrh2,imgrh3;
     int imageflag=0;
     Bitmap img1,img2,img3;
-    String arearhtext,cityrhtext,landmarkrhtext,builtarearhtext,pincoderhtext,monthlyrentrhtext,housenorhtext,propertytyperhtext,numofbedrhtext,numofbathrhtext,rhfurnishtyypetext;
+    String propertytype,arearhtext,cityrhtext,landmarkrhtext,builtarearhtext,pincoderhtext,monthlyrentrhtext,housenorhtext,propertytyperhtext,numofbedrhtext,numofbathrhtext,rhfurnishtyypetext;
     ProgressDialog loading = null;
 JSONObject jsonObject= new JSONObject();
 String uniqueid=null;
@@ -204,6 +204,7 @@ int numofbed;
         }
         if (v.getId()==R.id.submitrhform)
         {
+
             arearhtext=arearh.getText().toString().trim();
             housenorhtext=housenorh.getText().toString().trim();
             cityrhtext=cityrh.getText().toString().trim();
@@ -214,17 +215,34 @@ int numofbed;
             numofbedrhtext=String.valueOf(numofbedrh.getSelectedItemPosition());
             numofbathrhtext=String.valueOf(numofbathrh.getSelectedItemPosition());
             pincoderhtext=pincoderh.getText().toString().trim();
+
+            if (propertytyperhtext.equalsIgnoreCase("Apartment"))
+            {
+                propertytype="0";
+            }else
+            if (propertytyperhtext.equalsIgnoreCase("Independent House"))
+            {
+                propertytype="1";
+            }else
+            if (propertytyperhtext.equalsIgnoreCase("Villa"))
+            {
+                propertytype="2";
+            }else
+            if (propertytyperhtext.equalsIgnoreCase("Hostel"))
+            {
+                propertytype="3";
+            }
             if (rhfurnishtype.getCheckedChipId()==R.id.rhfullyfurnish)
             {
-                rhfurnishtyypetext="Fully furnished";
+                rhfurnishtyypetext="0";
             }else
             if (rhfurnishtype.getCheckedChipId()==R.id.rhsemifurnish)
             {
-                rhfurnishtyypetext="Semi furnished";
+                rhfurnishtyypetext="1";
             }else
             if (rhfurnishtype.getCheckedChipId()==R.id.rhunfurnish)
             {
-                rhfurnishtyypetext="Unfurnished";
+                rhfurnishtyypetext="2";
             }
 
             if (TextUtils.isEmpty(pincoderhtext) ||TextUtils.isEmpty(arearhtext) || TextUtils.isEmpty(housenorhtext)||TextUtils.isEmpty(cityrhtext)||TextUtils.isEmpty(builtarearhtext)||TextUtils.isEmpty(monthlyrentrhtext)||propertytyperhtext.equalsIgnoreCase("Select Property Type")||numofbathrh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||numofbedrh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||!(rhfurnishtype.getCheckedChipId()==R.id.rhfullyfurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhsemifurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhunfurnish)||(img1==null)&&(img2==null)&&(img3==null))
