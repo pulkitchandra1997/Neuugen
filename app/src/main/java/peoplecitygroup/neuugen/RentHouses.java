@@ -633,7 +633,7 @@ int numofbed;
                 jsonObject.put("city",cityrhtext);
                 jsonObject.put("landmark",landmarkrhtext);
                 jsonObject.put("pincode",pincoderhtext);
-                jsonObject.put("propertytype",propertytyperhtext);
+                jsonObject.put("propertytype",propertytype);
                 jsonObject.put("bedrooms",numofbedrhtext);
                 jsonObject.put("bathrooms",numofbathrhtext);
                 jsonObject.put("furnishtype",rhfurnishtyypetext);
