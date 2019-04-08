@@ -64,6 +64,7 @@ import java.util.TimerTask;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import static android.content.DialogInterface.BUTTON_POSITIVE;
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
 public class RentHouses extends AppCompatActivity implements View.OnClickListener {
@@ -317,7 +318,7 @@ int numofbed;
             else
             {
                 if(Validation.isValidCity(cityrhtext)){
-                    if(pincoderhtext.charAt(0)!='0'&&pincoderhtext.length()<6)
+                    if(pincoderhtext.charAt(0)!='0'&&pincoderhtext.length()==6)
                         toServer();
                     else{
                         Snackbar.make(rhmainlayout, "Enter Valid Pincode", Snackbar.LENGTH_LONG)
@@ -346,13 +347,15 @@ int numofbed;
                     if (response.toLowerCase().contains("error")) {
                         loading.dismiss();
 
-                        new AlertDialog.Builder(getApplication())
-                                .setMessage("Error in server. Try Again")
-                                .setPositiveButton("OK", null)
-                                .setIcon(R.mipmap.ic_launcher_round)
-                                .setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"))
-                                .create()
-                                .show();
+                        AlertDialog alertDialog = new AlertDialog.Builder(RentHouses.this).create();
+                        alertDialog.setMessage("Error in Server. Try Again");
+                        alertDialog.setButton(BUTTON_POSITIVE,"Ok", (DialogInterface.OnClickListener) null);
+                        alertDialog.setIcon(R.mipmap.ic_launcher_round);
+                        alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                        alertDialog.show();
+                        Button positiveButton = alertDialog.getButton(BUTTON_POSITIVE);
+                        positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+                        
                     } else {
                         if(response.toLowerCase().contains("success")){
                             uniqueid=response.substring(7);
@@ -413,7 +416,7 @@ int numofbed;
                 }
                 @Override
                 public void retry(VolleyError error) throws VolleyError {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RentHouses.this);
                     builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                     builder.setMessage("Connection")
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -425,14 +428,14 @@ int numofbed;
                             .setIcon(R.mipmap.ic_launcher_round);
                     AlertDialog dialog = builder.create();
                     dialog.show();
-                    Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                    Button positiveButton = dialog.getButton(BUTTON_POSITIVE);
                     positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
                 }
             });
             MySingleton.getInstance(RentHouses.this).addToRequestQueue(stringRequest);
         }
         else{
-            AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
+            AlertDialog.Builder builder = new AlertDialog.Builder(RentHouses.this);
 
             builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
             builder.setMessage("Error in connection.")
@@ -440,7 +443,7 @@ int numofbed;
                     .setIcon(R.mipmap.ic_launcher_round);
             AlertDialog dialog = builder.create();
             dialog.show();
-            Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            Button positiveButton = dialog.getButton(BUTTON_POSITIVE);
             positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
         }
     }
@@ -535,14 +538,14 @@ int numofbed;
             public void onResponse(String response) {
                 if (response.toLowerCase().contains("error")) {
                     loading.dismiss();
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RentHouses.this);
                     builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                     builder.setMessage("Error in server. Try Again")
                             .setPositiveButton("OK",null)
                             .setIcon(R.mipmap.ic_launcher_round);
                     AlertDialog dialog = builder.create();
                     dialog.show();
-                    Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                    Button positiveButton = dialog.getButton(BUTTON_POSITIVE);
                     positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
                 } else {
                     if(response.toLowerCase().contains("success")){
@@ -600,7 +603,7 @@ int numofbed;
             }
             @Override
             public void retry(VolleyError error) throws VolleyError {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
+                AlertDialog.Builder builder = new AlertDialog.Builder(RentHouses.this);
                 builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                 builder.setMessage("Connection")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -612,7 +615,7 @@ int numofbed;
                         .setIcon(R.mipmap.ic_launcher_round);
                 AlertDialog dialog = builder.create();
                 dialog.show();
-                Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                Button positiveButton = dialog.getButton(BUTTON_POSITIVE);
                 positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
             }
         });
