@@ -348,7 +348,7 @@ int numofbed;
                         loading.dismiss();
 
                         AlertDialog alertDialog = new AlertDialog.Builder(RentHouses.this).create();
-                        alertDialog.setMessage("Error in Server. Try Again");
+                        alertDialog.setMessage(response);
                         alertDialog.setButton(BUTTON_POSITIVE,"Ok", (DialogInterface.OnClickListener) null);
                         alertDialog.setIcon(R.mipmap.ic_launcher_round);
                         alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
