@@ -358,7 +358,7 @@ int numofbed;
                         
                     } else {
                         if(response.toLowerCase().contains("success")){
-                            uniqueid=response.substring(7);
+                            uniqueid=response.substring(8);
                             loading.dismiss();
                             picuploadfuntion(1);
 
