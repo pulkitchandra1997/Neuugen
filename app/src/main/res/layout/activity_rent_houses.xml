@@ -176,6 +176,7 @@
             android:fontFamily="@font/quicksandregular"
             android:textCursorDrawable="@color/colorPrimaryDark"
             android:textSize="18sp"
+            android:imeOptions="actionDone"
             android:padding="10dp"
             android:id="@+id/pincoderh"
             />
@@ -329,6 +330,7 @@
                         android:inputType="numberDecimal"
                         android:maxLines="1"
                         android:padding="10dp"
+                        android:imeOptions="actionDone"
                         android:singleLine="true"
                         android:textCursorDrawable="@color/colorPrimaryDark"
                         android:textSize="18sp" />
@@ -361,6 +363,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/quicksandregular"
                         android:hint="Rent"
+                        android:imeOptions="actionDone"
                         android:inputType="number"
                         android:maxLines="1"
                         android:padding="10dp"

@@ -175,6 +175,7 @@
                         android:textCursorDrawable="@color/colorPrimaryDark"
                         android:textSize="18sp"
                         android:padding="10dp"
+                        android:imeOptions="actionDone"
                         android:id="@+id/pincodero"
                         />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -280,6 +281,7 @@
                         android:fontFamily="@font/quicksandregular"
                         android:singleLine="true"
                         android:maxLines="1"
+                        android:imeOptions="actionDone"
                         android:textCursorDrawable="@color/colorPrimaryDark"
                         android:textSize="18sp"
                         android:padding="10dp"
@@ -314,6 +316,7 @@
                         android:inputType="number"
                         android:fontFamily="@font/quicksandregular"
                         android:singleLine="true"
+                        android:imeOptions="actionDone"
                         android:maxLines="1"
                         android:textCursorDrawable="@color/colorPrimaryDark"
                         android:textSize="18sp"

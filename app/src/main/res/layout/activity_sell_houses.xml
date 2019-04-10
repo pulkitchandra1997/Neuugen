@@ -176,6 +176,7 @@
                         android:textCursorDrawable="@color/colorPrimaryDark"
                         android:textSize="18sp"
                         android:padding="10dp"
+                        android:imeOptions="actionDone"
                         android:id="@+id/pincodesh"
                         />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -391,6 +392,7 @@
                         android:textCursorDrawable="@color/colorPrimaryDark"
                         android:textSize="18sp"
                         android:padding="10dp"
+                        android:imeOptions="actionDone"
                         android:id="@+id/builtareash"
                         />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -423,6 +425,7 @@
                         android:fontFamily="@font/quicksandregular"
                         android:singleLine="true"
                         android:maxLines="1"
+                        android:imeOptions="actionDone"
                         android:textCursorDrawable="@color/colorPrimaryDark"
                         android:textSize="18sp"
                         android:padding="10dp"
@@ -455,6 +458,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Cost (in Rs.)"
                         android:inputType="number"
+                        android:imeOptions="actionDone"
                         android:fontFamily="@font/quicksandregular"
                         android:singleLine="true"
                         android:maxLines="1"
