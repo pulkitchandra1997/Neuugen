@@ -246,7 +246,7 @@ int numofbed;
                 rhfurnishtyypetext="2";
             }
 
-            if (TextUtils.isEmpty(pincoderhtext) ||TextUtils.isEmpty(arearhtext) || TextUtils.isEmpty(housenorhtext)||TextUtils.isEmpty(cityrhtext)||TextUtils.isEmpty(builtarearhtext)||TextUtils.isEmpty(monthlyrentrhtext)||propertytyperhtext.equalsIgnoreCase("Select Property Type")||numofbathrh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||numofbedrh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||!(rhfurnishtype.getCheckedChipId()==R.id.rhfullyfurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhsemifurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhunfurnish)||(img1==null)&&(img2==null)&&(img3==null))
+            if (TextUtils.isEmpty(pincoderhtext) ||TextUtils.isEmpty(arearhtext) || TextUtils.isEmpty(housenorhtext)||TextUtils.isEmpty(cityrhtext)||TextUtils.isEmpty(builtarearhtext)||TextUtils.isEmpty(monthlyrentrhtext)||propertytyperhtext.equalsIgnoreCase("Select Property Type")||numofbathrh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||numofbedrh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||!(rhfurnishtype.getCheckedChipId()==R.id.rhfullyfurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhsemifurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhunfurnish)||(img1==null)||(img2==null)||(img3==null))
             {
                 if (TextUtils.isEmpty(housenorhtext) )
                 {
@@ -306,7 +306,7 @@ int numofbed;
                             .show();
                     rhfurnishtype.requestFocus();
                 }
-                if ((img1==null)&&(img2==null)&&(img3==null))
+                if ((img1==null)||(img2==null)||(img3==null))
                 {
                     AlertDialog alertDialog = new AlertDialog.Builder(this).create();
                     alertDialog.setMessage(Html.fromHtml("<b>Select all images</b>"));
