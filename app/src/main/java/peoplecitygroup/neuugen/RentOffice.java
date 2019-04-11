@@ -170,21 +170,21 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
     }
     @Override
     public void onClick(View v) {
-        if (v.getId()==R.id.addimgrh1){
+        if (v.getId()==R.id.addimgro1){
             imageflag=1;
             Intent intent = new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_PICK);
             startActivityForResult(Intent.createChooser(intent, "Select Image From Gallery"), 1);
         }
-        if (v.getId()==R.id.addimgrh2){
+        if (v.getId()==R.id.addimgro2){
             imageflag=2;
             Intent intent = new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_PICK);
             startActivityForResult(Intent.createChooser(intent, "Select Image From Gallery"), 1);
         }
-        if (v.getId()==R.id.addimgrh3){
+        if (v.getId()==R.id.addimgro3){
             imageflag=3;
             Intent intent = new Intent();
             intent.setType("image/*");
@@ -223,7 +223,7 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
             {
                 propertytype="5";
             }
-            if (TextUtils.isEmpty(pincoderotext) ||TextUtils.isEmpty(arearotext) || TextUtils.isEmpty(shopnorotext)||TextUtils.isEmpty(cityrotext)||TextUtils.isEmpty(builtarearotext)||TextUtils.isEmpty(monthlyrentrotext)||propertytyperotext.equalsIgnoreCase("Select Property Type")||!(constatusro.getCheckedChipId()==R.id.undercon)&&!(constatusro.getCheckedChipId()==R.id.readytomove)||(img1==null)||(img2==null)||(img3==null))
+            if (TextUtils.isEmpty(pincoderotext) ||TextUtils.isEmpty(arearotext) || TextUtils.isEmpty(shopnorotext)||TextUtils.isEmpty(cityrotext)||TextUtils.isEmpty(builtarearotext)||TextUtils.isEmpty(monthlyrentrotext)||propertytyperotext.equalsIgnoreCase("Select Property Type")||!(constatusro.getCheckedChipId()==R.id.underconro)&&!(constatusro.getCheckedChipId()==R.id.readytomovero)||(img1==null)||(img2==null)||(img3==null))
             {
                 if (TextUtils.isEmpty(shopnorotext) )
                 {
@@ -265,7 +265,7 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
                     propertytypero.requestFocus();
                 }else
 
-                if (!(constatusro.getCheckedChipId()==R.id.undercon)&&!(constatusro.getCheckedChipId()==R.id.readytomove)) {
+                if (!(constatusro.getCheckedChipId()==R.id.underconro)&&!(constatusro.getCheckedChipId()==R.id.readytomovero)) {
                     Snackbar.make(romainlayout, "Select Construction Status", Snackbar.LENGTH_LONG)
                             .show();
 
