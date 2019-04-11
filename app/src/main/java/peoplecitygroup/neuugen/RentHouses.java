@@ -489,7 +489,7 @@ int numofbed;
         if (sp != null) {
             final String email=sp.getString("email",null);
             final String name=sp.getString("name",null).toUpperCase();
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.fill_RentHouses, new Response.Listener<String>() {
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.sendSuccessMails, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     if (response.toLowerCase().contains("error")) {
@@ -533,7 +533,6 @@ int numofbed;
             }) {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
-
                     Map<String, String> params = new HashMap<>();
                     params.put("email",email );
                     params.put("subject", "NG: Your AD has been posted.");
