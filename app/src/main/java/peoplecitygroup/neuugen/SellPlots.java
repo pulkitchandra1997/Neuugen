@@ -121,7 +121,7 @@ public class SellPlots extends AppCompatActivity implements View.OnClickListener
                 posesnstatustext="1";
             }
 
-            if (TextUtils.isEmpty(pincodesptext) ||TextUtils.isEmpty(areasptext) || TextUtils.isEmpty(plotnotext)||TextUtils.isEmpty(citysptext)||TextUtils.isEmpty(plotareatext)||TextUtils.isEmpty(plotpricetext)||propertytypesptext.equalsIgnoreCase("Select Property Type")||!(posesnstatus.getCheckedChipId()==R.id.undercon)&&!(posesnstatus.getCheckedChipId()==R.id.readytomove))
+            if (TextUtils.isEmpty(pincodesptext) ||TextUtils.isEmpty(areasptext) || TextUtils.isEmpty(plotnotext)||TextUtils.isEmpty(citysptext)||TextUtils.isEmpty(plotareatext)||TextUtils.isEmpty(plotpricetext)||propertytypesptext.equalsIgnoreCase("Select Property Type")||!(posesnstatus.getCheckedChipId()==R.id.immediate)&&!(posesnstatus.getCheckedChipId()==R.id.infuture))
             {
                 if (TextUtils.isEmpty(plotnotext) )
                 {
@@ -162,7 +162,7 @@ public class SellPlots extends AppCompatActivity implements View.OnClickListener
                     propertytypesp.requestFocus();
                 }else
 
-                if (!(posesnstatus.getCheckedChipId()==R.id.undercon)&&!(posesnstatus.getCheckedChipId()==R.id.readytomove)) {
+                if (!(posesnstatus.getCheckedChipId()==R.id.immediate)&&!(posesnstatus.getCheckedChipId()==R.id.infuture)) {
                     Snackbar.make(spmainlayout, "Select Possession Status", Snackbar.LENGTH_LONG)
                             .show();
 
