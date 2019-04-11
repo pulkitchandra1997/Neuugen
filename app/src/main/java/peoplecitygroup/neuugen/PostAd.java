@@ -65,7 +65,9 @@ public class PostAd extends AppCompatActivity implements View.OnClickListener {
         {
             if (rentoffice.isChecked())
             {
-                Intent intent = new Intent(PostAd.this, RentOffice.class);
+                Intent intent = new Intent(PostAd.this, PropertiesCityCheck.class);
+                intent.putExtra("adtype","Rent Office");
+                intent.putExtra("propertiesid",UrlNeuugen.propertiesserviceid);
                 if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
                     ActivityOptions options = ActivityOptions.makeCustomAnimation(PostAd.this, R.anim.fade_in, R.anim.fade_out);
                     startActivity(intent, options.toBundle());
@@ -77,7 +79,9 @@ public class PostAd extends AppCompatActivity implements View.OnClickListener {
             else
             if (renthouses.isChecked())
             {
-                Intent intent = new Intent(PostAd.this, RentHouses.class);
+                Intent intent = new Intent(PostAd.this, PropertiesCityCheck.class);
+                intent.putExtra("adtype","Rent Houses");
+                intent.putExtra("propertiesid",UrlNeuugen.propertiesserviceid);
                 if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
                     ActivityOptions options = ActivityOptions.makeCustomAnimation(PostAd.this, R.anim.fade_in, R.anim.fade_out);
                     startActivity(intent, options.toBundle());
@@ -87,7 +91,9 @@ public class PostAd extends AppCompatActivity implements View.OnClickListener {
             }else
             if (sellhouses.isChecked())
             {
-                Intent intent = new Intent(PostAd.this, SellHouses.class);
+                Intent intent = new Intent(PostAd.this, PropertiesCityCheck.class);
+                intent.putExtra("adtype","Sell Houses");
+                intent.putExtra("propertiesid",UrlNeuugen.propertiesserviceid);
                 if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
                     ActivityOptions options = ActivityOptions.makeCustomAnimation(PostAd.this, R.anim.fade_in, R.anim.fade_out);
                     startActivity(intent, options.toBundle());
@@ -97,7 +103,9 @@ public class PostAd extends AppCompatActivity implements View.OnClickListener {
             }else
             if (sellplots.isChecked())
             {
-                Intent intent = new Intent(PostAd.this, SellPlots.class);
+                Intent intent = new Intent(PostAd.this, PropertiesCityCheck.class);
+                intent.putExtra("adtype","Sell Plots");
+                intent.putExtra("propertiesid",UrlNeuugen.propertiesserviceid);
                 if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
                     ActivityOptions options = ActivityOptions.makeCustomAnimation(PostAd.this, R.anim.fade_in, R.anim.fade_out);
                     startActivity(intent, options.toBundle());
