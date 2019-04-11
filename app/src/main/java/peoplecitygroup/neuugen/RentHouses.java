@@ -90,7 +90,6 @@ public class RentHouses extends AppCompatActivity implements View.OnClickListene
     ProgressDialog loading = null;
 JSONObject jsonObject= new JSONObject();
 String uniqueid=null;
-int numofbed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
