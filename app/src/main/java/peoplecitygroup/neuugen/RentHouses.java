@@ -313,6 +313,7 @@ int numofbed;
                     alertDialog.setIcon(R.mipmap.ic_launcher_round);
                     alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>NeuuGen</font>"));
                     alertDialog.show();
+
                 }
             }
             else
