@@ -358,7 +358,7 @@ int numofbed;
                         
                     } else {
                         if(response.toLowerCase().contains("success")){
-                            uniqueid=response.substring(8);
+                            uniqueid=response.substring(7);
                             loading.dismiss();
                             picuploadfuntion(1);
 
@@ -461,7 +461,7 @@ int numofbed;
     }
 
     private void success() {
-
+        sendMail();
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setMessage(Html.fromHtml("<b>Your ad has been posted. Our customer executive will contact you soon to verify your property.</b>"));
         alertDialog.setIcon(R.mipmap.ic_launcher_round);
@@ -482,6 +482,97 @@ int numofbed;
             }
         },4000);
  }
+
+    private void sendMail() {
+        SharedPreferences sp;
+        sp = getSharedPreferences("NeuuGen_data", MODE_PRIVATE);
+        if (sp != null) {
+            final String email=sp.getString("email",null);
+            final String name=sp.getString("name",null).toUpperCase();
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.fill_RentHouses, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    if (response.toLowerCase().contains("error")) {
+                        Log.i("mailerror", response);
+                    } else {
+                        if (response.toLowerCase().contains("success")) {
+                            Log.i("mailerror", "onResponse: " + response);
+                        }
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    loading.dismiss();
+                    boolean haveConnectedWifi = false;
+                    boolean haveConnectedMobile = false;
+                    ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                    NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+                    for (NetworkInfo ni : netInfo) {
+                        if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+                            if (ni.isConnected())
+                                haveConnectedWifi = true;
+                        if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+                            if (ni.isConnected())
+                                haveConnectedMobile = true;
+                    }
+                    if (!haveConnectedWifi && !haveConnectedMobile) {
+                        AlertDialog alertDialog = new AlertDialog.Builder(RentHouses.this).create();
+                        alertDialog.setMessage("No Internet Connection");
+                        alertDialog.setIcon(R.mipmap.ic_launcher_round);
+                        alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                        alertDialog.show();
+                    } else {
+                        AlertDialog alertDialog = new AlertDialog.Builder(RentHouses.this).create();
+                        alertDialog.setMessage("Connection Error!");
+                        alertDialog.setIcon(R.mipmap.ic_launcher_round);
+                        alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                        alertDialog.show();
+                    }
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+
+                    Map<String, String> params = new HashMap<>();
+                    params.put("email",email );
+                    params.put("subject", "NG: Your AD has been posted.");
+                    params.put("body","Dear "+name+",<br><p>Thanks for choosing NEUUGEN. Your AD has been posted.</p><br>Our Customer Executive/Agent will reach out to you for verification of the posted ad. The Service Requested will be provided soon.");
+                    return params;
+                }
+            };
+            stringRequest.setRetryPolicy(new RetryPolicy() {
+                @Override
+                public int getCurrentTimeout() {
+                    return 50000;
+                }
+
+                @Override
+                public int getCurrentRetryCount() {
+                    return 50000;
+                }
+
+                @Override
+                public void retry(VolleyError error) throws VolleyError {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RentHouses.this);
+                    builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                    builder.setMessage("Connection")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                }
+                            })
+                            .setIcon(R.mipmap.ic_launcher_round);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    Button positiveButton = dialog.getButton(BUTTON_POSITIVE);
+                    positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+                }
+            });
+            MySingleton.getInstance(RentHouses.this).addToRequestQueue(stringRequest);
+        }
+    }
 
     private void uploadPic(Bitmap img,final String message,final int flag ) {
         if (img != null) {
