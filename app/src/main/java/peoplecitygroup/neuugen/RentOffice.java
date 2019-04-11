@@ -170,21 +170,21 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
     }
     @Override
     public void onClick(View v) {
-        if (v.getId()==R.id.addimgrh1){
+        if (v.getId()==R.id.addimgro1){
             imageflag=1;
             Intent intent = new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_PICK);
             startActivityForResult(Intent.createChooser(intent, "Select Image From Gallery"), 1);
         }
-        if (v.getId()==R.id.addimgrh2){
+        if (v.getId()==R.id.addimgro2){
             imageflag=2;
             Intent intent = new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_PICK);
             startActivityForResult(Intent.createChooser(intent, "Select Image From Gallery"), 1);
         }
-        if (v.getId()==R.id.addimgrh3){
+        if (v.getId()==R.id.addimgro3){
             imageflag=3;
             Intent intent = new Intent();
             intent.setType("image/*");
