@@ -400,7 +400,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Age of Property"
+                    android:text="Age of Property(in years)"
                     android:textSize="25dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/quicksandbold"
