@@ -164,6 +164,20 @@ public class PropertiesCityCheck extends AppCompatActivity implements View.OnCli
             @Override
             public void onResponse(String response) {
                 if (response.toLowerCase().contains("error")) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(PropertiesCityCheck.this);
+                    builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                    builder.setMessage("Connection Error!")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                }
+                            })
+                            .setIcon(R.mipmap.ic_launcher_round);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    Button positiveButton = dialog.getButton(BUTTON_POSITIVE);
+                    positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
 
                 } else {
                     if (response.toLowerCase().equalsIgnoreCase("serviceactive"))
@@ -171,12 +185,54 @@ public class PropertiesCityCheck extends AppCompatActivity implements View.OnCli
                     else
                         if(response.toLowerCase().equalsIgnoreCase("servicenotactive")){
                             //ALERT DIALOG SERVICE NOT ACTIVE AND SEND BACK
+                            AlertDialog.Builder builder = new AlertDialog.Builder(PropertiesCityCheck.this);
+                            builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                            builder.setMessage("Sorry , currently this service is not active in this city.")
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            finish();
+                                        }
+                                    })
+                                    .setIcon(R.mipmap.ic_launcher_round);
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
+                            Button positiveButton = dialog.getButton(BUTTON_POSITIVE);
+                            positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
                         }
                         if(response.toLowerCase().equalsIgnoreCase("servicenotactive:city")){
                             //ALERT DIALOG WITH MSG: COMING SOON TO YOUR CITY
+                            AlertDialog.Builder builder = new AlertDialog.Builder(PropertiesCityCheck.this);
+                            builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                            builder.setMessage("We do not provide service in this city. We'll soon reach your city.")
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            finish();
+                                        }
+                                    })
+                                    .setIcon(R.mipmap.ic_launcher_round);
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
+                            Button positiveButton = dialog.getButton(BUTTON_POSITIVE);
+                            positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
                         }
                         if(response.toLowerCase().equalsIgnoreCase("citynotpresent")){
                             //ALERT DIALOG MSG: entered city is not present in database
+                            AlertDialog.Builder builder = new AlertDialog.Builder(PropertiesCityCheck.this);
+                            builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                            builder.setMessage("Enter valid City")
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            finish();
+                                        }
+                                    })
+                                    .setIcon(R.mipmap.ic_launcher_round);
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
+                            Button positiveButton = dialog.getButton(BUTTON_POSITIVE);
+                            positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
                         }
                         //MORE CODE for more than one city
                 }

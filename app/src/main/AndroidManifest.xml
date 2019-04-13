@@ -24,7 +24,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PropertiesCityCheck"></activity>
+        <activity android:name=".PropertiesCityCheck"
+            android:windowSoftInputMode="stateHidden"></activity>
         <activity android:name=".ManageYourAds" />
         <activity android:name=".HelpSupportActivity" />
         <activity
