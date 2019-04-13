@@ -22,7 +22,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -42,7 +44,7 @@ import java.util.Properties;
 import static android.content.DialogInterface.BUTTON_POSITIVE;
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
-public class PropertiesCityCheck extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class PropertiesCityCheck extends AppCompatActivity implements View.OnClickListener {
 
     Intent intent;
     String adtypetext=null,citytext,propertiesID;
@@ -50,9 +52,6 @@ public class PropertiesCityCheck extends AppCompatActivity implements View.OnCli
     MaterialButton next;
     ProgressDialog loading = null;
     ArrayList<String>allcities=null;
-    ArrayList<String>suggestedCities=new ArrayList<>();
-    ArrayAdapter<String>cityArrayAdapter;
-    ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,11 +73,7 @@ public class PropertiesCityCheck extends AppCompatActivity implements View.OnCli
         allcities=new ArrayList<String>();
         String[] ar=LinkCities.cities.split(",");
         for(String c:ar)
-            allcities.add(c);
-        cityArrayAdapter=new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,suggestedCities);
-        listView.setAdapter(cityArrayAdapter);
-        listView.bringToFront();
-
+            allcities.add(c.toLowerCase());
         citycheck.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -86,11 +81,7 @@ public class PropertiesCityCheck extends AppCompatActivity implements View.OnCli
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                next.setEnabled(false);
-                if(citycheck.getText().toString().trim().length()!=0)
-                    checkCity(citycheck.getText().toString().trim());
-                else
-                    showAllCities();
+
             }
 
             @Override
@@ -100,25 +91,11 @@ public class PropertiesCityCheck extends AppCompatActivity implements View.OnCli
         });
     }
 
-    private void showAllCities() {
-        for(String c:allcities)
-            suggestedCities.add(c);
-        cityArrayAdapter.clear();
-        cityArrayAdapter.addAll(suggestedCities);
-        listView.setAdapter(cityArrayAdapter);
-    }
 
-    private void checkCity(String citypre) {
-        suggestedCities.clear();
-        for(String c:allcities)
-            if(c.toLowerCase().startsWith(citypre.toLowerCase()))
-                suggestedCities.add(c);
-            if(suggestedCities.isEmpty())
-                suggestedCities.add("No city Found");
-            cityArrayAdapter.clear();
-            cityArrayAdapter.addAll(suggestedCities);
-            listView.setAdapter(cityArrayAdapter);
-    }
+
+
+
+
 
     public void hideSoftKeyboard() {
         if (getCurrentFocus() != null) {
@@ -129,14 +106,11 @@ public class PropertiesCityCheck extends AppCompatActivity implements View.OnCli
 
     private void idLink() {
         citycheck=findViewById(R.id.citycheck);
-        listView=findViewById(R.id.suggestedcity);
         next=findViewById(R.id.next);
     }
 
     private void listenerLink() {
         next.setOnClickListener(this);
-        listView.setOnItemClickListener(this);
-        next.setEnabled(false);
     }
 
 
@@ -149,10 +123,14 @@ public class PropertiesCityCheck extends AppCompatActivity implements View.OnCli
             {
                   citycheck.setError("Enter City");
                   citycheck.requestFocus();
-            }
+        }
             else{
-                if(allcities.contains(citytext)){
+                if(allcities.contains(citytext.toLowerCase())){
                     checkActive();
+                }
+                else{
+                    citycheck.setError("No such city found");
+                    citycheck.requestFocus();
                 }
             }
         }
@@ -271,7 +249,7 @@ public class PropertiesCityCheck extends AppCompatActivity implements View.OnCli
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("city",citytext);
+                params.put("city",citytext.toUpperCase());
                 params.put("serviceid", propertiesID);
                 return params;
             }
@@ -328,17 +306,4 @@ public class PropertiesCityCheck extends AppCompatActivity implements View.OnCli
 
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String c=suggestedCities.get(position);
-        if(c.equalsIgnoreCase("no city found")){
-            next.setEnabled(false);
-        }
-        else{
-            if(allcities.contains(citycheck.getText().toString().trim())){
-                next.setEnabled(true);
-                citycheck.setText(c);
-            }
-        }
-    }
 }
