@@ -67,7 +67,7 @@ public class PropertiesCityCheck extends AppCompatActivity implements View.OnCli
 
         loading = new ProgressDialog(PropertiesCityCheck.this,R.style.AppCompatAlertDialogStyle);
         loading.setCancelable(false);
-        loading.setMessage("Loading");
+        loading.setMessage("Please Wait!");
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
         allcities=new ArrayList<String>();
@@ -138,9 +138,11 @@ public class PropertiesCityCheck extends AppCompatActivity implements View.OnCli
     }
 
     private void checkActive() {
+        loading.show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.checkCityService, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                loading.dismiss();
                 if (response.toLowerCase().contains("error")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(PropertiesCityCheck.this);
                     builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
@@ -218,6 +220,7 @@ public class PropertiesCityCheck extends AppCompatActivity implements View.OnCli
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                loading.dismiss();
                 loading.dismiss();
                 boolean haveConnectedWifi = false;
                 boolean haveConnectedMobile = false;
