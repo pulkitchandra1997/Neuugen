@@ -73,7 +73,7 @@ public class PropertiesCityCheck extends AppCompatActivity implements View.OnCli
         allcities=new ArrayList<String>();
         String[] ar=LinkCities.cities.split(",");
         for(String c:ar)
-            allcities.add(c.toLowerCase());
+            allcities.add(c.toLowerCase().trim());
         citycheck.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -123,9 +123,9 @@ public class PropertiesCityCheck extends AppCompatActivity implements View.OnCli
             {
                   citycheck.setError("Enter City");
                   citycheck.requestFocus();
-        }
+            }
             else{
-                if(allcities.contains(citytext.toLowerCase())){
+                if(allcities.contains(citytext.toLowerCase().trim())){
                     checkActive();
                 }
                 else{
