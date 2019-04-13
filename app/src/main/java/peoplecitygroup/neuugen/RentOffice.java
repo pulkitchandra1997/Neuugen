@@ -88,7 +88,7 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
     int imageflag=0;
     Bitmap img1,img2,img3;
     boolean chk = true;
-
+    Intent intent=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +103,10 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         Typeface font = Typeface.createFromAsset(getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
         backtopost2.setTypeface(font);
+
+        intent=getIntent();
+        cityrotext=intent.getStringExtra("city");
+
     }
 
     public void hideSoftKeyboard() {

@@ -51,9 +51,16 @@
                     android:maxLines="1"
                     android:textSize="20sp"
                     android:padding="12dp"
+                    android:autofillHints=""
                     android:fontFamily="@font/quicksandregular"
                     android:id="@+id/citycheck"
                     />
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/suggestedcity"
+                    android:drawSelectorOnTop="true">
+                </ListView>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
