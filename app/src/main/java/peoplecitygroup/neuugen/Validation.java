@@ -35,7 +35,7 @@ public class Validation {
     public static boolean isValidCity(String citytext) {
         String Cities[]=LinkCities.cities.split(",");
         for (String name:Cities)
-            if(citytext.equalsIgnoreCase(name))
+            if(citytext.equalsIgnoreCase(name.trim()))
                 return true;
          return false;
     }
