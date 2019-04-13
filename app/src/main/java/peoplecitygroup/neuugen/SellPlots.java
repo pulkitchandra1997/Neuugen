@@ -90,7 +90,7 @@ public class SellPlots extends AppCompatActivity implements View.OnClickListener
     ProgressDialog loading = null;
     JSONObject jsonObject= new JSONObject();
     String uniqueid=null;
-
+Intent intent=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,6 +107,11 @@ public class SellPlots extends AppCompatActivity implements View.OnClickListener
         
         Typeface font = Typeface.createFromAsset(getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
         backtopost4.setTypeface(font);
+
+        intent=getIntent();
+        citysptext=intent.getStringExtra("city").toUpperCase();
+        citysp.setText(citysptext.toUpperCase());
+        citysp.setEnabled(false);
     }
 
     public void hideSoftKeyboard() {

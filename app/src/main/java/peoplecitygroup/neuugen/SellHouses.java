@@ -92,7 +92,7 @@ public class SellHouses extends AppCompatActivity implements View.OnClickListene
     ProgressDialog loading = null;
     JSONObject jsonObject= new JSONObject();
     String uniqueid=null;
-
+Intent intent=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,6 +108,12 @@ public class SellHouses extends AppCompatActivity implements View.OnClickListene
 
         Typeface font = Typeface.createFromAsset(getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
         backtopost3.setTypeface(font);
+
+
+        intent=getIntent();
+        cityshtext=intent.getStringExtra("city").toUpperCase();
+        citysh.setText(cityshtext.toUpperCase());
+        citysh.setEnabled(false);
     }
     public void hideSoftKeyboard() {
         if (getCurrentFocus() != null) {

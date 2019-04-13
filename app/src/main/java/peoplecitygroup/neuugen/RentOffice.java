@@ -105,8 +105,9 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
         backtopost2.setTypeface(font);
 
         intent=getIntent();
-        cityrotext=intent.getStringExtra("city");
-
+        cityrotext=intent.getStringExtra("city").toUpperCase();
+        cityro.setText(cityrotext.toUpperCase());
+        cityro.setEnabled(false);
     }
 
     public void hideSoftKeyboard() {

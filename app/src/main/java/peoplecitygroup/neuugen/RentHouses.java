@@ -90,7 +90,7 @@ public class RentHouses extends AppCompatActivity implements View.OnClickListene
     ProgressDialog loading = null;
 JSONObject jsonObject= new JSONObject();
 String uniqueid=null;
-
+Intent intent=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,6 +105,11 @@ String uniqueid=null;
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         Typeface font = Typeface.createFromAsset(getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
         backtopost.setTypeface(font);
+
+        intent=getIntent();
+        cityrhtext=intent.getStringExtra("city").toUpperCase();
+        cityrh.setText(cityrhtext.toUpperCase());
+        cityrh.setEnabled(false);
     }
 
     public void hideSoftKeyboard() {
