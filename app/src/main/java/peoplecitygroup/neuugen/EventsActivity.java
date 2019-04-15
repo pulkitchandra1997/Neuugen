@@ -24,7 +24,7 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
     MaterialButton photoproceedbtn,eventproceedbtn;
     RadioGroup shootoptions,eventarrangements;
     AppCompatRadioButton prewedshoot,wedshoot,eventshoot,dancers,singers,anchors,bands;
-    AppCompatTextView cleanicon,trainericon,timericon;
+    AppCompatTextView cleanicon,trainericon,timericon,eventmsg,photomsg;
     LinearLayout eventlayout;
 
     AppCompatImageView esimg1,esimg2,esimg3;
@@ -65,6 +65,9 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
         esimg1=findViewById(R.id.esimg1);
         esimg2=findViewById(R.id.esimg2);
         esimg3=findViewById(R.id.esimg3);
+        eventmsg=findViewById(R.id.eventmsg);
+        photomsg=findViewById(R.id.photomsg);
+
 
     }
 

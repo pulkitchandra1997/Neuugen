@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LearningActivity"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     >
     <ScrollView
@@ -130,10 +131,7 @@
                     android:textSize="15dp"
                     android:fontFamily="@font/quicksand"
                     />
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+
 
                     <com.google.android.material.button.MaterialButton
                         android:layout_width="match_parent"
@@ -147,7 +145,20 @@
                         android:backgroundTint="@color/DividerColor"
                         android:fontFamily="@font/quicksandbold"
                         />
-                </RelativeLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_marginTop="10dp"
+                    android:lineSpacingExtra="5dp"
+                    android:gravity="start"
+                    android:id="@+id/actingmsg"
+                    android:visibility="gone"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/quicksand"
+                    />
+
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -189,10 +200,6 @@
                     android:textSize="15dp"
                     android:fontFamily="@font/quicksand"
                     />
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
                     <com.google.android.material.button.MaterialButton
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -205,8 +212,19 @@
                         android:backgroundTint="@color/DividerColor"
                         android:fontFamily="@font/quicksandbold"
                         />
-                </RelativeLayout>
-
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_marginTop="10dp"
+                    android:lineSpacingExtra="5dp"
+                    android:gravity="start"
+                    android:id="@+id/makeupmsg"
+                    android:visibility="gone"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/quicksand"
+                    />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -247,10 +265,7 @@
                     android:textSize="15dp"
                     android:fontFamily="@font/quicksand"
                     />
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+
                     <com.google.android.material.button.MaterialButton
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -263,7 +278,19 @@
                         android:backgroundTint="@color/DividerColor"
                         android:fontFamily="@font/quicksandbold"
                         />
-                </RelativeLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_marginTop="10dp"
+                    android:lineSpacingExtra="5dp"
+                    android:gravity="start"
+                    android:id="@+id/dancingmsg"
+                    android:visibility="gone"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/quicksand"
+                    />
 
 
             </LinearLayout>

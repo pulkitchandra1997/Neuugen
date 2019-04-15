@@ -175,7 +175,19 @@
                                 android:backgroundTint="@color/DividerColor"
                                 android:fontFamily="@font/quicksandbold"
                                 />
-
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:layout_marginTop="10dp"
+                                android:lineSpacingExtra="5dp"
+                                android:gravity="start"
+                                android:id="@+id/photomsg"
+                                android:visibility="gone"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="15dp"
+                                android:fontFamily="@font/quicksand"
+                                />
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -263,7 +275,19 @@
                                 android:backgroundTint="@color/DividerColor"
                                 android:fontFamily="@font/quicksandbold"
                                 />
-
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:layout_marginTop="10dp"
+                                android:lineSpacingExtra="5dp"
+                                android:gravity="start"
+                                android:id="@+id/eventmsg"
+                                android:visibility="gone"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="15dp"
+                                android:fontFamily="@font/quicksand"
+                                />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 

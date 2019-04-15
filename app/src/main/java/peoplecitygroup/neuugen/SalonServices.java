@@ -15,7 +15,7 @@ import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
 public class SalonServices extends AppCompatActivity implements View.OnClickListener {
 
-    AppCompatTextView salonservicehead;
+    AppCompatTextView salonservicehead,menhaircutprice,menhaircutmsg,menbeardprice,menbeardmsg,menpartymsg,menpartyprice,womenhaircutprice,womenhaircutmsg,womenpartymsg,womenpartyprice,womenwedprice,womenwedmsg;
 
     MaterialButton menhaircutbtn,menbeardbtn,menpartybtn,womenhaircutbtn,womenpartymakeupbtn,womenweddingmakeupbtn;
 
@@ -58,10 +58,21 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
         menhaircutbtn=findViewById(R.id.menhaircutbtn);
         menbeardbtn=findViewById(R.id.menbeardbtn);
         menpartybtn=findViewById(R.id.menpartybtn);
-
         womenhaircutbtn=findViewById(R.id.womenhaircutbtn);
         womenpartymakeupbtn=findViewById(R.id.womenpartymakeupbtn);
         womenweddingmakeupbtn=findViewById(R.id.womenweddingmakeupbtn);
+        menhaircutprice=findViewById(R.id.menhaircutprice);
+        womenhaircutprice=findViewById(R.id.womenhaircutprice);
+        menbeardprice=findViewById(R.id.menbeardprice);
+        womenpartyprice=findViewById(R.id.womenpartymakeupprice);
+        menhaircutmsg=findViewById(R.id.menhaircutmsg);
+        menbeardmsg=findViewById(R.id.menbeardmsg);
+        menpartymsg=findViewById(R.id.menpartymsg);
+        womenwedmsg=findViewById(R.id.womenweddingmsg);
+        womenwedprice=findViewById(R.id.womenweddingmakeupprice);
+        womenpartymsg=findViewById(R.id.womenpartymsg);
+        womenhaircutmsg=findViewById(R.id.womenhaircutmsg);
+        menpartyprice=findViewById(R.id.menpartyprice);
     }
 
     public void listenerLink()

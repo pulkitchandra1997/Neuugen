@@ -25,7 +25,7 @@ import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
 public class HomeSalon extends AppCompatActivity implements View.OnClickListener {
 
-    AppCompatTextView trainericon,timericon,cleanicon,mensalonicon,womensalonicon;
+    AppCompatTextView trainericon,timericon,cleanicon,mensalonicon,womensalonicon,mensalonmsg,womensalonmsg;
     CardView mensalonservice,womensalonservice;
     AppCompatImageView hsimg1,hsimg2,hsimg3;
     ProgressDialog loading = null;
@@ -149,6 +149,8 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
         hsimg1=findViewById(R.id.hsimg1);
         hsimg2=findViewById(R.id.hsimg2);
         hsimg3=findViewById(R.id.hsimg3);
+        mensalonmsg=findViewById(R.id.mensalonmsg);
+        womensalonmsg=findViewById(R.id.womensalonmsg);
 
     }
 

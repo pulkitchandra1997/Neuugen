@@ -14,8 +14,9 @@ import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
 public class WeddingPackages extends AppCompatActivity implements View.OnClickListener {
 
-    AppCompatTextView trainericon,timericon,cleanicon,normalpkgicon,standardpkgicon,premiumpkgicon;
+    AppCompatTextView trainericon,timericon,cleanicon,normalpkgicon,standardpkgicon,premiumpkgicon,normalprice,standardprice,premiumprice;
     CardView normalpkg,standardpkg,premiumpkg;
+    String normalpricetext,standardpricetext,premiumpricetext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,9 @@ public class WeddingPackages extends AppCompatActivity implements View.OnClickLi
         normalpkgicon=findViewById(R.id.normalpkgicon);
         premiumpkgicon=findViewById(R.id.premiumpkgicon);
         standardpkgicon=findViewById(R.id.standardpkgicon);
+        normalprice=findViewById(R.id.normalprice);
+        standardprice=findViewById(R.id.standardprice);
+        premiumprice=findViewById(R.id.premiumprice);
     }
 
 
@@ -60,7 +64,7 @@ public class WeddingPackages extends AppCompatActivity implements View.OnClickLi
         if (v.getId()==R.id.normalpkg){
             Intent intent = new Intent(WeddingPackages.this, WeddingShootForm.class);
             intent.putExtra("weddingpackage","Normal Package");
-            intent.putExtra("weddingpackageprice","Rs. 20-30k");
+            intent.putExtra("weddingpackageprice",normalpricetext);
             if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
                 ActivityOptions options = ActivityOptions.makeCustomAnimation(WeddingPackages.this, R.anim.fade_in, R.anim.fade_out);
                 startActivity(intent, options.toBundle());
@@ -71,7 +75,7 @@ public class WeddingPackages extends AppCompatActivity implements View.OnClickLi
         if (v.getId()==R.id.standardpkg){
             Intent intent = new Intent(WeddingPackages.this, WeddingShootForm.class);
             intent.putExtra("weddingpackage","Standard Package");
-            intent.putExtra("weddingpackageprice","Rs. 65-100k");
+            intent.putExtra("weddingpackageprice",standardpricetext);
             if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
                 ActivityOptions options = ActivityOptions.makeCustomAnimation(WeddingPackages.this, R.anim.fade_in, R.anim.fade_out);
                 startActivity(intent, options.toBundle());
@@ -82,7 +86,7 @@ public class WeddingPackages extends AppCompatActivity implements View.OnClickLi
         if (v.getId()==R.id.premiumpkg){
             Intent intent = new Intent(WeddingPackages.this, WeddingShootForm.class);
             intent.putExtra("weddingpackage","Premium Package");
-            intent.putExtra("weddingpackageprice","Rs. 115-150k");
+            intent.putExtra("weddingpackageprice",premiumpricetext);
             if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
                 ActivityOptions options = ActivityOptions.makeCustomAnimation(WeddingPackages.this, R.anim.fade_in, R.anim.fade_out);
                 startActivity(intent, options.toBundle());

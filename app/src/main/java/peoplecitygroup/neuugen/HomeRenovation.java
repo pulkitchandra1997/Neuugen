@@ -15,7 +15,7 @@ import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
 public class HomeRenovation extends AppCompatActivity implements View.OnClickListener {
 
-    AppCompatTextView electricianicon,plumbingicon,carpentryicon,servicegrntyiconHR,sparepartsiconHR,custprotecticonHR;
+    AppCompatTextView electricianimsg,carpentrymsg,plumbingmsg,electricianicon,plumbingicon,carpentryicon,servicegrntyiconHR,sparepartsiconHR,custprotecticonHR;
     CardView electricianservice,plumbingservice,carpentryservice;
     AppCompatImageView hrimg1,hrimg2,hrimg3;
 
@@ -50,6 +50,9 @@ public class HomeRenovation extends AppCompatActivity implements View.OnClickLis
         hrimg1=findViewById(R.id.hrimg1);
         hrimg2=findViewById(R.id.hrimg2);
         hrimg3=findViewById(R.id.hrimg3);
+        carpentrymsg=findViewById(R.id.carpentrymsg);
+        plumbingmsg=findViewById(R.id.plumbingmsg);
+        electricianimsg=findViewById(R.id.electricianmsg);
 
     }
     public void listenerLink()

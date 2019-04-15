@@ -150,6 +150,19 @@
                                 android:textSize="15dp"
                                 android:fontFamily="@font/quicksand"
                                 />
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:layout_marginTop="10dp"
+                                android:lineSpacingExtra="5dp"
+                                android:gravity="start"
+                                android:id="@+id/repairmsg"
+                                android:visibility="gone"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="15dp"
+                                android:fontFamily="@font/quicksand"
+                                />
 
 
                         </LinearLayout>
@@ -207,6 +220,19 @@
                                 android:fontFamily="@font/quicksand"
                                 />
 
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:layout_marginTop="10dp"
+                                android:lineSpacingExtra="5dp"
+                                android:gravity="start"
+                                android:id="@+id/installmsg"
+                                android:visibility="gone"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="15dp"
+                                android:fontFamily="@font/quicksand"
+                                />
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>

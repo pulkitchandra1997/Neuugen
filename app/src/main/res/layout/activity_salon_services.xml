@@ -103,6 +103,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Rs. 399"
+                                    android:id="@+id/menhaircutprice"
                                     android:gravity="start"
                                     android:textColor="@color/PrimaryText"
                                     android:textSize="20dp"
@@ -121,6 +122,19 @@
                                     android:fontFamily="@font/quicksandbold"
                                     />
                             </RelativeLayout>
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:layout_marginTop="10dp"
+                                android:lineSpacingExtra="5dp"
+                                android:gravity="start"
+                                android:id="@+id/menhaircutmsg"
+                                android:visibility="gone"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="15dp"
+                                android:fontFamily="@font/quicksand"
+                                />
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -169,6 +183,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Rs. 499"
+                                    android:id="@+id/menbeardprice"
                                     android:gravity="start"
                                     android:textColor="@color/PrimaryText"
                                     android:textSize="20dp"
@@ -187,6 +202,19 @@
                                     android:fontFamily="@font/quicksandbold"
                                     />
                             </RelativeLayout>
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:layout_marginTop="10dp"
+                                android:lineSpacingExtra="5dp"
+                                android:gravity="start"
+                                android:id="@+id/menbeardmsg"
+                                android:visibility="gone"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="15dp"
+                                android:fontFamily="@font/quicksand"
+                                />
 
 
                         </LinearLayout>
@@ -237,6 +265,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Rs. 1999"
                                     android:gravity="start"
+                                    android:id="@+id/menpartyprice"
                                     android:textColor="@color/PrimaryText"
                                     android:textSize="20dp"
                                     android:padding="10dp"
@@ -254,6 +283,19 @@
                                     android:fontFamily="@font/quicksandbold"
                                     />
                             </RelativeLayout>
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:layout_marginTop="10dp"
+                                android:lineSpacingExtra="5dp"
+                                android:gravity="start"
+                                android:id="@+id/menpartymsg"
+                                android:visibility="gone"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="15dp"
+                                android:fontFamily="@font/quicksand"
+                                />
 
 
                         </LinearLayout>
@@ -323,6 +365,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Rs. 599"
+                                    android:id="@+id/womenhaircutprice"
                                     android:gravity="start"
                                     android:textColor="@color/PrimaryText"
                                     android:textSize="20dp"
@@ -341,6 +384,19 @@
                                     android:fontFamily="@font/quicksandbold"
                                     />
                             </RelativeLayout>
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:layout_marginTop="10dp"
+                                android:lineSpacingExtra="5dp"
+                                android:gravity="start"
+                                android:id="@+id/womenhaircutmsg"
+                                android:visibility="gone"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="15dp"
+                                android:fontFamily="@font/quicksand"
+                                />
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -394,6 +450,7 @@
                                     android:textColor="@color/PrimaryText"
                                     android:textSize="20dp"
                                     android:padding="10dp"
+                                    android:id="@+id/womenpartymakeupprice"
                                     android:fontFamily="@font/quicksandbold"
                                     />
                                 <com.google.android.material.button.MaterialButton
@@ -409,6 +466,19 @@
                                     />
                             </RelativeLayout>
 
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:layout_marginTop="10dp"
+                                android:lineSpacingExtra="5dp"
+                                android:gravity="start"
+                                android:id="@+id/womenpartymsg"
+                                android:visibility="gone"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="15dp"
+                                android:fontFamily="@font/quicksand"
+                                />
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -457,6 +527,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Rs. 5499"
+                                    android:id="@+id/womenweddingmakeupprice"
                                     android:gravity="start"
                                     android:textColor="@color/PrimaryText"
                                     android:textSize="20dp"
@@ -475,6 +546,19 @@
                                     android:fontFamily="@font/quicksandbold"
                                     />
                             </RelativeLayout>
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:layout_marginTop="10dp"
+                                android:lineSpacingExtra="5dp"
+                                android:gravity="start"
+                                android:id="@+id/womenweddingmsg"
+                                android:visibility="gone"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="15dp"
+                                android:fontFamily="@font/quicksand"
+                                />
 
 
                         </LinearLayout>

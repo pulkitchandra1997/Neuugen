@@ -15,7 +15,7 @@ import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
 public class Appliancerepair extends AppCompatActivity implements View.OnClickListener {
 
-    AppCompatTextView repairicon,installicon,servicegrntyicon,sparepartsicon,custprotecticon;
+    AppCompatTextView repairicon,installicon,servicegrntyicon,sparepartsicon,custprotecticon,repairmsg,installmsg;
     CardView repairingservice,installationservice;
     AppCompatImageView arimg1,arimg2,arimg3;
 
@@ -48,6 +48,8 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
         arimg1=findViewById(R.id.arimg1);
         arimg2=findViewById(R.id.arimg2);
         arimg3=findViewById(R.id.arimg3);
+        installmsg=findViewById(R.id.installmsg);
+        repairmsg=findViewById(R.id.repairmsg);
 
     }
     public void listenerLink()
