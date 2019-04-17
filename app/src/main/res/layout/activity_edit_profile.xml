@@ -7,14 +7,6 @@
     tools:context=".EditProfile"
     android:id="@+id/editlayout"
     android:orientation="vertical">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,6 +33,16 @@
             android:textColor="@color/colorAccent"
             />
     </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -8,6 +8,23 @@
     android:orientation="vertical"
     android:id="@+id/renovationlayout">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/renovationformhead"
+            android:padding="15dp"
+            android:textSize="20dp"
+            android:fontFamily="@font/quicksandbold"
+            android:textColor="@color/colorAccent"
+            />
+    </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -16,22 +33,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/renovationformhead"
-                    android:padding="15dp"
-                    android:textSize="20dp"
-                    android:fontFamily="@font/quicksandbold"
-                    android:textColor="@color/colorAccent"
-                    />
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
