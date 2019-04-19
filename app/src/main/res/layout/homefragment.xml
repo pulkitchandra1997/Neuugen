@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_centerHorizontal="true">
+    android:layout_centerHorizontal="true"
+    android:layout_marginBottom="60dp"
+    android:background="@color/bootstrap_brand_secondary_fill">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -119,7 +122,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/GreyColor"
+        android:background="@color/Greybg"
         android:layout_below="@+id/homecarousel"
         android:id="@+id/servicehead">
 
@@ -130,7 +133,7 @@
             android:padding="10dp"
             android:textSize="15dp"
             android:fontFamily="@font/quicksandbold"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/PrimaryText"
             />
     </LinearLayout>
     <TableLayout
@@ -294,24 +297,101 @@
             </LinearLayout>
         </TableRow>
     </TableLayout>
-<!--
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Greybg"
+            android:layout_below="@+id/serviceicons"
+            android:id="@+id/insurancehead"
+            android:layout_marginTop="10dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PROTECTION PROGRAM"
+                android:padding="10dp"
+                android:textSize="15dp"
+                android:fontFamily="@font/quicksandbold"
+                android:textColor="@color/PrimaryText"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/insurancehead"
+            android:layout_marginTop="10dp"
+            android:id="@+id/protectionprgrm"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                >
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="120dp"
+                    android:layout_height="160dp"
+                    android:src="@drawable/insurancelogo"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Neuugen Insurance Protection Program for Services"
+                    android:padding="10dp"
+                    android:textSize="25dp"
+                    android:fontFamily="@font/quicksandbold"
+                    android:textColor="@color/PrimaryText"
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="upto Rs. 5,000 insurance protection with every request"
+                    android:padding="10dp"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/quicksand"
+                    android:textColor="@color/PrimaryText"
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Learn more"
+                    android:padding="10dp"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/quicksandbold"
+                    android:textColor="@color/DividerColor"
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    </ScrollView>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/postformfab"
         style="@style/Widget.MaterialComponents.FloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="25dp"
         android:backgroundTint="@color/DividerColor"
         android:elevation="6dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="25dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:tooltipText="Post Your Advertisement"
         android:layout_above="@+id/navigation"
-        app:fabCustomSize="80dp"
+        app:fabCustomSize="70dp"
         app:maxImageSize="40dp"
         app:rippleColor="@color/colorPrimary"
-        app:srcCompat="@drawable/postform" />-->
-    </LinearLayout>
-    </ScrollView>
+        app:srcCompat="@drawable/postform" />
 
 </RelativeLayout>

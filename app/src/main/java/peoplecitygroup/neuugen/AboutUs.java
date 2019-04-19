@@ -19,7 +19,7 @@ public class AboutUs extends AppCompatActivity {
         WebSettings wb=webview.getSettings();
         webview.loadUrl(UrlNeuugen.aboutus);
         wb.setJavaScriptEnabled(true);
-        webview.setWebViewClient(new WebViewController());
+        webview.setWebViewClient(new AboutUs.WebViewController());
 
         wb.setLoadsImagesAutomatically(true);
         webview.getSettings().setLoadWithOverviewMode(true);

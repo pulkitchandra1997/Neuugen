@@ -3,15 +3,17 @@ package peoplecitygroup.neuugen;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
-import android.widget.SearchView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -33,11 +35,11 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     LinearLayout location;
     AppCompatImageView homeimg1,homeimg2,homeimg3;
 
-    /*FloatingActionButton postformfab;*/
+    FloatingActionButton postformfab;
 
     View v;
 
-    LinearLayout properties,salon,events,appliancerepair,homerenovation,learning;
+    LinearLayout properties,salon,events,appliancerepair,homerenovation,learning,protectionprgrm;
 
 
     @Nullable
@@ -55,13 +57,13 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         return v;
     }
 
+
+
     public void idLink()
     {
         locationicon=v.findViewById(R.id.locationicon);
         location=v.findViewById(R.id.location);
-/*
         postformfab=v.findViewById(R.id.postformfab);
-*/
         properties=v.findViewById(R.id.properties);
         events=v.findViewById(R.id.events);
         homerenovation=v.findViewById(R.id.homerenovation);
@@ -71,25 +73,29 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         homeimg1=v.findViewById(R.id.homeimg1);
         homeimg2=v.findViewById(R.id.homeimg2);
         homeimg3=v.findViewById(R.id.homeimg3);
+        protectionprgrm=v.findViewById(R.id.protectionprgrm);
     }
 
     public void listenerLink()
     {
-        /*postformfab.setOnClickListener(this);*/
+        postformfab.setOnClickListener(this);
         properties.setOnClickListener(this);
         events.setOnClickListener(this);
         homerenovation.setOnClickListener(this);
         learning.setOnClickListener(this);
         salon.setOnClickListener(this);
         appliancerepair.setOnClickListener(this);
-
-
+        protectionprgrm.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
+        if (v.getId()==R.id.protectionprgrm)
+        {
 
-      /*  if (v.getId()==R.id.postformfab)
+        }
+
+        if (v.getId()==R.id.postformfab)
         {
             Intent intent = new Intent(getActivity(), PostAd.class);
             if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
@@ -98,7 +104,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
             } else {
                 startActivity(intent);
             }
-        }*/
+        }
         if (v.getId()==R.id.appliancerepair)
         {
             Intent intent = new Intent(getActivity(), Appliancerepair.class);
