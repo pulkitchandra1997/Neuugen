@@ -21,7 +21,7 @@ import java.util.Map;
 import androidx.appcompat.app.AlertDialog;
 
 public class ServiceCheck {
-    public void check(final String serviceId, final Context context,final VolleyCallback volleyCallback) {
+    public void check(final String serviceId,final String city, final Context context,final VolleyCallback volleyCallback) {
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.chechActiveService, new Response.Listener<String>() {
             @Override
@@ -66,6 +66,7 @@ public class ServiceCheck {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("serviceid", serviceId);
+                params.put("city", city);
                 return params;
             }
         };
