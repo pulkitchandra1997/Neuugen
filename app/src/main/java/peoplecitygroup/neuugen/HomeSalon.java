@@ -122,9 +122,39 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
             }
             else {
                 //ALERT
+                AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
+
+                builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                builder.setMessage("Error in server. Try Again")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //finish
+                            }
+                        })
+                        .setIcon(R.mipmap.ic_launcher_round);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
             }
         } catch (JSONException e) {
             //ALERT DIALOG
+            AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
+
+            builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+            builder.setMessage("Error in server. Try Again")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //finish
+                        }
+                    })
+                    .setIcon(R.mipmap.ic_launcher_round);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
             e.printStackTrace();
             Log.d("receivedmsg",e.toString());
         }
@@ -151,6 +181,21 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
             }
         }catch(Exception e){
             //ALERT
+            AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
+
+            builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+            builder.setMessage("Error in server. Try Again")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //finish
+                        }
+                    })
+                    .setIcon(R.mipmap.ic_launcher_round);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
         }
     }
 
@@ -214,14 +259,59 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
                 }
                 else{
                     //ALERT
+                    AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
+
+                    builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                    builder.setMessage("Error in server. Try Again")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //finish
+                                }
+                            })
+                            .setIcon(R.mipmap.ic_launcher_round);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                    positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
                 }
             }
             else{
                 //ALERT
+                AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
+
+                builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                builder.setMessage("Error in server. Try Again")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //finish
+                            }
+                        })
+                        .setIcon(R.mipmap.ic_launcher_round);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
             }
         }
         else{
             //ALERT
+            AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
+
+            builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+            builder.setMessage("Error in server. Try Again")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //finish
+                        }
+                    })
+                    .setIcon(R.mipmap.ic_launcher_round);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
         }
         return false;
     }
