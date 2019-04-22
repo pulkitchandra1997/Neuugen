@@ -297,13 +297,13 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
                         .into(hsimg1);
             }
             if(pic2!=null&&pic2!=""){
-                Picasso.with(this).load(pic1).fit().centerCrop()
+                Picasso.with(this).load(pic2).fit().centerCrop()
                         .placeholder(R.drawable.imgplaceholder)
                         .error(R.drawable.imgplaceholder)
                         .into(hsimg2);
             }
             if(pic3!=null&&pic3!=""){
-                Picasso.with(this).load(pic1).fit().centerCrop()
+                Picasso.with(this).load(pic3).fit().centerCrop()
                         .placeholder(R.drawable.imgplaceholder)
                         .error(R.drawable.imgplaceholder)
                         .into(hsimg3);
