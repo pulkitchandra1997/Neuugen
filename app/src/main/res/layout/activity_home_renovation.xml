@@ -107,8 +107,7 @@
                         android:layout_gravity="center"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp"
-                        android:backgroundTint="#fff"
-                        android:id="@+id/plumbingservice"
+                        app:cardBackgroundColor="#fff"                        android:id="@+id/plumbingservice"
                         app:cardUseCompatPadding="true"
                         >
                         <LinearLayout
@@ -176,8 +175,7 @@
                         android:layout_gravity="center"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp"
-                        android:backgroundTint="#fff"
-                        android:id="@+id/electricianservice"
+                        app:cardBackgroundColor="#fff"                        android:id="@+id/electricianservice"
                         app:cardUseCompatPadding="true"
                         >
                         <LinearLayout
@@ -245,8 +243,7 @@
                         android:layout_gravity="center"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp"
-                        android:backgroundTint="#fff"
-                        app:cardUseCompatPadding="true"
+                        app:cardBackgroundColor="#fff"                        app:cardUseCompatPadding="true"
                         android:id="@+id/carpentryservice"
                         >
                         <LinearLayout
