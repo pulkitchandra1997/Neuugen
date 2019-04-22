@@ -106,7 +106,7 @@
                         android:layout_gravity="center"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp"
-                        android:backgroundTint="#fff"
+                        app:cardBackgroundColor="#fff"
                         android:id="@+id/mensalonservice"
                         app:cardUseCompatPadding="true"
                         >
@@ -157,7 +157,7 @@
                                 android:text=""
                                 android:layout_marginTop="10dp"
                                 android:lineSpacingExtra="5dp"
-                                android:gravity="start"
+                                android:gravity="center"
                                 android:id="@+id/mensalonmsg"
                                 android:visibility="gone"
                                 android:textColor="@color/colorPrimaryDark"
@@ -174,7 +174,7 @@
                         android:layout_gravity="center"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp"
-                        android:backgroundTint="#fff"
+                        app:cardBackgroundColor="#fff"
                         app:cardUseCompatPadding="true"
                         android:id="@+id/womensalonservice"
                         >

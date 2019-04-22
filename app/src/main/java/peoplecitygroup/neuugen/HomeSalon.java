@@ -26,6 +26,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 import java.util.ArrayList;
 
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
@@ -39,6 +40,7 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
     SharedPreferences sp;
     String[] ownId=new String[]{UrlNeuugen.salonServiceId,UrlNeuugen.mensalonServiceId,UrlNeuugen.womensalonServiceId};
     String[] ownparentId=new String[]{"0",UrlNeuugen.salonServiceId,UrlNeuugen.salonServiceId};
+    ArrayList<JSONObject>childclick=new ArrayList();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +74,6 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
                 loading.dismiss();
                 serviceDecode(result);
                 Log.d("receivedmsg",result);
-                Toast.makeText(HomeSalon.this, result, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -123,7 +124,6 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
             else {
                 //ALERT
                 AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
-
                 builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                 builder.setMessage("Error in server. Try Again")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -166,8 +166,45 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
             for (int i = 1; i < ownId.length; i++) {
                 int index=findIndex(serviceId,ownId[i]);
                 if(index>0){
-                    if(index==findIndex(parentserviceid,ownparentId[i])){
-                        changeService(ownId[i],true,serviceId.getString(index),parentserviceid.getString(index),servicename.getString(index),status.getString(index),cost.getString(index),pic1.getString(index),pic2.getString(index),pic3.getString(index),cityactive.getString(index));
+                    if(parentserviceid.getString(index).equalsIgnoreCase(ownparentId[i])){
+                        if(cityactive.getString(index).equalsIgnoreCase("1")&&status.getString(index).equalsIgnoreCase("1")) {
+                            changeService(ownId[i], true, serviceId.getString(index), parentserviceid.getString(index), servicename.getString(index), status.getString(index), cost.getString(index), pic1.getString(index), pic2.getString(index), pic3.getString(index), cityactive.getString(index));
+                            JSONArray childserviceId=new JSONArray();
+                            JSONArray childparentserviceid=new JSONArray();
+                            JSONArray childservicename=new JSONArray();
+                            JSONArray childstatus=new JSONArray();
+                            JSONArray childcost=new JSONArray();
+                            JSONArray childpic1=new JSONArray();
+                            JSONArray childpic2=new JSONArray();
+                            JSONArray childpic3=new JSONArray();
+                            JSONArray childcityactive=new JSONArray();
+                            for(int j=1;j<parentserviceid.length();j++){
+                                if(parentserviceid.getString(j).equalsIgnoreCase(ownId[i])){
+                                    childserviceId.put(serviceId.getString(j));
+                                    childparentserviceid.put(parentserviceid.getString(j));
+                                    childservicename.put(servicename.getString(j));
+                                    childstatus.put(status.getString(j));
+                                    childcost.put(cost.getString(j));
+                                    childpic1.put(pic1.getString(j));
+                                    childpic2.put(pic2.getString(j));
+                                    childpic3.put(pic3.getString(j));
+                                    childcityactive.put(cityactive.getString(j));
+                                }
+                            }
+                            JSONObject temp=new JSONObject();
+                            temp.put("serviceid",childserviceId);
+                            temp.put("parentserviceid",childparentserviceid);
+                            temp.put("servicename",childservicename);
+                            temp.put("status",childstatus);
+                            temp.put("cost",childcost);
+                            temp.put("pic1",childpic1);
+                            temp.put("pic2",childpic2);
+                            temp.put("pic3",childpic3);
+                            temp.put("cityactive",childcityactive);
+                            childclick.add(temp);
+                        }
+                        else
+                            changeService(ownId[i],false,serviceId.getString(index),parentserviceid.getString(index),servicename.getString(index),status.getString(index),cost.getString(index),pic1.getString(index),pic2.getString(index),pic3.getString(index),cityactive.getString(index));
                     }
                     else{
                         //SERVICE NOT FOUND
@@ -178,6 +215,8 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
                     //SERVICE NOT FOUND
                     changeService(ownId[i],false,null,null,null,null,null,null,null,null,null);
                 }
+            }
+            if(serviceId.length()>ownId.length){
             }
         }catch(Exception e){
             //ALERT
@@ -203,10 +242,20 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
         Character c=ownid.trim().charAt(0);
         if(c==UrlNeuugen.mensalonServiceId.trim().charAt(0)){
             if(flag){
+                if(cost!=null&&cost.trim()!="") {
+                    mensalonmsg.setVisibility(View.VISIBLE);
+                    mensalonmsg.setText("Cost: " + cost.trim());
+                }
 
             }
             else{
-
+                if(cityactive.equalsIgnoreCase("0"))
+                    mensalonmsg.setText("Service not available in this City. Will Come Soon!");
+                else
+                    mensalonmsg.setText("Service is currently unavailable");
+                mensalonmsg.setVisibility(View.VISIBLE);
+                mensalonservice.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
+                mensalonservice.setClickable(false);
             }
         }
         if(c==UrlNeuugen.womensalonServiceId.trim().charAt(0)){
@@ -214,7 +263,13 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
 
             }
             else{
-
+                if(cityactive.equalsIgnoreCase("0"))
+                    womensalonmsg.setText("Service not available in this City. Will Come Soon!");
+                else
+                    womensalonmsg.setText("Service is currently unavailable");
+                womensalonmsg.setVisibility(View.VISIBLE);
+                womensalonservice.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
+                womensalonservice.setClickable(false);
             }
         }
     }
@@ -262,7 +317,7 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
                     AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
 
                     builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
-                    builder.setMessage("Error in server. Try Again")
+                    builder.setMessage("Service not available in this city. Will come Soon!")
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -281,7 +336,7 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
                 AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
 
                 builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
-                builder.setMessage("Error in server. Try Again")
+                builder.setMessage("Service is not available")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -345,9 +400,16 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        if (v.getId()==R.id.mensalonservice){
+        if(v.getId()==R.id.mensalonservice||v.getId()==R.id.womensalonservice) {
             Intent intent = new Intent(HomeSalon.this, SalonServices.class);
-            intent.putExtra("salonservicetext","Men Salon Services");
+            if (v.getId() == R.id.mensalonservice) {
+                intent.putExtra("salonservicetext", "Men Salon Services");
+                intent.putExtra("jsonobject", childclick.get(0).toString());
+            }
+            if (v.getId() == R.id.womensalonservice) {
+                intent.putExtra("salonservicetext", "Women Salon Services");
+                intent.putExtra("jsonobject", childclick.get(1).toString());
+            }
             if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
                 ActivityOptions options = ActivityOptions.makeCustomAnimation(HomeSalon.this, R.anim.fade_in, R.anim.fade_out);
                 startActivity(intent, options.toBundle());
@@ -355,16 +417,5 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
                 startActivity(intent);
             }
         }
-        if (v.getId()==R.id.womensalonservice){
-            Intent intent = new Intent(HomeSalon.this, SalonServices.class);
-            intent.putExtra("salonservicetext","Women Salon Services");
-            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(HomeSalon.this, R.anim.fade_in, R.anim.fade_out);
-                startActivity(intent, options.toBundle());
-            } else {
-                startActivity(intent);
-            }
-        }
-
     }
 }
