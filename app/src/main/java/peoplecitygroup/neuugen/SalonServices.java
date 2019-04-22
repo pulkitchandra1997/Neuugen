@@ -448,73 +448,74 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        if (v.getId()==R.id.menhaircutbtn){
+        if(v.getId()==R.id.menhaircutbtn||v.getId()==R.id.menbeardbtn||v.getId()==R.id.menpartybtn||v.getId()==R.id.womenhaircutbtn||v.getId()==R.id.womenpartymakeupbtn||v.getId()==R.id.womenweddingmakeupbtn) {
             Intent intent = new Intent(SalonServices.this, SalonServiceForm.class);
-            intent.putExtra("servicetype","Men's Haircut");
-            intent.putExtra("serviceprice","Rs. 399");
-            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(SalonServices.this, R.anim.fade_in, R.anim.fade_out);
-                startActivity(intent, options.toBundle());
-            } else {
-                startActivity(intent);
+            if (v.getId() == R.id.menhaircutbtn) {
+                intent.putExtra("servicetype", "Men's Haircut");
+                intent.putExtra("serviceprice", "Rs. 399");
+                if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                    ActivityOptions options = ActivityOptions.makeCustomAnimation(SalonServices.this, R.anim.fade_in, R.anim.fade_out);
+                    startActivity(intent, options.toBundle());
+                } else {
+                    startActivity(intent);
+                }
             }
-        }
-        if (v.getId()==R.id.menbeardbtn){
-            Intent intent = new Intent(SalonServices.this, SalonServiceForm.class);
-            intent.putExtra("servicetype","Men's Haircut & Beard");
-            intent.putExtra("serviceprice","Rs. 499");
-            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(SalonServices.this, R.anim.fade_in, R.anim.fade_out);
-                startActivity(intent, options.toBundle());
-            } else {
-                startActivity(intent);
+            if (v.getId() == R.id.menbeardbtn) {
+                Intent intent = new Intent(SalonServices.this, SalonServiceForm.class);
+                intent.putExtra("servicetype", "Men's Haircut & Beard");
+                intent.putExtra("serviceprice", "Rs. 499");
+                if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                    ActivityOptions options = ActivityOptions.makeCustomAnimation(SalonServices.this, R.anim.fade_in, R.anim.fade_out);
+                    startActivity(intent, options.toBundle());
+                } else {
+                    startActivity(intent);
+                }
             }
-        }
-        if (v.getId()==R.id.menpartybtn){
-            Intent intent = new Intent(SalonServices.this, SalonServiceForm.class);
-            intent.putExtra("servicetype","Men's Party Grooming");
-            intent.putExtra("serviceprice","Rs. 1999");
-            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(SalonServices.this, R.anim.fade_in, R.anim.fade_out);
-                startActivity(intent, options.toBundle());
-            } else {
-                startActivity(intent);
+            if (v.getId() == R.id.menpartybtn) {
+                Intent intent = new Intent(SalonServices.this, SalonServiceForm.class);
+                intent.putExtra("servicetype", "Men's Party Grooming");
+                intent.putExtra("serviceprice", "Rs. 1999");
+                if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                    ActivityOptions options = ActivityOptions.makeCustomAnimation(SalonServices.this, R.anim.fade_in, R.anim.fade_out);
+                    startActivity(intent, options.toBundle());
+                } else {
+                    startActivity(intent);
+                }
             }
-        }
 
-        if (v.getId()==R.id.womenhaircutbtn){
-            Intent intent = new Intent(SalonServices.this, SalonServiceForm.class);
-            intent.putExtra("servicetype","Women's Haircut & styling");
-            intent.putExtra("serviceprice","Rs. 599");
-            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(SalonServices.this, R.anim.fade_in, R.anim.fade_out);
-                startActivity(intent, options.toBundle());
-            } else {
-                startActivity(intent);
+            if (v.getId() == R.id.womenhaircutbtn) {
+                Intent intent = new Intent(SalonServices.this, SalonServiceForm.class);
+                intent.putExtra("servicetype", "Women's Haircut & styling");
+                intent.putExtra("serviceprice", "Rs. 599");
+                if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                    ActivityOptions options = ActivityOptions.makeCustomAnimation(SalonServices.this, R.anim.fade_in, R.anim.fade_out);
+                    startActivity(intent, options.toBundle());
+                } else {
+                    startActivity(intent);
+                }
+            }
+            if (v.getId() == R.id.womenpartymakeupbtn) {
+                Intent intent = new Intent(SalonServices.this, SalonServiceForm.class);
+                intent.putExtra("servicetype", "Women's Party makeup");
+                intent.putExtra("serviceprice", "Rs. 2999");
+                if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                    ActivityOptions options = ActivityOptions.makeCustomAnimation(SalonServices.this, R.anim.fade_in, R.anim.fade_out);
+                    startActivity(intent, options.toBundle());
+                } else {
+                    startActivity(intent);
+                }
+            }
+            if (v.getId() == R.id.womenweddingmakeupbtn) {
+                Intent intent = new Intent(SalonServices.this, SalonServiceForm.class);
+                intent.putExtra("servicetype", "Women's Wedding makeup ");
+                intent.putExtra("serviceprice", "Rs. 5499");
+                if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                    ActivityOptions options = ActivityOptions.makeCustomAnimation(SalonServices.this, R.anim.fade_in, R.anim.fade_out);
+                    startActivity(intent, options.toBundle());
+                } else {
+                    startActivity(intent);
+                }
             }
         }
-        if (v.getId()==R.id.womenpartymakeupbtn){
-            Intent intent = new Intent(SalonServices.this, SalonServiceForm.class);
-            intent.putExtra("servicetype","Women's Party makeup");
-            intent.putExtra("serviceprice","Rs. 2999");
-            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(SalonServices.this, R.anim.fade_in, R.anim.fade_out);
-                startActivity(intent, options.toBundle());
-            } else {
-                startActivity(intent);
-            }
-        }
-        if (v.getId()==R.id.womenweddingmakeupbtn){
-            Intent intent = new Intent(SalonServices.this, SalonServiceForm.class);
-            intent.putExtra("servicetype","Women's Wedding makeup ");
-            intent.putExtra("serviceprice","Rs. 5499");
-            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(SalonServices.this, R.anim.fade_in, R.anim.fade_out);
-                startActivity(intent, options.toBundle());
-            } else {
-                startActivity(intent);
-            }
-        }
-
     }
 }

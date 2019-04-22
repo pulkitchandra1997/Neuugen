@@ -242,11 +242,10 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
         Character c=ownid.trim().charAt(0);
         if(c==UrlNeuugen.mensalonServiceId.trim().charAt(0)){
             if(flag){
-                if(cost!=null&&cost.trim()!="") {
+                if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
                     mensalonmsg.setVisibility(View.VISIBLE);
                     mensalonmsg.setText(cost.trim());
                 }
-
             }
             else{
                 if(cityactive.equalsIgnoreCase("0"))
@@ -260,7 +259,7 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
         }
         if(c==UrlNeuugen.womensalonServiceId.trim().charAt(0)){
             if(flag){
-                if(cost!=null&&cost.trim()!="") {
+                if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
                     womensalonmsg.setVisibility(View.VISIBLE);
                     womensalonmsg.setText(cost.trim());
                 }
