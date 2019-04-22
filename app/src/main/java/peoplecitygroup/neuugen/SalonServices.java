@@ -456,24 +456,24 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
             }
             if (v.getId() == R.id.menbeardbtn) {
                 intent.putExtra("servicetype", "Men's Haircut & Beard");
-                intent.putExtra("serviceprice", "Rs. 499");
+                intent.putExtra("serviceprice", menbeardprice.getText().toString().trim());
             }
             if (v.getId() == R.id.menpartybtn) {
                 intent.putExtra("servicetype", "Men's Party Grooming");
-                intent.putExtra("serviceprice", "Rs. 1999");
+                intent.putExtra("serviceprice", menpartyprice.getText().toString().trim());
             }
 
             if (v.getId() == R.id.womenhaircutbtn) {
                 intent.putExtra("servicetype", "Women's Haircut & styling");
-                intent.putExtra("serviceprice", "Rs. 599");
+                intent.putExtra("serviceprice", womenhaircutprice.getText().toString().trim());
             }
             if (v.getId() == R.id.womenpartymakeupbtn) {
                 intent.putExtra("servicetype", "Women's Party makeup");
-                intent.putExtra("serviceprice", "Rs. 2999");
+                intent.putExtra("serviceprice", womenpartyprice.getText().toString().trim());
             }
             if (v.getId() == R.id.womenweddingmakeupbtn) {
                 intent.putExtra("servicetype", "Women's Wedding makeup ");
-                intent.putExtra("serviceprice", "Rs. 5499");
+                intent.putExtra("serviceprice", womenwedprice.getText().toString().trim());
             }
             if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
                 ActivityOptions options = ActivityOptions.makeCustomAnimation(SalonServices.this, R.anim.fade_in, R.anim.fade_out);
