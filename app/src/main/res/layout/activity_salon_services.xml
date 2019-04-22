@@ -67,7 +67,8 @@
                         android:layout_gravity="center"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp"
-                        android:backgroundTint="#fff"
+                        android:id="@+id/menhaircutcard"
+                        app:cardBackgroundColor="#fff"
                         app:cardUseCompatPadding="true"
                         >
                         <LinearLayout
@@ -147,7 +148,8 @@
                         android:layout_gravity="center"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp"
-                        android:backgroundTint="#fff"
+                        android:id="@+id/menbeardcard"
+                        app:cardBackgroundColor="#fff"
                         app:cardUseCompatPadding="true"
                         >
                         <LinearLayout
@@ -228,7 +230,8 @@
                         android:layout_gravity="center"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp"
-                        android:backgroundTint="#fff"
+                        android:id="@+id/menpartycard"
+                        app:cardBackgroundColor="#fff"
                         app:cardUseCompatPadding="true"
                         >
                         <LinearLayout
@@ -329,7 +332,8 @@
                         android:layout_gravity="center"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp"
-                        android:backgroundTint="#fff"
+                        android:id="@+id/womenhaircutcard"
+                        app:cardBackgroundColor="#fff"
                         app:cardUseCompatPadding="true"
                         >
                         <LinearLayout
@@ -409,7 +413,8 @@
                         android:layout_gravity="center"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp"
-                        android:backgroundTint="#fff"
+                        android:id="@+id/womenpartymakeupcard"
+                        app:cardBackgroundColor="#fff"
                         app:cardUseCompatPadding="true"
                         >
                         <LinearLayout
@@ -491,7 +496,8 @@
                         android:layout_gravity="center"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp"
-                        android:backgroundTint="#fff"
+                        android:id="@+id/womenweddingmakeupcard"
+                        app:cardBackgroundColor="#fff"
                         app:cardUseCompatPadding="true"
                         >
                         <LinearLayout

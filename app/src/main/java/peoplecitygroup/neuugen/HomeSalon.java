@@ -244,7 +244,7 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
             if(flag){
                 if(cost!=null&&cost.trim()!="") {
                     mensalonmsg.setVisibility(View.VISIBLE);
-                    mensalonmsg.setText("Cost: " + cost.trim());
+                    mensalonmsg.setText(cost.trim());
                 }
 
             }
@@ -260,7 +260,10 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
         }
         if(c==UrlNeuugen.womensalonServiceId.trim().charAt(0)){
             if(flag){
-
+                if(cost!=null&&cost.trim()!="") {
+                    womensalonmsg.setVisibility(View.VISIBLE);
+                    womensalonmsg.setText(cost.trim());
+                }
             }
             else{
                 if(cityactive.equalsIgnoreCase("0"))
