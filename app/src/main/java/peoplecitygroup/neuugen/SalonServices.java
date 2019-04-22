@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.squareup.picasso.Picasso;
@@ -35,8 +36,8 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
     String servicetext;
     CardView menhaircutcard,menbeardcard,menpartycard,womenhaircutcard,womenpartymakeupcard,womenweddingmakeupcard;
     LinearLayout womensalonlayout,mensalonlayout;
-    String[] ownId=new String[]{UrlNeuugen.menHaircutId,UrlNeuugen.menHaircutBeardId,UrlNeuugen.menPartymakeupId,UrlNeuugen.womenhaircutId,UrlNeuugen.womenPartymakeupId,UrlNeuugen.womenWeddingmakeupId};
-    String[] ownparentId=new String[]{UrlNeuugen.salonServiceId,UrlNeuugen.mensalonServiceId,UrlNeuugen.mensalonServiceId,UrlNeuugen.mensalonServiceId,UrlNeuugen.womensalonServiceId,UrlNeuugen.womensalonServiceId,UrlNeuugen.womensalonServiceId};
+    String[] ownId;
+    String[] ownparentId;
     ArrayList<JSONObject> childclick=new ArrayList();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +53,15 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
         {
             mensalonlayout.setVisibility(View.VISIBLE);
             womensalonlayout.setVisibility(View.GONE);
+            ownId=new String[]{UrlNeuugen.mensalonServiceId,UrlNeuugen.menHaircutId,UrlNeuugen.menHaircutBeardId,UrlNeuugen.menPartymakeupId};
+            ownparentId=new String[]{UrlNeuugen.salonServiceId,UrlNeuugen.mensalonServiceId,UrlNeuugen.mensalonServiceId,UrlNeuugen.mensalonServiceId};
         }else
         if (servicetext.equalsIgnoreCase("Women Salon Services"))
         {
             womensalonlayout.setVisibility(View.VISIBLE);
             mensalonlayout.setVisibility(View.GONE);
+            ownId=new String[]{UrlNeuugen.womensalonServiceId,UrlNeuugen.womenhaircutId,UrlNeuugen.womenPartymakeupId,UrlNeuugen.womenWeddingmakeupId};
+            ownparentId=new String[]{UrlNeuugen.salonServiceId,UrlNeuugen.womensalonServiceId,UrlNeuugen.womensalonServiceId,UrlNeuugen.womensalonServiceId};
         }
         salonservicehead.setText(servicetext);
         serviceDecode(result);
@@ -317,7 +322,7 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
         }
     }
     private boolean checkParentActive(String serviceid,String parentserviceid,String servicename,String status,String cost,String pic1,String pic2,String pic3,String cityactive) {
-        if(UrlNeuugen.salonServiceId.equalsIgnoreCase(ownId[0])){
+        if(serviceid.equalsIgnoreCase(ownId[0])){
             pic1=pic1.trim();
             pic2=pic2.trim();
             pic3=pic3.trim();

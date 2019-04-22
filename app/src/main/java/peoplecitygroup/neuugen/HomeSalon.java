@@ -178,6 +178,15 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
                             JSONArray childpic2=new JSONArray();
                             JSONArray childpic3=new JSONArray();
                             JSONArray childcityactive=new JSONArray();
+                            childserviceId.put(serviceId.getString(i));
+                            childparentserviceid.put(parentserviceid.getString(i));
+                            childservicename.put(servicename.getString(i));
+                            childstatus.put(status.getString(i));
+                            childcost.put(cost.getString(i));
+                            childpic1.put(pic1.getString(i));
+                            childpic2.put(pic2.getString(i));
+                            childpic3.put(pic3.getString(i));
+                            childcityactive.put(cityactive.getString(i));
                             for(int j=1;j<parentserviceid.length();j++){
                                 if(parentserviceid.getString(j).equalsIgnoreCase(ownId[i])){
                                     childserviceId.put(serviceId.getString(j));
@@ -286,7 +295,7 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
 
 
     private boolean checkParentActive(String serviceid,String parentserviceid,String servicename,String status,String cost,String pic1,String pic2,String pic3,String cityactive) {
-        if(UrlNeuugen.salonServiceId.equalsIgnoreCase(ownId[0])){
+        if(serviceid.equalsIgnoreCase(ownId[0])){
             pic1=pic1.trim();
             pic2=pic2.trim();
             pic3=pic3.trim();
