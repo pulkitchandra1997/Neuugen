@@ -452,8 +452,7 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
             Intent intent = new Intent(SalonServices.this, SalonServiceForm.class);
             if (v.getId() == R.id.menhaircutbtn) {
                 intent.putExtra("servicetype", "Men's Haircut");
-                intent.putExtra("serviceprice", "Rs. 399");
-
+                intent.putExtra("serviceprice", menhaircutprice.getText().toString().trim());
             }
             if (v.getId() == R.id.menbeardbtn) {
                 intent.putExtra("servicetype", "Men's Haircut & Beard");
