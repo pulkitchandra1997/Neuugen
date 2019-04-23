@@ -18,7 +18,7 @@ public class UrlNeuugen {
     public static final String fill_SellHouses=URL+"fillSellHouses.php";
     public static final String fill_SellPlots=URL+"fillSellPlots.php";
     public static final String checkappversion=URL+"versionCheck.php";
-
+    public static final String requestservice_Salon=URL+"requestServiceSalon.php";
 
     public static final String csemail="peoplecitygroup@gmail.com";
     public static final String csphone="";

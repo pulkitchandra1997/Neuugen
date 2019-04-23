@@ -5,32 +5,49 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SalonServiceForm extends AppCompatActivity implements View.OnClickListener {
 
-    String servicetypetext=null,servicepricetext=null,areatext,citytext,landmarktext,dostext,pincodetext,housenotext;
+    String servicetypetext=null,servicepricetext=null,areatext,citytext,landmarktext,dostext,pincodetext,housenotext,serviceId;
     Intent intent;
     TextInputEditText areaSS,citySS,landmarkSS,pincodeSS,salondos,housenoSS;
     AppCompatTextView servicetype,serviceprice;
     MaterialButton requestservice;
     int day,year,month;
-
+    String city="";
+    String mobileno="";
+    ProgressDialog loading = null;
 
     public String getDate(){
         StringBuilder builder=new StringBuilder();
@@ -47,14 +64,23 @@ public class SalonServiceForm extends AppCompatActivity implements View.OnClickL
         intent=getIntent();
         servicetypetext=intent.getStringExtra("servicetype");
         servicepricetext=intent.getStringExtra("serviceprice");
-
+        serviceId=intent.getStringExtra("serviceid");
         idLink();
         listenerLink();
         hideSoftKeyboard();
-
+        SharedPreferences sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
+        if(sp!=null) {
+            city = sp.getString("city", null);
+            mobileno=sp.getString("mobileno",null);
+        }
+        citySS.setText(city);
+        citySS.setEnabled(false);
         servicetype.setText(servicetypetext);
         serviceprice.setText(servicepricetext);
-
+        loading = new ProgressDialog(SalonServiceForm.this,R.style.AppCompatAlertDialogStyle);
+        loading.setCancelable(false);
+        loading.setMessage("Loading");
+        loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
     }
     public void hideSoftKeyboard() {
         if (getCurrentFocus() != null) {
@@ -125,7 +151,13 @@ public class SalonServiceForm extends AppCompatActivity implements View.OnClickL
 
             }else
             {
-
+                if(pincodetext.length()==6){
+                    sendData();
+                }
+                else{
+                    pincodeSS.setError("Enter Valid Pincode");
+                    pincodeSS.requestFocus();
+                }
             }
 
         }
@@ -143,7 +175,9 @@ public class SalonServiceForm extends AppCompatActivity implements View.OnClickL
                     salondos.setText(getDate());
                 }
             },mYear, mMonth, mDay);
+            long now = System.currentTimeMillis() - 1000;
             mDatePicker.getDatePicker().setMinDate(new Date().getTime());
+            mDatePicker.getDatePicker().setMaxDate(now+(1000*60*60*24*+90));                              //3 MONTHS
             mDatePicker.setTitle("Select Date");
             mDatePicker.show();
 
@@ -158,5 +192,130 @@ public class SalonServiceForm extends AppCompatActivity implements View.OnClickL
             negativeButton.setTextSize(15);
             negativeButton.setTextColor(Color.BLUE);
         }
+    }
+
+    private void sendData() {
+        loading.show();
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, UrlNeuugen.requestservice_Salon, new Response.Listener<String>()
+        {
+            @Override
+            public void onResponse(String response) {
+                loading.dismiss();
+                if(response.toLowerCase().contains("error")){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
+                    builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                    builder.setMessage("Error in server. Try Again")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            })
+                            .setIcon(R.mipmap.ic_launcher_round);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                    positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+                }
+                else{
+                    if(response.toLowerCase().equalsIgnoreCase("success")){
+                        //SUCCEESS
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
+                        builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                        builder.setMessage("Service Requested. Our Agent will contact you soon regarding same.")
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                })
+                                .setIcon(R.mipmap.ic_launcher_round);
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                        Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                        positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+                loading.dismiss();
+                boolean haveConnectedWifi = false;
+                boolean haveConnectedMobile = false;
+                ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+                for (NetworkInfo ni : netInfo) {
+                    if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+                        if (ni.isConnected())
+                            haveConnectedWifi = true;
+                    if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+                        if (ni.isConnected())
+                            haveConnectedMobile = true;
+                }
+                if( !haveConnectedWifi && !haveConnectedMobile)
+                {
+                    AlertDialog alertDialog = new AlertDialog.Builder(SalonServiceForm.this).create();
+                    alertDialog.setMessage("No Internet Connection");
+                    alertDialog.setIcon(R.mipmap.ic_launcher_round);
+                    alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                    alertDialog.show();
+                }
+                else {
+                    AlertDialog alertDialog = new AlertDialog.Builder(SalonServiceForm.this).create();
+                    alertDialog.setMessage("Connection Error!");
+                    alertDialog.setIcon(R.mipmap.ic_launcher_round);
+                    alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                    alertDialog.show();
+                }
+            }
+        })
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError
+            {
+                Map<String, String> params = new HashMap<>();
+                params.put("mobileno", mobileno);
+                params.put("serviceid", serviceId);
+                params.put("city",citytext);
+                params.put("houseno", mobileno);
+                params.put("area", mobileno);
+                params.put("landmark", mobileno);
+                params.put("pincode", mobileno);
+                params.put("dateofservice", dostext);
+                return params;
+            }
+        };
+        stringRequest.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
+
+                builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                builder.setMessage("Connection")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        })
+                        .setIcon(R.mipmap.ic_launcher_round);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+
+            }
+        });
+        MySingleton.getInstance(SalonServiceForm.this).addToRequestQueue(stringRequest);
     }
 }

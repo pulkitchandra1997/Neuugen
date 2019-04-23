@@ -458,27 +458,33 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
             if (v.getId() == R.id.menhaircutbtn) {
                 intent.putExtra("servicetype", "Men's Haircut");
                 intent.putExtra("serviceprice", menhaircutprice.getText().toString().trim());
+                intent.putExtra("serviceid", UrlNeuugen.menHaircutId);
             }
             if (v.getId() == R.id.menbeardbtn) {
                 intent.putExtra("servicetype", "Men's Haircut & Beard");
                 intent.putExtra("serviceprice", menbeardprice.getText().toString().trim());
+                intent.putExtra("serviceid", UrlNeuugen.menHaircutBeardId);
             }
             if (v.getId() == R.id.menpartybtn) {
                 intent.putExtra("servicetype", "Men's Party Grooming");
                 intent.putExtra("serviceprice", menpartyprice.getText().toString().trim());
+                intent.putExtra("serviceid", UrlNeuugen.menPartymakeupId);
             }
 
             if (v.getId() == R.id.womenhaircutbtn) {
                 intent.putExtra("servicetype", "Women's Haircut & styling");
                 intent.putExtra("serviceprice", womenhaircutprice.getText().toString().trim());
+                intent.putExtra("serviceid", UrlNeuugen.womenhaircutId);
             }
             if (v.getId() == R.id.womenpartymakeupbtn) {
                 intent.putExtra("servicetype", "Women's Party makeup");
                 intent.putExtra("serviceprice", womenpartyprice.getText().toString().trim());
+                intent.putExtra("serviceid", UrlNeuugen.womenPartymakeupId);
             }
             if (v.getId() == R.id.womenweddingmakeupbtn) {
                 intent.putExtra("servicetype", "Women's Wedding makeup ");
                 intent.putExtra("serviceprice", womenwedprice.getText().toString().trim());
+                intent.putExtra("serviceid", UrlNeuugen.womenWeddingmakeupId);
             }
             if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
                 ActivityOptions options = ActivityOptions.makeCustomAnimation(SalonServices.this, R.anim.fade_in, R.anim.fade_out);
