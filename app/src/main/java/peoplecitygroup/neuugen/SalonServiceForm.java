@@ -25,10 +25,8 @@ import java.util.Date;
 public class SalonServiceForm extends AppCompatActivity implements View.OnClickListener {
 
     String servicetypetext=null,servicepricetext=null,areatext,citytext,landmarktext,dostext,pincodetext,housenotext;
-    
     Intent intent;
     TextInputEditText areaSS,citySS,landmarkSS,pincodeSS,salondos,housenoSS;
-
     AppCompatTextView servicetype,serviceprice;
     MaterialButton requestservice;
     int day,year,month;

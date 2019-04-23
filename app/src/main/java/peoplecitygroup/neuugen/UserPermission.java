@@ -46,8 +46,10 @@ public class UserPermission extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        flag=true;
-        checkPermission();
+        if(v.getId()==R.id.allowbtn) {
+            flag = true;
+            checkPermission();
+        }
     }
 
     private void checkPermission() {
