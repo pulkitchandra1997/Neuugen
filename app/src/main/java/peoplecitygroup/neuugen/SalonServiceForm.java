@@ -175,9 +175,10 @@ public class SalonServiceForm extends AppCompatActivity implements View.OnClickL
                     salondos.setText(getDate());
                 }
             },mYear, mMonth, mDay);
-            long now = System.currentTimeMillis() - 1000;
             mDatePicker.getDatePicker().setMinDate(new Date().getTime());
-            mDatePicker.getDatePicker().setMaxDate(now+(1000*60*60*24*+90));                              //3 MONTHS
+            final Calendar maxcalendar = Calendar.getInstance();
+            maxcalendar.add(Calendar.DATE,90);
+            mDatePicker.getDatePicker().setMaxDate(maxcalendar.getTimeInMillis());                              //3 MONTHS
             mDatePicker.setTitle("Select Date");
             mDatePicker.show();
 

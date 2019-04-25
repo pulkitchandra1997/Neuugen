@@ -8,8 +8,10 @@ import androidx.core.content.ContextCompat;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.Html;
 import android.view.View;
 import android.widget.Toast;
@@ -66,9 +68,24 @@ public class UserPermission extends AppCompatActivity implements View.OnClickLis
         int result11 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_PHONE_NUMBERS);
         int result12 = ContextCompat.checkSelfPermission(getApplicationContext(), RECEIVE_SMS);
         if (!(result1 == PackageManager.PERMISSION_GRANTED && result2 == PackageManager.PERMISSION_GRANTED && result3 == PackageManager.PERMISSION_GRANTED && result4 == PackageManager.PERMISSION_GRANTED && result5 == PackageManager.PERMISSION_GRANTED && result6 == PackageManager.PERMISSION_GRANTED && result7 == PackageManager.PERMISSION_GRANTED && result8 == PackageManager.PERMISSION_GRANTED && result9 == PackageManager.PERMISSION_GRANTED && result10 == PackageManager.PERMISSION_GRANTED && result11 == PackageManager.PERMISSION_GRANTED && result12 == PackageManager.PERMISSION_GRANTED)) {
+            if(Build.VERSION.SDK_INT>Build.VERSION_CODES.M)
             ActivityCompat.requestPermissions(this, new String[]{CAMERA, READ_EXTERNAL_STORAGE, CALL_PHONE, WRITE_EXTERNAL_STORAGE, ACCESS_NETWORK_STATE, INTERNET, READ_CONTACTS, GET_ACCOUNTS, READ_SMS, READ_PHONE_STATE, READ_PHONE_NUMBERS, RECEIVE_SMS}, PERMISSION_REQUEST_CODE);
+            else
+                openSettings();
         } else {
             finish();
+        }
+    }
+    private void openSettings() {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getPackageName(), null);
+        intent.setData(uri);
+        startActivityForResult(intent, 101);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == 101){
+            //checkPermission();
         }
     }
     @Override
