@@ -1,4 +1,4 @@
-package peoplecitygroup.neuugen;
+package peoplecitygroup.neuugen.service;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;

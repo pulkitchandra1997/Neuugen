@@ -16,16 +16,9 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -39,7 +32,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
+
+import peoplecitygroup.neuugen.service.LinkCities;
 
 import static android.content.DialogInterface.BUTTON_POSITIVE;
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
@@ -71,7 +65,7 @@ public class PropertiesCityCheck extends AppCompatActivity implements View.OnCli
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
         allcities=new ArrayList<String>();
-        String[] ar=LinkCities.cities.split(",");
+        String[] ar= LinkCities.cities.split(",");
         for(String c:ar)
             allcities.add(c.toLowerCase().trim());
         citycheck.addTextChangedListener(new TextWatcher() {

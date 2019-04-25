@@ -5,6 +5,8 @@ import android.util.Patterns;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import peoplecitygroup.neuugen.service.LinkCities;
+
 public class Validation {
     public static boolean isValidName( String name) {
         String NAME_PATTERN = "^[a-zA-Z\\s]*$";
@@ -33,7 +35,7 @@ public class Validation {
     }
 
     public static boolean isValidCity(String citytext) {
-        String Cities[]=LinkCities.cities.split(",");
+        String Cities[]= LinkCities.cities.split(",");
         for (String name:Cities)
             if(citytext.equalsIgnoreCase(name.trim()))
                 return true;
