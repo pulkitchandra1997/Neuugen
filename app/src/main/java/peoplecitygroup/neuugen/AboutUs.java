@@ -7,6 +7,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import peoplecitygroup.neuugen.service.UrlNeuugen;
+
 public class AboutUs extends AppCompatActivity {
     WebView webview;
 

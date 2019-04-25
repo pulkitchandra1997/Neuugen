@@ -14,7 +14,6 @@ import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.Html;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -27,10 +26,11 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
-import org.json.JSONException;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import peoplecitygroup.neuugen.service.UrlNeuugen;
+import peoplecitygroup.neuugen.service.Validation;
 
 public class UserDetails extends AppCompatActivity implements View.OnClickListener {
 

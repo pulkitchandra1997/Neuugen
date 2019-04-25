@@ -29,6 +29,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import peoplecitygroup.neuugen.service.ServiceCheck;
+import peoplecitygroup.neuugen.service.UrlNeuugen;
 import peoplecitygroup.neuugen.service.VolleyCallback;
 
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;

@@ -1,21 +1,19 @@
 package peoplecitygroup.neuugen;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+
+import peoplecitygroup.neuugen.service.UrlNeuugen;
 
 public class Customercare extends AppCompatActivity implements View.OnClickListener {
 
@@ -68,7 +66,7 @@ public class Customercare extends AppCompatActivity implements View.OnClickListe
         {
 
                 Intent i = new Intent(Intent.ACTION_DIAL);
-                Uri u = Uri.parse("tel:"+UrlNeuugen.csphone);
+                Uri u = Uri.parse("tel:"+ UrlNeuugen.csphone);
                 i.setData(u);
                 /*if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling

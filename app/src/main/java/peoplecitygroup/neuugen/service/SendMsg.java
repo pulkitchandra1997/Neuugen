@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.Map;
 import peoplecitygroup.neuugen.MySingleton;
 import peoplecitygroup.neuugen.R;
-import peoplecitygroup.neuugen.UrlNeuugen;
 
 public class SendMsg {
     public void SendOtp(final String number,final String otp,final Context context, final VolleyCallback volleyCallback){

@@ -2,15 +2,11 @@ package peoplecitygroup.neuugen;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.ActivityOptions;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -19,8 +15,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
-import android.telephony.TelephonyManager;
-import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -28,20 +22,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import com.google.android.material.resources.MaterialResources;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.Manifest.permission.ACCESS_NETWORK_STATE;
-import static android.Manifest.permission.CALL_PHONE;
-import static android.Manifest.permission.CAMERA;
-import static android.Manifest.permission.GET_ACCOUNTS;
-import static android.Manifest.permission.INTERNET;
-import static android.Manifest.permission.READ_CONTACTS;
-import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
-import static android.Manifest.permission.READ_SMS;
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import peoplecitygroup.neuugen.service.Validation;
+
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
 public class MobileNumberInput extends AppCompatActivity implements View.OnClickListener {

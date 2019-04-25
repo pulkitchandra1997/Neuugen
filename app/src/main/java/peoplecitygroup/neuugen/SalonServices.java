@@ -15,16 +15,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import peoplecitygroup.neuugen.service.UrlNeuugen;
 
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 

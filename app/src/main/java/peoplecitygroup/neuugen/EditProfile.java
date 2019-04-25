@@ -3,7 +3,6 @@ package peoplecitygroup.neuugen;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
-import androidx.appcompat.widget.AppCompatTextView;
 
 import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
@@ -17,7 +16,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -25,6 +23,8 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
 import java.util.Date;
+
+import peoplecitygroup.neuugen.service.Validation;
 
 public class EditProfile extends AppCompatActivity implements View.OnClickListener {
 

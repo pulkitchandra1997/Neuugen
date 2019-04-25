@@ -34,6 +34,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import peoplecitygroup.neuugen.service.LinkCities;
+import peoplecitygroup.neuugen.service.UrlNeuugen;
 
 import static android.content.DialogInterface.BUTTON_POSITIVE;
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;

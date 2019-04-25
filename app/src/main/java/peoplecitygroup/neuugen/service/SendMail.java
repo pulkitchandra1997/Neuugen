@@ -22,7 +22,6 @@ import java.util.Map;
 
 import peoplecitygroup.neuugen.MySingleton;
 import peoplecitygroup.neuugen.R;
-import peoplecitygroup.neuugen.UrlNeuugen;
 
 import static android.content.DialogInterface.BUTTON_POSITIVE;
 

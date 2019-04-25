@@ -6,7 +6,6 @@ import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import android.app.ActivityOptions;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -15,7 +14,8 @@ import android.view.View;
 import android.widget.RadioGroup;
 
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.snackbar.Snackbar;
+
+import peoplecitygroup.neuugen.service.UrlNeuugen;
 
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
@@ -67,7 +67,7 @@ public class PostAd extends AppCompatActivity implements View.OnClickListener {
             {
                 Intent intent = new Intent(PostAd.this, PropertiesCityCheck.class);
                 intent.putExtra("adtype","Rent Office");
-                intent.putExtra("propertiesid",UrlNeuugen.propertiesserviceid);
+                intent.putExtra("propertiesid", UrlNeuugen.propertiesserviceid);
                 if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
                     ActivityOptions options = ActivityOptions.makeCustomAnimation(PostAd.this, R.anim.fade_in, R.anim.fade_out);
                     startActivity(intent, options.toBundle());

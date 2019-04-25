@@ -29,7 +29,6 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
@@ -39,6 +38,7 @@ import java.util.Map;
 
 import peoplecitygroup.neuugen.service.SendMail;
 import peoplecitygroup.neuugen.service.SendMsg;
+import peoplecitygroup.neuugen.service.UrlNeuugen;
 import peoplecitygroup.neuugen.service.VolleyCallback;
 
 public class SalonServiceForm extends AppCompatActivity implements View.OnClickListener {
