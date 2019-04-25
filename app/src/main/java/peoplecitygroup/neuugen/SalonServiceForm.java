@@ -37,6 +37,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import peoplecitygroup.neuugen.service.SendMail;
+import peoplecitygroup.neuugen.service.SendMsg;
+import peoplecitygroup.neuugen.service.VolleyCallback;
+
 public class SalonServiceForm extends AppCompatActivity implements View.OnClickListener {
 
     String servicetypetext=null,servicepricetext=null,areatext,citytext,landmarktext,dostext,pincodetext,housenotext,serviceId;
@@ -221,6 +225,15 @@ public class SalonServiceForm extends AppCompatActivity implements View.OnClickL
                 else{
                     if(response.toLowerCase().equalsIgnoreCase("success")){
                         //SUCCEESS
+                        SharedPreferences sp;
+                        sp = getSharedPreferences("NeuuGen_data", MODE_PRIVATE);
+                        if (sp != null) {
+                            final String email=sp.getString("email",null);
+                            final String name=sp.getString("name",null).toUpperCase();
+                            final String mobileno=sp.getString("mobileno",null).toUpperCase();
+                            sendMail(email,name);
+                            sendSMS(mobileno,name);
+                        }
                         AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
                         builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                         builder.setMessage("Service Requested. Our Agent will contact you soon regarding same.")
@@ -319,4 +332,47 @@ public class SalonServiceForm extends AppCompatActivity implements View.OnClickL
         });
         MySingleton.getInstance(SalonServiceForm.this).addToRequestQueue(stringRequest);
     }
+
+    private void sendSMS(String mobileno,String name) {
+        SendMsg sendMsg=new SendMsg();
+        String msg="Dear "+name.trim()+", your salon service has been requested. Our Customer Executive will contact you soon.";
+        sendMsg.SendCustomMsg(mobileno, msg, this, new VolleyCallback() {
+            @Override
+            public void onSuccess(String response) {
+
+            }
+
+            @Override
+            public void onError(String response) {
+
+            }
+
+            @Override
+            public void onVolleyError() {
+
+            }
+        });
+    }
+
+    private void sendMail(String email,String name) {
+            SendMail sendMail=new SendMail();
+            String subject="NG: Salon Service Request";
+            String body="Dear "+name+",<br><p>Thanks for choosing NEUUGEN. Your Salon Service has been requested.</p><br>Our Customer Executive/Agent will reach out to you for the same. The Service Requested will be provided soon.";
+            sendMail.sendMailmethod(email, subject, body, this, new VolleyCallback() {
+                @Override
+                public void onSuccess(String result) {
+
+                }
+
+                @Override
+                public void onError(String response) {
+
+                }
+
+                @Override
+                public void onVolleyError() {
+                    loading.dismiss();
+                }
+            });
+        }
 }

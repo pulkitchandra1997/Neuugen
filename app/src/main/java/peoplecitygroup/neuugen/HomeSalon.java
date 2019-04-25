@@ -18,7 +18,6 @@ import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -28,6 +27,9 @@ import org.json.JSONObject;
 
 
 import java.util.ArrayList;
+
+import peoplecitygroup.neuugen.service.ServiceCheck;
+import peoplecitygroup.neuugen.service.VolleyCallback;
 
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
@@ -78,21 +80,28 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
 
             @Override
             public void onError(String response) {
+                loading.dismiss();
                 AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
+                if (response.equalsIgnoreCase("error")) {
+                    builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                    builder.setMessage("Error in server. Try Again")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //finish
+                                }
+                            })
+                            .setIcon(R.mipmap.ic_launcher_round);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                    positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+                }
+            }
 
-                builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
-                builder.setMessage("Error in server. Try Again")
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                //finish
-                            }
-                        })
-                        .setIcon(R.mipmap.ic_launcher_round);
-                AlertDialog dialog = builder.create();
-                dialog.show();
-                Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
-                positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+            @Override
+            public void onVolleyError() {
+                loading.dismiss();
             }
         });
     }

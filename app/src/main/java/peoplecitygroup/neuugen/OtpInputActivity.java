@@ -56,6 +56,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import peoplecitygroup.neuugen.service.SendMsg;
+import peoplecitygroup.neuugen.service.VolleyCallback;
+
 import static android.Manifest.permission.READ_SMS;
 import static android.Manifest.permission.RECEIVE_SMS;
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
@@ -124,12 +128,11 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void sendOtp() {
-        StringRequest stringRequest=new StringRequest(Request.Method.POST, UrlNeuugen.send_otp, new Response.Listener<String>()
-        {
+        SendMsg sendMsg=new SendMsg();
+        sendMsg.SendOtp(phonetext, String.valueOf(otptext), this, new VolleyCallback() {
             @Override
-            public void onResponse(String response) {
+            public void onSuccess(String response) {
                 response.trim();
-                Log.i("OTP: Response",response);
                 if(response.length()==24){
                     resendotp.setVisibility(View.INVISIBLE);
 
@@ -137,7 +140,6 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
                             .show();
                     checkPermission();
                     startTimer();
-
                 }
                 else{
                     new AlertDialog.Builder(OtpInputActivity.this,R.style.Theme_AppCompat_DayNight_Dialog_Alert)
@@ -154,51 +156,17 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
                             .show();
                 }
             }
-        }, new Response.ErrorListener() {
+
             @Override
-            public void onErrorResponse(VolleyError error)
-            {
-                Log.i("ErrorOTP",error.toString());
-                boolean haveConnectedWifi = false;
-                boolean haveConnectedMobile = false;
-                ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-                NetworkInfo[] netInfo = cm.getAllNetworkInfo();
-                for (NetworkInfo ni : netInfo) {
-                    if (ni.getTypeName().equalsIgnoreCase("WIFI"))
-                        if (ni.isConnected())
-                            haveConnectedWifi = true;
-                    if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
-                        if (ni.isConnected())
-                            haveConnectedMobile = true;
-                }
-                if( !haveConnectedWifi && !haveConnectedMobile)
-                {
-                    AlertDialog alertDialog = new AlertDialog.Builder(OtpInputActivity.this).create();
-                    alertDialog.setMessage("No Internet Connection");
-                    alertDialog.setIcon(R.mipmap.ic_launcher_round);
-                    alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
-                    alertDialog.show();
-                }
-                else {
-                    AlertDialog alertDialog = new AlertDialog.Builder(OtpInputActivity.this).create();
-                    alertDialog.setMessage("Connection Error!");
-                    alertDialog.setIcon(R.mipmap.ic_launcher_round);
-                    alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
-                    alertDialog.show();
-                }
+            public void onError(String response) {
+
             }
-        })
-        {
+
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError
-            {
-                Map<String, String> params = new HashMap<>();
-                params.put("number", phonetext);
-                params.put("otp", String.valueOf(otptext));
-                return params;
+            public void onVolleyError() {
+
             }
-        };
-        MySingleton.getInstance(OtpInputActivity.this).addToRequestQueue(stringRequest);
+        });
     }
 
     private void checkPermission() {

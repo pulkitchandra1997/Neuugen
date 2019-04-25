@@ -1,4 +1,4 @@
-package peoplecitygroup.neuugen;
+package peoplecitygroup.neuugen.service;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -19,6 +19,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import androidx.appcompat.app.AlertDialog;
+
+import peoplecitygroup.neuugen.MySingleton;
+import peoplecitygroup.neuugen.R;
+import peoplecitygroup.neuugen.UrlNeuugen;
 
 public class ServiceCheck {
     public void check(final String serviceId,final String city, final Context context,final VolleyCallback volleyCallback) {
@@ -60,6 +64,7 @@ public class ServiceCheck {
                     alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                     alertDialog.show();
                 }
+                volleyCallback.onVolleyError();
             }
         }) {
             @Override
