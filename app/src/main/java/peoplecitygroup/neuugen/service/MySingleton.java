@@ -1,4 +1,4 @@
-package peoplecitygroup.neuugen;
+package peoplecitygroup.neuugen.service;
 
 /**
  * Created by DELL on 3/30/2018.

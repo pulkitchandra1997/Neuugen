@@ -60,6 +60,7 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import peoplecitygroup.neuugen.service.MySingleton;
 import peoplecitygroup.neuugen.service.SendMail;
 import peoplecitygroup.neuugen.service.UrlNeuugen;
 import peoplecitygroup.neuugen.service.Validation;

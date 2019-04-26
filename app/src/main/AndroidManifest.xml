@@ -106,7 +106,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".MySMSBroadCastReceiver">
+        <receiver android:name=".service.MySMSBroadCastReceiver">
             <intent-filter android:priority="999">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>

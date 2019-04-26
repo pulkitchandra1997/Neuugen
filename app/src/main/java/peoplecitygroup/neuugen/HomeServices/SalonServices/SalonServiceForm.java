@@ -36,7 +36,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import peoplecitygroup.neuugen.MySingleton;
+import peoplecitygroup.neuugen.service.MySingleton;
 import peoplecitygroup.neuugen.R;
 import peoplecitygroup.neuugen.service.SendMail;
 import peoplecitygroup.neuugen.service.SendMsg;

@@ -45,6 +45,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import peoplecitygroup.neuugen.service.MySingleton;
+import peoplecitygroup.neuugen.service.PROFILE;
 import peoplecitygroup.neuugen.service.SendMsg;
 import peoplecitygroup.neuugen.service.UrlNeuugen;
 import peoplecitygroup.neuugen.service.VolleyCallback;

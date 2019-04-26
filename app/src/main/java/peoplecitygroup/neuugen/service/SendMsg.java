@@ -16,7 +16,7 @@ import com.android.volley.toolbox.StringRequest;
 
 import java.util.HashMap;
 import java.util.Map;
-import peoplecitygroup.neuugen.MySingleton;
+
 import peoplecitygroup.neuugen.R;
 
 public class SendMsg {

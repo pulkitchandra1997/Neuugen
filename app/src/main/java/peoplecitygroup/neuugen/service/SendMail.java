@@ -20,7 +20,6 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-import peoplecitygroup.neuugen.MySingleton;
 import peoplecitygroup.neuugen.R;
 
 import static android.content.DialogInterface.BUTTON_POSITIVE;

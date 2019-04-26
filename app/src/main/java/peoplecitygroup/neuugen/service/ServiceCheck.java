@@ -20,7 +20,6 @@ import java.util.Map;
 
 import androidx.appcompat.app.AlertDialog;
 
-import peoplecitygroup.neuugen.MySingleton;
 import peoplecitygroup.neuugen.R;
 
 public class ServiceCheck {
