@@ -107,7 +107,8 @@
                         android:layout_gravity="center"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp"
-                        app:cardBackgroundColor="#fff"                        android:id="@+id/mensalonservice"
+                        app:cardBackgroundColor="#fff"
+                        android:id="@+id/photovideocard"
                         app:cardUseCompatPadding="true"
                         >
                         <LinearLayout
@@ -198,8 +199,9 @@
                         android:layout_gravity="center"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp"
-                        app:cardBackgroundColor="#fff"                        app:cardUseCompatPadding="true"
-                        android:id="@+id/womensalonservice"
+                        app:cardBackgroundColor="#fff"
+                        app:cardUseCompatPadding="true"
+                        android:id="@+id/eventarrangementcard"
                         >
                         <LinearLayout
                             android:layout_width="match_parent"

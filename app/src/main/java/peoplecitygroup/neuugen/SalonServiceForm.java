@@ -207,7 +207,7 @@ public class SalonServiceForm extends AppCompatActivity implements View.OnClickL
             public void onResponse(String response) {
                 loading.dismiss();
                 if(response.toLowerCase().contains("error")){
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SalonServiceForm.this);
                     builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                     builder.setMessage("Error in server. Try Again")
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -234,7 +234,7 @@ public class SalonServiceForm extends AppCompatActivity implements View.OnClickL
                             sendMail(email,name);
                             sendSMS(mobileno,name);
                         }
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
+                        AlertDialog.Builder builder = new AlertDialog.Builder(SalonServiceForm.this);
                         builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                         builder.setMessage("Service Requested. Our Agent will contact you soon regarding same.")
                                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -312,7 +312,7 @@ public class SalonServiceForm extends AppCompatActivity implements View.OnClickL
             }
             @Override
             public void retry(VolleyError error) throws VolleyError {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
+                AlertDialog.Builder builder = new AlertDialog.Builder(SalonServiceForm.this);
 
                 builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                 builder.setMessage("Connection")
