@@ -1,8 +1,9 @@
-package peoplecitygroup.neuugen;
+package peoplecitygroup.neuugen.HomeServices.EventServices;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.cardview.widget.CardView;
 
@@ -18,60 +19,69 @@ import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 
+import com.google.android.material.button.MaterialButton;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 import java.util.ArrayList;
 
+import peoplecitygroup.neuugen.R;
 import peoplecitygroup.neuugen.service.ServiceCheck;
 import peoplecitygroup.neuugen.service.UrlNeuugen;
 import peoplecitygroup.neuugen.service.VolleyCallback;
 
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
-public class HomeSalon extends AppCompatActivity implements View.OnClickListener {
+public class EventsActivity extends AppCompatActivity implements View.OnClickListener {
 
-    AppCompatTextView trainericon,timericon,cleanicon,mensalonicon,womensalonicon,mensalonmsg,womensalonmsg;
-    CardView mensalonservice,womensalonservice;
-    AppCompatImageView hsimg1,hsimg2,hsimg3;
+    MaterialButton photoproceedbtn,eventproceedbtn;
+    RadioGroup shootoptions,eventarrangements;
+    AppCompatRadioButton prewedshoot,wedshoot,eventshoot,dancers,singers,anchors,bands;
+    AppCompatTextView cleanicon,trainericon,timericon,eventmsg,photomsg;
+    LinearLayout eventlayout;
+    CardView photovideocard,eventarrangementcard;
+
+    AppCompatImageView esimg1,esimg2,esimg3;
+    String servicetypetext;
+
     ProgressDialog loading = null;
     SharedPreferences sp;
-    String[] ownId=new String[]{UrlNeuugen.salonServiceId,UrlNeuugen.mensalonServiceId,UrlNeuugen.womensalonServiceId};
-    String[] ownparentId=new String[]{"0",UrlNeuugen.salonServiceId,UrlNeuugen.salonServiceId};
-    ArrayList<JSONObject>childclick=new ArrayList();
+    String[] ownId=new String[]{UrlNeuugen.eventsServiceId,UrlNeuugen.eventPhotogaphyId,UrlNeuugen.eventArrangementId};
+    String[] ownparentId=new String[]{"0",UrlNeuugen.eventsServiceId,UrlNeuugen.eventsServiceId};
+    ArrayList <JSONObject> childclick=new ArrayList();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_salon);
+        setContentView(R.layout.activity_events);
 
         idLink();
         listenerLink();
-
         Typeface font = Typeface.createFromAsset(getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
+        trainericon.setTypeface(font);
         timericon.setTypeface(font);
         cleanicon.setTypeface(font);
-        trainericon.setTypeface(font);
-        mensalonicon.setTypeface(font);
-        womensalonicon.setTypeface(font);
-
-        loading = new ProgressDialog(HomeSalon.this,R.style.AppCompatAlertDialogStyle);
+        loading = new ProgressDialog(EventsActivity.this,R.style.AppCompatAlertDialogStyle);
         loading.setCancelable(false);
         loading.setMessage("Loading");
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
         checkActive();
-    }
 
+
+    }
     private void checkActive() {
         String city=sp.getString("city",null);
         loading.show();
         ServiceCheck serviceCheck=new ServiceCheck();
-        serviceCheck.check(UrlNeuugen.salonServiceId,city, this, new VolleyCallback() {
+        serviceCheck.check(UrlNeuugen.eventsServiceId,city, this, new VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 loading.dismiss();
@@ -82,7 +92,7 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
             @Override
             public void onError(String response) {
                 loading.dismiss();
-                AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(EventsActivity.this);
                 if (response.equalsIgnoreCase("error")) {
                     builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                     builder.setMessage("Error in server. Try Again")
@@ -106,7 +116,6 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
             }
         });
     }
-
     private void serviceDecode(String result) {
         try {
             JSONObject jsonObject=new JSONObject(result);
@@ -133,7 +142,7 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
             }
             else {
                 //ALERT
-                AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(EventsActivity.this);
                 builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                 builder.setMessage("Error in server. Try Again")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -150,7 +159,7 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
             }
         } catch (JSONException e) {
             //ALERT DIALOG
-            AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(EventsActivity.this);
 
             builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
             builder.setMessage("Error in server. Try Again")
@@ -170,7 +179,6 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
         }
 
     }
-
     private void checkSubActive(JSONArray serviceId, JSONArray parentserviceid, JSONArray servicename, JSONArray status, JSONArray cost, JSONArray pic1, JSONArray pic2, JSONArray pic3, JSONArray cityactive) {
         try {
             for (int i = 1; i < ownId.length; i++) {
@@ -239,7 +247,7 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
             }
         }catch(Exception e){
             //ALERT
-            AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(EventsActivity.this);
 
             builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
             builder.setMessage("Error in server. Try Again")
@@ -259,48 +267,47 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
 
     public void changeService(String ownid,boolean flag,String serviceid,String parentserviceid,String servicename,String status,String cost,String pic1,String pic2,String pic3,String cityactive) {
         Character c=ownid.trim().charAt(0);
-        if(c==UrlNeuugen.mensalonServiceId.trim().charAt(0)){
+        if(c==UrlNeuugen.eventPhotogaphyId.trim().charAt(0)){
             if(flag){
                 if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
-                    mensalonmsg.setVisibility(View.VISIBLE);
-                    mensalonmsg.setText(cost.trim());
+                    photomsg.setVisibility(View.VISIBLE);
+                    photomsg.setText(cost.trim());
                 }
             }
             else{
                 if(cityactive.equalsIgnoreCase("0"))
-                    mensalonmsg.setText("Service not available in this City. Will Come Soon!");
+                    photomsg.setText("Service not available in this City. Will Come Soon!");
                 else
-                    mensalonmsg.setText("Service is currently unavailable");
-                mensalonmsg.setVisibility(View.VISIBLE);
-                mensalonservice.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
-                mensalonservice.setClickable(false);
+                    photomsg.setText("Service is currently unavailable");
+                photomsg.setVisibility(View.VISIBLE);
+                photovideocard.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
+                photovideocard.setClickable(false);
             }
         }
-        if(c==UrlNeuugen.womensalonServiceId.trim().charAt(0)){
+        if(c==UrlNeuugen.eventArrangementId.trim().charAt(0)){
             if(flag){
                 if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
-                    womensalonmsg.setVisibility(View.VISIBLE);
-                    womensalonmsg.setText(cost.trim());
+                    eventmsg.setVisibility(View.VISIBLE);
+                    eventmsg.setText(cost.trim());
                 }
             }
             else{
                 if(cityactive.equalsIgnoreCase("0"))
-                    womensalonmsg.setText("Service not available in this City. Will Come Soon!");
+                    eventmsg.setText("Service not available in this City. Will Come Soon!");
                 else
-                    womensalonmsg.setText("Service is currently unavailable");
-                womensalonmsg.setVisibility(View.VISIBLE);
-                womensalonservice.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
-                womensalonservice.setClickable(false);
+                    eventmsg.setText("Service is currently unavailable");
+                eventmsg.setVisibility(View.VISIBLE);
+                eventarrangementcard.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
+                eventarrangementcard.setClickable(false);
             }
         }
     }
-
     private int findIndex(JSONArray serviceId, String s) throws JSONException {
         int index=-1;
         for(int i=1;i<serviceId.length();i++)
             if(serviceId.getString(i).trim().equalsIgnoreCase(s))
                 index=i;
-            return index;
+        return index;
     }
 
 
@@ -313,19 +320,19 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
                 Picasso.with(this).load(pic1).fit().centerCrop()
                         .placeholder(R.drawable.imgplaceholder)
                         .error(R.drawable.imgplaceholder)
-                        .into(hsimg1);
+                        .into(esimg1);
             }
             if(pic2!=null&&pic2!=""){
                 Picasso.with(this).load(pic2).fit().centerCrop()
                         .placeholder(R.drawable.imgplaceholder)
                         .error(R.drawable.imgplaceholder)
-                        .into(hsimg2);
+                        .into(esimg2);
             }
             if(pic3!=null&&pic3!=""){
                 Picasso.with(this).load(pic3).fit().centerCrop()
                         .placeholder(R.drawable.imgplaceholder)
                         .error(R.drawable.imgplaceholder)
-                        .into(hsimg3);
+                        .into(esimg3);
             }
             rotateImg();
             if(status.trim().equalsIgnoreCase("1")){
@@ -335,7 +342,7 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
                 }
                 else{
                     //ALERT
-                    AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(EventsActivity.this);
 
                     builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                     builder.setMessage("Service not available in this city. Will come Soon!")
@@ -354,7 +361,7 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
             }
             else{
                 //ALERT
-                AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(EventsActivity.this);
 
                 builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                 builder.setMessage("Service is not available")
@@ -373,7 +380,7 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
         }
         else{
             //ALERT
-            AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(EventsActivity.this);
 
             builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
             builder.setMessage("Error in server. Try Again")
@@ -395,48 +402,159 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
     private void rotateImg() {
     }
 
-    public void listenerLink() {
-        mensalonservice.setOnClickListener(this);
-        womensalonservice.setOnClickListener(this);
+    public void idLink()
+    {
+        eventlayout=findViewById(R.id.eventlayout);
+        timericon=findViewById(R.id.timericon);
+        trainericon=findViewById(R.id.trainericon);
+        cleanicon=findViewById(R.id.cleanicon);
+        eventarrangements=findViewById(R.id.eventarrangements);
+        shootoptions=findViewById(R.id.shootoptions);
+        prewedshoot=findViewById(R.id.prewedshoot);
+        wedshoot=findViewById(R.id.wedshoot);
+        eventshoot=findViewById(R.id.eventshoot);
+        dancers=findViewById(R.id.dancers);
+        singers=findViewById(R.id.singers);
+        bands=findViewById(R.id.bands);
+        anchors=findViewById(R.id.anchors);
+        eventproceedbtn=findViewById(R.id.eventproceedbtn);
+        photoproceedbtn=findViewById(R.id.photoproceedbtn);
+        esimg1=findViewById(R.id.esimg1);
+        esimg2=findViewById(R.id.esimg2);
+        esimg3=findViewById(R.id.esimg3);
+        eventmsg=findViewById(R.id.eventmsg);
+        photomsg=findViewById(R.id.photomsg);
+        photovideocard=findViewById(R.id.photovideocard);
+        eventarrangementcard=findViewById(R.id.eventarrangementcard);
+
 
     }
 
-
-    public void idLink()
+    public void listenerLink()
     {
-        cleanicon=findViewById(R.id.cleanicon);
-        trainericon=findViewById(R.id.trainericon);
-        timericon=findViewById(R.id.timericon);
-        mensalonicon=findViewById(R.id.mensalonicon);
-        womensalonicon=findViewById(R.id.womensalonicon);
-        mensalonservice=findViewById(R.id.mensalonservice);
-        womensalonservice=findViewById(R.id.womensalonservice);
-        hsimg1=findViewById(R.id.hsimg1);
-        hsimg2=findViewById(R.id.hsimg2);
-        hsimg3=findViewById(R.id.hsimg3);
-        mensalonmsg=findViewById(R.id.mensalonmsg);
-        womensalonmsg=findViewById(R.id.womensalonmsg);
-
+        eventproceedbtn.setOnClickListener(this);
+        photoproceedbtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        if(v.getId()==R.id.mensalonservice||v.getId()==R.id.womensalonservice) {
-            Intent intent = new Intent(HomeSalon.this, SalonServices.class);
-            if (v.getId() == R.id.mensalonservice) {
-                intent.putExtra("salonservicetext", "Men Salon Services");
-                intent.putExtra("jsonobject", childclick.get(0).toString());
-            }
-            if (v.getId() == R.id.womensalonservice) {
-                intent.putExtra("salonservicetext", "Women Salon Services");
-                intent.putExtra("jsonobject", childclick.get(1).toString());
-            }
-            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(HomeSalon.this, R.anim.fade_in, R.anim.fade_out);
-                startActivity(intent, options.toBundle());
-            } else {
-                startActivity(intent);
+        if (v.getId()==R.id.photoproceedbtn)
+        {
+            if (!prewedshoot.isChecked()&&!wedshoot.isChecked()&&!eventshoot.isChecked())
+            {
+                AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+                alertDialog.setMessage("Select atleast one option");
+                alertDialog.setIcon(R.mipmap.ic_launcher_round);
+                alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>NeuuGen</font>"));
+                alertDialog.show();
+
+                shootoptions.requestFocus();
+            }else
+            {
+                if (prewedshoot.isChecked())
+                {
+                    servicetypetext="Pre-Wedding Shoot";
+                    Intent intent = new Intent(EventsActivity.this, PreWedShootForm.class);
+                    intent.putExtra("servicetype",servicetypetext);
+                    if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                        ActivityOptions options = ActivityOptions.makeCustomAnimation(EventsActivity.this, R.anim.fade_in, R.anim.fade_out);
+                        startActivity(intent, options.toBundle());
+                    } else {
+                        startActivity(intent);
+                    }
+                }else
+                    if (wedshoot.isChecked())
+                {
+                    servicetypetext="Wedding Shoot";
+                    Intent intent = new Intent(EventsActivity.this, WeddingPackages.class);
+                    intent.putExtra("servicetype",servicetypetext);
+                    if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                        ActivityOptions options = ActivityOptions.makeCustomAnimation(EventsActivity.this, R.anim.fade_in, R.anim.fade_out);
+                        startActivity(intent, options.toBundle());
+                    } else {
+                        startActivity(intent);
+                    }
+                }else
+                    if (eventshoot.isChecked())
+                {
+                    servicetypetext="Event Photography";
+                    Intent intent = new Intent(EventsActivity.this, EventPhotographyForm.class);
+                    intent.putExtra("servicetype",servicetypetext);
+                    if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                        ActivityOptions options = ActivityOptions.makeCustomAnimation(EventsActivity.this, R.anim.fade_in, R.anim.fade_out);
+                        startActivity(intent, options.toBundle());
+                    } else {
+                        startActivity(intent);
+                    }
+                }
+
             }
         }
+        if (v.getId()==R.id.eventproceedbtn)
+        {
+            if (!dancers.isChecked()&&!anchors.isChecked()&&!singers.isChecked()&&!bands.isChecked())
+            {
+                AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+                alertDialog.setMessage("Select atleast one option");
+                alertDialog.setIcon(R.mipmap.ic_launcher_round);
+                alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>NeuuGen</font>"));
+                alertDialog.show();
+
+                eventarrangements.requestFocus();
+            }else
+            {
+                if (dancers.isChecked())
+                {
+                    servicetypetext="Dance Performers";
+                    Intent intent = new Intent(EventsActivity.this, EventArrangementForm.class);
+                    intent.putExtra("servicetype",servicetypetext);
+                    if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                        ActivityOptions options = ActivityOptions.makeCustomAnimation(EventsActivity.this, R.anim.fade_in, R.anim.fade_out);
+                        startActivity(intent, options.toBundle());
+                    } else {
+                        startActivity(intent);
+                    }
+                }else
+                if (anchors.isChecked())
+                {
+                    servicetypetext="Anchors OR Hosts";
+                    Intent intent = new Intent(EventsActivity.this, EventArrangementForm.class);
+                    intent.putExtra("servicetype",servicetypetext);
+                    if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                        ActivityOptions options = ActivityOptions.makeCustomAnimation(EventsActivity.this, R.anim.fade_in, R.anim.fade_out);
+                        startActivity(intent, options.toBundle());
+                    } else {
+                        startActivity(intent);
+                    }
+                }else
+                if (singers.isChecked())
+                {
+                    servicetypetext="Singers";
+                    Intent intent = new Intent(EventsActivity.this, EventArrangementForm.class);
+                    intent.putExtra("servicetype",servicetypetext);
+                    if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                        ActivityOptions options = ActivityOptions.makeCustomAnimation(EventsActivity.this, R.anim.fade_in, R.anim.fade_out);
+                        startActivity(intent, options.toBundle());
+                    } else {
+                        startActivity(intent);
+                    }
+                }
+                if (bands.isChecked())
+                {
+                    servicetypetext="Bands OR Musicians";
+                    Intent intent = new Intent(EventsActivity.this, EventArrangementForm.class);
+                    intent.putExtra("servicetype",servicetypetext);
+                    if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                        ActivityOptions options = ActivityOptions.makeCustomAnimation(EventsActivity.this, R.anim.fade_in, R.anim.fade_out);
+                        startActivity(intent, options.toBundle());
+                    } else {
+                        startActivity(intent);
+                    }
+                }
+
+            }
+
+        }
+
     }
 }

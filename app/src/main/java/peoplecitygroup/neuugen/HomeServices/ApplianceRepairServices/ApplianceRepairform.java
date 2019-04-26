@@ -1,4 +1,4 @@
-package peoplecitygroup.neuugen;
+package peoplecitygroup.neuugen.HomeServices.ApplianceRepairServices;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +23,8 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
 import java.util.Date;
+
+import peoplecitygroup.neuugen.R;
 
 public class ApplianceRepairform extends AppCompatActivity implements View.OnClickListener {
 

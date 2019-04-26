@@ -1,4 +1,4 @@
-package peoplecitygroup.neuugen;
+package peoplecitygroup.neuugen.HomeServices.LearningServices;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,19 +6,17 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.cardview.widget.CardView;
 
-import android.app.ActivityOptions;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.button.MaterialButton;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -27,38 +25,34 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import peoplecitygroup.neuugen.R;
 import peoplecitygroup.neuugen.service.ServiceCheck;
 import peoplecitygroup.neuugen.service.UrlNeuugen;
 import peoplecitygroup.neuugen.service.VolleyCallback;
 
-import static android.os.Build.VERSION_CODES.JELLY_BEAN;
+public class LearningActivity extends AppCompatActivity implements View.OnClickListener {
 
-public class Appliancerepair extends AppCompatActivity implements View.OnClickListener {
+    MaterialButton actingbtn,dancingbtn,makeupbtn;
 
-    AppCompatTextView repairicon,installicon,servicegrntyicon,sparepartsicon,custprotecticon,repairmsg,installmsg;
-    CardView repairingservice,installationservice;
-    AppCompatImageView arimg1,arimg2,arimg3;
+    AppCompatImageView lcimg1,lcimg2,lcimg3;
+
+    AppCompatTextView dancingmsg,actingmsg,makeupmsg;
+
+    CardView actingcard,dancingcard,makeupcard;
     ProgressDialog loading = null;
     SharedPreferences sp;
-    String[] ownId=new String[]{UrlNeuugen.appRepairInstallId,UrlNeuugen.repairingId,UrlNeuugen.installationId};
-    String[] ownparentId=new String[]{"0",UrlNeuugen.appRepairInstallId,UrlNeuugen.appRepairInstallId};
+    String[] ownId=new String[]{UrlNeuugen.learningServiceId,UrlNeuugen.dancingClassId,UrlNeuugen.groomingClassId,UrlNeuugen.actingClassId};
+    String[] ownparentId=new String[]{"0",UrlNeuugen.learningServiceId,UrlNeuugen.learningServiceId,UrlNeuugen.learningServiceId};
     ArrayList <JSONObject> childclick=new ArrayList();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_appliancerepair);
+        setContentView(R.layout.activity_learning);
 
         idLink();
         listenerLink();
-        Typeface font = Typeface.createFromAsset(getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
-        repairicon.setTypeface(font);
-        installicon.setTypeface(font);
-        servicegrntyicon.setTypeface(font);
-        custprotecticon.setTypeface(font);
-        sparepartsicon.setTypeface(font);
-        loading = new ProgressDialog(Appliancerepair.this,R.style.AppCompatAlertDialogStyle);
+        loading = new ProgressDialog(LearningActivity.this,R.style.AppCompatAlertDialogStyle);
         loading.setCancelable(false);
         loading.setMessage("Loading");
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -70,7 +64,7 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
         String city=sp.getString("city",null);
         loading.show();
         ServiceCheck serviceCheck=new ServiceCheck();
-        serviceCheck.check(UrlNeuugen.appRepairInstallId,city, this, new VolleyCallback() {
+        serviceCheck.check(UrlNeuugen.learningServiceId,city, this, new VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 loading.dismiss();
@@ -81,7 +75,7 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onError(String response) {
                 loading.dismiss();
-                AlertDialog.Builder builder = new AlertDialog.Builder(Appliancerepair.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(LearningActivity.this);
                 if (response.equalsIgnoreCase("error")) {
                     builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                     builder.setMessage("Error in server. Try Again")
@@ -131,7 +125,7 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
             }
             else {
                 //ALERT
-                AlertDialog.Builder builder = new AlertDialog.Builder(Appliancerepair.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(LearningActivity.this);
                 builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                 builder.setMessage("Error in server. Try Again")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -148,7 +142,7 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
             }
         } catch (JSONException e) {
             //ALERT DIALOG
-            AlertDialog.Builder builder = new AlertDialog.Builder(Appliancerepair.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(LearningActivity.this);
 
             builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
             builder.setMessage("Error in server. Try Again")
@@ -236,7 +230,7 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
             }
         }catch(Exception e){
             //ALERT
-            AlertDialog.Builder builder = new AlertDialog.Builder(Appliancerepair.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(LearningActivity.this);
 
             builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
             builder.setMessage("Error in server. Try Again")
@@ -256,38 +250,55 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
 
     public void changeService(String ownid,boolean flag,String serviceid,String parentserviceid,String servicename,String status,String cost,String pic1,String pic2,String pic3,String cityactive) {
         Character c=ownid.trim().charAt(0);
-        if(c==UrlNeuugen.repairingId.trim().charAt(0)){
+        if(c==UrlNeuugen.actingClassId.trim().charAt(0)){
             if(flag){
                 if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
-                    repairmsg.setVisibility(View.VISIBLE);
-                    repairmsg.setText(cost.trim());
+                    actingmsg.setVisibility(View.VISIBLE);
+                    actingmsg.setText(cost.trim());
                 }
             }
             else{
                 if(cityactive.equalsIgnoreCase("0"))
-                    repairmsg.setText("Service not available in this City. Will Come Soon!");
+                    actingmsg.setText("Service not available in this City. Will Come Soon!");
                 else
-                    repairmsg.setText("Service is currently unavailable");
-                repairmsg.setVisibility(View.VISIBLE);
-                repairingservice.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
-                repairingservice.setClickable(false);
+                    actingmsg.setText("Service is currently unavailable");
+                actingmsg.setVisibility(View.VISIBLE);
+                actingcard.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
+                actingcard.setClickable(false);
             }
         }
-        if(c==UrlNeuugen.installationId.trim().charAt(0)){
+        if(c==UrlNeuugen.groomingClassId.trim().charAt(0)){
             if(flag){
                 if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
-                    installmsg.setVisibility(View.VISIBLE);
-                    installmsg.setText(cost.trim());
+                    makeupmsg.setVisibility(View.VISIBLE);
+                    makeupmsg.setText(cost.trim());
                 }
             }
             else{
                 if(cityactive.equalsIgnoreCase("0"))
-                    installmsg.setText("Service not available in this City. Will Come Soon!");
+                    makeupmsg.setText("Service not available in this City. Will Come Soon!");
                 else
-                    installmsg.setText("Service is currently unavailable");
-                installmsg.setVisibility(View.VISIBLE);
-                installationservice.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
-                installationservice.setClickable(false);
+                    makeupmsg.setText("Service is currently unavailable");
+                makeupmsg.setVisibility(View.VISIBLE);
+                makeupcard.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
+                makeupcard.setClickable(false);
+            }
+        }
+        if(c==UrlNeuugen.dancingClassId.trim().charAt(0)){
+            if(flag){
+                if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
+                    dancingmsg.setVisibility(View.VISIBLE);
+                    dancingmsg.setText(cost.trim());
+                }
+            }
+            else{
+                if(cityactive.equalsIgnoreCase("0"))
+                    dancingmsg.setText("Service not available in this City. Will Come Soon!");
+                else
+                    dancingmsg.setText("Service is currently unavailable");
+                dancingmsg.setVisibility(View.VISIBLE);
+                dancingcard.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
+                dancingcard.setClickable(false);
             }
         }
     }
@@ -309,19 +320,19 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
                 Picasso.with(this).load(pic1).fit().centerCrop()
                         .placeholder(R.drawable.imgplaceholder)
                         .error(R.drawable.imgplaceholder)
-                        .into(arimg1);
+                        .into(lcimg1);
             }
             if(pic2!=null&&pic2!=""){
                 Picasso.with(this).load(pic2).fit().centerCrop()
                         .placeholder(R.drawable.imgplaceholder)
                         .error(R.drawable.imgplaceholder)
-                        .into(arimg2);
+                        .into(lcimg2);
             }
             if(pic3!=null&&pic3!=""){
                 Picasso.with(this).load(pic3).fit().centerCrop()
                         .placeholder(R.drawable.imgplaceholder)
                         .error(R.drawable.imgplaceholder)
-                        .into(arimg3);
+                        .into(lcimg3);
             }
             rotateImg();
             if(status.trim().equalsIgnoreCase("1")){
@@ -331,7 +342,7 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
                 }
                 else{
                     //ALERT
-                    AlertDialog.Builder builder = new AlertDialog.Builder(Appliancerepair.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LearningActivity.this);
 
                     builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                     builder.setMessage("Service not available in this city. Will come Soon!")
@@ -350,7 +361,7 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
             }
             else{
                 //ALERT
-                AlertDialog.Builder builder = new AlertDialog.Builder(Appliancerepair.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(LearningActivity.this);
 
                 builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                 builder.setMessage("Service is not available")
@@ -369,7 +380,7 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
         }
         else{
             //ALERT
-            AlertDialog.Builder builder = new AlertDialog.Builder(Appliancerepair.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(LearningActivity.this);
 
             builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
             builder.setMessage("Error in server. Try Again")
@@ -392,52 +403,41 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
     }
 
 
-    public void idLink()
-    {
-        repairicon=findViewById(R.id.repairicon);
-        installicon=findViewById(R.id.installicon);
-        custprotecticon=findViewById(R.id.custprotecticon);
-        sparepartsicon=findViewById(R.id.sparepartsicon);
-        servicegrntyicon=findViewById(R.id.servicegrntyicon);
-        repairingservice=findViewById(R.id.repairingservice);
-        installationservice=findViewById(R.id.installationservice);
-        arimg1=findViewById(R.id.arimg1);
-        arimg2=findViewById(R.id.arimg2);
-        arimg3=findViewById(R.id.arimg3);
-        installmsg=findViewById(R.id.installmsg);
-        repairmsg=findViewById(R.id.repairmsg);
 
+    private void idLink() {
+        actingbtn=findViewById(R.id.actingbtn);
+        dancingbtn=findViewById(R.id.dancingbtn);
+        makeupbtn=findViewById(R.id.makeupbtn);
+        lcimg1=findViewById(R.id.lcimg1);
+        lcimg2=findViewById(R.id.lcimg2);
+        lcimg3=findViewById(R.id.lcimg3);
+        actingmsg=findViewById(R.id.actingmsg);
+        makeupmsg=findViewById(R.id.makeupmsg);
+        dancingmsg=findViewById(R.id.dancingmsg);
+        actingcard=findViewById(R.id.actingcard);
+        dancingcard=findViewById(R.id.dancingcard);
+        makeupcard=findViewById(R.id.makeupcard);
     }
-    public void listenerLink()
-    {
-        repairingservice.setOnClickListener(this);
-        installationservice.setOnClickListener(this);
 
+    private void listenerLink() {
+        actingbtn.setOnClickListener(this);
+        dancingbtn.setOnClickListener(this);
+        makeupbtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId()==R.id.repairingservice){
-            Intent intent = new Intent(Appliancerepair.this, ApplianceRepairform.class);
-            intent.putExtra("servicetext","Repairing Service");
-            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(Appliancerepair.this, R.anim.fade_in, R.anim.fade_out);
-                startActivity(intent, options.toBundle());
-            } else {
-                startActivity(intent);
-            }
-        }
-        if (v.getId()==R.id.installationservice){
-            Intent intent = new Intent(Appliancerepair.this, ApplianceRepairform.class);
-            intent.putExtra("servicetext","Installation Service");
-            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(Appliancerepair.this, R.anim.fade_in, R.anim.fade_out);
-                startActivity(intent, options.toBundle());
-            } else {
-                startActivity(intent);
-            }
-        }
+        if (v.getId()==R.id.dancingbtn)
+        {
 
+        }
+        if (v.getId()==R.id.makeupbtn)
+        {
 
+        }
+        if (v.getId()==R.id.actingbtn)
+        {
+
+        }
     }
 }

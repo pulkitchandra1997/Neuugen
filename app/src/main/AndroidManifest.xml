@@ -34,39 +34,39 @@
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".Termsofuse" />
         <activity android:name=".AboutUs" />
-        <activity android:name=".LearningActivity" />
+        <activity android:name=".HomeServices.LearningServices.LearningActivity" />
         <activity android:name=".PropertyDetails" />
         <activity android:name=".PropertyList" />
         <activity
             android:name=".PropertiesForm"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".WeddingPackages" />
+        <activity android:name=".HomeServices.EventServices.WeddingPackages" />
         <activity
-            android:name=".EventPhotographyForm"
+            android:name=".HomeServices.EventServices.EventPhotographyForm"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".WeddingShootForm"
+            android:name=".HomeServices.EventServices.WeddingShootForm"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".PreWedShootForm"
+            android:name=".HomeServices.EventServices.PreWedShootForm"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".EventArrangementForm"
+            android:name=".HomeServices.EventServices.EventArrangementForm"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".EventsActivity" />
+        <activity android:name=".HomeServices.EventServices.EventsActivity" />
         <activity
-            android:name=".HomeRenovationForm"
+            android:name=".HomeServices.HomeRenovationServices.HomeRenovationForm"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".HomeRenovation" />
+        <activity android:name=".HomeServices.HomeRenovationServices.HomeRenovation" />
         <activity
-            android:name=".SalonServiceForm"
+            android:name=".HomeServices.SalonServices.SalonServiceForm"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".SalonServices" />
-        <activity android:name=".HomeSalon" />
+        <activity android:name=".HomeServices.SalonServices.SalonServices" />
+        <activity android:name=".HomeServices.SalonServices.HomeSalon" />
         <activity
-            android:name=".ApplianceRepairform"
+            android:name=".HomeServices.ApplianceRepairServices.ApplianceRepairform"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".Appliancerepair" />
+        <activity android:name=".HomeServices.ApplianceRepairServices.Appliancerepair" />
         <activity
             android:name=".SellPlots"
             android:windowSoftInputMode="stateHidden" />

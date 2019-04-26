@@ -3,16 +3,10 @@ package peoplecitygroup.neuugen;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -20,11 +14,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+
+import peoplecitygroup.neuugen.HomeServices.ApplianceRepairServices.Appliancerepair;
+import peoplecitygroup.neuugen.HomeServices.EventServices.EventsActivity;
+import peoplecitygroup.neuugen.HomeServices.HomeRenovationServices.HomeRenovation;
+import peoplecitygroup.neuugen.HomeServices.LearningServices.LearningActivity;
+import peoplecitygroup.neuugen.HomeServices.SalonServices.HomeSalon;
 
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 

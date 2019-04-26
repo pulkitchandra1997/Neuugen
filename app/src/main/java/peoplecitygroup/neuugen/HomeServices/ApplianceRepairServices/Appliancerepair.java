@@ -1,22 +1,25 @@
-package peoplecitygroup.neuugen;
+package peoplecitygroup.neuugen.HomeServices.ApplianceRepairServices;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.cardview.widget.CardView;
 
 import android.app.ActivityOptions;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 
-import com.google.android.material.button.MaterialButton;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,49 +27,85 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import peoplecitygroup.neuugen.R;
+import peoplecitygroup.neuugen.service.ServiceCheck;
 import peoplecitygroup.neuugen.service.UrlNeuugen;
+import peoplecitygroup.neuugen.service.VolleyCallback;
 
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
-public class SalonServices extends AppCompatActivity implements View.OnClickListener {
+public class Appliancerepair extends AppCompatActivity implements View.OnClickListener {
 
-    AppCompatTextView salonservicehead,menhaircutprice,menhaircutmsg,menbeardprice,menbeardmsg,menpartymsg,menpartyprice,womenhaircutprice,womenhaircutmsg,womenpartymsg,womenpartyprice,womenwedprice,womenwedmsg;
-    MaterialButton menhaircutbtn,menbeardbtn,menpartybtn,womenhaircutbtn,womenpartymakeupbtn,womenweddingmakeupbtn;
-    Intent intent;
-    String servicetext;
-    CardView menhaircutcard,menbeardcard,menpartycard,womenhaircutcard,womenpartymakeupcard,womenweddingmakeupcard;
-    LinearLayout womensalonlayout,mensalonlayout;
-    String[] ownId;
-    String[] ownparentId;
-    ArrayList<JSONObject> childclick=new ArrayList();
+    AppCompatTextView repairicon,installicon,servicegrntyicon,sparepartsicon,custprotecticon,repairmsg,installmsg;
+    CardView repairingservice,installationservice;
+    AppCompatImageView arimg1,arimg2,arimg3;
+    ProgressDialog loading = null;
+    SharedPreferences sp;
+    String[] ownId=new String[]{UrlNeuugen.appRepairInstallId,UrlNeuugen.repairingId,UrlNeuugen.installationId};
+    String[] ownparentId=new String[]{"0",UrlNeuugen.appRepairInstallId,UrlNeuugen.appRepairInstallId};
+    ArrayList <JSONObject> childclick=new ArrayList();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_salon_services);
+        setContentView(R.layout.activity_appliancerepair);
 
-        intent=getIntent();
-        servicetext=intent.getStringExtra("salonservicetext");
-        String result=intent.getStringExtra("jsonobject");
         idLink();
         listenerLink();
-        if (servicetext.equalsIgnoreCase("Men Salon Services"))
-        {
-            mensalonlayout.setVisibility(View.VISIBLE);
-            womensalonlayout.setVisibility(View.GONE);
-            ownId=new String[]{UrlNeuugen.mensalonServiceId,UrlNeuugen.menHaircutId,UrlNeuugen.menHaircutBeardId,UrlNeuugen.menPartymakeupId};
-            ownparentId=new String[]{UrlNeuugen.salonServiceId,UrlNeuugen.mensalonServiceId,UrlNeuugen.mensalonServiceId,UrlNeuugen.mensalonServiceId};
-        }else
-        if (servicetext.equalsIgnoreCase("Women Salon Services"))
-        {
-            womensalonlayout.setVisibility(View.VISIBLE);
-            mensalonlayout.setVisibility(View.GONE);
-            ownId=new String[]{UrlNeuugen.womensalonServiceId,UrlNeuugen.womenhaircutId,UrlNeuugen.womenPartymakeupId,UrlNeuugen.womenWeddingmakeupId};
-            ownparentId=new String[]{UrlNeuugen.salonServiceId,UrlNeuugen.womensalonServiceId,UrlNeuugen.womensalonServiceId,UrlNeuugen.womensalonServiceId};
-        }
-        salonservicehead.setText(servicetext);
-        serviceDecode(result);
-    }
+        Typeface font = Typeface.createFromAsset(getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
+        repairicon.setTypeface(font);
+        installicon.setTypeface(font);
+        servicegrntyicon.setTypeface(font);
+        custprotecticon.setTypeface(font);
+        sparepartsicon.setTypeface(font);
+        loading = new ProgressDialog(Appliancerepair.this,R.style.AppCompatAlertDialogStyle);
+        loading.setCancelable(false);
+        loading.setMessage("Loading");
+        loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
+        checkActive();
 
+    }
+    private void checkActive() {
+        String city=sp.getString("city",null);
+        loading.show();
+        ServiceCheck serviceCheck=new ServiceCheck();
+        serviceCheck.check(UrlNeuugen.appRepairInstallId,city, this, new VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+                loading.dismiss();
+                serviceDecode(result);
+                Log.d("receivedmsg",result);
+            }
+
+            @Override
+            public void onError(String response) {
+                loading.dismiss();
+                AlertDialog.Builder builder = new AlertDialog.Builder(Appliancerepair.this);
+                if (response.equalsIgnoreCase("error")) {
+                    builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                    builder.setMessage("Error in server. Try Again")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //finish
+                                }
+                            })
+                            .setIcon(R.mipmap.ic_launcher_round);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                    positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+                }
+            }
+
+            @Override
+            public void onVolleyError() {
+                loading.dismiss();
+            }
+        });
+    }
     private void serviceDecode(String result) {
         try {
             JSONObject jsonObject=new JSONObject(result);
@@ -93,7 +132,7 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
             }
             else {
                 //ALERT
-                AlertDialog.Builder builder = new AlertDialog.Builder(SalonServices.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(Appliancerepair.this);
                 builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                 builder.setMessage("Error in server. Try Again")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -110,7 +149,7 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
             }
         } catch (JSONException e) {
             //ALERT DIALOG
-            AlertDialog.Builder builder = new AlertDialog.Builder(SalonServices.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(Appliancerepair.this);
 
             builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
             builder.setMessage("Error in server. Try Again")
@@ -128,122 +167,7 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
             e.printStackTrace();
             Log.d("receivedmsg",e.toString());
         }
-    }
-    public void changeService(String ownid,boolean flag,String serviceid,String parentserviceid,String servicename,String status,String cost,String pic1,String pic2,String pic3,String cityactive) {
-        Character c=ownid.trim().charAt(0);
-        if(c==UrlNeuugen.menHaircutId.trim().charAt(0)){
-            if(flag){
-                if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
-                    menhaircutprice.setVisibility(View.VISIBLE);
-                    menhaircutprice.setText(cost.trim());
-                }
-            }
-            else{
-                if(cityactive.equalsIgnoreCase("0"))
-                    menhaircutmsg.setText("Service not available in this City. Will Come Soon!");
-                else
-                    womenhaircutmsg.setText("Service is currently unavailable");
-                menhaircutmsg.setVisibility(View.VISIBLE);
-                menhaircutcard.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
-                menhaircutbtn.setClickable(false);
-            }
-        }
-        if(c==UrlNeuugen.menHaircutBeardId.trim().charAt(0)){
-            if(flag){
-                if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
-                    menbeardprice.setVisibility(View.VISIBLE);
-                    menbeardprice.setText(cost.trim());
-                }
-            }
-            else{
-                if(cityactive.equalsIgnoreCase("0"))
-                    menbeardmsg.setText("Service not available in this City. Will Come Soon!");
-                else
-                    menbeardmsg.setText("Service is currently unavailable");
-                menbeardmsg.setVisibility(View.VISIBLE);
-                menbeardcard.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
-                menbeardbtn.setClickable(false);
-            }
-        }
-        if(c==UrlNeuugen.menPartymakeupId.trim().charAt(0)){
-            if(flag){
-                if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
-                    menpartyprice.setVisibility(View.VISIBLE);
-                    menpartyprice.setText(cost.trim());
-                }
 
-            }
-            else{
-                if(cityactive.equalsIgnoreCase("0"))
-                    menpartymsg.setText("Service not available in this City. Will Come Soon!");
-                else
-                    menpartymsg.setText("Service is currently unavailable");
-                menpartymsg.setVisibility(View.VISIBLE);
-                menpartycard.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
-                menpartybtn.setClickable(false);
-            }
-        }
-        if(c==UrlNeuugen.womenhaircutId.trim().charAt(0)){
-            if(flag){
-                if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
-                    womenhaircutprice.setVisibility(View.VISIBLE);
-                    womenhaircutprice.setText(cost.trim());
-                }
-
-            }
-            else{
-                if(cityactive.equalsIgnoreCase("0"))
-                    womenhaircutmsg.setText("Service not available in this City. Will Come Soon!");
-                else
-                    womenhaircutmsg.setText("Service is currently unavailable");
-                womenhaircutmsg.setVisibility(View.VISIBLE);
-                womenhaircutcard.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
-                womenhaircutbtn.setClickable(false);
-            }
-        }
-        if(c==UrlNeuugen.womenPartymakeupId.trim().charAt(0)){
-            if(flag){
-                if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
-                    womenpartyprice.setVisibility(View.VISIBLE);
-                    womenpartyprice.setText(cost.trim());
-                }
-
-            }
-            else{
-                if(cityactive.equalsIgnoreCase("0"))
-                    womenpartymsg.setText("Service not available in this City. Will Come Soon!");
-                else
-                    womenpartymsg.setText("Service is currently unavailable");
-                womenpartymsg.setVisibility(View.VISIBLE);
-                womenpartymakeupcard.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
-                womenpartymakeupbtn.setClickable(false);
-            }
-        }
-        if(c==UrlNeuugen.womenWeddingmakeupId.trim().charAt(0)){
-            if(flag){
-                if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
-                    womenwedprice.setVisibility(View.VISIBLE);
-                    womenwedprice.setText(cost.trim());
-                }
-            }
-            else{
-                if(cityactive.equalsIgnoreCase("0"))
-                    womenwedmsg.setText("Service not available in this City. Will Come Soon!");
-                else
-                    womenwedmsg.setText("Service is currently unavailable");
-                womenwedmsg.setVisibility(View.VISIBLE);
-                womenweddingmakeupcard.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
-                womenweddingmakeupbtn.setClickable(false);
-            }
-        }
-    }
-
-    private int findIndex(JSONArray serviceId, String s) throws JSONException {
-        int index=-1;
-        for(int i=1;i<serviceId.length();i++)
-            if(serviceId.getString(i).trim().equalsIgnoreCase(s))
-                index=i;
-        return index;
     }
     private void checkSubActive(JSONArray serviceId, JSONArray parentserviceid, JSONArray servicename, JSONArray status, JSONArray cost, JSONArray pic1, JSONArray pic2, JSONArray pic3, JSONArray cityactive) {
         try {
@@ -262,6 +186,15 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
                             JSONArray childpic2=new JSONArray();
                             JSONArray childpic3=new JSONArray();
                             JSONArray childcityactive=new JSONArray();
+                            childserviceId.put(serviceId.getString(i));
+                            childparentserviceid.put(parentserviceid.getString(i));
+                            childservicename.put(servicename.getString(i));
+                            childstatus.put(status.getString(i));
+                            childcost.put(cost.getString(i));
+                            childpic1.put(pic1.getString(i));
+                            childpic2.put(pic2.getString(i));
+                            childpic3.put(pic3.getString(i));
+                            childcityactive.put(cityactive.getString(i));
                             for(int j=1;j<parentserviceid.length();j++){
                                 if(parentserviceid.getString(j).equalsIgnoreCase(ownId[i])){
                                     childserviceId.put(serviceId.getString(j));
@@ -304,7 +237,7 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
             }
         }catch(Exception e){
             //ALERT
-            AlertDialog.Builder builder = new AlertDialog.Builder(SalonServices.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(Appliancerepair.this);
 
             builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
             builder.setMessage("Error in server. Try Again")
@@ -321,29 +254,76 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
             positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
         }
     }
+
+    public void changeService(String ownid,boolean flag,String serviceid,String parentserviceid,String servicename,String status,String cost,String pic1,String pic2,String pic3,String cityactive) {
+        Character c=ownid.trim().charAt(0);
+        if(c==UrlNeuugen.repairingId.trim().charAt(0)){
+            if(flag){
+                if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
+                    repairmsg.setVisibility(View.VISIBLE);
+                    repairmsg.setText(cost.trim());
+                }
+            }
+            else{
+                if(cityactive.equalsIgnoreCase("0"))
+                    repairmsg.setText("Service not available in this City. Will Come Soon!");
+                else
+                    repairmsg.setText("Service is currently unavailable");
+                repairmsg.setVisibility(View.VISIBLE);
+                repairingservice.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
+                repairingservice.setClickable(false);
+            }
+        }
+        if(c==UrlNeuugen.installationId.trim().charAt(0)){
+            if(flag){
+                if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
+                    installmsg.setVisibility(View.VISIBLE);
+                    installmsg.setText(cost.trim());
+                }
+            }
+            else{
+                if(cityactive.equalsIgnoreCase("0"))
+                    installmsg.setText("Service not available in this City. Will Come Soon!");
+                else
+                    installmsg.setText("Service is currently unavailable");
+                installmsg.setVisibility(View.VISIBLE);
+                installationservice.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
+                installationservice.setClickable(false);
+            }
+        }
+    }
+    private int findIndex(JSONArray serviceId, String s) throws JSONException {
+        int index=-1;
+        for(int i=1;i<serviceId.length();i++)
+            if(serviceId.getString(i).trim().equalsIgnoreCase(s))
+                index=i;
+        return index;
+    }
+
+
     private boolean checkParentActive(String serviceid,String parentserviceid,String servicename,String status,String cost,String pic1,String pic2,String pic3,String cityactive) {
         if(serviceid.equalsIgnoreCase(ownId[0])){
             pic1=pic1.trim();
             pic2=pic2.trim();
             pic3=pic3.trim();
-            /*if(pic1!=null&&pic1!=""){
+            if(pic1!=null&&pic1!=""){
                 Picasso.with(this).load(pic1).fit().centerCrop()
                         .placeholder(R.drawable.imgplaceholder)
                         .error(R.drawable.imgplaceholder)
-                        .into(hsimg1);
+                        .into(arimg1);
             }
             if(pic2!=null&&pic2!=""){
-                Picasso.with(this).load(pic1).fit().centerCrop()
+                Picasso.with(this).load(pic2).fit().centerCrop()
                         .placeholder(R.drawable.imgplaceholder)
                         .error(R.drawable.imgplaceholder)
-                        .into(hsimg2);
+                        .into(arimg2);
             }
             if(pic3!=null&&pic3!=""){
-                Picasso.with(this).load(pic1).fit().centerCrop()
+                Picasso.with(this).load(pic3).fit().centerCrop()
                         .placeholder(R.drawable.imgplaceholder)
                         .error(R.drawable.imgplaceholder)
-                        .into(hsimg3);
-            }*/
+                        .into(arimg3);
+            }
             rotateImg();
             if(status.trim().equalsIgnoreCase("1")){
                 if(cityactive.trim().equalsIgnoreCase("1")){
@@ -352,7 +332,7 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
                 }
                 else{
                     //ALERT
-                    AlertDialog.Builder builder = new AlertDialog.Builder(SalonServices.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Appliancerepair.this);
 
                     builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                     builder.setMessage("Service not available in this city. Will come Soon!")
@@ -371,7 +351,7 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
             }
             else{
                 //ALERT
-                AlertDialog.Builder builder = new AlertDialog.Builder(SalonServices.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(Appliancerepair.this);
 
                 builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                 builder.setMessage("Service is not available")
@@ -390,7 +370,7 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
         }
         else{
             //ALERT
-            AlertDialog.Builder builder = new AlertDialog.Builder(SalonServices.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(Appliancerepair.this);
 
             builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
             builder.setMessage("Error in server. Try Again")
@@ -408,90 +388,57 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
         }
         return false;
     }
+
     private void rotateImg() {
     }
+
+
     public void idLink()
     {
-        salonservicehead=findViewById(R.id.salonservicehead);
-        mensalonlayout=findViewById(R.id.mensalonlayout);
-        womensalonlayout=findViewById(R.id.womensalonlayout);
-        menhaircutbtn=findViewById(R.id.menhaircutbtn);
-        menbeardbtn=findViewById(R.id.menbeardbtn);
-        menpartybtn=findViewById(R.id.menpartybtn);
-        womenhaircutbtn=findViewById(R.id.womenhaircutbtn);
-        womenpartymakeupbtn=findViewById(R.id.womenpartymakeupbtn);
-        womenweddingmakeupbtn=findViewById(R.id.womenweddingmakeupbtn);
-        menhaircutprice=findViewById(R.id.menhaircutprice);
-        womenhaircutprice=findViewById(R.id.womenhaircutprice);
-        menbeardprice=findViewById(R.id.menbeardprice);
-        womenpartyprice=findViewById(R.id.womenpartymakeupprice);
-        menhaircutmsg=findViewById(R.id.menhaircutmsg);
-        menbeardmsg=findViewById(R.id.menbeardmsg);
-        menpartymsg=findViewById(R.id.menpartymsg);
-        womenwedmsg=findViewById(R.id.womenweddingmsg);
-        womenwedprice=findViewById(R.id.womenweddingmakeupprice);
-        womenpartymsg=findViewById(R.id.womenpartymsg);
-        womenhaircutmsg=findViewById(R.id.womenhaircutmsg);
-        menpartyprice=findViewById(R.id.menpartyprice);
-        menbeardcard=findViewById(R.id.menbeardcard);
-        menhaircutcard=findViewById(R.id.menhaircutcard);
-        menpartycard=findViewById(R.id.menpartycard);
-        womenpartymakeupcard=findViewById(R.id.womenpartymakeupcard);
-        womenhaircutcard=findViewById(R.id.womenhaircutcard);
-        womenweddingmakeupcard=findViewById(R.id.womenweddingmakeupcard);
-    }
+        repairicon=findViewById(R.id.repairicon);
+        installicon=findViewById(R.id.installicon);
+        custprotecticon=findViewById(R.id.custprotecticon);
+        sparepartsicon=findViewById(R.id.sparepartsicon);
+        servicegrntyicon=findViewById(R.id.servicegrntyicon);
+        repairingservice=findViewById(R.id.repairingservice);
+        installationservice=findViewById(R.id.installationservice);
+        arimg1=findViewById(R.id.arimg1);
+        arimg2=findViewById(R.id.arimg2);
+        arimg3=findViewById(R.id.arimg3);
+        installmsg=findViewById(R.id.installmsg);
+        repairmsg=findViewById(R.id.repairmsg);
 
+    }
     public void listenerLink()
     {
-        menhaircutbtn.setOnClickListener(this);
-        menbeardbtn.setOnClickListener(this);
-        menpartybtn.setOnClickListener(this);
-        womenweddingmakeupbtn.setOnClickListener(this);
-        womenpartymakeupbtn.setOnClickListener(this);
-        womenhaircutbtn.setOnClickListener(this);
+        repairingservice.setOnClickListener(this);
+        installationservice.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View v) {
-        if(v.getId()==R.id.menhaircutbtn||v.getId()==R.id.menbeardbtn||v.getId()==R.id.menpartybtn||v.getId()==R.id.womenhaircutbtn||v.getId()==R.id.womenpartymakeupbtn||v.getId()==R.id.womenweddingmakeupbtn) {
-            Intent intent = new Intent(SalonServices.this, SalonServiceForm.class);
-            if (v.getId() == R.id.menhaircutbtn) {
-                intent.putExtra("servicetype", "Men's Haircut");
-                intent.putExtra("serviceprice", menhaircutprice.getText().toString().trim());
-                intent.putExtra("serviceid", UrlNeuugen.menHaircutId);
-            }
-            if (v.getId() == R.id.menbeardbtn) {
-                intent.putExtra("servicetype", "Men's Haircut & Beard");
-                intent.putExtra("serviceprice", menbeardprice.getText().toString().trim());
-                intent.putExtra("serviceid", UrlNeuugen.menHaircutBeardId);
-            }
-            if (v.getId() == R.id.menpartybtn) {
-                intent.putExtra("servicetype", "Men's Party Grooming");
-                intent.putExtra("serviceprice", menpartyprice.getText().toString().trim());
-                intent.putExtra("serviceid", UrlNeuugen.menPartymakeupId);
-            }
-
-            if (v.getId() == R.id.womenhaircutbtn) {
-                intent.putExtra("servicetype", "Women's Haircut & styling");
-                intent.putExtra("serviceprice", womenhaircutprice.getText().toString().trim());
-                intent.putExtra("serviceid", UrlNeuugen.womenhaircutId);
-            }
-            if (v.getId() == R.id.womenpartymakeupbtn) {
-                intent.putExtra("servicetype", "Women's Party makeup");
-                intent.putExtra("serviceprice", womenpartyprice.getText().toString().trim());
-                intent.putExtra("serviceid", UrlNeuugen.womenPartymakeupId);
-            }
-            if (v.getId() == R.id.womenweddingmakeupbtn) {
-                intent.putExtra("servicetype", "Women's Wedding makeup ");
-                intent.putExtra("serviceprice", womenwedprice.getText().toString().trim());
-                intent.putExtra("serviceid", UrlNeuugen.womenWeddingmakeupId);
-            }
+        if (v.getId()==R.id.repairingservice){
+            Intent intent = new Intent(Appliancerepair.this, ApplianceRepairform.class);
+            intent.putExtra("servicetext","Repairing Service");
             if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(SalonServices.this, R.anim.fade_in, R.anim.fade_out);
+                ActivityOptions options = ActivityOptions.makeCustomAnimation(Appliancerepair.this, R.anim.fade_in, R.anim.fade_out);
                 startActivity(intent, options.toBundle());
             } else {
                 startActivity(intent);
             }
         }
+        if (v.getId()==R.id.installationservice){
+            Intent intent = new Intent(Appliancerepair.this, ApplianceRepairform.class);
+            intent.putExtra("servicetext","Installation Service");
+            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                ActivityOptions options = ActivityOptions.makeCustomAnimation(Appliancerepair.this, R.anim.fade_in, R.anim.fade_out);
+                startActivity(intent, options.toBundle());
+            } else {
+                startActivity(intent);
+            }
+        }
+
+
     }
 }

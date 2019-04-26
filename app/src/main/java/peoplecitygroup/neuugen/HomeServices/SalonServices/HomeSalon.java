@@ -1,4 +1,4 @@
-package peoplecitygroup.neuugen;
+package peoplecitygroup.neuugen.HomeServices.SalonServices;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,64 +6,73 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.cardview.widget.CardView;
 
+import android.app.ActivityOptions;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.android.material.button.MaterialButton;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 import java.util.ArrayList;
 
+import peoplecitygroup.neuugen.R;
 import peoplecitygroup.neuugen.service.ServiceCheck;
 import peoplecitygroup.neuugen.service.UrlNeuugen;
 import peoplecitygroup.neuugen.service.VolleyCallback;
 
-public class LearningActivity extends AppCompatActivity implements View.OnClickListener {
+import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
-    MaterialButton actingbtn,dancingbtn,makeupbtn;
+public class HomeSalon extends AppCompatActivity implements View.OnClickListener {
 
-    AppCompatImageView lcimg1,lcimg2,lcimg3;
-
-    AppCompatTextView dancingmsg,actingmsg,makeupmsg;
-
-    CardView actingcard,dancingcard,makeupcard;
+    AppCompatTextView trainericon,timericon,cleanicon,mensalonicon,womensalonicon,mensalonmsg,womensalonmsg;
+    CardView mensalonservice,womensalonservice;
+    AppCompatImageView hsimg1,hsimg2,hsimg3;
     ProgressDialog loading = null;
     SharedPreferences sp;
-    String[] ownId=new String[]{UrlNeuugen.learningServiceId,UrlNeuugen.dancingClassId,UrlNeuugen.groomingClassId,UrlNeuugen.actingClassId};
-    String[] ownparentId=new String[]{"0",UrlNeuugen.learningServiceId,UrlNeuugen.learningServiceId,UrlNeuugen.learningServiceId};
-    ArrayList <JSONObject> childclick=new ArrayList();
-
+    String[] ownId=new String[]{UrlNeuugen.salonServiceId,UrlNeuugen.mensalonServiceId,UrlNeuugen.womensalonServiceId};
+    String[] ownparentId=new String[]{"0",UrlNeuugen.salonServiceId,UrlNeuugen.salonServiceId};
+    ArrayList<JSONObject>childclick=new ArrayList();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_learning);
+        setContentView(R.layout.activity_home_salon);
 
         idLink();
         listenerLink();
-        loading = new ProgressDialog(LearningActivity.this,R.style.AppCompatAlertDialogStyle);
+
+        Typeface font = Typeface.createFromAsset(getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
+        timericon.setTypeface(font);
+        cleanicon.setTypeface(font);
+        trainericon.setTypeface(font);
+        mensalonicon.setTypeface(font);
+        womensalonicon.setTypeface(font);
+
+        loading = new ProgressDialog(HomeSalon.this,R.style.AppCompatAlertDialogStyle);
         loading.setCancelable(false);
         loading.setMessage("Loading");
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
         checkActive();
-
     }
+
     private void checkActive() {
         String city=sp.getString("city",null);
         loading.show();
         ServiceCheck serviceCheck=new ServiceCheck();
-        serviceCheck.check(UrlNeuugen.learningServiceId,city, this, new VolleyCallback() {
+        serviceCheck.check(UrlNeuugen.salonServiceId,city, this, new VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 loading.dismiss();
@@ -74,7 +83,7 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onError(String response) {
                 loading.dismiss();
-                AlertDialog.Builder builder = new AlertDialog.Builder(LearningActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
                 if (response.equalsIgnoreCase("error")) {
                     builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                     builder.setMessage("Error in server. Try Again")
@@ -98,6 +107,7 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
             }
         });
     }
+
     private void serviceDecode(String result) {
         try {
             JSONObject jsonObject=new JSONObject(result);
@@ -124,7 +134,7 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
             }
             else {
                 //ALERT
-                AlertDialog.Builder builder = new AlertDialog.Builder(LearningActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
                 builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                 builder.setMessage("Error in server. Try Again")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -141,7 +151,7 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
             }
         } catch (JSONException e) {
             //ALERT DIALOG
-            AlertDialog.Builder builder = new AlertDialog.Builder(LearningActivity.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
 
             builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
             builder.setMessage("Error in server. Try Again")
@@ -161,6 +171,7 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
         }
 
     }
+
     private void checkSubActive(JSONArray serviceId, JSONArray parentserviceid, JSONArray servicename, JSONArray status, JSONArray cost, JSONArray pic1, JSONArray pic2, JSONArray pic3, JSONArray cityactive) {
         try {
             for (int i = 1; i < ownId.length; i++) {
@@ -229,7 +240,7 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
             }
         }catch(Exception e){
             //ALERT
-            AlertDialog.Builder builder = new AlertDialog.Builder(LearningActivity.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
 
             builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
             builder.setMessage("Error in server. Try Again")
@@ -249,64 +260,48 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
 
     public void changeService(String ownid,boolean flag,String serviceid,String parentserviceid,String servicename,String status,String cost,String pic1,String pic2,String pic3,String cityactive) {
         Character c=ownid.trim().charAt(0);
-        if(c==UrlNeuugen.actingClassId.trim().charAt(0)){
+        if(c==UrlNeuugen.mensalonServiceId.trim().charAt(0)){
             if(flag){
                 if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
-                    actingmsg.setVisibility(View.VISIBLE);
-                    actingmsg.setText(cost.trim());
+                    mensalonmsg.setVisibility(View.VISIBLE);
+                    mensalonmsg.setText(cost.trim());
                 }
             }
             else{
                 if(cityactive.equalsIgnoreCase("0"))
-                    actingmsg.setText("Service not available in this City. Will Come Soon!");
+                    mensalonmsg.setText("Service not available in this City. Will Come Soon!");
                 else
-                    actingmsg.setText("Service is currently unavailable");
-                actingmsg.setVisibility(View.VISIBLE);
-                actingcard.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
-                actingcard.setClickable(false);
+                    mensalonmsg.setText("Service is currently unavailable");
+                mensalonmsg.setVisibility(View.VISIBLE);
+                mensalonservice.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
+                mensalonservice.setClickable(false);
             }
         }
-        if(c==UrlNeuugen.groomingClassId.trim().charAt(0)){
+        if(c==UrlNeuugen.womensalonServiceId.trim().charAt(0)){
             if(flag){
                 if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
-                    makeupmsg.setVisibility(View.VISIBLE);
-                    makeupmsg.setText(cost.trim());
+                    womensalonmsg.setVisibility(View.VISIBLE);
+                    womensalonmsg.setText(cost.trim());
                 }
             }
             else{
                 if(cityactive.equalsIgnoreCase("0"))
-                    makeupmsg.setText("Service not available in this City. Will Come Soon!");
+                    womensalonmsg.setText("Service not available in this City. Will Come Soon!");
                 else
-                    makeupmsg.setText("Service is currently unavailable");
-                makeupmsg.setVisibility(View.VISIBLE);
-                makeupcard.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
-                makeupcard.setClickable(false);
-            }
-        }
-        if(c==UrlNeuugen.dancingClassId.trim().charAt(0)){
-            if(flag){
-                if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
-                    dancingmsg.setVisibility(View.VISIBLE);
-                    dancingmsg.setText(cost.trim());
-                }
-            }
-            else{
-                if(cityactive.equalsIgnoreCase("0"))
-                    dancingmsg.setText("Service not available in this City. Will Come Soon!");
-                else
-                    dancingmsg.setText("Service is currently unavailable");
-                dancingmsg.setVisibility(View.VISIBLE);
-                dancingcard.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
-                dancingcard.setClickable(false);
+                    womensalonmsg.setText("Service is currently unavailable");
+                womensalonmsg.setVisibility(View.VISIBLE);
+                womensalonservice.setCardBackgroundColor(Color.parseColor("#FFE0E0E0"));
+                womensalonservice.setClickable(false);
             }
         }
     }
+
     private int findIndex(JSONArray serviceId, String s) throws JSONException {
         int index=-1;
         for(int i=1;i<serviceId.length();i++)
             if(serviceId.getString(i).trim().equalsIgnoreCase(s))
                 index=i;
-        return index;
+            return index;
     }
 
 
@@ -319,19 +314,19 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
                 Picasso.with(this).load(pic1).fit().centerCrop()
                         .placeholder(R.drawable.imgplaceholder)
                         .error(R.drawable.imgplaceholder)
-                        .into(lcimg1);
+                        .into(hsimg1);
             }
             if(pic2!=null&&pic2!=""){
                 Picasso.with(this).load(pic2).fit().centerCrop()
                         .placeholder(R.drawable.imgplaceholder)
                         .error(R.drawable.imgplaceholder)
-                        .into(lcimg2);
+                        .into(hsimg2);
             }
             if(pic3!=null&&pic3!=""){
                 Picasso.with(this).load(pic3).fit().centerCrop()
                         .placeholder(R.drawable.imgplaceholder)
                         .error(R.drawable.imgplaceholder)
-                        .into(lcimg3);
+                        .into(hsimg3);
             }
             rotateImg();
             if(status.trim().equalsIgnoreCase("1")){
@@ -341,7 +336,7 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
                 }
                 else{
                     //ALERT
-                    AlertDialog.Builder builder = new AlertDialog.Builder(LearningActivity.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
 
                     builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                     builder.setMessage("Service not available in this city. Will come Soon!")
@@ -360,7 +355,7 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
             }
             else{
                 //ALERT
-                AlertDialog.Builder builder = new AlertDialog.Builder(LearningActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
 
                 builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                 builder.setMessage("Service is not available")
@@ -379,7 +374,7 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
         }
         else{
             //ALERT
-            AlertDialog.Builder builder = new AlertDialog.Builder(LearningActivity.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(HomeSalon.this);
 
             builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
             builder.setMessage("Error in server. Try Again")
@@ -401,42 +396,48 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
     private void rotateImg() {
     }
 
+    public void listenerLink() {
+        mensalonservice.setOnClickListener(this);
+        womensalonservice.setOnClickListener(this);
 
-
-    private void idLink() {
-        actingbtn=findViewById(R.id.actingbtn);
-        dancingbtn=findViewById(R.id.dancingbtn);
-        makeupbtn=findViewById(R.id.makeupbtn);
-        lcimg1=findViewById(R.id.lcimg1);
-        lcimg2=findViewById(R.id.lcimg2);
-        lcimg3=findViewById(R.id.lcimg3);
-        actingmsg=findViewById(R.id.actingmsg);
-        makeupmsg=findViewById(R.id.makeupmsg);
-        dancingmsg=findViewById(R.id.dancingmsg);
-        actingcard=findViewById(R.id.actingcard);
-        dancingcard=findViewById(R.id.dancingcard);
-        makeupcard=findViewById(R.id.makeupcard);
     }
 
-    private void listenerLink() {
-        actingbtn.setOnClickListener(this);
-        dancingbtn.setOnClickListener(this);
-        makeupbtn.setOnClickListener(this);
+
+    public void idLink()
+    {
+        cleanicon=findViewById(R.id.cleanicon);
+        trainericon=findViewById(R.id.trainericon);
+        timericon=findViewById(R.id.timericon);
+        mensalonicon=findViewById(R.id.mensalonicon);
+        womensalonicon=findViewById(R.id.womensalonicon);
+        mensalonservice=findViewById(R.id.mensalonservice);
+        womensalonservice=findViewById(R.id.womensalonservice);
+        hsimg1=findViewById(R.id.hsimg1);
+        hsimg2=findViewById(R.id.hsimg2);
+        hsimg3=findViewById(R.id.hsimg3);
+        mensalonmsg=findViewById(R.id.mensalonmsg);
+        womensalonmsg=findViewById(R.id.womensalonmsg);
+
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId()==R.id.dancingbtn)
-        {
-
-        }
-        if (v.getId()==R.id.makeupbtn)
-        {
-
-        }
-        if (v.getId()==R.id.actingbtn)
-        {
-
+        if(v.getId()==R.id.mensalonservice||v.getId()==R.id.womensalonservice) {
+            Intent intent = new Intent(HomeSalon.this, SalonServices.class);
+            if (v.getId() == R.id.mensalonservice) {
+                intent.putExtra("salonservicetext", "Men Salon Services");
+                intent.putExtra("jsonobject", childclick.get(0).toString());
+            }
+            if (v.getId() == R.id.womensalonservice) {
+                intent.putExtra("salonservicetext", "Women Salon Services");
+                intent.putExtra("jsonobject", childclick.get(1).toString());
+            }
+            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                ActivityOptions options = ActivityOptions.makeCustomAnimation(HomeSalon.this, R.anim.fade_in, R.anim.fade_out);
+                startActivity(intent, options.toBundle());
+            } else {
+                startActivity(intent);
+            }
         }
     }
 }
