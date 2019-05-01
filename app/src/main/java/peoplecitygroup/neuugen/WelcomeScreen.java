@@ -231,6 +231,19 @@ public class WelcomeScreen extends AppCompatActivity {
         finish();
     }
 
+    private void checkFirstTime()
+    {
+        SharedPreferences sp;
+        sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
+        if(sp.getString("firsttime",null)==null) {
+
+        }
+        else{
+
+        }
+
+    }
+
     private boolean checkLoggedInProfile() {
         SharedPreferences sp;
         sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
