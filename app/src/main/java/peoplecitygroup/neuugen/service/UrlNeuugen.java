@@ -10,9 +10,6 @@ public class UrlNeuugen {
     public static final String uploadPic=URL+"uploadPics.php";
     public static final String profilenewpic=URL+"profilenewpic.php";
     public static final String chechActiveService=URL+"checkActiveService.php";
-    public static final String aboutus=URL+"aboutneuugen.php";
-    public static final String termsofuse="http://neuugen.com/termsofuse.html";
-    public static final String helpSupportActivity=URL+"neuugenfaq.php";
     public static final String sendSuccessMails=URL+"sendSuccessMails.php";
     public static final String fill_RentOffice=URL+"fillRentOffices.php";
     public static final String checkCityService=URL+"checkCityService.php";
@@ -23,6 +20,12 @@ public class UrlNeuugen {
 
     public static final String csemail="peoplecitygroup@gmail.com";
     public static final String csphone="";
+
+    public static final String aboutus=URL+"aboutneuugen.php";
+    public static final String termsofuse="http://neuugen.com/termsofuse.html";
+    public static final String helpSupportActivity=URL+"neuugenfaq.php";
+    public static final String protectionprogram=URL+"protection.php";
+
 
 
     public static final String salonServiceId="1";
