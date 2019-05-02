@@ -321,7 +321,7 @@ EventsActivity extends AppCompatActivity implements View.OnClickListener {
             }
             else{
                 wedshoot.setEnabled(false);
-                wedshoot.setText(Html.fromHtml(prewedshoot.getText() + "<br><font color=red size=10px>Service Unavailable.</font>"));
+                wedshoot.setText(Html.fromHtml(wedshoot.getText() + "<br><font color=red size=10px>Service Unavailable.</font>"));
             }
         }
         if(c==UrlNeuugen.eventPhotogaphyId.trim().charAt(0)){
@@ -330,7 +330,7 @@ EventsActivity extends AppCompatActivity implements View.OnClickListener {
             }
             else{
                 eventshoot.setEnabled(false);
-                eventshoot.setText(Html.fromHtml(prewedshoot.getText() + "<br><font color=red size=10px>Service Unavailable.</font>"));
+                eventshoot.setText(Html.fromHtml(eventshoot.getText() + "<br><font color=red size=10px>Service Unavailable.</font>"));
             }
         }
         if(c==UrlNeuugen.danceperformid.trim().charAt(0)){
@@ -339,7 +339,7 @@ EventsActivity extends AppCompatActivity implements View.OnClickListener {
             }
             else{
                 dancers.setEnabled(false);
-                dancers.setText(Html.fromHtml(prewedshoot.getText() + "<br><font color=red size=10px>Service Unavailable.</font>"));
+                dancers.setText(Html.fromHtml(dancers.getText() + "<br><font color=red size=10px>Service Unavailable.</font>"));
             }
         }
         if(c==UrlNeuugen.anchorshostid.trim().charAt(0)){
@@ -348,7 +348,7 @@ EventsActivity extends AppCompatActivity implements View.OnClickListener {
             }
             else{
                 anchors.setEnabled(false);
-                anchors.setText(Html.fromHtml(prewedshoot.getText() + "<br><font color=red size=10px>Service Unavailable.</font>"));
+                anchors.setText(Html.fromHtml(anchors.getText() + "<br><font color=red size=10px>Service Unavailable.</font>"));
             }
         }
         if(c==UrlNeuugen.singersid.trim().charAt(0)){
@@ -357,7 +357,7 @@ EventsActivity extends AppCompatActivity implements View.OnClickListener {
             }
             else{
                 singers.setEnabled(false);
-                singers.setText(Html.fromHtml(prewedshoot.getText() + "<br><font color=red size=10px>Service Unavailable.</font>"));
+                singers.setText(Html.fromHtml(singers.getText() + "<br><font color=red size=10px>Service Unavailable.</font>"));
             }
         }if(c==UrlNeuugen.bandsmusiciansid.trim().charAt(0)){
             if(flag){
@@ -365,7 +365,7 @@ EventsActivity extends AppCompatActivity implements View.OnClickListener {
             }
             else{
                 bands.setEnabled(false);
-                bands.setText(Html.fromHtml(prewedshoot.getText() + "<br><font color=red size=10px>Service Unavailable.</font>"));
+                bands.setText(Html.fromHtml(bands.getText() + "<br><font color=red size=10px>Service Unavailable.</font>"));
             }
         }
 
