@@ -312,7 +312,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/sparepartsbtn"
+                android:id="@+id/sparepartsbt"
                 android:background="@color/bootstrap_alert_cross_default">
 
                 <androidx.appcompat.widget.AppCompatTextView

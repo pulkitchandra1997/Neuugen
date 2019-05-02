@@ -261,8 +261,8 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
     }
 
     public void changeService(String ownid,boolean flag,String serviceid,String parentserviceid,String servicename,String status,String cost,String pic1,String pic2,String pic3,String cityactive) {
-        Character c=ownid.trim().charAt(0);
-        if(c==UrlNeuugen.mensalonServiceId.trim().charAt(0)){
+        String c=ownid.trim();
+        if(c==UrlNeuugen.mensalonServiceId.trim()){
             if(flag){
                 if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
                     mensalonmsg.setVisibility(View.VISIBLE);
@@ -279,7 +279,7 @@ public class HomeSalon extends AppCompatActivity implements View.OnClickListener
                 mensalonservice.setClickable(false);
             }
         }
-        if(c==UrlNeuugen.womensalonServiceId.trim().charAt(0)){
+        if(c==UrlNeuugen.womensalonServiceId.trim()){
             if(flag){
                 if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
                     womensalonmsg.setVisibility(View.VISIBLE);

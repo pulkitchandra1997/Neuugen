@@ -249,8 +249,8 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
     }
 
     public void changeService(String ownid,boolean flag,String serviceid,String parentserviceid,String servicename,String status,String cost,String pic1,String pic2,String pic3,String cityactive) {
-        Character c=ownid.trim().charAt(0);
-        if(c==UrlNeuugen.actingClassId.trim().charAt(0)){
+        String c=ownid.trim();
+        if(c==UrlNeuugen.actingClassId.trim()){
             if(flag){
                 if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
                     actingmsg.setVisibility(View.VISIBLE);
@@ -267,7 +267,7 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
                 actingcard.setClickable(false);
             }
         }
-        if(c==UrlNeuugen.groomingClassId.trim().charAt(0)){
+        if(c==UrlNeuugen.groomingClassId.trim()){
             if(flag){
                 if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
                     makeupmsg.setVisibility(View.VISIBLE);
@@ -284,7 +284,7 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
                 makeupcard.setClickable(false);
             }
         }
-        if(c==UrlNeuugen.dancingClassId.trim().charAt(0)){
+        if(c==UrlNeuugen.dancingClassId.trim()){
             if(flag){
                 if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
                     dancingmsg.setVisibility(View.VISIBLE);

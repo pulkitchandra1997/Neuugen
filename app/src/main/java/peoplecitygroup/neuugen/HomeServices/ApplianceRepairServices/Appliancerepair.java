@@ -180,53 +180,52 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
                 int index=findIndex(serviceId,ownId[i]);
                 if(index>0){
                     if(parentserviceid.getString(index).equalsIgnoreCase(ownparentId[i])){
-                        if(cityactive.getString(index).equalsIgnoreCase("1")&&status.getString(index).equalsIgnoreCase("1")) {
+                        if(cityactive.getString(index).equalsIgnoreCase("1")&&status.getString(index).equalsIgnoreCase("1"))
                             changeService(ownId[i], true, serviceId.getString(index), parentserviceid.getString(index), servicename.getString(index), status.getString(index), cost.getString(index), pic1.getString(index), pic2.getString(index), pic3.getString(index), cityactive.getString(index));
-                            JSONArray childserviceId=new JSONArray();
-                            JSONArray childparentserviceid=new JSONArray();
-                            JSONArray childservicename=new JSONArray();
-                            JSONArray childstatus=new JSONArray();
-                            JSONArray childcost=new JSONArray();
-                            JSONArray childpic1=new JSONArray();
-                            JSONArray childpic2=new JSONArray();
-                            JSONArray childpic3=new JSONArray();
-                            JSONArray childcityactive=new JSONArray();
-                            childserviceId.put(serviceId.getString(i));
-                            childparentserviceid.put(parentserviceid.getString(i));
-                            childservicename.put(servicename.getString(i));
-                            childstatus.put(status.getString(i));
-                            childcost.put(cost.getString(i));
-                            childpic1.put(pic1.getString(i));
-                            childpic2.put(pic2.getString(i));
-                            childpic3.put(pic3.getString(i));
-                            childcityactive.put(cityactive.getString(i));
-                            for(int j=1;j<parentserviceid.length();j++){
-                                if(parentserviceid.getString(j).equalsIgnoreCase(ownId[i])){
-                                    childserviceId.put(serviceId.getString(j));
-                                    childparentserviceid.put(parentserviceid.getString(j));
-                                    childservicename.put(servicename.getString(j));
-                                    childstatus.put(status.getString(j));
-                                    childcost.put(cost.getString(j));
-                                    childpic1.put(pic1.getString(j));
-                                    childpic2.put(pic2.getString(j));
-                                    childpic3.put(pic3.getString(j));
-                                    childcityactive.put(cityactive.getString(j));
-                                }
-                            }
-                            JSONObject temp=new JSONObject();
-                            temp.put("serviceid",childserviceId);
-                            temp.put("parentserviceid",childparentserviceid);
-                            temp.put("servicename",childservicename);
-                            temp.put("status",childstatus);
-                            temp.put("cost",childcost);
-                            temp.put("pic1",childpic1);
-                            temp.put("pic2",childpic2);
-                            temp.put("pic3",childpic3);
-                            temp.put("cityactive",childcityactive);
-                            childclick.add(temp);
-                        }
                         else
                             changeService(ownId[i],false,serviceId.getString(index),parentserviceid.getString(index),servicename.getString(index),status.getString(index),cost.getString(index),pic1.getString(index),pic2.getString(index),pic3.getString(index),cityactive.getString(index));
+                        JSONArray childserviceId=new JSONArray();
+                        JSONArray childparentserviceid=new JSONArray();
+                        JSONArray childservicename=new JSONArray();
+                        JSONArray childstatus=new JSONArray();
+                        JSONArray childcost=new JSONArray();
+                        JSONArray childpic1=new JSONArray();
+                        JSONArray childpic2=new JSONArray();
+                        JSONArray childpic3=new JSONArray();
+                        JSONArray childcityactive=new JSONArray();
+                        childserviceId.put(serviceId.getString(i));
+                        childparentserviceid.put(parentserviceid.getString(i));
+                        childservicename.put(servicename.getString(i));
+                        childstatus.put(status.getString(i));
+                        childcost.put(cost.getString(i));
+                        childpic1.put(pic1.getString(i));
+                        childpic2.put(pic2.getString(i));
+                        childpic3.put(pic3.getString(i));
+                        childcityactive.put(cityactive.getString(i));
+                        for(int j=1;j<parentserviceid.length();j++){
+                            if(parentserviceid.getString(j).equalsIgnoreCase(ownId[i])){
+                                childserviceId.put(serviceId.getString(j));
+                                childparentserviceid.put(parentserviceid.getString(j));
+                                childservicename.put(servicename.getString(j));
+                                childstatus.put(status.getString(j));
+                                childcost.put(cost.getString(j));
+                                childpic1.put(pic1.getString(j));
+                                childpic2.put(pic2.getString(j));
+                                childpic3.put(pic3.getString(j));
+                                childcityactive.put(cityactive.getString(j));
+                            }
+                        }
+                        JSONObject temp=new JSONObject();
+                        temp.put("serviceid",childserviceId);
+                        temp.put("parentserviceid",childparentserviceid);
+                        temp.put("servicename",childservicename);
+                        temp.put("status",childstatus);
+                        temp.put("cost",childcost);
+                        temp.put("pic1",childpic1);
+                        temp.put("pic2",childpic2);
+                        temp.put("pic3",childpic3);
+                        temp.put("cityactive",childcityactive);
+                        childclick.add(temp);
                     }
                     else{
                         //SERVICE NOT FOUND
@@ -261,8 +260,8 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
     }
 
     public void changeService(String ownid,boolean flag,String serviceid,String parentserviceid,String servicename,String status,String cost,String pic1,String pic2,String pic3,String cityactive) {
-        Character c=ownid.trim().charAt(0);
-        if(c==UrlNeuugen.repairingId.trim().charAt(0)){
+        String c=ownid.trim();
+        if(c==UrlNeuugen.repairingId.trim()){
             if(flag){
                 if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
                     repairmsg.setVisibility(View.VISIBLE);
@@ -279,7 +278,7 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
                 repairingservice.setClickable(false);
             }
         }
-        if(c==UrlNeuugen.installationId.trim().charAt(0)){
+        if(c==UrlNeuugen.installationId.trim()){
             if(flag){
                 if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
                     installmsg.setVisibility(View.VISIBLE);
@@ -412,7 +411,7 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
         arimg3=findViewById(R.id.arimg3);
         installmsg=findViewById(R.id.installmsg);
         repairmsg=findViewById(R.id.repairmsg);
-        sparepartsbtn=findViewById(R.id.sparepartsbtn);
+        sparepartsbtn=findViewById(R.id.sparepartsbtnn);
 
     }
     public void listenerLink()
@@ -445,7 +444,7 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent);
             }
         }
-        if (v.getId()==R.id.sparepartsbtn){
+        if (v.getId()==R.id.sparepartsbtnn){
             Intent intent = new Intent(Appliancerepair.this, HomeRenovationForm.class);
             intent.putExtra("serviceid",UrlNeuugen.appRepairInstallId);
             if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
