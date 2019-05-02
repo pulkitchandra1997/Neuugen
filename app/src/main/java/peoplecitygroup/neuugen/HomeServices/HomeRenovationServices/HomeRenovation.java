@@ -18,6 +18,7 @@ import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.squareup.picasso.Picasso;
 
@@ -28,6 +29,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import peoplecitygroup.neuugen.R;
+import peoplecitygroup.neuugen.SparePartsActivity;
 import peoplecitygroup.neuugen.service.ServiceCheck;
 import peoplecitygroup.neuugen.service.UrlNeuugen;
 import peoplecitygroup.neuugen.service.VolleyCallback;
@@ -40,6 +42,7 @@ public class HomeRenovation extends AppCompatActivity implements View.OnClickLis
     CardView electricianservice,plumbingservice,carpentryservice;
     AppCompatImageView hrimg1,hrimg2,hrimg3;
     ProgressDialog loading = null;
+    LinearLayout sparepartsbtn;
     SharedPreferences sp;
     String[] ownId=new String[]{UrlNeuugen.homeRenovationId,UrlNeuugen.plumbingId,UrlNeuugen.carpentryId,UrlNeuugen.electricianId};
     String[] ownparentId=new String[]{"0",UrlNeuugen.homeRenovationId,UrlNeuugen.homeRenovationId,UrlNeuugen.homeRenovationId};
@@ -430,6 +433,7 @@ public class HomeRenovation extends AppCompatActivity implements View.OnClickLis
         electricianmsg=findViewById(R.id.electricianmsg);
         plumbingmsg=findViewById(R.id.plumbingmsg);
         electricianimsg=findViewById(R.id.electricianmsg);
+        sparepartsbtn=findViewById(R.id.sparepartsbtn);
 
     }
     public void listenerLink()
@@ -437,6 +441,7 @@ public class HomeRenovation extends AppCompatActivity implements View.OnClickLis
         plumbingservice.setOnClickListener(this);
         carpentryservice.setOnClickListener(this);
         electricianservice.setOnClickListener(this);
+        sparepartsbtn.setOnClickListener(this);
 
     }
 
@@ -463,8 +468,18 @@ public class HomeRenovation extends AppCompatActivity implements View.OnClickLis
             }
         }
         if (v.getId()==R.id.carpentryservice){
-            Intent intent = new Intent(HomeRenovation.this, HomeRenovationForm.class);
+            Intent intent = new Intent(HomeRenovation.this, SparePartsActivity.class);
             intent.putExtra("servicetext","Carpentry Service");
+            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                ActivityOptions options = ActivityOptions.makeCustomAnimation(HomeRenovation.this, R.anim.fade_in, R.anim.fade_out);
+                startActivity(intent, options.toBundle());
+            } else {
+                startActivity(intent);
+            }
+        }
+        if (v.getId()==R.id.sparepartsbtn){
+            Intent intent = new Intent(HomeRenovation.this, HomeRenovationForm.class);
+            intent.putExtra("serviceid",UrlNeuugen.homeRenovationId);
             if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
                 ActivityOptions options = ActivityOptions.makeCustomAnimation(HomeRenovation.this, R.anim.fade_in, R.anim.fade_out);
                 startActivity(intent, options.toBundle());

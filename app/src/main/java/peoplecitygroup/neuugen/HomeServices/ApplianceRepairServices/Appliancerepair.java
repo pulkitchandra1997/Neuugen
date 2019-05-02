@@ -18,6 +18,7 @@ import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.squareup.picasso.Picasso;
 
@@ -27,7 +28,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import peoplecitygroup.neuugen.HomeServices.HomeRenovationServices.HomeRenovation;
+import peoplecitygroup.neuugen.HomeServices.HomeRenovationServices.HomeRenovationForm;
 import peoplecitygroup.neuugen.R;
+import peoplecitygroup.neuugen.SparePartsActivity;
 import peoplecitygroup.neuugen.service.ServiceCheck;
 import peoplecitygroup.neuugen.service.UrlNeuugen;
 import peoplecitygroup.neuugen.service.VolleyCallback;
@@ -40,6 +44,7 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
     CardView repairingservice,installationservice;
     AppCompatImageView arimg1,arimg2,arimg3;
     ProgressDialog loading = null;
+    LinearLayout sparepartsbtn;
     SharedPreferences sp;
     String[] ownId=new String[]{UrlNeuugen.appRepairInstallId,UrlNeuugen.repairingId,UrlNeuugen.installationId};
     String[] ownparentId=new String[]{"0",UrlNeuugen.appRepairInstallId,UrlNeuugen.appRepairInstallId};
@@ -407,12 +412,14 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
         arimg3=findViewById(R.id.arimg3);
         installmsg=findViewById(R.id.installmsg);
         repairmsg=findViewById(R.id.repairmsg);
+        sparepartsbtn=findViewById(R.id.sparepartsbtn);
 
     }
     public void listenerLink()
     {
         repairingservice.setOnClickListener(this);
         installationservice.setOnClickListener(this);
+        sparepartsbtn.setOnClickListener(this);
 
     }
 
@@ -429,7 +436,7 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
             }
         }
         if (v.getId()==R.id.installationservice){
-            Intent intent = new Intent(Appliancerepair.this, ApplianceRepairform.class);
+            Intent intent = new Intent(Appliancerepair.this, SparePartsActivity.class);
             intent.putExtra("servicetext","Installation Service");
             if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
                 ActivityOptions options = ActivityOptions.makeCustomAnimation(Appliancerepair.this, R.anim.fade_in, R.anim.fade_out);
@@ -438,7 +445,16 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent);
             }
         }
-
+        if (v.getId()==R.id.sparepartsbtn){
+            Intent intent = new Intent(Appliancerepair.this, HomeRenovationForm.class);
+            intent.putExtra("serviceid",UrlNeuugen.appRepairInstallId);
+            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                ActivityOptions options = ActivityOptions.makeCustomAnimation(Appliancerepair.this, R.anim.fade_in, R.anim.fade_out);
+                startActivity(intent, options.toBundle());
+            } else {
+                startActivity(intent);
+            }
+        }
 
     }
 }
