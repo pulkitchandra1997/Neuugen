@@ -38,7 +38,8 @@ import peoplecitygroup.neuugen.service.VolleyCallback;
 
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
-public class EventsActivity extends AppCompatActivity implements View.OnClickListener {
+public class
+EventsActivity extends AppCompatActivity implements View.OnClickListener {
 
     MaterialButton photoproceedbtn,eventproceedbtn;
     RadioGroup shootoptions,eventarrangements;
@@ -52,8 +53,8 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
 
     ProgressDialog loading = null;
     SharedPreferences sp;
-    String[] ownId=new String[]{UrlNeuugen.eventsServiceId,UrlNeuugen.eventPhotogaphyId,UrlNeuugen.eventArrangementId};
-    String[] ownparentId=new String[]{"0",UrlNeuugen.eventsServiceId,UrlNeuugen.eventsServiceId};
+    String[] ownId=new String[]{UrlNeuugen.eventsServiceId,UrlNeuugen.photoVideoServiceId,UrlNeuugen.eventArrangementId,UrlNeuugen.preWedShootId,UrlNeuugen.weddingShootId,UrlNeuugen.eventPhotogaphyId,UrlNeuugen.danceperformid,UrlNeuugen.anchorshostid,UrlNeuugen.singersid,UrlNeuugen.bandsmusiciansid,UrlNeuugen.normalWedShootId,UrlNeuugen.standardWedShootId,UrlNeuugen.premiumWedShootId};
+    String[] ownparentId=new String[]{"0",UrlNeuugen.eventsServiceId,UrlNeuugen.eventsServiceId,UrlNeuugen.photoVideoServiceId,UrlNeuugen.photoVideoServiceId,UrlNeuugen.photoVideoServiceId,UrlNeuugen.eventArrangementId,UrlNeuugen.eventArrangementId,UrlNeuugen.eventArrangementId,UrlNeuugen.eventArrangementId,UrlNeuugen.weddingShootId,UrlNeuugen.weddingShootId,UrlNeuugen.weddingShootId};
     ArrayList <JSONObject> childclick=new ArrayList();
 
 
@@ -74,6 +75,8 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
         checkActive();
+
+
 
 
     }
@@ -244,8 +247,10 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
                 }
             }
             if(serviceId.length()>ownId.length){
+
             }
         }catch(Exception e){
+            Log.d("error4",parentserviceid.toString());
             //ALERT
             AlertDialog.Builder builder = new AlertDialog.Builder(EventsActivity.this);
 
@@ -301,6 +306,69 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
                 eventarrangementcard.setClickable(false);
             }
         }
+        if(c==UrlNeuugen.preWedShootId.trim().charAt(0)){
+            if(flag){
+
+            }
+            else{
+                prewedshoot.setEnabled(false);
+                prewedshoot.setText(Html.fromHtml(prewedshoot.getText() + "<br><font color=red size=10px>Service Unavailable.</font>"));
+            }
+        }
+        if(c==UrlNeuugen.weddingShootId.trim().charAt(0)){
+            if(flag){
+
+            }
+            else{
+                wedshoot.setEnabled(false);
+                wedshoot.setText(Html.fromHtml(prewedshoot.getText() + "<br><font color=red size=10px>Service Unavailable.</font>"));
+            }
+        }
+        if(c==UrlNeuugen.eventPhotogaphyId.trim().charAt(0)){
+            if(flag){
+
+            }
+            else{
+                eventshoot.setEnabled(false);
+                eventshoot.setText(Html.fromHtml(prewedshoot.getText() + "<br><font color=red size=10px>Service Unavailable.</font>"));
+            }
+        }
+        if(c==UrlNeuugen.danceperformid.trim().charAt(0)){
+            if(flag){
+
+            }
+            else{
+                dancers.setEnabled(false);
+                dancers.setText(Html.fromHtml(prewedshoot.getText() + "<br><font color=red size=10px>Service Unavailable.</font>"));
+            }
+        }
+        if(c==UrlNeuugen.anchorshostid.trim().charAt(0)){
+            if(flag){
+
+            }
+            else{
+                anchors.setEnabled(false);
+                anchors.setText(Html.fromHtml(prewedshoot.getText() + "<br><font color=red size=10px>Service Unavailable.</font>"));
+            }
+        }
+        if(c==UrlNeuugen.singersid.trim().charAt(0)){
+            if(flag){
+
+            }
+            else{
+                singers.setEnabled(false);
+                singers.setText(Html.fromHtml(prewedshoot.getText() + "<br><font color=red size=10px>Service Unavailable.</font>"));
+            }
+        }if(c==UrlNeuugen.bandsmusiciansid.trim().charAt(0)){
+            if(flag){
+
+            }
+            else{
+                bands.setEnabled(false);
+                bands.setText(Html.fromHtml(prewedshoot.getText() + "<br><font color=red size=10px>Service Unavailable.</font>"));
+            }
+        }
+
     }
     private int findIndex(JSONArray serviceId, String s) throws JSONException {
         int index=-1;
