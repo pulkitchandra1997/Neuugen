@@ -275,8 +275,7 @@ EventsActivity extends AppCompatActivity implements View.OnClickListener {
         if(c==UrlNeuugen.eventPhotogaphyId.trim().charAt(0)){
             if(flag){
                 if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
-                    photomsg.setVisibility(View.VISIBLE);
-                    photomsg.setText(cost.trim());
+
                 }
             }
             else{
@@ -292,8 +291,7 @@ EventsActivity extends AppCompatActivity implements View.OnClickListener {
         if(c==UrlNeuugen.eventArrangementId.trim().charAt(0)){
             if(flag){
                 if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
-                    eventmsg.setVisibility(View.VISIBLE);
-                    eventmsg.setText(cost.trim());
+
                 }
             }
             else{
