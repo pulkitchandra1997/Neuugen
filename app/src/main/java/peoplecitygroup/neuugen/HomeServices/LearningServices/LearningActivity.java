@@ -93,7 +93,7 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
                 AlertDialog.Builder builder = new AlertDialog.Builder(LearningActivity.this);
                 if (response.equalsIgnoreCase("error")) {
                     builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
-                    builder.setMessage("Error in server. Try Again")
+                    builder.setMessage("Error in server. Try Again ")
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
