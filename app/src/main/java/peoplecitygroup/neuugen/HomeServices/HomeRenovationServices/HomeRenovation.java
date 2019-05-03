@@ -477,7 +477,7 @@ public class HomeRenovation extends AppCompatActivity implements View.OnClickLis
                 startActivity(intent);
             }
         }
-        if (v.getId()==R.id.sparepartsbt){
+        if (v.getId()==R.id.sparepartsbtnn){
             Intent intent = new Intent(HomeRenovation.this, HomeRenovationForm.class);
             intent.putExtra("serviceid",UrlNeuugen.homeRenovationId);
             if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {

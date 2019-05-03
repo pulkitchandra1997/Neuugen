@@ -424,36 +424,36 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        if (v.getId()==R.id.repairingservice){
+        if (v.getId()==R.id.repairingservice||v.getId()==R.id.installationservice||v.getId()==R.id.sparepartsbtnn) {
             Intent intent = new Intent(Appliancerepair.this, ApplianceRepairform.class);
-            intent.putExtra("servicetext","Repairing Service");
-            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(Appliancerepair.this, R.anim.fade_in, R.anim.fade_out);
-                startActivity(intent, options.toBundle());
-            } else {
-                startActivity(intent);
+            if (v.getId() == R.id.repairingservice) {
+                intent.putExtra("servicetext", "Repairing Service");
+                if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                    ActivityOptions options = ActivityOptions.makeCustomAnimation(Appliancerepair.this, R.anim.fade_in, R.anim.fade_out);
+                    startActivity(intent, options.toBundle());
+                } else {
+                    startActivity(intent);
+                }
+            }
+            if (v.getId() == R.id.installationservice) {
+                intent.putExtra("servicetext", "Installation Service");
+                if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                    ActivityOptions options = ActivityOptions.makeCustomAnimation(Appliancerepair.this, R.anim.fade_in, R.anim.fade_out);
+                    startActivity(intent, options.toBundle());
+                } else {
+                    startActivity(intent);
+                }
             }
         }
-        if (v.getId()==R.id.installationservice){
-            Intent intent = new Intent(Appliancerepair.this, SparePartsActivity.class);
-            intent.putExtra("servicetext","Installation Service");
-            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(Appliancerepair.this, R.anim.fade_in, R.anim.fade_out);
-                startActivity(intent, options.toBundle());
-            } else {
-                startActivity(intent);
+            if (v.getId() == R.id.sparepartsbtnn) {
+                Intent intent = new Intent(Appliancerepair.this, SparePartsActivity.class);
+                intent.putExtra("serviceid", UrlNeuugen.appRepairInstallId);
+                if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                    ActivityOptions options = ActivityOptions.makeCustomAnimation(Appliancerepair.this, R.anim.fade_in, R.anim.fade_out);
+                    startActivity(intent, options.toBundle());
+                } else {
+                    startActivity(intent);
+                }
             }
         }
-        if (v.getId()==R.id.sparepartsbtnn){
-            Intent intent = new Intent(Appliancerepair.this, HomeRenovationForm.class);
-            intent.putExtra("serviceid",UrlNeuugen.appRepairInstallId);
-            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(Appliancerepair.this, R.anim.fade_in, R.anim.fade_out);
-                startActivity(intent, options.toBundle());
-            } else {
-                startActivity(intent);
-            }
-        }
-
-    }
 }
