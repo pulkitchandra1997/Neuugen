@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ActionViewTarget;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
@@ -47,7 +50,22 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
 
         idLink();
         listenerLink();
+        // showcase start
+       /* new ShowcaseView.Builder(getActivity())
+                .setTarget(new ViewTarget(postformfab))
+                .setContentTitle("Post Your Ad")
+                .setContentText("This is highlighting the Home button")
+                .hideOnTouchOutside()
+                .blockAllTouches()
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
+                    }
+                })
+                .build();*/
+
+        // showcase end
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
         locationicon.setTypeface(font);
 

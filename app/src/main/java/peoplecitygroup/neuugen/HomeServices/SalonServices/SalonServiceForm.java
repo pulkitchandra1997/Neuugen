@@ -295,10 +295,10 @@ public class SalonServiceForm extends AppCompatActivity implements View.OnClickL
                 params.put("mobileno", mobileno);
                 params.put("serviceid", serviceId);
                 params.put("city",citytext);
-                params.put("houseno", mobileno);
-                params.put("area", mobileno);
-                params.put("landmark", mobileno);
-                params.put("pincode", mobileno);
+                params.put("houseno", housenotext);
+                params.put("area", areatext);
+                params.put("landmark", landmarktext);
+                params.put("pincode", pincodetext);
                 params.put("dateofservice", dostext);
                 return params;
             }
