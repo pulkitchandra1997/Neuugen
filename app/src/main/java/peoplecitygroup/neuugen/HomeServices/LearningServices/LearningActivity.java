@@ -455,7 +455,7 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
             final String name = sp.getString("name", null).toUpperCase();
             final String mobileno = sp.getString("mobileno", null).toUpperCase();
             final String city = sp.getString("city", null);
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.requestservice_Salon, new Response.Listener<String>() {
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.requestservice_Learning, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     loading.dismiss();
