@@ -85,32 +85,24 @@ public class WeddingPackages extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        if (v.getId()==R.id.normalpkg){
+        if(v.getId()==R.id.normalpkg||v.getId()==R.id.standardpkg||v.getId()==R.id.premiumpkg) {
             Intent intent = new Intent(WeddingPackages.this, WeddingShootForm.class);
-            intent.putExtra("weddingpackage","Normal Package");
-            intent.putExtra("weddingpackageprice",normalpricetext);
-            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(WeddingPackages.this, R.anim.fade_in, R.anim.fade_out);
-                startActivity(intent, options.toBundle());
-            } else {
-                startActivity(intent);
+            if (v.getId() == R.id.normalpkg) {
+                intent.putExtra("weddingpackage", "Normal Package");
+                intent.putExtra("weddingpackageprice", normalprice.getText().toString().trim());
+                intent.putExtra("serviceid", UrlNeuugen.normalWedShootId);
+
             }
-        }
-        if (v.getId()==R.id.standardpkg){
-            Intent intent = new Intent(WeddingPackages.this, WeddingShootForm.class);
-            intent.putExtra("weddingpackage","Standard Package");
-            intent.putExtra("weddingpackageprice",standardpricetext);
-            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(WeddingPackages.this, R.anim.fade_in, R.anim.fade_out);
-                startActivity(intent, options.toBundle());
-            } else {
-                startActivity(intent);
+            if (v.getId() == R.id.standardpkg) {
+                intent.putExtra("weddingpackage", "Standard Package");
+                intent.putExtra("serviceid", UrlNeuugen.standardWedShootId);
+                intent.putExtra("weddingpackageprice", standardprice.getText().toString().trim());
             }
-        }
-        if (v.getId()==R.id.premiumpkg){
-            Intent intent = new Intent(WeddingPackages.this, WeddingShootForm.class);
-            intent.putExtra("weddingpackage","Premium Package");
-            intent.putExtra("weddingpackageprice",premiumpricetext);
+            if (v.getId() == R.id.premiumpkg) {
+                intent.putExtra("weddingpackage", "Premium Package");
+                intent.putExtra("serviceid", UrlNeuugen.premiumWedShootId);
+                intent.putExtra("weddingpackageprice", premiumprice.getText().toString().trim());
+            }
             if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
                 ActivityOptions options = ActivityOptions.makeCustomAnimation(WeddingPackages.this, R.anim.fade_in, R.anim.fade_out);
                 startActivity(intent, options.toBundle());

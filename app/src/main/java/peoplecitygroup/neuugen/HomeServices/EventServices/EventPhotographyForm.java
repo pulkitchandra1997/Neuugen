@@ -254,7 +254,6 @@ public class EventPhotographyForm extends AppCompatActivity implements View.OnCl
         loading.show();
         java.sql.Date d=new java.sql.Date(year,month,day);
         final long time=d.getTime();
-/*        final String eventtype=corporateid+picnicid+birthdayid+anniversaryid+otherpartyid;*/
         StringRequest stringRequest=new StringRequest(Request.Method.POST, UrlNeuugen.requestservice_EventPhotographyForm, new Response.Listener<String>()
         {
             @Override
