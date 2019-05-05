@@ -144,7 +144,7 @@ public class HomeRenovationForm extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.dos) {
+        if (v.getId() == R.id.dosHR) {
             Calendar mcurrentDate = Calendar.getInstance();
             int mYear = mcurrentDate.get(Calendar.YEAR);
             int mMonth = mcurrentDate.get(Calendar.MONTH);

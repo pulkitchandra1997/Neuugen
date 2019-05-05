@@ -112,7 +112,7 @@
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Rs. 20-30k"
+                                android:text=""
                                 android:id="@+id/normalprice"
                                 android:gravity="start"
                                 android:textColor="@color/PrimaryText"
@@ -178,7 +178,7 @@
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Rs. 65-100k"
+                                android:text=""
                                 android:gravity="start"
                                 android:textColor="@color/PrimaryText"
                                 android:textSize="20dp"
@@ -242,7 +242,7 @@
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Rs. 115-150k"
+                                android:text=""
                                 android:id="@+id/premiumprice"
                                 android:gravity="start"
                                 android:textColor="@color/PrimaryText"
