@@ -1,11 +1,9 @@
-package peoplecitygroup.neuugen.service;
+package peoplecitygroup.neuugen.common_req_files;
 
 import android.util.Patterns;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import peoplecitygroup.neuugen.service.LinkCities;
 
 public class Validation {
     public static boolean isValidName( String name) {

@@ -1,8 +1,6 @@
 package peoplecitygroup.neuugen;
 
 import android.app.ActivityOptions;
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,15 +15,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.beardedhen.androidbootstrap.BootstrapCircleThumbnail;
-import com.beardedhen.androidbootstrap.BootstrapThumbnail;
 import com.squareup.picasso.Picasso;
-
-import java.io.File;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+
+import peoplecitygroup.neuugen.properties.PostAd;
 
 import static android.content.Context.MODE_PRIVATE;
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;

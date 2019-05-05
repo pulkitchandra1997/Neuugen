@@ -2,7 +2,6 @@ package peoplecitygroup.neuugen.HomeServices.EventServices;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatCheckBox;
 import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.appcompat.widget.AppCompatSpinner;
 
@@ -42,11 +41,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import peoplecitygroup.neuugen.R;
-import peoplecitygroup.neuugen.service.MySingleton;
-import peoplecitygroup.neuugen.service.SendMail;
-import peoplecitygroup.neuugen.service.SendMsg;
-import peoplecitygroup.neuugen.service.UrlNeuugen;
-import peoplecitygroup.neuugen.service.VolleyCallback;
+import peoplecitygroup.neuugen.common_req_files.MySingleton;
+import peoplecitygroup.neuugen.common_req_files.SendMail;
+import peoplecitygroup.neuugen.common_req_files.SendMsg;
+import peoplecitygroup.neuugen.common_req_files.UrlNeuugen;
+import peoplecitygroup.neuugen.common_req_files.VolleyCallback;
 
 public class EventPhotographyForm extends AppCompatActivity implements View.OnClickListener {
     Intent intent;

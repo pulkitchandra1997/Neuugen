@@ -1,4 +1,4 @@
-package peoplecitygroup.neuugen;
+package peoplecitygroup.neuugen.properties;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -61,103 +61,73 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import peoplecitygroup.neuugen.service.MySingleton;
-import peoplecitygroup.neuugen.service.SendMail;
-import peoplecitygroup.neuugen.service.UrlNeuugen;
-import peoplecitygroup.neuugen.service.Validation;
-import peoplecitygroup.neuugen.service.VolleyCallback;
+import peoplecitygroup.neuugen.R;
+import peoplecitygroup.neuugen.UserMainActivity;
+import peoplecitygroup.neuugen.common_req_files.MySingleton;
+import peoplecitygroup.neuugen.common_req_files.SendMail;
+import peoplecitygroup.neuugen.common_req_files.UrlNeuugen;
+import peoplecitygroup.neuugen.common_req_files.Validation;
+import peoplecitygroup.neuugen.common_req_files.VolleyCallback;
 
 import static android.content.DialogInterface.BUTTON_POSITIVE;
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
-public class RentHouses extends AppCompatActivity implements View.OnClickListener {
+public class SellHouses extends AppCompatActivity implements View.OnClickListener {
 
-    AppCompatTextView backtopost;
+    AppCompatTextView backtopost3;
 
-    TextInputEditText arearh,cityrh,landmarkrh,builtarearh,monthlyrentrh,housenorh,pincoderh;
     boolean chk = true;
-    MaterialButton submitrhform,addimgrh1,addimgrh2,addimgrh3;
 
-    AppCompatSpinner propertytyperh,numofbedrh,numofbathrh;
+    TextInputEditText areash,citysh,landmarksh,builtareash,costsh,housenosh,ageofpropertysh,pincodesh;
 
-    ChipGroup rhfurnishtype;
+    MaterialButton submitshform,addimgsh1,addimgsh2,addimgsh3;
 
-    Chip rhfullyfurnish,rhsemifurnish,rhunfurnish;
+    AppCompatSpinner propertytypesh,numofbedsh,numofbathsh;
 
-    LinearLayout rhmainlayout;
+    ChipGroup furnishtypesh,constatus;
 
-    AppCompatImageView imgrh1,imgrh2,imgrh3;
+    Chip shfullyfurnish,shsemifurnish,shunfurnish,readytomove,undercon;
+
+    LinearLayout shmainlayout;
+
+    AppCompatImageView imgsh1,imgsh2,imgsh3;
+
     int imageflag=0;
     Bitmap img1,img2,img3;
-    String propertytype,arearhtext,cityrhtext,landmarkrhtext,builtarearhtext,pincoderhtext,monthlyrentrhtext,housenorhtext,propertytyperhtext,numofbedrhtext,numofbathrhtext,rhfurnishtyypetext;
+
+    String propertytype,areashtext,cityshtext,landmarkshtext,builtareashtext,costshtext,housenoshtext,pincodeshtext,propertytypeshtext,numofbedshtext,numofbathshtext,shfurnishtyypetext,constatustext,ageofpropertyshtext;
+
     ProgressDialog loading = null;
-JSONObject jsonObject= new JSONObject();
-String uniqueid=null;
+    JSONObject jsonObject= new JSONObject();
+    String uniqueid=null;
 Intent intent=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rent_houses);
+        setContentView(R.layout.activity_sell_houses);
 
         idLink();
         listenerLink();
         hideSoftKeyboard();
-        loading = new ProgressDialog(RentHouses.this,R.style.AppCompatAlertDialogStyle);
+        loading = new ProgressDialog(SellHouses.this,R.style.AppCompatAlertDialogStyle);
         loading.setCancelable(false);
         loading.setMessage("Loading");
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+
         Typeface font = Typeface.createFromAsset(getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
-        backtopost.setTypeface(font);
+        backtopost3.setTypeface(font);
+
 
         intent=getIntent();
-        cityrhtext=intent.getStringExtra("city").toUpperCase();
-        cityrh.setText(cityrhtext.toUpperCase());
-        cityrh.setEnabled(false);
+        cityshtext=intent.getStringExtra("city").toUpperCase();
+        citysh.setText(cityshtext.toUpperCase());
+        citysh.setEnabled(false);
     }
-
     public void hideSoftKeyboard() {
         if (getCurrentFocus() != null) {
             InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
-    }
-
-    public void listenerLink()
-    {
-        backtopost.setOnClickListener(this);
-        submitrhform.setOnClickListener(this);
-        addimgrh1.setOnClickListener(this);
-        addimgrh2.setOnClickListener(this);
-        addimgrh3.setOnClickListener(this);
-
-    }
-
-    public void idLink()
-    {
-        backtopost=findViewById(R.id.backtopost);
-        arearh=findViewById(R.id.arearh);
-        cityrh=findViewById(R.id.cityrh);
-        landmarkrh=findViewById(R.id.landmarkrh);
-        builtarearh=findViewById(R.id.builtarearh);
-        monthlyrentrh=findViewById(R.id.monthlyrentrh);
-        propertytyperh=findViewById(R.id.propertytyperh);
-        numofbedrh=findViewById(R.id.numofbedrh);
-        numofbathrh=findViewById(R.id.numofbathrh);
-        submitrhform=findViewById(R.id.submitrhform);
-        rhfurnishtype=findViewById(R.id.rhfurnishtype);
-        rhfullyfurnish=findViewById(R.id.rhfullyfurnish);
-        rhsemifurnish=findViewById(R.id.rhsemifurnish);
-        rhunfurnish=findViewById(R.id.rhunfurnish);
-        housenorh=findViewById(R.id.housenorh);
-        rhmainlayout=findViewById(R.id.rhmainlayout);
-        imgrh1=findViewById(R.id.imgrh1);
-        imgrh2=findViewById(R.id.imgrh2);
-        imgrh3=findViewById(R.id.imgrh3);
-        addimgrh1=findViewById(R.id.addimgrh1);
-        addimgrh2=findViewById(R.id.addimgrh2);
-        addimgrh3=findViewById(R.id.addimgrh3);
-        pincoderh=findViewById(R.id.pincoderh);
-
     }
     @Override
     protected void onActivityResult(int RC, int RQC, Intent I) {
@@ -167,13 +137,13 @@ Intent intent=null;
             try {
                 switch (imageflag){
                     case 1:img1 = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                            imgrh1.setImageBitmap(img1);
-                            break;
+                        imgsh1.setImageBitmap(img1);
+                        break;
                     case 2:img2=MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                            imgrh2.setImageBitmap(img2);
-                            break;
+                        imgsh2.setImageBitmap(img2);
+                        break;
                     case 3:img3=MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                            imgrh3.setImageBitmap(img3);
+                        imgsh3.setImageBitmap(img3);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -183,135 +153,195 @@ Intent intent=null;
             }
         }
     }
+
+    public void listenerLink()
+    {
+        backtopost3.setOnClickListener(this);
+        submitshform.setOnClickListener(this);
+        addimgsh1.setOnClickListener(this);
+        addimgsh2.setOnClickListener(this);
+        addimgsh3.setOnClickListener(this);
+    }
+
+    public void idLink()
+    {
+        backtopost3=findViewById(R.id.backtopost3);
+        areash=findViewById(R.id.areash);
+        citysh=findViewById(R.id.citysh);
+        landmarksh=findViewById(R.id.landmarksh);
+        builtareash=findViewById(R.id.builtareash);
+        costsh=findViewById(R.id.costsh);
+        propertytypesh=findViewById(R.id.propertytypesh);
+        numofbedsh=findViewById(R.id.numofbedsh);
+        numofbathsh=findViewById(R.id.numofbathsh);
+        submitshform=findViewById(R.id.submitshform);
+        furnishtypesh=findViewById(R.id.furnishtypesh);
+        shfullyfurnish=findViewById(R.id.shfullyfurnish);
+        shsemifurnish=findViewById(R.id.shsemifurnish);
+        shunfurnish=findViewById(R.id.shunfurnish);
+        housenosh=findViewById(R.id.housenosh);
+        constatus=findViewById(R.id.constatus);
+        readytomove=findViewById(R.id.readytomove);
+        undercon=findViewById(R.id.undercon);
+        ageofpropertysh=findViewById(R.id.ageofpropertysh);
+        shmainlayout=findViewById(R.id.shmainlayout);
+        imgsh1=findViewById(R.id.imgsh1);
+        imgsh2=findViewById(R.id.imgsh2);
+        imgsh3=findViewById(R.id.imgsh3);
+        addimgsh1=findViewById(R.id.addimgsh1);
+        addimgsh2=findViewById(R.id.addimgsh2);
+        addimgsh3=findViewById(R.id.addimgsh3);
+        pincodesh=findViewById(R.id.pincodesh);
+
+    }
+
     @Override
     public void onClick(View v) {
-        if (v.getId()==R.id.addimgrh1){
+        if (v.getId()==R.id.addimgsh1){
             imageflag=1;
             Intent intent = new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_PICK);
             startActivityForResult(Intent.createChooser(intent, "Select Image From Gallery"), 1);
         }
-        if (v.getId()==R.id.addimgrh2){
+        if (v.getId()==R.id.addimgsh2){
             imageflag=2;
             Intent intent = new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_PICK);
             startActivityForResult(Intent.createChooser(intent, "Select Image From Gallery"), 1);
         }
-        if (v.getId()==R.id.addimgrh3){
+        if (v.getId()==R.id.addimgsh3){
             imageflag=3;
             Intent intent = new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_PICK);
             startActivityForResult(Intent.createChooser(intent, "Select Image From Gallery"), 1);
         }
-        if(v.getId()==R.id.backtopost)
+        if(v.getId()==R.id.backtopost3)
         {
             onBackPressed();
         }
-        if (v.getId()==R.id.submitrhform)
+        if (v.getId()==R.id.submitshform)
         {
 
-            arearhtext=arearh.getText().toString().trim();
-            housenorhtext=housenorh.getText().toString().trim();
-            cityrhtext=cityrh.getText().toString().trim();
-            landmarkrhtext=landmarkrh.getText().toString().trim();
-            builtarearhtext=builtarearh.getText().toString().trim();
-            monthlyrentrhtext=monthlyrentrh.getText().toString().trim();
-            propertytyperhtext=propertytyperh.getSelectedItem().toString();
-            numofbedrhtext=String.valueOf(numofbedrh.getSelectedItemPosition());
-            numofbathrhtext=String.valueOf(numofbathrh.getSelectedItemPosition());
-            pincoderhtext=pincoderh.getText().toString().trim();
+            areashtext=areash.getText().toString().trim();
+            housenoshtext=housenosh.getText().toString().trim();
+            cityshtext=citysh.getText().toString().trim();
+            landmarkshtext=landmarksh.getText().toString().trim();
+            builtareashtext=builtareash.getText().toString().trim();
+            costshtext=costsh.getText().toString().trim();
+            propertytypeshtext=propertytypesh.getSelectedItem().toString();
+            numofbedshtext=String.valueOf(numofbedsh.getSelectedItemPosition());
+            numofbathshtext=String.valueOf(numofbathsh.getSelectedItemPosition());
+            ageofpropertyshtext=ageofpropertysh.getText().toString().trim();
+            pincodeshtext=pincodesh.getText().toString().trim();
 
-            if (propertytyperhtext.equalsIgnoreCase("Apartment"))
+            if (propertytypeshtext.equalsIgnoreCase("Apartment"))
             {
                 propertytype="0";
             }else
-            if (propertytyperhtext.equalsIgnoreCase("Independent House"))
+            if (propertytypeshtext.equalsIgnoreCase("Independent House"))
             {
                 propertytype="1";
             }else
-            if (propertytyperhtext.equalsIgnoreCase("Villa"))
+            if (propertytypeshtext.equalsIgnoreCase("Villa"))
             {
                 propertytype="2";
-            }else
-            if (propertytyperhtext.equalsIgnoreCase("Hostel"))
-            {
-                propertytype="3";
-            }
-            if (rhfurnishtype.getCheckedChipId()==R.id.rhfullyfurnish)
-            {
-                rhfurnishtyypetext="0";
-            }else
-            if (rhfurnishtype.getCheckedChipId()==R.id.rhsemifurnish)
-            {
-                rhfurnishtyypetext="1";
-            }else
-            if (rhfurnishtype.getCheckedChipId()==R.id.rhunfurnish)
-            {
-                rhfurnishtyypetext="2";
             }
 
-            if (TextUtils.isEmpty(pincoderhtext) ||TextUtils.isEmpty(arearhtext) || TextUtils.isEmpty(housenorhtext)||TextUtils.isEmpty(cityrhtext)||TextUtils.isEmpty(builtarearhtext)||TextUtils.isEmpty(monthlyrentrhtext)||propertytyperhtext.equalsIgnoreCase("Select Property Type")||numofbathrh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||numofbedrh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||!(rhfurnishtype.getCheckedChipId()==R.id.rhfullyfurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhsemifurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhunfurnish)||(img1==null)||(img2==null)||(img3==null))
+            if (furnishtypesh.getCheckedChipId()==R.id.shfullyfurnish)
             {
-                if (TextUtils.isEmpty(housenorhtext) )
+                shfurnishtyypetext="0";
+            }else
+            if (furnishtypesh.getCheckedChipId()==R.id.shsemifurnish)
+            {
+                shfurnishtyypetext="1";
+            }else
+            if (furnishtypesh.getCheckedChipId()==R.id.shunfurnish)
+            {
+                shfurnishtyypetext="2";
+            }
+            if (constatus.getCheckedChipId()==R.id.readytomove)
+            {
+                constatustext="0";
+            }else
+            if (constatus.getCheckedChipId()==R.id.undercon)
+            {
+                constatustext="1";
+            }
+
+            if (TextUtils.isEmpty(pincodeshtext) ||TextUtils.isEmpty(areashtext) || TextUtils.isEmpty(housenoshtext)||TextUtils.isEmpty(cityshtext)||TextUtils.isEmpty(builtareashtext)||TextUtils.isEmpty(costshtext)||propertytypeshtext.equalsIgnoreCase("Select Property Type")||numofbathsh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||numofbedsh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||TextUtils.isEmpty(ageofpropertyshtext)||!(furnishtypesh.getCheckedChipId()==R.id.shfullyfurnish)&&!(furnishtypesh.getCheckedChipId()==R.id.shsemifurnish)&&!(furnishtypesh.getCheckedChipId()==R.id.shunfurnish)||!(constatus.getCheckedChipId()==R.id.undercon)&&!(constatus.getCheckedChipId()==R.id.readytomove)||(img1==null)||(img2==null)||(img3==null))
+            {
+                if (TextUtils.isEmpty(housenoshtext) )
                 {
-                    housenorh.setError("Enter House Number");
-                    housenorh.requestFocus();
+                    housenosh.setError("Enter House Number");
+                    housenosh.requestFocus();
                 }else
-                if (TextUtils.isEmpty(arearhtext) )
+                if (TextUtils.isEmpty(areashtext) )
                 {
-                    arearh.setError("Enter Area");
-                    arearh.requestFocus();
+                    areash.setError("Enter Area");
+                    areash.requestFocus();
                 }else
 
-                if (TextUtils.isEmpty(cityrhtext) )
+                if (TextUtils.isEmpty(cityshtext) )
                 {
-                    cityrh.setError("Enter City");
-                    cityrh.requestFocus();
+                    citysh.setError("Enter City");
+                    citysh.requestFocus();
                 }else
-                if (TextUtils.isEmpty(pincoderhtext) )
+                if (TextUtils.isEmpty(pincodeshtext) )
                 {
-                    pincoderh.setError("Enter Pincode");
-                    pincoderh.requestFocus();
+                    pincodesh.setError("Enter Pincode");
+                    pincodesh.requestFocus();
                 }else
-                if (TextUtils.isEmpty(builtarearhtext) )
+                if (TextUtils.isEmpty(builtareashtext) )
                 {
-                    builtarearh.setError("Enter Built Area");
-                    builtarearh.requestFocus();
+                    builtareash.setError("Enter Built Area");
+                    builtareash.requestFocus();
                 }else
-                if (TextUtils.isEmpty(monthlyrentrhtext) )
+                if (TextUtils.isEmpty(costshtext) )
                 {
-                    monthlyrentrh.setError("Enter Monthly Rent");
-                    monthlyrentrh.requestFocus();
+                    costsh.setError("Enter Cost");
+                    costsh.requestFocus();
                 }else
-                if (propertytyperhtext.equalsIgnoreCase("Select Property Type"))
+                if (TextUtils.isEmpty(ageofpropertyshtext) )
                 {
-                    Snackbar.make(rhmainlayout, "Select Property Type", Snackbar.LENGTH_LONG)
+                    ageofpropertysh.setError("Enter Age of Property");
+                    ageofpropertysh.requestFocus();
+                }else
+                if (propertytypeshtext.equalsIgnoreCase("Select Property Type"))
+                {
+                    Snackbar.make(shmainlayout, "Select Property Type", Snackbar.LENGTH_LONG)
                             .show();
 
-                    propertytyperh.requestFocus();
+                    propertytypesh.requestFocus();
                 }else
-                if (numofbedrhtext.equalsIgnoreCase("Select Number"))
+                if (numofbedshtext.equalsIgnoreCase("Select Number"))
                 {
-                    Snackbar.make(rhmainlayout, "Select Number of Bedrooms", Snackbar.LENGTH_LONG)
+                    Snackbar.make(shmainlayout, "Select Number of Bedrooms", Snackbar.LENGTH_LONG)
                             .show();
 
-                    numofbedrh.requestFocus();
+                    numofbedsh.requestFocus();
                 }else
-                if (numofbathrhtext.equalsIgnoreCase("Select Number"))
+                if (numofbathshtext.equalsIgnoreCase("Select Number"))
                 {
-                    Snackbar.make(rhmainlayout, "Select Number of Bathrooms", Snackbar.LENGTH_LONG)
+                    Snackbar.make(shmainlayout, "Select Number of Bathrooms", Snackbar.LENGTH_LONG)
                             .show();
 
-                    numofbathrh.requestFocus();
+                    numofbathsh.requestFocus();
                 }else
-                if (!(rhfurnishtype.getCheckedChipId()==R.id.rhfullyfurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhsemifurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhunfurnish))
+                if (!(furnishtypesh.getCheckedChipId()==R.id.shfullyfurnish)&&!(furnishtypesh.getCheckedChipId()==R.id.shsemifurnish)&&!(furnishtypesh.getCheckedChipId()==R.id.shunfurnish))
                 {
-                    Snackbar.make(rhmainlayout, "Select Furnish Type", Snackbar.LENGTH_LONG)
+                    Snackbar.make(shmainlayout, "Select Furnish Type", Snackbar.LENGTH_LONG)
                             .show();
-                    rhfurnishtype.requestFocus();
+
+                    furnishtypesh.requestFocus();
+                }else
+                if (!(constatus.getCheckedChipId()==R.id.undercon)&&!(constatus.getCheckedChipId()==R.id.readytomove)) {
+                    Snackbar.make(shmainlayout, "Select Construction Status", Snackbar.LENGTH_LONG)
+                            .show();
+
+                    constatus.requestFocus();
                 }
                 if ((img1==null)||(img2==null)||(img3==null))
                 {
@@ -322,40 +352,41 @@ Intent intent=null;
                     alertDialog.show();
 
                 }
+
             }
             else
             {
-                if(Validation.isValidCity(cityrhtext)){
-                    if(pincoderhtext.charAt(0)!='0'&&pincoderhtext.length()==6)
+                if(Validation.isValidCity(cityshtext)){
+                    if(pincodeshtext.charAt(0)!='0'&&pincodeshtext.length()==6)
                         toServer();
                     else{
-                        Snackbar.make(rhmainlayout, "Enter Valid Pincode", Snackbar.LENGTH_LONG)
+                        Snackbar.make(shmainlayout, "Enter Valid Pincode", Snackbar.LENGTH_LONG)
                                 .show();
 
-                        pincoderh.requestFocus();
+                        pincodesh.requestFocus();
                     }
                 }
                 else {
-                    Snackbar.make(rhmainlayout, "Enter Valid City Name", Snackbar.LENGTH_LONG)
+                    Snackbar.make(shmainlayout, "Enter Valid City Name", Snackbar.LENGTH_LONG)
                             .show();
 
-                    cityrh.requestFocus();
+                    citysh.requestFocus();
                 }
+
             }
         }
-
     }
 
     private void toServer() {
         loading.show();
         if (createJsonObject()) {
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.fill_RentHouses, new Response.Listener<String>() {
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.fill_SellHouses, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     if (response.toLowerCase().contains("error")) {
                         loading.dismiss();
 
-                        AlertDialog alertDialog = new AlertDialog.Builder(RentHouses.this).create();
+                        AlertDialog alertDialog = new AlertDialog.Builder(SellHouses.this).create();
                         alertDialog.setMessage(response);
                         alertDialog.setButton(BUTTON_POSITIVE,"Ok", (DialogInterface.OnClickListener) null);
                         alertDialog.setIcon(R.mipmap.ic_launcher_round);
@@ -363,7 +394,7 @@ Intent intent=null;
                         alertDialog.show();
                         Button positiveButton = alertDialog.getButton(BUTTON_POSITIVE);
                         positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
-                        
+
                     } else {
                         if(response.toLowerCase().contains("success")){
                             uniqueid=response.substring(7);
@@ -390,13 +421,13 @@ Intent intent=null;
                                 haveConnectedMobile = true;
                     }
                     if (!haveConnectedWifi && !haveConnectedMobile) {
-                        AlertDialog alertDialog = new AlertDialog.Builder(RentHouses.this).create();
+                        AlertDialog alertDialog = new AlertDialog.Builder(SellHouses.this).create();
                         alertDialog.setMessage("No Internet Connection");
                         alertDialog.setIcon(R.mipmap.ic_launcher_round);
                         alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                         alertDialog.show();
                     } else {
-                        AlertDialog alertDialog = new AlertDialog.Builder(RentHouses.this).create();
+                        AlertDialog alertDialog = new AlertDialog.Builder(SellHouses.this).create();
                         alertDialog.setMessage("Connection Error!");
                         alertDialog.setIcon(R.mipmap.ic_launcher_round);
                         alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
@@ -424,7 +455,7 @@ Intent intent=null;
                 }
                 @Override
                 public void retry(VolleyError error) throws VolleyError {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(RentHouses.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SellHouses.this);
                     builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                     builder.setMessage("Connection")
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -440,10 +471,10 @@ Intent intent=null;
                     positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
                 }
             });
-            MySingleton.getInstance(RentHouses.this).addToRequestQueue(stringRequest);
+            MySingleton.getInstance(SellHouses.this).addToRequestQueue(stringRequest);
         }
         else{
-            AlertDialog.Builder builder = new AlertDialog.Builder(RentHouses.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(SellHouses.this);
 
             builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
             builder.setMessage("Error in connection.")
@@ -459,11 +490,11 @@ Intent intent=null;
     private void picuploadfuntion(int flag) {
         switch (flag){
             case 1:uploadPic(img1,"Uploading 1st Image.Please Wait!",1);
-                    break;
+                break;
             case 2: uploadPic(img2,"Uploading 2nd Image.Please Wait!",2);
-            break;
+                break;
             case 3: uploadPic(img3,"Uploading last Image.Please Wait!",3);
-            break;
+                break;
             case 4: success();
         }
     }
@@ -479,9 +510,9 @@ Intent intent=null;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(RentHouses.this, UserMainActivity.class);
-                 if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                    ActivityOptions options = ActivityOptions.makeCustomAnimation(RentHouses.this, R.anim.fade_in, R.anim.fade_out);
+                Intent intent = new Intent(SellHouses.this, UserMainActivity.class);
+                if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                    ActivityOptions options = ActivityOptions.makeCustomAnimation(SellHouses.this, R.anim.fade_in, R.anim.fade_out);
                     startActivity(intent, options.toBundle());
                 } else {
                     startActivity(intent);
@@ -489,7 +520,7 @@ Intent intent=null;
                 finish();
             }
         },4000);
- }
+    }
 
     private void sendMail() {
         SharedPreferences sp;
@@ -551,7 +582,7 @@ Intent intent=null;
                 }
                 @Override
                 protected String doInBackground(Void... params) {
-                    ImageProcessClass imageProcessClass = new ImageProcessClass();
+                    SellHouses.ImageProcessClass imageProcessClass = new SellHouses.ImageProcessClass();
                     HashMap<String, String> HashMapParams = new HashMap<String, String>();
                     Log.i("formerror2",ConvertImage);
                     HashMapParams.put("uniqueid", uniqueid);
@@ -569,12 +600,12 @@ Intent intent=null;
     private void errorReceived() {
         //clear predata
         loading.dismiss();
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.fill_RentHouses, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.fill_SellHouses, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if (response.toLowerCase().contains("error")) {
                     loading.dismiss();
-                    AlertDialog.Builder builder = new AlertDialog.Builder(RentHouses.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SellHouses.this);
                     builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                     builder.setMessage("Error in server. Try Again")
                             .setPositiveButton("OK",null)
@@ -606,13 +637,13 @@ Intent intent=null;
                             haveConnectedMobile = true;
                 }
                 if (!haveConnectedWifi && !haveConnectedMobile) {
-                    AlertDialog alertDialog = new AlertDialog.Builder(RentHouses.this).create();
+                    AlertDialog alertDialog = new AlertDialog.Builder(SellHouses.this).create();
                     alertDialog.setMessage("No Internet Connection");
                     alertDialog.setIcon(R.mipmap.ic_launcher_round);
                     alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                     alertDialog.show();
                 } else {
-                    AlertDialog alertDialog = new AlertDialog.Builder(RentHouses.this).create();
+                    AlertDialog alertDialog = new AlertDialog.Builder(SellHouses.this).create();
                     alertDialog.setMessage("Connection Error!");
                     alertDialog.setIcon(R.mipmap.ic_launcher_round);
                     alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
@@ -639,7 +670,7 @@ Intent intent=null;
             }
             @Override
             public void retry(VolleyError error) throws VolleyError {
-                AlertDialog.Builder builder = new AlertDialog.Builder(RentHouses.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(SellHouses.this);
                 builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                 builder.setMessage("Connection")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -655,7 +686,7 @@ Intent intent=null;
                 positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
             }
         });
-        MySingleton.getInstance(RentHouses.this).addToRequestQueue(stringRequest);
+        MySingleton.getInstance(SellHouses.this).addToRequestQueue(stringRequest);
     }
 
     private boolean createJsonObject() {
@@ -664,17 +695,19 @@ Intent intent=null;
         if(sp!=null) {
             try {
                 jsonObject.put("mobileno",sp.getString("mobileno",null));
-                jsonObject.put("houseno",housenorhtext);
-                jsonObject.put("area",arearhtext);
-                jsonObject.put("city",cityrhtext);
-                jsonObject.put("landmark",landmarkrhtext);
-                jsonObject.put("pincode",pincoderhtext);
+                jsonObject.put("houseno",housenoshtext);
+                jsonObject.put("area",areashtext);
+                jsonObject.put("city",cityshtext);
+                jsonObject.put("landmark",landmarkshtext);
+                jsonObject.put("pincode",pincodeshtext);
                 jsonObject.put("propertytype",propertytype);
-                jsonObject.put("bedrooms",numofbedrhtext);
-                jsonObject.put("bathrooms",numofbathrhtext);
-                jsonObject.put("furnishtype",rhfurnishtyypetext);
-                jsonObject.put("builtuparea",builtarearhtext);
-                jsonObject.put("price",monthlyrentrhtext);
+                jsonObject.put("bedrooms",numofbedshtext);
+                jsonObject.put("bathrooms",numofbathshtext);
+                jsonObject.put("furnishtype",shfurnishtyypetext);
+                jsonObject.put("builtuparea",builtareashtext);
+                jsonObject.put("price",costshtext);
+                jsonObject.put("constnstatus",constatustext);
+                jsonObject.put("ageofproperty",ageofpropertyshtext);
                 return true;
             } catch (Exception e) {
                 Log.i("errorrent",e.getMessage());
@@ -737,4 +770,3 @@ Intent intent=null;
         }
     }
 }
-

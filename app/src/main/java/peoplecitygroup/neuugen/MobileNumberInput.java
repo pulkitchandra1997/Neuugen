@@ -25,7 +25,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import peoplecitygroup.neuugen.service.Validation;
+import peoplecitygroup.neuugen.common_req_files.Validation;
 
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 

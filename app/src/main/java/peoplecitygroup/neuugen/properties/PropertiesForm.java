@@ -1,4 +1,4 @@
-package peoplecitygroup.neuugen;
+package peoplecitygroup.neuugen.properties;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.RadioGroup;
 
 import com.google.android.material.button.MaterialButton;
+
+import peoplecitygroup.neuugen.R;
 
 public class PropertiesForm extends AppCompatActivity implements View.OnClickListener {
 

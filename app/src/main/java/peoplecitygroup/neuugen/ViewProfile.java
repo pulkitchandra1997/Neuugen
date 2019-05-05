@@ -42,7 +42,7 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import peoplecitygroup.neuugen.service.UrlNeuugen;
+import peoplecitygroup.neuugen.common_req_files.UrlNeuugen;
 
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 

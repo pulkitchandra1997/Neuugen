@@ -1,4 +1,4 @@
-package peoplecitygroup.neuugen.service;
+package peoplecitygroup.neuugen.common_req_files;
 
 public class UrlNeuugen {
     private static final String URL="http://neuugen.com/app/neuugen/backendcode/";

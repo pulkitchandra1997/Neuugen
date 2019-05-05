@@ -1,4 +1,4 @@
-package peoplecitygroup.neuugen;
+package peoplecitygroup.neuugen.properties;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -60,11 +60,13 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import peoplecitygroup.neuugen.service.MySingleton;
-import peoplecitygroup.neuugen.service.SendMail;
-import peoplecitygroup.neuugen.service.UrlNeuugen;
-import peoplecitygroup.neuugen.service.Validation;
-import peoplecitygroup.neuugen.service.VolleyCallback;
+import peoplecitygroup.neuugen.R;
+import peoplecitygroup.neuugen.UserMainActivity;
+import peoplecitygroup.neuugen.common_req_files.MySingleton;
+import peoplecitygroup.neuugen.common_req_files.SendMail;
+import peoplecitygroup.neuugen.common_req_files.UrlNeuugen;
+import peoplecitygroup.neuugen.common_req_files.Validation;
+import peoplecitygroup.neuugen.common_req_files.VolleyCallback;
 
 import static android.content.DialogInterface.BUTTON_POSITIVE;
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;

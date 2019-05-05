@@ -1,4 +1,4 @@
-package peoplecitygroup.neuugen;
+package peoplecitygroup.neuugen.properties;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +15,8 @@ import android.widget.RadioGroup;
 
 import com.google.android.material.button.MaterialButton;
 
-import peoplecitygroup.neuugen.service.UrlNeuugen;
+import peoplecitygroup.neuugen.R;
+import peoplecitygroup.neuugen.common_req_files.UrlNeuugen;
 
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 

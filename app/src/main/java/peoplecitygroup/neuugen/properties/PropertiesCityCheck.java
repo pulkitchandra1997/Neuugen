@@ -1,4 +1,4 @@
-package peoplecitygroup.neuugen;
+package peoplecitygroup.neuugen.properties;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,9 +33,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import peoplecitygroup.neuugen.service.LinkCities;
-import peoplecitygroup.neuugen.service.MySingleton;
-import peoplecitygroup.neuugen.service.UrlNeuugen;
+import peoplecitygroup.neuugen.R;
+import peoplecitygroup.neuugen.common_req_files.LinkCities;
+import peoplecitygroup.neuugen.common_req_files.MySingleton;
+import peoplecitygroup.neuugen.common_req_files.UrlNeuugen;
 
 import static android.content.DialogInterface.BUTTON_POSITIVE;
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
@@ -288,13 +289,13 @@ public class PropertiesCityCheck extends AppCompatActivity implements View.OnCli
     private void nextActivity() {
         Intent intent=null;
         if(adtypetext.equalsIgnoreCase("rent office"))
-            intent=new Intent(PropertiesCityCheck.this,RentOffice.class);
+            intent=new Intent(PropertiesCityCheck.this, RentOffice.class);
         if(adtypetext.equalsIgnoreCase("rent houses"))
-            intent=new Intent(PropertiesCityCheck.this,RentHouses.class);
+            intent=new Intent(PropertiesCityCheck.this, RentHouses.class);
         if(adtypetext.equalsIgnoreCase("sell houses"))
-            intent=new Intent(PropertiesCityCheck.this,SellHouses.class);
+            intent=new Intent(PropertiesCityCheck.this, SellHouses.class);
         if(adtypetext.equalsIgnoreCase("sell plots"))
-            intent=new Intent(PropertiesCityCheck.this,SellPlots.class);
+            intent=new Intent(PropertiesCityCheck.this, SellPlots.class);
         intent.putExtra("city",citytext);
         if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
             ActivityOptions options = ActivityOptions.makeCustomAnimation(PropertiesCityCheck.this, R.anim.fade_in, R.anim.fade_out);

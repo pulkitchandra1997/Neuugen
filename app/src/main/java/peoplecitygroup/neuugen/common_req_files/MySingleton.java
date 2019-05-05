@@ -1,4 +1,4 @@
-package peoplecitygroup.neuugen.service;
+package peoplecitygroup.neuugen.common_req_files;
 
 /**
  * Created by DELL on 3/30/2018.

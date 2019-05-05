@@ -1,4 +1,4 @@
-package peoplecitygroup.neuugen;
+package peoplecitygroup.neuugen.properties;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -61,59 +61,60 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import peoplecitygroup.neuugen.service.MySingleton;
-import peoplecitygroup.neuugen.service.SendMail;
-import peoplecitygroup.neuugen.service.UrlNeuugen;
-import peoplecitygroup.neuugen.service.Validation;
-import peoplecitygroup.neuugen.service.VolleyCallback;
+import peoplecitygroup.neuugen.R;
+import peoplecitygroup.neuugen.UserMainActivity;
+import peoplecitygroup.neuugen.common_req_files.MySingleton;
+import peoplecitygroup.neuugen.common_req_files.SendMail;
+import peoplecitygroup.neuugen.common_req_files.UrlNeuugen;
+import peoplecitygroup.neuugen.common_req_files.Validation;
+import peoplecitygroup.neuugen.common_req_files.VolleyCallback;
 
 import static android.content.DialogInterface.BUTTON_POSITIVE;
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
-public class RentOffice extends AppCompatActivity implements View.OnClickListener {
+public class RentHouses extends AppCompatActivity implements View.OnClickListener {
 
-    AppCompatTextView backtopost2;
+    AppCompatTextView backtopost;
 
-    TextInputEditText arearo,cityro,landmarkro,builtarearo,monthlyrentro,shopno,pincodero;
+    TextInputEditText arearh,cityrh,landmarkrh,builtarearh,monthlyrentrh,housenorh,pincoderh;
+    boolean chk = true;
+    MaterialButton submitrhform,addimgrh1,addimgrh2,addimgrh3;
 
-    MaterialButton submitroform,addimgro1,addimgro2,addimgro3;
+    AppCompatSpinner propertytyperh,numofbedrh,numofbathrh;
 
-    AppCompatSpinner propertytypero;
+    ChipGroup rhfurnishtype;
 
-    ChipGroup constatusro;
+    Chip rhfullyfurnish,rhsemifurnish,rhunfurnish;
 
-    Chip readytomovero,underconro;
+    LinearLayout rhmainlayout;
 
-    LinearLayout romainlayout;
-
-    AppCompatImageView imgro1,imgro2,imgro3;
-    ProgressDialog loading = null;
-    String uniqueid=null;
-    String propertytype,arearotext,cityrotext,landmarkrotext,pincoderotext,builtarearotext,monthlyrentrotext,shopnorotext,propertytyperotext,constatusrotext;
-    JSONObject jsonObject= new JSONObject();
+    AppCompatImageView imgrh1,imgrh2,imgrh3;
     int imageflag=0;
     Bitmap img1,img2,img3;
-    boolean chk = true;
-    Intent intent=null;
+    String propertytype,arearhtext,cityrhtext,landmarkrhtext,builtarearhtext,pincoderhtext,monthlyrentrhtext,housenorhtext,propertytyperhtext,numofbedrhtext,numofbathrhtext,rhfurnishtyypetext;
+    ProgressDialog loading = null;
+JSONObject jsonObject= new JSONObject();
+String uniqueid=null;
+Intent intent=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rent_office);
+        setContentView(R.layout.activity_rent_houses);
 
         idLink();
         listenerLink();
         hideSoftKeyboard();
-        loading = new ProgressDialog(RentOffice.this,R.style.AppCompatAlertDialogStyle);
+        loading = new ProgressDialog(RentHouses.this,R.style.AppCompatAlertDialogStyle);
         loading.setCancelable(false);
         loading.setMessage("Loading");
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         Typeface font = Typeface.createFromAsset(getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
-        backtopost2.setTypeface(font);
+        backtopost.setTypeface(font);
 
         intent=getIntent();
-        cityrotext=intent.getStringExtra("city").toUpperCase();
-        cityro.setText(cityrotext.toUpperCase());
-        cityro.setEnabled(false);
+        cityrhtext=intent.getStringExtra("city").toUpperCase();
+        cityrh.setText(cityrhtext.toUpperCase());
+        cityrh.setEnabled(false);
     }
 
     public void hideSoftKeyboard() {
@@ -122,37 +123,42 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
             inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
     }
+
     public void listenerLink()
     {
-        backtopost2.setOnClickListener(this);
-        submitroform.setOnClickListener(this);
-        addimgro1.setOnClickListener(this);
-        addimgro2.setOnClickListener(this);
-        addimgro3.setOnClickListener(this);
+        backtopost.setOnClickListener(this);
+        submitrhform.setOnClickListener(this);
+        addimgrh1.setOnClickListener(this);
+        addimgrh2.setOnClickListener(this);
+        addimgrh3.setOnClickListener(this);
+
     }
 
     public void idLink()
     {
-        backtopost2=findViewById(R.id.backtopost2);
-        arearo=findViewById(R.id.arearo);
-        cityro=findViewById(R.id.cityro);
-        landmarkro=findViewById(R.id.landmarkro);
-        builtarearo=findViewById(R.id.builtarearo);
-        monthlyrentro=findViewById(R.id.monthlyrentro);
-        propertytypero=findViewById(R.id.propertytypero);
-        submitroform=findViewById(R.id.submitroform);
-        constatusro=findViewById(R.id.constatusro);
-        readytomovero=findViewById(R.id.readytomovero);
-        underconro=findViewById(R.id.underconro);
-        shopno=findViewById(R.id.shopno);
-        romainlayout=findViewById(R.id.romainlayout);
-        imgro1=findViewById(R.id.imgro1);
-        imgro2=findViewById(R.id.imgro2);
-        imgro3=findViewById(R.id.imgro3);
-        addimgro1=findViewById(R.id.addimgro1);
-        addimgro2=findViewById(R.id.addimgro2);
-        addimgro3=findViewById(R.id.addimgro3);
-        pincodero=findViewById(R.id.pincodero);
+        backtopost=findViewById(R.id.backtopost);
+        arearh=findViewById(R.id.arearh);
+        cityrh=findViewById(R.id.cityrh);
+        landmarkrh=findViewById(R.id.landmarkrh);
+        builtarearh=findViewById(R.id.builtarearh);
+        monthlyrentrh=findViewById(R.id.monthlyrentrh);
+        propertytyperh=findViewById(R.id.propertytyperh);
+        numofbedrh=findViewById(R.id.numofbedrh);
+        numofbathrh=findViewById(R.id.numofbathrh);
+        submitrhform=findViewById(R.id.submitrhform);
+        rhfurnishtype=findViewById(R.id.rhfurnishtype);
+        rhfullyfurnish=findViewById(R.id.rhfullyfurnish);
+        rhsemifurnish=findViewById(R.id.rhsemifurnish);
+        rhunfurnish=findViewById(R.id.rhunfurnish);
+        housenorh=findViewById(R.id.housenorh);
+        rhmainlayout=findViewById(R.id.rhmainlayout);
+        imgrh1=findViewById(R.id.imgrh1);
+        imgrh2=findViewById(R.id.imgrh2);
+        imgrh3=findViewById(R.id.imgrh3);
+        addimgrh1=findViewById(R.id.addimgrh1);
+        addimgrh2=findViewById(R.id.addimgrh2);
+        addimgrh3=findViewById(R.id.addimgrh3);
+        pincoderh=findViewById(R.id.pincoderh);
 
     }
     @Override
@@ -163,13 +169,13 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
             try {
                 switch (imageflag){
                     case 1:img1 = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                        imgro1.setImageBitmap(img1);
-                        break;
+                            imgrh1.setImageBitmap(img1);
+                            break;
                     case 2:img2=MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                        imgro2.setImageBitmap(img2);
-                        break;
+                            imgrh2.setImageBitmap(img2);
+                            break;
                     case 3:img3=MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                        imgro3.setImageBitmap(img3);
+                            imgrh3.setImageBitmap(img3);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -181,106 +187,133 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
     }
     @Override
     public void onClick(View v) {
-        if (v.getId()==R.id.addimgro1){
+        if (v.getId()==R.id.addimgrh1){
             imageflag=1;
             Intent intent = new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_PICK);
             startActivityForResult(Intent.createChooser(intent, "Select Image From Gallery"), 1);
         }
-        if (v.getId()==R.id.addimgro2){
+        if (v.getId()==R.id.addimgrh2){
             imageflag=2;
             Intent intent = new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_PICK);
             startActivityForResult(Intent.createChooser(intent, "Select Image From Gallery"), 1);
         }
-        if (v.getId()==R.id.addimgro3){
+        if (v.getId()==R.id.addimgrh3){
             imageflag=3;
             Intent intent = new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_PICK);
             startActivityForResult(Intent.createChooser(intent, "Select Image From Gallery"), 1);
         }
-        if(v.getId()==R.id.backtopost2)
+        if(v.getId()==R.id.backtopost)
         {
             onBackPressed();
         }
-        if (v.getId()==R.id.submitroform)
+        if (v.getId()==R.id.submitrhform)
         {
-            arearotext=arearo.getText().toString().trim();
-            shopnorotext=shopno.getText().toString().trim();
-            cityrotext=cityro.getText().toString().trim();
-            landmarkrotext=landmarkro.getText().toString().trim();
-            builtarearotext=builtarearo.getText().toString().trim();
-            monthlyrentrotext=monthlyrentro.getText().toString().trim();
-            propertytyperotext=propertytypero.getSelectedItem().toString();
-            pincoderotext=pincodero.getText().toString().trim();
 
-            if (constatusro.getCheckedChipId()==R.id.readytomove)
+            arearhtext=arearh.getText().toString().trim();
+            housenorhtext=housenorh.getText().toString().trim();
+            cityrhtext=cityrh.getText().toString().trim();
+            landmarkrhtext=landmarkrh.getText().toString().trim();
+            builtarearhtext=builtarearh.getText().toString().trim();
+            monthlyrentrhtext=monthlyrentrh.getText().toString().trim();
+            propertytyperhtext=propertytyperh.getSelectedItem().toString();
+            numofbedrhtext=String.valueOf(numofbedrh.getSelectedItemPosition());
+            numofbathrhtext=String.valueOf(numofbathrh.getSelectedItemPosition());
+            pincoderhtext=pincoderh.getText().toString().trim();
+
+            if (propertytyperhtext.equalsIgnoreCase("Apartment"))
             {
-                constatusrotext="0";
+                propertytype="0";
             }else
-            if (constatusro.getCheckedChipId()==R.id.undercon)
+            if (propertytyperhtext.equalsIgnoreCase("Independent House"))
             {
-                constatusrotext="1";
+                propertytype="1";
+            }else
+            if (propertytyperhtext.equalsIgnoreCase("Villa"))
+            {
+                propertytype="2";
+            }else
+            if (propertytyperhtext.equalsIgnoreCase("Hostel"))
+            {
+                propertytype="3";
+            }
+            if (rhfurnishtype.getCheckedChipId()==R.id.rhfullyfurnish)
+            {
+                rhfurnishtyypetext="0";
+            }else
+            if (rhfurnishtype.getCheckedChipId()==R.id.rhsemifurnish)
+            {
+                rhfurnishtyypetext="1";
+            }else
+            if (rhfurnishtype.getCheckedChipId()==R.id.rhunfurnish)
+            {
+                rhfurnishtyypetext="2";
             }
 
-            if (propertytyperotext.equalsIgnoreCase("Office Area"))
+            if (TextUtils.isEmpty(pincoderhtext) ||TextUtils.isEmpty(arearhtext) || TextUtils.isEmpty(housenorhtext)||TextUtils.isEmpty(cityrhtext)||TextUtils.isEmpty(builtarearhtext)||TextUtils.isEmpty(monthlyrentrhtext)||propertytyperhtext.equalsIgnoreCase("Select Property Type")||numofbathrh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||numofbedrh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||!(rhfurnishtype.getCheckedChipId()==R.id.rhfullyfurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhsemifurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhunfurnish)||(img1==null)||(img2==null)||(img3==null))
             {
-                propertytype="4";
-            }else
-            if (propertytyperotext.equalsIgnoreCase("Shop Area"))
-            {
-                propertytype="5";
-            }
-            if (TextUtils.isEmpty(pincoderotext) ||TextUtils.isEmpty(arearotext) || TextUtils.isEmpty(shopnorotext)||TextUtils.isEmpty(cityrotext)||TextUtils.isEmpty(builtarearotext)||TextUtils.isEmpty(monthlyrentrotext)||propertytyperotext.equalsIgnoreCase("Select Property Type")||!(constatusro.getCheckedChipId()==R.id.underconro)&&!(constatusro.getCheckedChipId()==R.id.readytomovero)||(img1==null)||(img2==null)||(img3==null))
-            {
-                if (TextUtils.isEmpty(shopnorotext) )
+                if (TextUtils.isEmpty(housenorhtext) )
                 {
-                    shopno.setError("Enter Shop Number");
-                    shopno.requestFocus();
+                    housenorh.setError("Enter House Number");
+                    housenorh.requestFocus();
                 }else
-                if (TextUtils.isEmpty(arearotext) )
+                if (TextUtils.isEmpty(arearhtext) )
                 {
-                    arearo.setError("Enter Area");
-                    arearo.requestFocus();
+                    arearh.setError("Enter Area");
+                    arearh.requestFocus();
                 }else
 
-                if (TextUtils.isEmpty(cityrotext) )
+                if (TextUtils.isEmpty(cityrhtext) )
                 {
-                    cityro.setError("Enter City");
-                    cityro.requestFocus();
+                    cityrh.setError("Enter City");
+                    cityrh.requestFocus();
                 }else
-                if (TextUtils.isEmpty(pincoderotext) )
+                if (TextUtils.isEmpty(pincoderhtext) )
                 {
-                    pincodero.setError("Enter Pincode");
-                    pincodero.requestFocus();
+                    pincoderh.setError("Enter Pincode");
+                    pincoderh.requestFocus();
                 }else
-                if (TextUtils.isEmpty(builtarearotext) )
+                if (TextUtils.isEmpty(builtarearhtext) )
                 {
-                    builtarearo.setError("Enter Built Area");
-                    builtarearo.requestFocus();
+                    builtarearh.setError("Enter Built Area");
+                    builtarearh.requestFocus();
                 }else
-                if (TextUtils.isEmpty(monthlyrentrotext) )
+                if (TextUtils.isEmpty(monthlyrentrhtext) )
                 {
-                    monthlyrentro.setError("Enter Monthly Rent");
-                    monthlyrentro.requestFocus();
+                    monthlyrentrh.setError("Enter Monthly Rent");
+                    monthlyrentrh.requestFocus();
                 }else
-
-                if (propertytyperotext.equalsIgnoreCase("Select Property Type"))
+                if (propertytyperhtext.equalsIgnoreCase("Select Property Type"))
                 {
-                    Snackbar.make(romainlayout, "Select Property Type", Snackbar.LENGTH_LONG)
+                    Snackbar.make(rhmainlayout, "Select Property Type", Snackbar.LENGTH_LONG)
                             .show();
 
-                    propertytypero.requestFocus();
+                    propertytyperh.requestFocus();
                 }else
-
-                if (!(constatusro.getCheckedChipId()==R.id.underconro)&&!(constatusro.getCheckedChipId()==R.id.readytomovero)) {
-                    Snackbar.make(romainlayout, "Select Construction Status", Snackbar.LENGTH_LONG)
+                if (numofbedrhtext.equalsIgnoreCase("Select Number"))
+                {
+                    Snackbar.make(rhmainlayout, "Select Number of Bedrooms", Snackbar.LENGTH_LONG)
                             .show();
 
-                    constatusro.requestFocus();
+                    numofbedrh.requestFocus();
+                }else
+                if (numofbathrhtext.equalsIgnoreCase("Select Number"))
+                {
+                    Snackbar.make(rhmainlayout, "Select Number of Bathrooms", Snackbar.LENGTH_LONG)
+                            .show();
+
+                    numofbathrh.requestFocus();
+                }else
+                if (!(rhfurnishtype.getCheckedChipId()==R.id.rhfullyfurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhsemifurnish)&&!(rhfurnishtype.getCheckedChipId()==R.id.rhunfurnish))
+                {
+                    Snackbar.make(rhmainlayout, "Select Furnish Type", Snackbar.LENGTH_LONG)
+                            .show();
+                    rhfurnishtype.requestFocus();
                 }
                 if ((img1==null)||(img2==null)||(img3==null))
                 {
@@ -294,36 +327,37 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
             }
             else
             {
-                if(Validation.isValidCity(cityrotext)){
-                    if(pincoderotext.charAt(0)!='0'&&pincoderotext.length()==6)
+                if(Validation.isValidCity(cityrhtext)){
+                    if(pincoderhtext.charAt(0)!='0'&&pincoderhtext.length()==6)
                         toServer();
                     else{
-                        Snackbar.make(romainlayout, "Enter Valid Pincode", Snackbar.LENGTH_LONG)
+                        Snackbar.make(rhmainlayout, "Enter Valid Pincode", Snackbar.LENGTH_LONG)
                                 .show();
 
-                        pincodero.requestFocus();
+                        pincoderh.requestFocus();
                     }
                 }
                 else {
-                    Snackbar.make(romainlayout, "Enter Valid City Name", Snackbar.LENGTH_LONG)
+                    Snackbar.make(rhmainlayout, "Enter Valid City Name", Snackbar.LENGTH_LONG)
                             .show();
 
-                    cityro.requestFocus();
+                    cityrh.requestFocus();
                 }
             }
         }
+
     }
 
     private void toServer() {
         loading.show();
         if (createJsonObject()) {
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.fill_RentOffice, new Response.Listener<String>() {
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.fill_RentHouses, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     if (response.toLowerCase().contains("error")) {
                         loading.dismiss();
 
-                        AlertDialog alertDialog = new AlertDialog.Builder(RentOffice.this).create();
+                        AlertDialog alertDialog = new AlertDialog.Builder(RentHouses.this).create();
                         alertDialog.setMessage(response);
                         alertDialog.setButton(BUTTON_POSITIVE,"Ok", (DialogInterface.OnClickListener) null);
                         alertDialog.setIcon(R.mipmap.ic_launcher_round);
@@ -331,12 +365,13 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
                         alertDialog.show();
                         Button positiveButton = alertDialog.getButton(BUTTON_POSITIVE);
                         positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
-
+                        
                     } else {
                         if(response.toLowerCase().contains("success")){
                             uniqueid=response.substring(7);
                             loading.dismiss();
                             picuploadfuntion(1);
+
                         }
                     }
                 }
@@ -357,13 +392,13 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
                                 haveConnectedMobile = true;
                     }
                     if (!haveConnectedWifi && !haveConnectedMobile) {
-                        AlertDialog alertDialog = new AlertDialog.Builder(RentOffice.this).create();
+                        AlertDialog alertDialog = new AlertDialog.Builder(RentHouses.this).create();
                         alertDialog.setMessage("No Internet Connection");
                         alertDialog.setIcon(R.mipmap.ic_launcher_round);
                         alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                         alertDialog.show();
                     } else {
-                        AlertDialog alertDialog = new AlertDialog.Builder(RentOffice.this).create();
+                        AlertDialog alertDialog = new AlertDialog.Builder(RentHouses.this).create();
                         alertDialog.setMessage("Connection Error!");
                         alertDialog.setIcon(R.mipmap.ic_launcher_round);
                         alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
@@ -391,7 +426,7 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
                 }
                 @Override
                 public void retry(VolleyError error) throws VolleyError {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(RentOffice.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RentHouses.this);
                     builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                     builder.setMessage("Connection")
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -407,10 +442,10 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
                     positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
                 }
             });
-            MySingleton.getInstance(RentOffice.this).addToRequestQueue(stringRequest);
+            MySingleton.getInstance(RentHouses.this).addToRequestQueue(stringRequest);
         }
         else{
-            AlertDialog.Builder builder = new AlertDialog.Builder(RentOffice.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(RentHouses.this);
 
             builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
             builder.setMessage("Error in connection.")
@@ -426,40 +461,67 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
     private void picuploadfuntion(int flag) {
         switch (flag){
             case 1:uploadPic(img1,"Uploading 1st Image.Please Wait!",1);
-                break;
+                    break;
             case 2: uploadPic(img2,"Uploading 2nd Image.Please Wait!",2);
-                break;
+            break;
             case 3: uploadPic(img3,"Uploading last Image.Please Wait!",3);
-                break;
+            break;
             case 4: success();
         }
     }
 
-    private boolean createJsonObject() {
-        SharedPreferences sp;
-        sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
-        if(sp!=null) {
-            try {
-                jsonObject.put("mobileno",sp.getString("mobileno",null));
-                jsonObject.put("shopno",shopnorotext);
-                jsonObject.put("area",arearotext);
-                jsonObject.put("city",cityrotext);
-                jsonObject.put("landmark",landmarkrotext);
-                jsonObject.put("pincode",pincoderotext);
-                jsonObject.put("propertytype",propertytype);
-                jsonObject.put("constructionstatus",constatusrotext);
-                jsonObject.put("builtuparea",builtarearotext);
-                jsonObject.put("price",monthlyrentrotext);
-                return true;
-            } catch (Exception e) {
-                Log.i("errorrent",e.getMessage());
-                return false;
+    private void success() {
+        sendMail();
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setMessage(Html.fromHtml("<b>Your ad has been posted. Our customer executive will contact you soon to verify your property.</b>"));
+        alertDialog.setIcon(R.mipmap.ic_launcher_round);
+        alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>NeuuGen</font>"));
+        alertDialog.show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(RentHouses.this, UserMainActivity.class);
+                 if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                    ActivityOptions options = ActivityOptions.makeCustomAnimation(RentHouses.this, R.anim.fade_in, R.anim.fade_out);
+                    startActivity(intent, options.toBundle());
+                } else {
+                    startActivity(intent);
+                }
+                finish();
             }
+        },4000);
+ }
+
+    private void sendMail() {
+        SharedPreferences sp;
+        sp = getSharedPreferences("NeuuGen_data", MODE_PRIVATE);
+        if (sp != null) {
+            final String email=sp.getString("email",null);
+            final String name=sp.getString("name",null).toUpperCase();
+            SendMail sendMail=new SendMail();
+            String subject="NG: Your AD has been posted.";
+            String body="Dear "+name+",<br><p>Thanks for choosing NEUUGEN. Your AD has been posted.</p><br>Our Customer Executive/Agent will reach out to you for verification of the posted ad. The Service Requested will be provided soon.";
+            sendMail.sendMailmethod(email, subject, body, this, new VolleyCallback() {
+                @Override
+                public void onSuccess(String result) {
+
+                }
+
+                @Override
+                public void onError(String response) {
+
+                }
+
+                @Override
+                public void onVolleyError() {
+                    loading.dismiss();
+                }
+            });
         }
-        return false;
     }
 
-    private void uploadPic(Bitmap img, final String message, final int flag ) {
+    private void uploadPic(Bitmap img,final String message,final int flag ) {
         if (img != null) {
             ByteArrayOutputStream byteArrayOutputStreamObject;
             byteArrayOutputStreamObject = new ByteArrayOutputStream();
@@ -509,12 +571,12 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
     private void errorReceived() {
         //clear predata
         loading.dismiss();
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.fill_RentOffice, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.fill_RentHouses, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if (response.toLowerCase().contains("error")) {
                     loading.dismiss();
-                    AlertDialog.Builder builder = new AlertDialog.Builder(RentOffice.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RentHouses.this);
                     builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                     builder.setMessage("Error in server. Try Again")
                             .setPositiveButton("OK",null)
@@ -546,13 +608,13 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
                             haveConnectedMobile = true;
                 }
                 if (!haveConnectedWifi && !haveConnectedMobile) {
-                    AlertDialog alertDialog = new AlertDialog.Builder(RentOffice.this).create();
+                    AlertDialog alertDialog = new AlertDialog.Builder(RentHouses.this).create();
                     alertDialog.setMessage("No Internet Connection");
                     alertDialog.setIcon(R.mipmap.ic_launcher_round);
                     alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                     alertDialog.show();
                 } else {
-                    AlertDialog alertDialog = new AlertDialog.Builder(RentOffice.this).create();
+                    AlertDialog alertDialog = new AlertDialog.Builder(RentHouses.this).create();
                     alertDialog.setMessage("Connection Error!");
                     alertDialog.setIcon(R.mipmap.ic_launcher_round);
                     alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
@@ -579,7 +641,7 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
             }
             @Override
             public void retry(VolleyError error) throws VolleyError {
-                AlertDialog.Builder builder = new AlertDialog.Builder(RentOffice.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(RentHouses.this);
                 builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                 builder.setMessage("Connection")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -595,8 +657,35 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
                 positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
             }
         });
-        MySingleton.getInstance(RentOffice.this).addToRequestQueue(stringRequest);
+        MySingleton.getInstance(RentHouses.this).addToRequestQueue(stringRequest);
     }
+
+    private boolean createJsonObject() {
+        SharedPreferences sp;
+        sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
+        if(sp!=null) {
+            try {
+                jsonObject.put("mobileno",sp.getString("mobileno",null));
+                jsonObject.put("houseno",housenorhtext);
+                jsonObject.put("area",arearhtext);
+                jsonObject.put("city",cityrhtext);
+                jsonObject.put("landmark",landmarkrhtext);
+                jsonObject.put("pincode",pincoderhtext);
+                jsonObject.put("propertytype",propertytype);
+                jsonObject.put("bedrooms",numofbedrhtext);
+                jsonObject.put("bathrooms",numofbathrhtext);
+                jsonObject.put("furnishtype",rhfurnishtyypetext);
+                jsonObject.put("builtuparea",builtarearhtext);
+                jsonObject.put("price",monthlyrentrhtext);
+                return true;
+            } catch (Exception e) {
+                Log.i("errorrent",e.getMessage());
+                return false;
+            }
+        }
+        return false;
+    }
+
     public class ImageProcessClass{
         public String ImageHttpRequest(String requestURL,HashMap<String, String> PData) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -649,53 +738,5 @@ public class RentOffice extends AppCompatActivity implements View.OnClickListene
             return stringBuilderObject.toString();
         }
     }
-    private void success() {
-        sendMail();
-        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setMessage(Html.fromHtml("<b>Your ad has been posted. Our customer executive will contact you soon to verify your property.</b>"));
-        alertDialog.setIcon(R.mipmap.ic_launcher_round);
-        alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>NeuuGen</font>"));
-        alertDialog.show();
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(RentOffice.this, UserMainActivity.class);
-                if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                    ActivityOptions options = ActivityOptions.makeCustomAnimation(RentOffice.this, R.anim.fade_in, R.anim.fade_out);
-                    startActivity(intent, options.toBundle());
-                } else {
-                    startActivity(intent);
-                }
-                finish();
-            }
-        },4000);
-    }
-    private void sendMail() {
-        SharedPreferences sp;
-        sp = getSharedPreferences("NeuuGen_data", MODE_PRIVATE);
-        if (sp != null) {
-            final String email=sp.getString("email",null);
-            final String name=sp.getString("name",null).toUpperCase();
-            SendMail sendMail=new SendMail();
-            String subject="NG: Your AD has been posted.";
-            String body="Dear "+name+",<br><p>Thanks for choosing NEUUGEN. Your AD has been posted.</p><br>Our Customer Executive/Agent will reach out to you for verification of the posted ad. The Service Requested will be provided soon.";
-            sendMail.sendMailmethod(email, subject, body, this, new VolleyCallback() {
-                @Override
-                public void onSuccess(String result) {
-
-                }
-
-                @Override
-                public void onError(String response) {
-
-                }
-
-                @Override
-                public void onVolleyError() {
-                    loading.dismiss();
-                }
-            });
-        }
-    }
 }
+

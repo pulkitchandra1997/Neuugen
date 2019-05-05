@@ -17,7 +17,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -37,12 +36,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import peoplecitygroup.neuugen.service.MySingleton;
+import peoplecitygroup.neuugen.common_req_files.MySingleton;
 import peoplecitygroup.neuugen.R;
-import peoplecitygroup.neuugen.service.SendMail;
-import peoplecitygroup.neuugen.service.SendMsg;
-import peoplecitygroup.neuugen.service.UrlNeuugen;
-import peoplecitygroup.neuugen.service.VolleyCallback;
+import peoplecitygroup.neuugen.common_req_files.SendMail;
+import peoplecitygroup.neuugen.common_req_files.SendMsg;
+import peoplecitygroup.neuugen.common_req_files.UrlNeuugen;
+import peoplecitygroup.neuugen.common_req_files.VolleyCallback;
 
 public class SalonServiceForm extends AppCompatActivity implements View.OnClickListener {
 

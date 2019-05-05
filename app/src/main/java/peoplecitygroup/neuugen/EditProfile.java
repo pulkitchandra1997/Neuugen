@@ -24,7 +24,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.Calendar;
 import java.util.Date;
 
-import peoplecitygroup.neuugen.service.Validation;
+import peoplecitygroup.neuugen.common_req_files.Validation;
 
 public class EditProfile extends AppCompatActivity implements View.OnClickListener {
 

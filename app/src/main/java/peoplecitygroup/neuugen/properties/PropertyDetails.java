@@ -1,4 +1,4 @@
-package peoplecitygroup.neuugen;
+package peoplecitygroup.neuugen.properties;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.google.android.material.button.MaterialButton;
+
+import peoplecitygroup.neuugen.R;
 
 public class PropertyDetails extends AppCompatActivity implements View.OnClickListener {
 

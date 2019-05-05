@@ -29,10 +29,10 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-import peoplecitygroup.neuugen.service.MySingleton;
-import peoplecitygroup.neuugen.service.PROFILE;
-import peoplecitygroup.neuugen.service.UrlNeuugen;
-import peoplecitygroup.neuugen.service.Validation;
+import peoplecitygroup.neuugen.common_req_files.MySingleton;
+import peoplecitygroup.neuugen.common_req_files.PROFILE;
+import peoplecitygroup.neuugen.common_req_files.UrlNeuugen;
+import peoplecitygroup.neuugen.common_req_files.Validation;
 
 public class UserDetails extends AppCompatActivity implements View.OnClickListener {
 

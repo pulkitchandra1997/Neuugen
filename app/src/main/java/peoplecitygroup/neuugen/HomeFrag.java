@@ -5,15 +5,12 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 
-import com.github.amlcurran.showcaseview.OnShowcaseEventListener;
 import com.github.amlcurran.showcaseview.ShowcaseView;
-import com.github.amlcurran.showcaseview.targets.ActionViewTarget;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -30,6 +27,8 @@ import peoplecitygroup.neuugen.HomeServices.EventServices.EventsActivity;
 import peoplecitygroup.neuugen.HomeServices.HomeRenovationServices.HomeRenovation;
 import peoplecitygroup.neuugen.HomeServices.LearningServices.LearningActivity;
 import peoplecitygroup.neuugen.HomeServices.SalonServices.HomeSalon;
+import peoplecitygroup.neuugen.properties.PostAd;
+import peoplecitygroup.neuugen.properties.PropertiesForm;
 
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 

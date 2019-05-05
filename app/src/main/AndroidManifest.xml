@@ -28,7 +28,7 @@
         <activity android:name=".HomeServices.SparePartsActivity"></activity>
         <activity android:name=".ProtectionProgram" />
         <activity
-            android:name=".PropertiesCityCheck"
+            android:name=".properties.PropertiesCityCheck"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".ManageYourAds" />
         <activity android:name=".HelpSupportActivity" />
@@ -38,10 +38,10 @@
         <activity android:name=".Termsofuse" />
         <activity android:name=".AboutUs" />
         <activity android:name=".HomeServices.LearningServices.LearningActivity" />
-        <activity android:name=".PropertyDetails" />
-        <activity android:name=".PropertyList" />
+        <activity android:name=".properties.PropertyDetails" />
+        <activity android:name=".properties.PropertyList" />
         <activity
-            android:name=".PropertiesForm"
+            android:name=".properties.PropertiesForm"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".HomeServices.EventServices.WeddingPackages" />
         <activity
@@ -71,18 +71,18 @@
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".HomeServices.ApplianceRepairServices.Appliancerepair" />
         <activity
-            android:name=".SellPlots"
+            android:name=".properties.SellPlots"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".SellHouses"
+            android:name=".properties.SellHouses"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".RentOffice"
+            android:name=".properties.RentOffice"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".RentHouses"
+            android:name=".properties.RentHouses"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".PostAd" />
+        <activity android:name=".properties.PostAd" />
         <activity android:name=".ViewProfile" />
         <activity android:name=".UserPermission" />
         <activity
@@ -109,7 +109,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".service.MySMSBroadCastReceiver">
+        <receiver android:name=".common_req_files.MySMSBroadCastReceiver">
             <intent-filter android:priority="999">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>

@@ -13,7 +13,7 @@ import android.view.inputmethod.InputMethodManager;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
-import peoplecitygroup.neuugen.service.UrlNeuugen;
+import peoplecitygroup.neuugen.common_req_files.UrlNeuugen;
 
 public class Customercare extends AppCompatActivity implements View.OnClickListener {
 

@@ -1,4 +1,4 @@
-package peoplecitygroup.neuugen.service;
+package peoplecitygroup.neuugen.common_req_files;
 
 import android.content.Context;
 import android.content.DialogInterface;

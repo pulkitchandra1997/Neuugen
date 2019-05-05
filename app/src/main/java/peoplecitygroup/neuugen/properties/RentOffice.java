@@ -1,4 +1,4 @@
-package peoplecitygroup.neuugen;
+package peoplecitygroup.neuugen.properties;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -61,71 +61,101 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import peoplecitygroup.neuugen.service.MySingleton;
-import peoplecitygroup.neuugen.service.SendMail;
-import peoplecitygroup.neuugen.service.UrlNeuugen;
-import peoplecitygroup.neuugen.service.Validation;
-import peoplecitygroup.neuugen.service.VolleyCallback;
+import peoplecitygroup.neuugen.R;
+import peoplecitygroup.neuugen.UserMainActivity;
+import peoplecitygroup.neuugen.common_req_files.MySingleton;
+import peoplecitygroup.neuugen.common_req_files.SendMail;
+import peoplecitygroup.neuugen.common_req_files.UrlNeuugen;
+import peoplecitygroup.neuugen.common_req_files.Validation;
+import peoplecitygroup.neuugen.common_req_files.VolleyCallback;
 
 import static android.content.DialogInterface.BUTTON_POSITIVE;
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
-public class SellHouses extends AppCompatActivity implements View.OnClickListener {
+public class RentOffice extends AppCompatActivity implements View.OnClickListener {
 
-    AppCompatTextView backtopost3;
+    AppCompatTextView backtopost2;
 
-    boolean chk = true;
+    TextInputEditText arearo,cityro,landmarkro,builtarearo,monthlyrentro,shopno,pincodero;
 
-    TextInputEditText areash,citysh,landmarksh,builtareash,costsh,housenosh,ageofpropertysh,pincodesh;
+    MaterialButton submitroform,addimgro1,addimgro2,addimgro3;
 
-    MaterialButton submitshform,addimgsh1,addimgsh2,addimgsh3;
+    AppCompatSpinner propertytypero;
 
-    AppCompatSpinner propertytypesh,numofbedsh,numofbathsh;
+    ChipGroup constatusro;
 
-    ChipGroup furnishtypesh,constatus;
+    Chip readytomovero,underconro;
 
-    Chip shfullyfurnish,shsemifurnish,shunfurnish,readytomove,undercon;
+    LinearLayout romainlayout;
 
-    LinearLayout shmainlayout;
-
-    AppCompatImageView imgsh1,imgsh2,imgsh3;
-
+    AppCompatImageView imgro1,imgro2,imgro3;
+    ProgressDialog loading = null;
+    String uniqueid=null;
+    String propertytype,arearotext,cityrotext,landmarkrotext,pincoderotext,builtarearotext,monthlyrentrotext,shopnorotext,propertytyperotext,constatusrotext;
+    JSONObject jsonObject= new JSONObject();
     int imageflag=0;
     Bitmap img1,img2,img3;
-
-    String propertytype,areashtext,cityshtext,landmarkshtext,builtareashtext,costshtext,housenoshtext,pincodeshtext,propertytypeshtext,numofbedshtext,numofbathshtext,shfurnishtyypetext,constatustext,ageofpropertyshtext;
-
-    ProgressDialog loading = null;
-    JSONObject jsonObject= new JSONObject();
-    String uniqueid=null;
-Intent intent=null;
+    boolean chk = true;
+    Intent intent=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sell_houses);
+        setContentView(R.layout.activity_rent_office);
 
         idLink();
         listenerLink();
         hideSoftKeyboard();
-        loading = new ProgressDialog(SellHouses.this,R.style.AppCompatAlertDialogStyle);
+        loading = new ProgressDialog(RentOffice.this,R.style.AppCompatAlertDialogStyle);
         loading.setCancelable(false);
         loading.setMessage("Loading");
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-
         Typeface font = Typeface.createFromAsset(getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
-        backtopost3.setTypeface(font);
-
+        backtopost2.setTypeface(font);
 
         intent=getIntent();
-        cityshtext=intent.getStringExtra("city").toUpperCase();
-        citysh.setText(cityshtext.toUpperCase());
-        citysh.setEnabled(false);
+        cityrotext=intent.getStringExtra("city").toUpperCase();
+        cityro.setText(cityrotext.toUpperCase());
+        cityro.setEnabled(false);
     }
+
     public void hideSoftKeyboard() {
         if (getCurrentFocus() != null) {
             InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
+    }
+    public void listenerLink()
+    {
+        backtopost2.setOnClickListener(this);
+        submitroform.setOnClickListener(this);
+        addimgro1.setOnClickListener(this);
+        addimgro2.setOnClickListener(this);
+        addimgro3.setOnClickListener(this);
+    }
+
+    public void idLink()
+    {
+        backtopost2=findViewById(R.id.backtopost2);
+        arearo=findViewById(R.id.arearo);
+        cityro=findViewById(R.id.cityro);
+        landmarkro=findViewById(R.id.landmarkro);
+        builtarearo=findViewById(R.id.builtarearo);
+        monthlyrentro=findViewById(R.id.monthlyrentro);
+        propertytypero=findViewById(R.id.propertytypero);
+        submitroform=findViewById(R.id.submitroform);
+        constatusro=findViewById(R.id.constatusro);
+        readytomovero=findViewById(R.id.readytomovero);
+        underconro=findViewById(R.id.underconro);
+        shopno=findViewById(R.id.shopno);
+        romainlayout=findViewById(R.id.romainlayout);
+        imgro1=findViewById(R.id.imgro1);
+        imgro2=findViewById(R.id.imgro2);
+        imgro3=findViewById(R.id.imgro3);
+        addimgro1=findViewById(R.id.addimgro1);
+        addimgro2=findViewById(R.id.addimgro2);
+        addimgro3=findViewById(R.id.addimgro3);
+        pincodero=findViewById(R.id.pincodero);
+
     }
     @Override
     protected void onActivityResult(int RC, int RQC, Intent I) {
@@ -135,13 +165,13 @@ Intent intent=null;
             try {
                 switch (imageflag){
                     case 1:img1 = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                        imgsh1.setImageBitmap(img1);
+                        imgro1.setImageBitmap(img1);
                         break;
                     case 2:img2=MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                        imgsh2.setImageBitmap(img2);
+                        imgro2.setImageBitmap(img2);
                         break;
                     case 3:img3=MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                        imgsh3.setImageBitmap(img3);
+                        imgro3.setImageBitmap(img3);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -151,195 +181,108 @@ Intent intent=null;
             }
         }
     }
-
-    public void listenerLink()
-    {
-        backtopost3.setOnClickListener(this);
-        submitshform.setOnClickListener(this);
-        addimgsh1.setOnClickListener(this);
-        addimgsh2.setOnClickListener(this);
-        addimgsh3.setOnClickListener(this);
-    }
-
-    public void idLink()
-    {
-        backtopost3=findViewById(R.id.backtopost3);
-        areash=findViewById(R.id.areash);
-        citysh=findViewById(R.id.citysh);
-        landmarksh=findViewById(R.id.landmarksh);
-        builtareash=findViewById(R.id.builtareash);
-        costsh=findViewById(R.id.costsh);
-        propertytypesh=findViewById(R.id.propertytypesh);
-        numofbedsh=findViewById(R.id.numofbedsh);
-        numofbathsh=findViewById(R.id.numofbathsh);
-        submitshform=findViewById(R.id.submitshform);
-        furnishtypesh=findViewById(R.id.furnishtypesh);
-        shfullyfurnish=findViewById(R.id.shfullyfurnish);
-        shsemifurnish=findViewById(R.id.shsemifurnish);
-        shunfurnish=findViewById(R.id.shunfurnish);
-        housenosh=findViewById(R.id.housenosh);
-        constatus=findViewById(R.id.constatus);
-        readytomove=findViewById(R.id.readytomove);
-        undercon=findViewById(R.id.undercon);
-        ageofpropertysh=findViewById(R.id.ageofpropertysh);
-        shmainlayout=findViewById(R.id.shmainlayout);
-        imgsh1=findViewById(R.id.imgsh1);
-        imgsh2=findViewById(R.id.imgsh2);
-        imgsh3=findViewById(R.id.imgsh3);
-        addimgsh1=findViewById(R.id.addimgsh1);
-        addimgsh2=findViewById(R.id.addimgsh2);
-        addimgsh3=findViewById(R.id.addimgsh3);
-        pincodesh=findViewById(R.id.pincodesh);
-
-    }
-
     @Override
     public void onClick(View v) {
-        if (v.getId()==R.id.addimgsh1){
+        if (v.getId()==R.id.addimgro1){
             imageflag=1;
             Intent intent = new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_PICK);
             startActivityForResult(Intent.createChooser(intent, "Select Image From Gallery"), 1);
         }
-        if (v.getId()==R.id.addimgsh2){
+        if (v.getId()==R.id.addimgro2){
             imageflag=2;
             Intent intent = new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_PICK);
             startActivityForResult(Intent.createChooser(intent, "Select Image From Gallery"), 1);
         }
-        if (v.getId()==R.id.addimgsh3){
+        if (v.getId()==R.id.addimgro3){
             imageflag=3;
             Intent intent = new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_PICK);
             startActivityForResult(Intent.createChooser(intent, "Select Image From Gallery"), 1);
         }
-        if(v.getId()==R.id.backtopost3)
+        if(v.getId()==R.id.backtopost2)
         {
             onBackPressed();
         }
-        if (v.getId()==R.id.submitshform)
+        if (v.getId()==R.id.submitroform)
         {
+            arearotext=arearo.getText().toString().trim();
+            shopnorotext=shopno.getText().toString().trim();
+            cityrotext=cityro.getText().toString().trim();
+            landmarkrotext=landmarkro.getText().toString().trim();
+            builtarearotext=builtarearo.getText().toString().trim();
+            monthlyrentrotext=monthlyrentro.getText().toString().trim();
+            propertytyperotext=propertytypero.getSelectedItem().toString();
+            pincoderotext=pincodero.getText().toString().trim();
 
-            areashtext=areash.getText().toString().trim();
-            housenoshtext=housenosh.getText().toString().trim();
-            cityshtext=citysh.getText().toString().trim();
-            landmarkshtext=landmarksh.getText().toString().trim();
-            builtareashtext=builtareash.getText().toString().trim();
-            costshtext=costsh.getText().toString().trim();
-            propertytypeshtext=propertytypesh.getSelectedItem().toString();
-            numofbedshtext=String.valueOf(numofbedsh.getSelectedItemPosition());
-            numofbathshtext=String.valueOf(numofbathsh.getSelectedItemPosition());
-            ageofpropertyshtext=ageofpropertysh.getText().toString().trim();
-            pincodeshtext=pincodesh.getText().toString().trim();
-
-            if (propertytypeshtext.equalsIgnoreCase("Apartment"))
+            if (constatusro.getCheckedChipId()==R.id.readytomove)
             {
-                propertytype="0";
+                constatusrotext="0";
             }else
-            if (propertytypeshtext.equalsIgnoreCase("Independent House"))
+            if (constatusro.getCheckedChipId()==R.id.undercon)
             {
-                propertytype="1";
-            }else
-            if (propertytypeshtext.equalsIgnoreCase("Villa"))
-            {
-                propertytype="2";
+                constatusrotext="1";
             }
 
-            if (furnishtypesh.getCheckedChipId()==R.id.shfullyfurnish)
+            if (propertytyperotext.equalsIgnoreCase("Office Area"))
             {
-                shfurnishtyypetext="0";
+                propertytype="4";
             }else
-            if (furnishtypesh.getCheckedChipId()==R.id.shsemifurnish)
+            if (propertytyperotext.equalsIgnoreCase("Shop Area"))
             {
-                shfurnishtyypetext="1";
-            }else
-            if (furnishtypesh.getCheckedChipId()==R.id.shunfurnish)
-            {
-                shfurnishtyypetext="2";
+                propertytype="5";
             }
-            if (constatus.getCheckedChipId()==R.id.readytomove)
+            if (TextUtils.isEmpty(pincoderotext) ||TextUtils.isEmpty(arearotext) || TextUtils.isEmpty(shopnorotext)||TextUtils.isEmpty(cityrotext)||TextUtils.isEmpty(builtarearotext)||TextUtils.isEmpty(monthlyrentrotext)||propertytyperotext.equalsIgnoreCase("Select Property Type")||!(constatusro.getCheckedChipId()==R.id.underconro)&&!(constatusro.getCheckedChipId()==R.id.readytomovero)||(img1==null)||(img2==null)||(img3==null))
             {
-                constatustext="0";
-            }else
-            if (constatus.getCheckedChipId()==R.id.undercon)
-            {
-                constatustext="1";
-            }
-
-            if (TextUtils.isEmpty(pincodeshtext) ||TextUtils.isEmpty(areashtext) || TextUtils.isEmpty(housenoshtext)||TextUtils.isEmpty(cityshtext)||TextUtils.isEmpty(builtareashtext)||TextUtils.isEmpty(costshtext)||propertytypeshtext.equalsIgnoreCase("Select Property Type")||numofbathsh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||numofbedsh.getSelectedItem().toString().equalsIgnoreCase("Select Number")||TextUtils.isEmpty(ageofpropertyshtext)||!(furnishtypesh.getCheckedChipId()==R.id.shfullyfurnish)&&!(furnishtypesh.getCheckedChipId()==R.id.shsemifurnish)&&!(furnishtypesh.getCheckedChipId()==R.id.shunfurnish)||!(constatus.getCheckedChipId()==R.id.undercon)&&!(constatus.getCheckedChipId()==R.id.readytomove)||(img1==null)||(img2==null)||(img3==null))
-            {
-                if (TextUtils.isEmpty(housenoshtext) )
+                if (TextUtils.isEmpty(shopnorotext) )
                 {
-                    housenosh.setError("Enter House Number");
-                    housenosh.requestFocus();
+                    shopno.setError("Enter Shop Number");
+                    shopno.requestFocus();
                 }else
-                if (TextUtils.isEmpty(areashtext) )
+                if (TextUtils.isEmpty(arearotext) )
                 {
-                    areash.setError("Enter Area");
-                    areash.requestFocus();
+                    arearo.setError("Enter Area");
+                    arearo.requestFocus();
                 }else
 
-                if (TextUtils.isEmpty(cityshtext) )
+                if (TextUtils.isEmpty(cityrotext) )
                 {
-                    citysh.setError("Enter City");
-                    citysh.requestFocus();
+                    cityro.setError("Enter City");
+                    cityro.requestFocus();
                 }else
-                if (TextUtils.isEmpty(pincodeshtext) )
+                if (TextUtils.isEmpty(pincoderotext) )
                 {
-                    pincodesh.setError("Enter Pincode");
-                    pincodesh.requestFocus();
+                    pincodero.setError("Enter Pincode");
+                    pincodero.requestFocus();
                 }else
-                if (TextUtils.isEmpty(builtareashtext) )
+                if (TextUtils.isEmpty(builtarearotext) )
                 {
-                    builtareash.setError("Enter Built Area");
-                    builtareash.requestFocus();
+                    builtarearo.setError("Enter Built Area");
+                    builtarearo.requestFocus();
                 }else
-                if (TextUtils.isEmpty(costshtext) )
+                if (TextUtils.isEmpty(monthlyrentrotext) )
                 {
-                    costsh.setError("Enter Cost");
-                    costsh.requestFocus();
+                    monthlyrentro.setError("Enter Monthly Rent");
+                    monthlyrentro.requestFocus();
                 }else
-                if (TextUtils.isEmpty(ageofpropertyshtext) )
+
+                if (propertytyperotext.equalsIgnoreCase("Select Property Type"))
                 {
-                    ageofpropertysh.setError("Enter Age of Property");
-                    ageofpropertysh.requestFocus();
-                }else
-                if (propertytypeshtext.equalsIgnoreCase("Select Property Type"))
-                {
-                    Snackbar.make(shmainlayout, "Select Property Type", Snackbar.LENGTH_LONG)
+                    Snackbar.make(romainlayout, "Select Property Type", Snackbar.LENGTH_LONG)
                             .show();
 
-                    propertytypesh.requestFocus();
+                    propertytypero.requestFocus();
                 }else
-                if (numofbedshtext.equalsIgnoreCase("Select Number"))
-                {
-                    Snackbar.make(shmainlayout, "Select Number of Bedrooms", Snackbar.LENGTH_LONG)
+
+                if (!(constatusro.getCheckedChipId()==R.id.underconro)&&!(constatusro.getCheckedChipId()==R.id.readytomovero)) {
+                    Snackbar.make(romainlayout, "Select Construction Status", Snackbar.LENGTH_LONG)
                             .show();
 
-                    numofbedsh.requestFocus();
-                }else
-                if (numofbathshtext.equalsIgnoreCase("Select Number"))
-                {
-                    Snackbar.make(shmainlayout, "Select Number of Bathrooms", Snackbar.LENGTH_LONG)
-                            .show();
-
-                    numofbathsh.requestFocus();
-                }else
-                if (!(furnishtypesh.getCheckedChipId()==R.id.shfullyfurnish)&&!(furnishtypesh.getCheckedChipId()==R.id.shsemifurnish)&&!(furnishtypesh.getCheckedChipId()==R.id.shunfurnish))
-                {
-                    Snackbar.make(shmainlayout, "Select Furnish Type", Snackbar.LENGTH_LONG)
-                            .show();
-
-                    furnishtypesh.requestFocus();
-                }else
-                if (!(constatus.getCheckedChipId()==R.id.undercon)&&!(constatus.getCheckedChipId()==R.id.readytomove)) {
-                    Snackbar.make(shmainlayout, "Select Construction Status", Snackbar.LENGTH_LONG)
-                            .show();
-
-                    constatus.requestFocus();
+                    constatusro.requestFocus();
                 }
                 if ((img1==null)||(img2==null)||(img3==null))
                 {
@@ -350,27 +293,25 @@ Intent intent=null;
                     alertDialog.show();
 
                 }
-
             }
             else
             {
-                if(Validation.isValidCity(cityshtext)){
-                    if(pincodeshtext.charAt(0)!='0'&&pincodeshtext.length()==6)
+                if(Validation.isValidCity(cityrotext)){
+                    if(pincoderotext.charAt(0)!='0'&&pincoderotext.length()==6)
                         toServer();
                     else{
-                        Snackbar.make(shmainlayout, "Enter Valid Pincode", Snackbar.LENGTH_LONG)
+                        Snackbar.make(romainlayout, "Enter Valid Pincode", Snackbar.LENGTH_LONG)
                                 .show();
 
-                        pincodesh.requestFocus();
+                        pincodero.requestFocus();
                     }
                 }
                 else {
-                    Snackbar.make(shmainlayout, "Enter Valid City Name", Snackbar.LENGTH_LONG)
+                    Snackbar.make(romainlayout, "Enter Valid City Name", Snackbar.LENGTH_LONG)
                             .show();
 
-                    citysh.requestFocus();
+                    cityro.requestFocus();
                 }
-
             }
         }
     }
@@ -378,13 +319,13 @@ Intent intent=null;
     private void toServer() {
         loading.show();
         if (createJsonObject()) {
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.fill_SellHouses, new Response.Listener<String>() {
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.fill_RentOffice, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     if (response.toLowerCase().contains("error")) {
                         loading.dismiss();
 
-                        AlertDialog alertDialog = new AlertDialog.Builder(SellHouses.this).create();
+                        AlertDialog alertDialog = new AlertDialog.Builder(RentOffice.this).create();
                         alertDialog.setMessage(response);
                         alertDialog.setButton(BUTTON_POSITIVE,"Ok", (DialogInterface.OnClickListener) null);
                         alertDialog.setIcon(R.mipmap.ic_launcher_round);
@@ -398,7 +339,6 @@ Intent intent=null;
                             uniqueid=response.substring(7);
                             loading.dismiss();
                             picuploadfuntion(1);
-
                         }
                     }
                 }
@@ -419,13 +359,13 @@ Intent intent=null;
                                 haveConnectedMobile = true;
                     }
                     if (!haveConnectedWifi && !haveConnectedMobile) {
-                        AlertDialog alertDialog = new AlertDialog.Builder(SellHouses.this).create();
+                        AlertDialog alertDialog = new AlertDialog.Builder(RentOffice.this).create();
                         alertDialog.setMessage("No Internet Connection");
                         alertDialog.setIcon(R.mipmap.ic_launcher_round);
                         alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                         alertDialog.show();
                     } else {
-                        AlertDialog alertDialog = new AlertDialog.Builder(SellHouses.this).create();
+                        AlertDialog alertDialog = new AlertDialog.Builder(RentOffice.this).create();
                         alertDialog.setMessage("Connection Error!");
                         alertDialog.setIcon(R.mipmap.ic_launcher_round);
                         alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
@@ -453,7 +393,7 @@ Intent intent=null;
                 }
                 @Override
                 public void retry(VolleyError error) throws VolleyError {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(SellHouses.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RentOffice.this);
                     builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                     builder.setMessage("Connection")
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -469,10 +409,10 @@ Intent intent=null;
                     positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
                 }
             });
-            MySingleton.getInstance(SellHouses.this).addToRequestQueue(stringRequest);
+            MySingleton.getInstance(RentOffice.this).addToRequestQueue(stringRequest);
         }
         else{
-            AlertDialog.Builder builder = new AlertDialog.Builder(SellHouses.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(RentOffice.this);
 
             builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
             builder.setMessage("Error in connection.")
@@ -497,58 +437,31 @@ Intent intent=null;
         }
     }
 
-    private void success() {
-        sendMail();
-        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setMessage(Html.fromHtml("<b>Your ad has been posted. Our customer executive will contact you soon to verify your property.</b>"));
-        alertDialog.setIcon(R.mipmap.ic_launcher_round);
-        alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>NeuuGen</font>"));
-        alertDialog.show();
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(SellHouses.this, UserMainActivity.class);
-                if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                    ActivityOptions options = ActivityOptions.makeCustomAnimation(SellHouses.this, R.anim.fade_in, R.anim.fade_out);
-                    startActivity(intent, options.toBundle());
-                } else {
-                    startActivity(intent);
-                }
-                finish();
-            }
-        },4000);
-    }
-
-    private void sendMail() {
+    private boolean createJsonObject() {
         SharedPreferences sp;
-        sp = getSharedPreferences("NeuuGen_data", MODE_PRIVATE);
-        if (sp != null) {
-            final String email=sp.getString("email",null);
-            final String name=sp.getString("name",null).toUpperCase();
-            SendMail sendMail=new SendMail();
-            String subject="NG: Your AD has been posted.";
-            String body="Dear "+name+",<br><p>Thanks for choosing NEUUGEN. Your AD has been posted.</p><br>Our Customer Executive/Agent will reach out to you for verification of the posted ad. The Service Requested will be provided soon.";
-            sendMail.sendMailmethod(email, subject, body, this, new VolleyCallback() {
-                @Override
-                public void onSuccess(String result) {
-
-                }
-
-                @Override
-                public void onError(String response) {
-
-                }
-
-                @Override
-                public void onVolleyError() {
-                    loading.dismiss();
-                }
-            });
+        sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
+        if(sp!=null) {
+            try {
+                jsonObject.put("mobileno",sp.getString("mobileno",null));
+                jsonObject.put("shopno",shopnorotext);
+                jsonObject.put("area",arearotext);
+                jsonObject.put("city",cityrotext);
+                jsonObject.put("landmark",landmarkrotext);
+                jsonObject.put("pincode",pincoderotext);
+                jsonObject.put("propertytype",propertytype);
+                jsonObject.put("constructionstatus",constatusrotext);
+                jsonObject.put("builtuparea",builtarearotext);
+                jsonObject.put("price",monthlyrentrotext);
+                return true;
+            } catch (Exception e) {
+                Log.i("errorrent",e.getMessage());
+                return false;
+            }
         }
+        return false;
     }
 
-    private void uploadPic(Bitmap img,final String message,final int flag ) {
+    private void uploadPic(Bitmap img, final String message, final int flag ) {
         if (img != null) {
             ByteArrayOutputStream byteArrayOutputStreamObject;
             byteArrayOutputStreamObject = new ByteArrayOutputStream();
@@ -580,7 +493,7 @@ Intent intent=null;
                 }
                 @Override
                 protected String doInBackground(Void... params) {
-                    SellHouses.ImageProcessClass imageProcessClass = new SellHouses.ImageProcessClass();
+                    ImageProcessClass imageProcessClass = new ImageProcessClass();
                     HashMap<String, String> HashMapParams = new HashMap<String, String>();
                     Log.i("formerror2",ConvertImage);
                     HashMapParams.put("uniqueid", uniqueid);
@@ -598,12 +511,12 @@ Intent intent=null;
     private void errorReceived() {
         //clear predata
         loading.dismiss();
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.fill_SellHouses, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.fill_RentOffice, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if (response.toLowerCase().contains("error")) {
                     loading.dismiss();
-                    AlertDialog.Builder builder = new AlertDialog.Builder(SellHouses.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RentOffice.this);
                     builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                     builder.setMessage("Error in server. Try Again")
                             .setPositiveButton("OK",null)
@@ -635,13 +548,13 @@ Intent intent=null;
                             haveConnectedMobile = true;
                 }
                 if (!haveConnectedWifi && !haveConnectedMobile) {
-                    AlertDialog alertDialog = new AlertDialog.Builder(SellHouses.this).create();
+                    AlertDialog alertDialog = new AlertDialog.Builder(RentOffice.this).create();
                     alertDialog.setMessage("No Internet Connection");
                     alertDialog.setIcon(R.mipmap.ic_launcher_round);
                     alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                     alertDialog.show();
                 } else {
-                    AlertDialog alertDialog = new AlertDialog.Builder(SellHouses.this).create();
+                    AlertDialog alertDialog = new AlertDialog.Builder(RentOffice.this).create();
                     alertDialog.setMessage("Connection Error!");
                     alertDialog.setIcon(R.mipmap.ic_launcher_round);
                     alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
@@ -668,7 +581,7 @@ Intent intent=null;
             }
             @Override
             public void retry(VolleyError error) throws VolleyError {
-                AlertDialog.Builder builder = new AlertDialog.Builder(SellHouses.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(RentOffice.this);
                 builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                 builder.setMessage("Connection")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -684,37 +597,8 @@ Intent intent=null;
                 positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
             }
         });
-        MySingleton.getInstance(SellHouses.this).addToRequestQueue(stringRequest);
+        MySingleton.getInstance(RentOffice.this).addToRequestQueue(stringRequest);
     }
-
-    private boolean createJsonObject() {
-        SharedPreferences sp;
-        sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
-        if(sp!=null) {
-            try {
-                jsonObject.put("mobileno",sp.getString("mobileno",null));
-                jsonObject.put("houseno",housenoshtext);
-                jsonObject.put("area",areashtext);
-                jsonObject.put("city",cityshtext);
-                jsonObject.put("landmark",landmarkshtext);
-                jsonObject.put("pincode",pincodeshtext);
-                jsonObject.put("propertytype",propertytype);
-                jsonObject.put("bedrooms",numofbedshtext);
-                jsonObject.put("bathrooms",numofbathshtext);
-                jsonObject.put("furnishtype",shfurnishtyypetext);
-                jsonObject.put("builtuparea",builtareashtext);
-                jsonObject.put("price",costshtext);
-                jsonObject.put("constnstatus",constatustext);
-                jsonObject.put("ageofproperty",ageofpropertyshtext);
-                return true;
-            } catch (Exception e) {
-                Log.i("errorrent",e.getMessage());
-                return false;
-            }
-        }
-        return false;
-    }
-
     public class ImageProcessClass{
         public String ImageHttpRequest(String requestURL,HashMap<String, String> PData) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -765,6 +649,55 @@ Intent intent=null;
                 stringBuilderObject.append(URLEncoder.encode(KEY.getValue(), "UTF-8"));
             }
             return stringBuilderObject.toString();
+        }
+    }
+    private void success() {
+        sendMail();
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setMessage(Html.fromHtml("<b>Your ad has been posted. Our customer executive will contact you soon to verify your property.</b>"));
+        alertDialog.setIcon(R.mipmap.ic_launcher_round);
+        alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>NeuuGen</font>"));
+        alertDialog.show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(RentOffice.this, UserMainActivity.class);
+                if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                    ActivityOptions options = ActivityOptions.makeCustomAnimation(RentOffice.this, R.anim.fade_in, R.anim.fade_out);
+                    startActivity(intent, options.toBundle());
+                } else {
+                    startActivity(intent);
+                }
+                finish();
+            }
+        },4000);
+    }
+    private void sendMail() {
+        SharedPreferences sp;
+        sp = getSharedPreferences("NeuuGen_data", MODE_PRIVATE);
+        if (sp != null) {
+            final String email=sp.getString("email",null);
+            final String name=sp.getString("name",null).toUpperCase();
+            SendMail sendMail=new SendMail();
+            String subject="NG: Your AD has been posted.";
+            String body="Dear "+name+",<br><p>Thanks for choosing NEUUGEN. Your AD has been posted.</p><br>Our Customer Executive/Agent will reach out to you for verification of the posted ad. The Service Requested will be provided soon.";
+            sendMail.sendMailmethod(email, subject, body, this, new VolleyCallback() {
+                @Override
+                public void onSuccess(String result) {
+
+                }
+
+                @Override
+                public void onError(String response) {
+
+                }
+
+                @Override
+                public void onVolleyError() {
+                    loading.dismiss();
+                }
+            });
         }
     }
 }

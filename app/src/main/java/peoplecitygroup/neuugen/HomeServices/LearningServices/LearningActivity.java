@@ -6,11 +6,9 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.cardview.widget.CardView;
 
-import android.app.ActivityOptions;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
@@ -38,14 +36,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import peoplecitygroup.neuugen.MobileNumberInput;
 import peoplecitygroup.neuugen.R;
-import peoplecitygroup.neuugen.service.MySingleton;
-import peoplecitygroup.neuugen.service.SendMail;
-import peoplecitygroup.neuugen.service.SendMsg;
-import peoplecitygroup.neuugen.service.ServiceCheck;
-import peoplecitygroup.neuugen.service.UrlNeuugen;
-import peoplecitygroup.neuugen.service.VolleyCallback;
+import peoplecitygroup.neuugen.common_req_files.MySingleton;
+import peoplecitygroup.neuugen.common_req_files.SendMail;
+import peoplecitygroup.neuugen.common_req_files.SendMsg;
+import peoplecitygroup.neuugen.common_req_files.ServiceCheck;
+import peoplecitygroup.neuugen.common_req_files.UrlNeuugen;
+import peoplecitygroup.neuugen.common_req_files.VolleyCallback;
 
 public class LearningActivity extends AppCompatActivity implements View.OnClickListener {
 
