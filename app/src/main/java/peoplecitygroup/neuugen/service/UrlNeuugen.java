@@ -18,6 +18,11 @@ public class UrlNeuugen {
     public static final String checkappversion=URL+"versionCheck.php";
     public static final String requestservice_Salon=URL+"requestServiceSalon.php";
     public static final String requestservice_Learning=URL+"requestServiceLearning.php";
+    public static String requestservice_Homerenovation=URL+"requestServiceHomeRenovation.php";
+    public static String requestservice_EventsArrangementsForm=URL+"requestServiceEventsArrangements.php";
+    public static String requestservice_EventPhotographyForm=URL+"requestServiceEventsPhotography.php";
+    public static String requestservice_PreWedShootForm=URL+"requestServicePreWedShoot.php";
+
 
     public static final String csemail="peoplecitygroup@gmail.com";
     public static final String csphone="";
@@ -63,7 +68,6 @@ public class UrlNeuugen {
     public static final String singersid="32";
     public static final String bandsmusiciansid="33";
     public static final String propertiesserviceid="34";
-
 
 
 }

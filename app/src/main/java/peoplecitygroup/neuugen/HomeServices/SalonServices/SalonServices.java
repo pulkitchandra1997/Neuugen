@@ -131,8 +131,8 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
         }
     }
     public void changeService(String ownid,boolean flag,String serviceid,String parentserviceid,String servicename,String status,String cost,String pic1,String pic2,String pic3,String cityactive) {
-        Character c=ownid.trim().charAt(0);
-        if(c==UrlNeuugen.menHaircutId.trim().charAt(0)){
+        String c=ownid.trim();
+        if(c==UrlNeuugen.menHaircutId.trim()){
             if(flag){
                 if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
                     menhaircutprice.setVisibility(View.VISIBLE);
@@ -149,7 +149,7 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
                 menhaircutbtn.setClickable(false);
             }
         }
-        if(c==UrlNeuugen.menHaircutBeardId.trim().charAt(0)){
+        if(c==UrlNeuugen.menHaircutBeardId.trim()){
             if(flag){
                 if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
                     menbeardprice.setVisibility(View.VISIBLE);
@@ -166,7 +166,7 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
                 menbeardbtn.setClickable(false);
             }
         }
-        if(c==UrlNeuugen.menPartymakeupId.trim().charAt(0)){
+        if(c==UrlNeuugen.menPartymakeupId.trim()){
             if(flag){
                 if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
                     menpartyprice.setVisibility(View.VISIBLE);
@@ -184,7 +184,7 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
                 menpartybtn.setClickable(false);
             }
         }
-        if(c==UrlNeuugen.womenhaircutId.trim().charAt(0)){
+        if(c==UrlNeuugen.womenhaircutId.trim()){
             if(flag){
                 if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
                     womenhaircutprice.setVisibility(View.VISIBLE);
@@ -202,7 +202,7 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
                 womenhaircutbtn.setClickable(false);
             }
         }
-        if(c==UrlNeuugen.womenPartymakeupId.trim().charAt(0)){
+        if(c==UrlNeuugen.womenPartymakeupId.trim()){
             if(flag){
                 if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
                     womenpartyprice.setVisibility(View.VISIBLE);
@@ -220,7 +220,7 @@ public class SalonServices extends AppCompatActivity implements View.OnClickList
                 womenpartymakeupbtn.setClickable(false);
             }
         }
-        if(c==UrlNeuugen.womenWeddingmakeupId.trim().charAt(0)){
+        if(c==UrlNeuugen.womenWeddingmakeupId.trim()){
             if(flag){
                 if(cost!=null&&cost.trim()!=""&&!cost.equalsIgnoreCase("null")) {
                     womenwedprice.setVisibility(View.VISIBLE);

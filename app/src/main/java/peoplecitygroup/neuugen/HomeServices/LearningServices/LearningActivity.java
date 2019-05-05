@@ -68,7 +68,7 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
         listenerLink();
         loading = new ProgressDialog(LearningActivity.this, R.style.AppCompatAlertDialogStyle);
         loading.setCancelable(false);
-        loading.setMessage("Requesting...");
+        loading.setMessage("Sending Request...");
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         sp = getSharedPreferences("NeuuGen_data", MODE_PRIVATE);
         checkActive();
@@ -486,6 +486,22 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             finish();
+                                        }
+                                    })
+                                    .setIcon(R.mipmap.ic_launcher_round);
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
+                            Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                            positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+                        }
+                        else{
+                            AlertDialog.Builder builder = new AlertDialog.Builder(LearningActivity.this);
+                            builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                            builder.setMessage(response)
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            //finish();
                                         }
                                     })
                                     .setIcon(R.mipmap.ic_launcher_round);

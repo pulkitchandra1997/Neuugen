@@ -17,6 +17,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -85,7 +86,7 @@ public class SalonServiceForm extends AppCompatActivity implements View.OnClickL
         serviceprice.setText(servicepricetext);
         loading = new ProgressDialog(SalonServiceForm.this,R.style.AppCompatAlertDialogStyle);
         loading.setCancelable(false);
-        loading.setMessage("Loading");
+        loading.setMessage("Sending Request...");
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
     }
     public void hideSoftKeyboard() {
@@ -203,6 +204,8 @@ public class SalonServiceForm extends AppCompatActivity implements View.OnClickL
 
     private void sendData() {
         loading.show();
+        java.sql.Date d=new java.sql.Date(year,month,day);
+        final long time=d.getTime();
         StringRequest stringRequest=new StringRequest(Request.Method.POST, UrlNeuugen.requestservice_Salon, new Response.Listener<String>()
         {
             @Override
@@ -239,6 +242,22 @@ public class SalonServiceForm extends AppCompatActivity implements View.OnClickL
                         AlertDialog.Builder builder = new AlertDialog.Builder(SalonServiceForm.this);
                         builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                         builder.setMessage("Service Requested. Our Agent will contact you soon regarding same.")
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                })
+                                .setIcon(R.mipmap.ic_launcher_round);
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                        Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                        positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+                    }
+                    else{
+                        AlertDialog.Builder builder = new AlertDialog.Builder(SalonServiceForm.this);
+                        builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                        builder.setMessage(response)
                                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
@@ -294,12 +313,12 @@ public class SalonServiceForm extends AppCompatActivity implements View.OnClickL
                 Map<String, String> params = new HashMap<>();
                 params.put("mobileno", mobileno);
                 params.put("serviceid", serviceId);
-                params.put("city",citytext);
+                params.put("city",city);
                 params.put("houseno", housenotext);
                 params.put("area", areatext);
                 params.put("landmark", landmarktext);
                 params.put("pincode", pincodetext);
-                params.put("dateofservice", dostext);
+                params.put("dateofservice", String.valueOf(time));
                 return params;
             }
         };

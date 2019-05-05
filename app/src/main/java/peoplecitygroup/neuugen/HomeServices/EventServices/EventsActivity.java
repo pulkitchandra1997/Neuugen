@@ -517,43 +517,33 @@ EventsActivity extends AppCompatActivity implements View.OnClickListener {
                 shootoptions.requestFocus();
             }else
             {
+                Intent intent=null;
                 if (prewedshoot.isChecked())
                 {
                     servicetypetext="Pre-Wedding Shoot";
-                    Intent intent = new Intent(EventsActivity.this, PreWedShootForm.class);
-                    intent.putExtra("servicetype",servicetypetext);
-                    if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                        ActivityOptions options = ActivityOptions.makeCustomAnimation(EventsActivity.this, R.anim.fade_in, R.anim.fade_out);
-                        startActivity(intent, options.toBundle());
-                    } else {
-                        startActivity(intent);
-                    }
+                    intent = new Intent(EventsActivity.this, PreWedShootForm.class);
+                    intent.putExtra("serviceid", UrlNeuugen.preWedShootId);
                 }else
                     if (wedshoot.isChecked())
                 {
                     servicetypetext="Wedding Shoot";
-                    Intent intent = new Intent(EventsActivity.this, WeddingPackages.class);
-                    intent.putExtra("servicetype",servicetypetext);
-                    if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                        ActivityOptions options = ActivityOptions.makeCustomAnimation(EventsActivity.this, R.anim.fade_in, R.anim.fade_out);
-                        startActivity(intent, options.toBundle());
-                    } else {
-                        startActivity(intent);
-                    }
+                    intent = new Intent(EventsActivity.this, WeddingPackages.class);
+                    intent.putExtra("serviceid", UrlNeuugen.weddingShootId);
+                    intent.putExtra("jsonobject", childclick.get(3).toString());
                 }else
                     if (eventshoot.isChecked())
                 {
                     servicetypetext="Event Photography";
-                    Intent intent = new Intent(EventsActivity.this, EventPhotographyForm.class);
-                    intent.putExtra("servicetype",servicetypetext);
-                    if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                        ActivityOptions options = ActivityOptions.makeCustomAnimation(EventsActivity.this, R.anim.fade_in, R.anim.fade_out);
-                        startActivity(intent, options.toBundle());
-                    } else {
-                        startActivity(intent);
-                    }
+                    intent = new Intent(EventsActivity.this, EventPhotographyForm.class);
+                    intent.putExtra("serviceid", UrlNeuugen.eventPhotogaphyId);
                 }
-
+                intent.putExtra("servicetype",servicetypetext);
+                if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                    ActivityOptions options = ActivityOptions.makeCustomAnimation(EventsActivity.this, R.anim.fade_in, R.anim.fade_out);
+                    startActivity(intent, options.toBundle());
+                } else {
+                    startActivity(intent);
+                }
             }
         }
         if (v.getId()==R.id.eventproceedbtn)
@@ -569,53 +559,33 @@ EventsActivity extends AppCompatActivity implements View.OnClickListener {
                 eventarrangements.requestFocus();
             }else
             {
+                Intent intent = new Intent(EventsActivity.this, EventArrangementForm.class);
                 if (dancers.isChecked())
                 {
                     servicetypetext="Dance Performers";
-                    Intent intent = new Intent(EventsActivity.this, EventArrangementForm.class);
-                    intent.putExtra("servicetype",servicetypetext);
-                    if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                        ActivityOptions options = ActivityOptions.makeCustomAnimation(EventsActivity.this, R.anim.fade_in, R.anim.fade_out);
-                        startActivity(intent, options.toBundle());
-                    } else {
-                        startActivity(intent);
-                    }
+                    intent.putExtra("serviceid",UrlNeuugen.danceperformid);
                 }else
                 if (anchors.isChecked())
                 {
                     servicetypetext="Anchors OR Hosts";
-                    Intent intent = new Intent(EventsActivity.this, EventArrangementForm.class);
-                    intent.putExtra("servicetype",servicetypetext);
-                    if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                        ActivityOptions options = ActivityOptions.makeCustomAnimation(EventsActivity.this, R.anim.fade_in, R.anim.fade_out);
-                        startActivity(intent, options.toBundle());
-                    } else {
-                        startActivity(intent);
-                    }
+                    intent.putExtra("serviceid",UrlNeuugen.anchorshostid);
                 }else
                 if (singers.isChecked())
                 {
+                    intent.putExtra("serviceid",UrlNeuugen.singersid);
                     servicetypetext="Singers";
-                    Intent intent = new Intent(EventsActivity.this, EventArrangementForm.class);
-                    intent.putExtra("servicetype",servicetypetext);
-                    if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                        ActivityOptions options = ActivityOptions.makeCustomAnimation(EventsActivity.this, R.anim.fade_in, R.anim.fade_out);
-                        startActivity(intent, options.toBundle());
-                    } else {
-                        startActivity(intent);
-                    }
                 }
                 if (bands.isChecked())
                 {
+                    intent.putExtra("serviceid",UrlNeuugen.bandsmusiciansid);
                     servicetypetext="Bands OR Musicians";
-                    Intent intent = new Intent(EventsActivity.this, EventArrangementForm.class);
-                    intent.putExtra("servicetype",servicetypetext);
-                    if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                        ActivityOptions options = ActivityOptions.makeCustomAnimation(EventsActivity.this, R.anim.fade_in, R.anim.fade_out);
-                        startActivity(intent, options.toBundle());
-                    } else {
-                        startActivity(intent);
-                    }
+                }
+                intent.putExtra("servicetype",servicetypetext);
+                if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                    ActivityOptions options = ActivityOptions.makeCustomAnimation(EventsActivity.this, R.anim.fade_in, R.anim.fade_out);
+                    startActivity(intent, options.toBundle());
+                } else {
+                    startActivity(intent);
                 }
 
             }

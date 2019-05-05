@@ -29,7 +29,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import peoplecitygroup.neuugen.R;
-import peoplecitygroup.neuugen.SparePartsActivity;
+import peoplecitygroup.neuugen.HomeServices.SparePartsActivity;
 import peoplecitygroup.neuugen.service.ServiceCheck;
 import peoplecitygroup.neuugen.service.UrlNeuugen;
 import peoplecitygroup.neuugen.service.VolleyCallback;
@@ -447,29 +447,20 @@ public class HomeRenovation extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        if (v.getId()==R.id.plumbingservice){
+        if(v.getId()==R.id.plumbingservice||v.getId()==R.id.electricianservice||v.getId()==R.id.carpentryservice) {
             Intent intent = new Intent(HomeRenovation.this, HomeRenovationForm.class);
-            intent.putExtra("servicetext","Plumbing Service");
-            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(HomeRenovation.this, R.anim.fade_in, R.anim.fade_out);
-                startActivity(intent, options.toBundle());
-            } else {
-                startActivity(intent);
+            if (v.getId() == R.id.plumbingservice) {
+                intent.putExtra("servicetext", "Plumbing Service");
+                intent.putExtra("serviceid",UrlNeuugen.plumbingId);
             }
-        }
-        if (v.getId()==R.id.electricianservice){
-            Intent intent = new Intent(HomeRenovation.this, HomeRenovationForm.class);
-            intent.putExtra("servicetext","Electrician Service");
-            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(HomeRenovation.this, R.anim.fade_in, R.anim.fade_out);
-                startActivity(intent, options.toBundle());
-            } else {
-                startActivity(intent);
+            if (v.getId() == R.id.electricianservice) {
+                intent.putExtra("servicetext", "Electrician Service");
+                intent.putExtra("serviceid",UrlNeuugen.electricianId);
             }
-        }
-        if (v.getId()==R.id.carpentryservice){
-            Intent intent = new Intent(HomeRenovation.this, SparePartsActivity.class);
-            intent.putExtra("servicetext","Carpentry Service");
+            if (v.getId() == R.id.carpentryservice) {
+                intent.putExtra("servicetext", "Carpentry Service");
+                intent.putExtra("serviceid",UrlNeuugen.carpentryId);
+            }
             if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
                 ActivityOptions options = ActivityOptions.makeCustomAnimation(HomeRenovation.this, R.anim.fade_in, R.anim.fade_out);
                 startActivity(intent, options.toBundle());
@@ -478,7 +469,7 @@ public class HomeRenovation extends AppCompatActivity implements View.OnClickLis
             }
         }
         if (v.getId()==R.id.sparepartsbtnn){
-            Intent intent = new Intent(HomeRenovation.this, HomeRenovationForm.class);
+            Intent intent = new Intent(HomeRenovation.this, SparePartsActivity.class);
             intent.putExtra("serviceid",UrlNeuugen.homeRenovationId);
             if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
                 ActivityOptions options = ActivityOptions.makeCustomAnimation(HomeRenovation.this, R.anim.fade_in, R.anim.fade_out);

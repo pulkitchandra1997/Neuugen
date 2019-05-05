@@ -28,10 +28,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import peoplecitygroup.neuugen.HomeServices.HomeRenovationServices.HomeRenovation;
-import peoplecitygroup.neuugen.HomeServices.HomeRenovationServices.HomeRenovationForm;
 import peoplecitygroup.neuugen.R;
-import peoplecitygroup.neuugen.SparePartsActivity;
+import peoplecitygroup.neuugen.HomeServices.SparePartsActivity;
 import peoplecitygroup.neuugen.service.ServiceCheck;
 import peoplecitygroup.neuugen.service.UrlNeuugen;
 import peoplecitygroup.neuugen.service.VolleyCallback;
