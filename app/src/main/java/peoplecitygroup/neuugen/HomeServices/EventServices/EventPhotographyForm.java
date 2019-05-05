@@ -136,7 +136,7 @@ public class EventPhotographyForm extends AppCompatActivity implements View.OnCl
             pincodetext=pincodeEP.getText().toString().trim();
             dostext=dosEP.getText().toString().trim();
             bothservicepvtext=bothservicepv.getSelectedItem().toString().trim();
-            eventnumofdaystext=eventnumofdays.getSelectedItem().toString().trim();
+            eventnumofdaystext=String.valueOf(eventnumofdays.getSelectedItemPosition());;
             if (birthday.isChecked())
             {
                birthdayid="1";

@@ -22,6 +22,7 @@ public class UrlNeuugen {
     public static String requestservice_EventsArrangementsForm=URL+"requestServiceEventsArrangements.php";
     public static String requestservice_EventPhotographyForm=URL+"requestServiceEventsPhotography.php";
     public static String requestservice_PreWedShootForm=URL+"requestServicePreWedShoot.php";
+    public static String requestservice_ApplianceRepair=URL+"requestServiceApplianceRepair.php";
 
 
     public static final String csemail="peoplecitygroup@gmail.com";

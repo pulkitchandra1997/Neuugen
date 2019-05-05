@@ -426,6 +426,7 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
             Intent intent = new Intent(Appliancerepair.this, ApplianceRepairform.class);
             if (v.getId() == R.id.repairingservice) {
                 intent.putExtra("servicetext", "Repairing Service");
+                intent.putExtra("serviceId", UrlNeuugen.repairingId);
                 if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
                     ActivityOptions options = ActivityOptions.makeCustomAnimation(Appliancerepair.this, R.anim.fade_in, R.anim.fade_out);
                     startActivity(intent, options.toBundle());
@@ -435,6 +436,7 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
             }
             if (v.getId() == R.id.installationservice) {
                 intent.putExtra("servicetext", "Installation Service");
+                intent.putExtra("serviceId", UrlNeuugen.installationId);
                 if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
                     ActivityOptions options = ActivityOptions.makeCustomAnimation(Appliancerepair.this, R.anim.fade_in, R.anim.fade_out);
                     startActivity(intent, options.toBundle());
