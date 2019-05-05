@@ -57,10 +57,12 @@ public class WelcomeScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         loading = new ProgressDialog(WelcomeScreen.this,R.style.AppCompatAlertDialogStyle);
         loading.setCancelable(false);
         loading.setMessage("Checking Latest Version of app...");
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+
         if(haveNetworkConnection()) {
             if(checkLatestVersion())
                 new Handler().postDelayed(new Runnable() {
