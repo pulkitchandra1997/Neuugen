@@ -86,7 +86,7 @@
 
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="400dp"
+                    android:layout_width="380dp"
                     android:layout_height="200dp"
                     android:layout_margin="10dp"
                     android:id="@+id/homeimg1"
@@ -95,7 +95,7 @@
                     />
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="400dp"
+                    android:layout_width="380dp"
                     android:layout_margin="10dp"
                     android:layout_height="200dp"
                     android:id="@+id/homeimg2"
@@ -104,7 +104,7 @@
                     />
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="400dp"
+                    android:layout_width="380dp"
                     android:layout_height="200dp"
                     android:layout_margin="10dp"
                     android:id="@+id/homeimg3"
@@ -112,7 +112,7 @@
                     android:src="@drawable/imgplaceholder"
                     />
                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="400dp"
+                    android:layout_width="380dp"
                     android:layout_height="200dp"
                    android:layout_margin="10dp"
                    android:id="@+id/homeimg4"
@@ -120,7 +120,7 @@
                     android:src="@drawable/imgplaceholder"
                     />
             <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="400dp"
+                android:layout_width="380dp"
                 android:layout_height="200dp"
                 android:layout_margin="10dp"
                 android:id="@+id/homeimg5"
