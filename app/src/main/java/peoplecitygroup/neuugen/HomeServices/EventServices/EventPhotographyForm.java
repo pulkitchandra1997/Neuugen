@@ -3,6 +3,7 @@ package peoplecitygroup.neuugen.HomeServices.EventServices;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatCheckBox;
+import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.appcompat.widget.AppCompatSpinner;
 
 import android.app.DatePickerDialog;
@@ -23,6 +24,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -53,12 +55,13 @@ public class EventPhotographyForm extends AppCompatActivity implements View.OnCl
     TextInputEditText areaEP,cityEP,landmarkEP,pincodeEP,dosEP,housenoEP;
     MaterialButton requestserviceEP;
     int day,year,month;
-    String areatext,citytext,landmarktext,dostext,pincodetext,housenotext,bothservicepvtext,eventnumofdaystext,birthdayid,corporateid,anniversaryid,picnicid,otherpartyid,serviceId;
+    String areatext,citytext,landmarktext,dostext,pincodetext,housenotext,bothservicepvtext,eventtypetext,eventnumofdaystext,birthdayid,corporateid,anniversaryid,picnicid,otherpartyid,serviceId;
     LinearLayout eventphotolayout;
     String city="";
     String mobileno="";
     ProgressDialog loading = null;
-    AppCompatCheckBox corporate,birthday,anniversary,picnic,otherparty;
+    RadioGroup eventtypeoptions;
+    AppCompatRadioButton corporate,birthday,anniversary,picnic,otherparty;
 
     public String getDate(){
         StringBuilder builder=new StringBuilder();
@@ -116,6 +119,7 @@ public class EventPhotographyForm extends AppCompatActivity implements View.OnCl
         picnic=findViewById(R.id.picnic);
         corporate=findViewById(R.id.corporate);
         otherparty=findViewById(R.id.otherparty);
+        eventtypeoptions=findViewById(R.id.eventtypeoptions);
 
     }
     public void listenerLink()
@@ -139,31 +143,24 @@ public class EventPhotographyForm extends AppCompatActivity implements View.OnCl
             eventnumofdaystext=String.valueOf(eventnumofdays.getSelectedItemPosition());;
             if (birthday.isChecked())
             {
-               birthdayid="1";
+               eventtypetext="Birthday";
             }else
-                birthdayid="0";
-
             if (corporate.isChecked())
             {
-                corporateid="1";
+                eventtypetext="Corporate";
             }else
-                corporateid="0";
             if (anniversary.isChecked())
             {
-                anniversaryid="1";
+                eventtypetext="Anniversary";
             }else
-                anniversaryid="0";
             if (picnic.isChecked())
             {
-                picnicid="1";
+                eventtypetext="Picnic";
             }else
-                picnicid="0";
             if (otherparty.isChecked())
             {
-                otherpartyid="1";
-            }else
-                otherpartyid="0";
-
+                eventtypetext="Other Parties";
+            }
             if (TextUtils.isEmpty(areatext) || TextUtils.isEmpty(housenotext)||TextUtils.isEmpty(citytext)||TextUtils.isEmpty(pincodetext)||TextUtils.isEmpty(dostext)||bothservicepvtext.equalsIgnoreCase("Select Service Type")||eventnumofdaystext.equalsIgnoreCase("Select Number of Days")||!birthday.isChecked()&&!corporate.isChecked()&&!anniversary.isChecked()&&!picnic.isChecked()&&!otherparty.isChecked())
             {
                 if (TextUtils.isEmpty(housenotext) )
@@ -257,7 +254,7 @@ public class EventPhotographyForm extends AppCompatActivity implements View.OnCl
         loading.show();
         java.sql.Date d=new java.sql.Date(year,month,day);
         final long time=d.getTime();
-        final String eventtype=corporateid+picnicid+birthdayid+anniversaryid+otherpartyid;
+/*        final String eventtype=corporateid+picnicid+birthdayid+anniversaryid+otherpartyid;*/
         StringRequest stringRequest=new StringRequest(Request.Method.POST, UrlNeuugen.requestservice_EventPhotographyForm, new Response.Listener<String>()
         {
             @Override
@@ -373,7 +370,7 @@ public class EventPhotographyForm extends AppCompatActivity implements View.OnCl
                 params.put("dateofservice", String.valueOf(time));
                 params.put("noofdays", eventnumofdaystext);
                 params.put("servicetype", servicetypetext);
-                params.put("eventtype",eventtype);
+                params.put("eventtype",eventtypetext);
                 return params;
             }
         };
