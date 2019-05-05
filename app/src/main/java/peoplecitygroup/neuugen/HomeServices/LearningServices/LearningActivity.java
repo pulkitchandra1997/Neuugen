@@ -6,9 +6,11 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.cardview.widget.CardView;
 
+import android.app.ActivityOptions;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
@@ -36,6 +38,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import peoplecitygroup.neuugen.MobileNumberInput;
 import peoplecitygroup.neuugen.R;
 import peoplecitygroup.neuugen.service.MySingleton;
 import peoplecitygroup.neuugen.service.SendMail;
@@ -51,6 +54,8 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
     AppCompatImageView lcimg1, lcimg2, lcimg3;
 
     AppCompatTextView dancingmsg, actingmsg, makeupmsg;
+
+    String id = null;
 
     CardView actingcard, dancingcard, makeupcard;
     ProgressDialog loading = null;
@@ -435,14 +440,36 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.dancingbtn || v.getId() == R.id.makeupbtn || v.getId() == R.id.actingbtn) {
-            String id = null;
+
             if (v.getId() == R.id.dancingbtn)
                 id = UrlNeuugen.dancingClassId;
             if (v.getId() == R.id.makeupbtn)
                 id = UrlNeuugen.groomingClassId;
             if (v.getId() == R.id.actingbtn)
                 id = UrlNeuugen.actingClassId;
-            sendData(id);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(LearningActivity.this);
+            builder.setIcon(R.mipmap.ic_launcher_round);
+            builder.setTitle(Html.fromHtml("<font color='#FF0000'>neuugen</font>"));
+            builder.setMessage("Are you sure you want to request for this service?");
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    sendData(id);
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+            Button negativeButton = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+            negativeButton.setTextColor(Color.parseColor("#FF12B2FA"));
         }
     }
 
