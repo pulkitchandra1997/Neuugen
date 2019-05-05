@@ -175,7 +175,8 @@
                         android:layout_gravity="center"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp"
-                        app:cardBackgroundColor="#fff"                        android:id="@+id/electricianservice"
+                        app:cardBackgroundColor="#fff"
+                        android:id="@+id/electricianservice"
                         app:cardUseCompatPadding="true"
                         >
                         <LinearLayout
@@ -312,7 +313,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/sparepartsbt"
+                android:id="@+id/sparepartsbtn"
                 android:background="@color/bootstrap_alert_cross_default">
 
                 <androidx.appcompat.widget.AppCompatTextView

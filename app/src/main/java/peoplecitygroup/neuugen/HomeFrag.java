@@ -5,10 +5,13 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
 
+import com.github.amlcurran.showcaseview.OnShowcaseEventListener;
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.ActionViewTarget;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
@@ -18,6 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 
 
@@ -34,14 +38,22 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     androidx.appcompat.widget.AppCompatTextView locationicon;
 
     LinearLayout location;
-    AppCompatImageView homeimg1,homeimg2,homeimg3;
+    AppCompatImageView homeimg1,homeimg2,homeimg3,homeimg4,homeimg5;
 
     FloatingActionButton postformfab;
 
+    TableLayout serviceicons;
+
+    AppCompatTextView locationtext,serviceheadtext;
     View v;
 
     LinearLayout properties,salon,events,appliancerepair,homerenovation,learning,protectionprgrm;
 
+    String titlearr[]={"Change Location","Post Your ads"};
+    String contentarr[]={"Select your city where you want service","Post your Properties adverisements by clicking here"};
+
+    View viewarr[]={location,postformfab};
+    ShowcaseView showcaseView,showcaseView2,showcaseView3;
 
     @Nullable
     @Override
@@ -50,29 +62,59 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
 
         idLink();
         listenerLink();
-        // showcase start
-       /* new ShowcaseView.Builder(getActivity())
-                .setTarget(new ViewTarget(postformfab))
-                .setContentTitle("Post Your Ad")
-                .setContentText("This is highlighting the Home button")
-                .hideOnTouchOutside()
-                .blockAllTouches()
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
-                })
-                .build();*/
-
-        // showcase end
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
         locationicon.setTypeface(font);
 
+        showcaseView=new ShowcaseView.Builder(getActivity())
+                .withMaterialShowcase()
+                .setTarget(new ViewTarget(postformfab))
+                .setContentTitle("Post your Ads")
+                .setStyle(R.style.CustomShowcaseTheme2)
+                .setContentText("Post your Properties advertisements by clicking here")
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        nextShowcase();
+                    }
+                })
+                .build();
 
         return v;
     }
 
+    private void nextShowcase() {
+        showcaseView.hide();
+        showcaseView2=new ShowcaseView.Builder(getActivity())
+                .withMaterialShowcase()
+                .setTarget(new ViewTarget(locationtext))
+                .setContentTitle("Change your location")
+                .setStyle(R.style.CustomShowcaseTheme2)
+                .setContentText("Choose your city where you want your services")
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        lastShowcase();
+                    }
+                })
+                .build();
+    }
+
+    private void lastShowcase() {
+        showcaseView2.hide();
+        showcaseView3=new ShowcaseView.Builder(getActivity())
+                .withMaterialShowcase()
+                .setTarget(new ViewTarget(serviceheadtext))
+                .setContentTitle("Choose Service")
+                .setStyle(R.style.CustomShowcaseTheme2)
+                .setContentText("Choose one of the services according to your need.")
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showcaseView3.hide();
+                    }
+                })
+                .build();
+    }
 
 
     public void idLink()
@@ -89,7 +131,12 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         homeimg1=v.findViewById(R.id.homeimg1);
         homeimg2=v.findViewById(R.id.homeimg2);
         homeimg3=v.findViewById(R.id.homeimg3);
+        homeimg4=v.findViewById(R.id.homeimg4);
+        homeimg5=v.findViewById(R.id.homeimg5);
         protectionprgrm=v.findViewById(R.id.protectionprgrm);
+        serviceicons=v.findViewById(R.id.serviceicons);
+        locationtext=v.findViewById(R.id.locationtext);
+        serviceheadtext=v.findViewById(R.id.serviceheadtext);
     }
 
     public void listenerLink()

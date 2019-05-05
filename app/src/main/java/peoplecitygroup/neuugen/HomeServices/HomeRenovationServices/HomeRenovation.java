@@ -433,7 +433,7 @@ public class HomeRenovation extends AppCompatActivity implements View.OnClickLis
         electricianmsg=findViewById(R.id.electricianmsg);
         plumbingmsg=findViewById(R.id.plumbingmsg);
         electricianimsg=findViewById(R.id.electricianmsg);
-        sparepartsbtn=findViewById(R.id.sparepartsbt);
+        sparepartsbtn=findViewById(R.id.sparepartsbtn);
 
     }
     public void listenerLink()
@@ -468,7 +468,7 @@ public class HomeRenovation extends AppCompatActivity implements View.OnClickLis
                 startActivity(intent);
             }
         }
-        if (v.getId()==R.id.sparepartsbtnn){
+        if (v.getId()==R.id.sparepartsbtn){
             Intent intent = new Intent(HomeRenovation.this, SparePartsActivity.class);
             intent.putExtra("serviceid",UrlNeuugen.homeRenovationId);
             if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {

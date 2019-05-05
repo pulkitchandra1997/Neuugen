@@ -32,9 +32,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <ListView
             android:background="#FFF"
@@ -43,8 +40,6 @@
             android:layout_height="wrap_content"
             android:visibility="visible"
             android:drawSelectorOnTop="true"/>
-
-    </androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
     </ScrollView>

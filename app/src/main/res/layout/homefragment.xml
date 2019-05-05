@@ -50,6 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Lucknow"
+                    android:id="@+id/locationtext"
                     android:padding="5dp"
                     android:textSize="20dp"
                     android:fontFamily="@font/quicksandbold"
@@ -114,9 +115,18 @@
                     android:layout_width="400dp"
                     android:layout_height="200dp"
                    android:layout_margin="10dp"
+                   android:id="@+id/homeimg4"
                    android:theme="@style/Base.Widget.AppCompat.ImageButton"
                     android:src="@drawable/imgplaceholder"
                     />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="400dp"
+                android:layout_height="200dp"
+                android:layout_margin="10dp"
+                android:id="@+id/homeimg5"
+                android:theme="@style/Base.Widget.AppCompat.ImageButton"
+                android:src="@drawable/imgplaceholder"
+                />
         </LinearLayout>
     </HorizontalScrollView>
     <LinearLayout
@@ -131,6 +141,7 @@
             android:layout_height="wrap_content"
             android:text="SERVICES"
             android:padding="10dp"
+            android:id="@+id/serviceheadtext"
             android:textSize="15dp"
             android:fontFamily="@font/quicksandbold"
             android:textColor="@color/PrimaryText"
