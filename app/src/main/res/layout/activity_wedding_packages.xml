@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeServices.HomeRenovationServices.EventServices.WeddingPackages"
+    tools:context=".HomeServices.EventServices.WeddingPackages"
     android:orientation="vertical"
     >
     <LinearLayout
