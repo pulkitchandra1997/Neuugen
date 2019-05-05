@@ -100,7 +100,7 @@ public class WelcomeScreen extends AppCompatActivity {
             public void onResponse(String response) {
                 loading.dismiss();
                 if (response.toLowerCase().contains("error")) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
+                    AlertDialog.Builder builder = new AlertDialog.Builder(WelcomeScreen.this);
                     builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                     builder.setMessage("Error in server. Try Again")
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -118,7 +118,7 @@ public class WelcomeScreen extends AppCompatActivity {
                 } else {
                     if (response.toLowerCase().contains("link:")) {
                         final String link = response.substring(response.indexOf(':') + 1);
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
+                        AlertDialog.Builder builder = new AlertDialog.Builder(WelcomeScreen.this);
                         builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                         builder.setMessage("Update the app to latest version.")
                                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -194,7 +194,7 @@ public class WelcomeScreen extends AppCompatActivity {
             }
             @Override
             public void retry(VolleyError error) throws VolleyError {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
+                AlertDialog.Builder builder = new AlertDialog.Builder(WelcomeScreen.this);
 
                 builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                 builder.setMessage("Connection")

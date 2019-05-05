@@ -138,7 +138,7 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
         }
         else
         {
-            bdaytext.setText(sp.getString("dob",""));
+            bdaytext.setText(sp.getString("dob","DOB not yet filled"));
         }
         if (sp.getString("emailverified","emailverified").equalsIgnoreCase("1"))
         {
