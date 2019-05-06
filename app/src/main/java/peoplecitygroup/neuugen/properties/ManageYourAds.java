@@ -1,8 +1,10 @@
-package peoplecitygroup.neuugen;
+package peoplecitygroup.neuugen.properties;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import peoplecitygroup.neuugen.R;
 
 public class ManageYourAds extends AppCompatActivity {
 

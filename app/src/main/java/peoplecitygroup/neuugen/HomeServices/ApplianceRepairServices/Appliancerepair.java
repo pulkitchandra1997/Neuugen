@@ -409,7 +409,7 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
         arimg3=findViewById(R.id.arimg3);
         installmsg=findViewById(R.id.installmsg);
         repairmsg=findViewById(R.id.repairmsg);
-        sparepartsbtn=findViewById(R.id.sparepartsbtn);
+        sparepartsbtn=findViewById(R.id.appsparepartsbtn);
 
     }
     public void listenerLink()
@@ -422,7 +422,7 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        if (v.getId()==R.id.repairingservice||v.getId()==R.id.installationservice||v.getId()==R.id.sparepartsbtn) {
+        if (v.getId()==R.id.repairingservice||v.getId()==R.id.installationservice) {
             Intent intent = new Intent(Appliancerepair.this, ApplianceRepairform.class);
             if (v.getId() == R.id.repairingservice) {
                 intent.putExtra("servicetext", "Repairing Service");
@@ -445,7 +445,7 @@ public class Appliancerepair extends AppCompatActivity implements View.OnClickLi
                 }
             }
         }
-            if (v.getId() == R.id.sparepartsbtn) {
+            if (v.getId() == R.id.appsparepartsbtn) {
                 Intent intent = new Intent(Appliancerepair.this, SparePartsActivity.class);
                 intent.putExtra("serviceid", UrlNeuugen.appRepairInstallId);
                 if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {

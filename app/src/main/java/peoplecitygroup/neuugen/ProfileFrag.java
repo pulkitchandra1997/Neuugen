@@ -22,6 +22,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import peoplecitygroup.neuugen.properties.ManageYourAds;
 import peoplecitygroup.neuugen.properties.PostAd;
 
 import static android.content.Context.MODE_PRIVATE;

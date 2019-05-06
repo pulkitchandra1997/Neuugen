@@ -142,8 +142,8 @@
         <item>Independent House</item>
         <item>Villa</item>
         <item>Hostel</item>
-        <item>Shop Area</item>
         <item>Office Area</item>
+        <item>Shop Area</item>
     </array>
     <array name="buypropertytype">
         <item>Select Property Type</item>

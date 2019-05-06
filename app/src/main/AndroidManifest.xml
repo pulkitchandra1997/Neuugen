@@ -30,7 +30,7 @@
         <activity
             android:name=".properties.PropertiesCityCheck"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".ManageYourAds" />
+        <activity android:name=".properties.ManageYourAds" />
         <activity android:name=".HelpSupportActivity" />
         <activity
             android:name=".Customercare"
