@@ -32,6 +32,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/propertylayout">
+
 
         <ListView
             android:background="#FFF"
@@ -41,7 +47,214 @@
             android:visibility="visible"
             android:drawSelectorOnTop="true"/>
 
+
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/filterlayout"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:backgroundTint="@color/colorPrimary">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Furnish Type"
+                    android:textSize="@dimen/headingtext"
+                    android:fontFamily="@font/quicksandbold"
+                    android:textColor="@color/PrimaryText"
+                    />
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/furnishtypeFI"
+                        android:padding="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatRadioButton
+                                android:id="@+id/fullfurnishFI"
+                                android:layout_width="wrap_content"
+                                android:layout_height="42dp"
+                                android:buttonTint="@color/colorPrimaryDark"
+                                android:padding="5dp"
+                                android:text="Fully Furnished"
+                                android:textSize="@dimen/normaheading" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Semi Furnished"
+                            android:textSize="@dimen/normaheading"
+                            android:id="@+id/semifurnishFI"
+                            android:padding="5dp"
+                            android:buttonTint="@color/colorPrimaryDark"/>
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="UnFurnished"
+                            android:textSize="@dimen/normaheading"
+                            android:id="@+id/unfurnishFI"
+                            android:padding="5dp"
+                            android:buttonTint="@color/colorPrimaryDark"/>
+
+                        </LinearLayout>
+                    </RadioGroup>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Construction Status"
+                    android:textSize="@dimen/headingtext"
+                    android:fontFamily="@font/quicksandbold"
+                    android:textColor="@color/PrimaryText"
+                    />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/constatusFI"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/readytomoveFI"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/colorPrimaryDark"
+                            android:padding="5dp"
+                            android:text="Ready to move"
+                            android:textSize="@dimen/normaheading" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Under Construction"
+                            android:textSize="@dimen/normaheading"
+                            android:id="@+id/underconFI"
+                            android:padding="5dp"
+                            android:buttonTint="@color/colorPrimaryDark"/>
+
+                    </LinearLayout>
+                </RadioGroup>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Possession Status"
+                    android:textSize="@dimen/headingtext"
+                    android:fontFamily="@font/quicksandbold"
+                    android:textColor="@color/PrimaryText"
+                    />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/posesnstatusFi"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/immediateFI"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/colorPrimaryDark"
+                            android:padding="5dp"
+                            android:text="Immediate"
+                            android:textSize="@dimen/normaheading" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="In Future"
+                            android:textSize="@dimen/normaheading"
+                            android:id="@+id/infutureFI"
+                            android:padding="5dp"
+                            android:buttonTint="@color/colorPrimaryDark"/>
+
+
+                    </LinearLayout>
+                </RadioGroup>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Number of Beds"
+                    android:textSize="@dimen/headingtext"
+                    android:fontFamily="@font/quicksandbold"
+                    android:textColor="@color/PrimaryText"
+                    />
+
+                <com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar
+                    android:id="@+id/bedsrangeSeekbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:absoluteMaxValue="10"
+                    app:absoluteMinValue="1"
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Number of Bathrooms"
+                    android:textSize="@dimen/headingtext"
+                    android:fontFamily="@font/quicksandbold"
+                    android:textColor="@color/PrimaryText"
+                    />
+
+                <com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar
+                    android:id="@+id/bathsrangeSeekbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:absoluteMaxValue="10"
+                    app:absoluteMinValue="1"
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Price Range"
+                    android:textSize="@dimen/headingtext"
+                    android:fontFamily="@font/quicksandbold"
+                    android:textColor="@color/PrimaryText"
+                    />
+
+                <com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar
+                    android:id="@+id/pricerangeSeekbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:absoluteMaxValue="100"
+                    app:absoluteMinValue="1"
+                    />
+            </LinearLayout>
+
+
         </LinearLayout>
     </ScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/filters"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/DividerColor"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="25dp"
+        android:layout_gravity="right|bottom"
+        android:tooltipText="Filters"
+        app:fabCustomSize="60dp"
+        app:maxImageSize="40dp"
+        app:rippleColor="@color/colorPrimary"
+        app:srcCompat="@drawable/filtericon" />
+
 
 </LinearLayout>
