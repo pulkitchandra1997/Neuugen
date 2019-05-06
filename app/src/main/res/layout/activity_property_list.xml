@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/filterlayout"
                 android:orientation="vertical"
-                android:padding="10dp"
+                android:layout_margin="15dp"
                 android:backgroundTint="@color/colorPrimary">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -191,7 +191,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Number of Beds"
+                    android:text="Number of Bedrooms"
                     android:textSize="@dimen/headingtext"
                     android:fontFamily="@font/quicksandbold"
                     android:textColor="@color/PrimaryText"
