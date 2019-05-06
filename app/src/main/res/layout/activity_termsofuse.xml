@@ -23,6 +23,16 @@
             android:textColor="@color/colorAccent"
             />
     </LinearLayout>
+    <ProgressBar
+        android:foregroundGravity="center"
+        android:id="@+id/progress"
+        style="@style/Animation.Design.BottomSheetDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone"
+        android:indeterminateTint="@color/colorPrimaryDark"/>
 
     <WebView
         android:layout_width="wrap_content"
