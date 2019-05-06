@@ -15,21 +15,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="&#xf060;"
-            android:padding="15dp"
+            android:padding="10dp"
             android:textSize="20dp"
             android:fontFamily="@font/quicksandbold"
             android:textColor="@color/colorAccent"
             android:id="@+id/backtoaccount"
             />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your Details"
-            android:padding="15dp"
-            android:textSize="20dp"
             android:fontFamily="@font/quicksandbold"
+            android:padding="10dp"
+            android:text="Your Details"
             android:textColor="@color/colorAccent"
-            />
+            android:textSize="@dimen/normaheading" />
     </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
@@ -53,8 +53,8 @@
             >
 
         <com.beardedhen.androidbootstrap.BootstrapCircleThumbnail
-            android:layout_width="180dp"
-            android:layout_height="180dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_gravity="center"
             app:hasBorder="false"
             android:layout_centerHorizontal="true"
@@ -81,8 +81,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pranjal Verma"
-                android:padding="15dp"
-                android:textSize="25dp"
+                android:padding="6dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
                 android:id="@+id/nametext"
                 android:fontFamily="@font/quicksandbold"
                 android:textColor="@color/colorAccent"
@@ -92,9 +93,9 @@
                 android:layout_height="wrap_content"
                 android:text="&#xf303;"
                 android:gravity="right"
-                android:padding="15dp"
+                android:padding="6dp"
                 android:textColor="@color/colorAccent"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:id="@+id/editprofileicon"/>
 
         </LinearLayout>
@@ -110,8 +111,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Primary Information"
-                    android:padding="10dp"
-                    android:textSize="20dp"
+                    android:padding="6dp"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="15dp"
                     android:fontFamily="@font/quicksandbold"
                     android:textColor="@color/PrimaryText"
                     />
@@ -131,7 +133,7 @@
             android:id="@+id/emailicon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="6dp"
             android:text="&#xf0e0;"
             android:textColor="@color/PrimaryText"
             android:textSize="15dp" />
@@ -139,7 +141,7 @@
             android:layout_width="225dp"
             android:layout_height="wrap_content"
             android:text="Email"
-            android:padding="10dp"
+            android:padding="6dp"
             android:textSize="15dp"
             android:id="@+id/emailtext"
             android:fontFamily="@font/quicksand"
@@ -149,7 +151,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Email Verify"
-            android:padding="10dp"
+            android:padding="6dp"
             android:gravity="end"
             android:layout_weight="1"
             android:textSize="15dp"
@@ -168,7 +170,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="&#xf3cd;"
-            android:padding="10dp"
+            android:padding="6dp"
             android:textColor="@color/PrimaryText"
             android:textSize="15dp"
             android:id="@+id/phoneicon"/>
@@ -176,7 +178,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Phone"
-            android:padding="10dp"
+            android:padding="6dp"
             android:textSize="15dp"
             android:id="@+id/phonetext"
             android:fontFamily="@font/quicksand"
@@ -186,7 +188,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Verified"
-            android:padding="10dp"
+            android:padding="6dp"
             android:gravity="end"
             android:layout_weight="1"
             android:textSize="15dp"
@@ -206,8 +208,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Your Address"
-                    android:padding="10dp"
-                    android:textSize="20dp"
+                    android:padding="6dp"
+                    android:textSize="15dp"
+                    android:layout_marginLeft="10dp"
                     android:fontFamily="@font/quicksandbold"
                     android:textColor="@color/PrimaryText"
                     />
@@ -227,7 +230,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="&#xf3c5;"
-                        android:padding="10dp"
+                        android:padding="6dp"
                         android:textColor="@color/PrimaryText"
                         android:textSize="15dp"
                         android:id="@+id/addressicon"/>
@@ -237,7 +240,7 @@
                         android:layout_width="225dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/quicksand"
-                        android:padding="10dp"
+                        android:padding="6dp"
                         android:text="Address"
                         android:textColor="@color/PrimaryText"
                         android:textSize="15dp" />
@@ -245,7 +248,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Address Verify"
-                        android:padding="10dp"
+                        android:padding="6dp"
                         android:gravity="end"
                         android:layout_weight="1"
                         android:textSize="15dp"
@@ -264,7 +267,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="&#xf2bb;"
-                        android:padding="10dp"
+                        android:padding="6dp"
                         android:textColor="@color/PrimaryText"
                         android:textSize="15dp"
                         android:id="@+id/cityicon"/>
@@ -272,7 +275,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="City"
-                        android:padding="10dp"
+                        android:padding="6dp"
                         android:textSize="15dp"
                         android:fontFamily="@font/quicksand"
                         android:textColor="@color/PrimaryText"
@@ -284,7 +287,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/quicksand"
-                        android:padding="10dp"
+                        android:padding="6dp"
                         android:text="Pincode"
                         android:textColor="@color/PrimaryText"
                         android:textSize="15dp" />
@@ -294,7 +297,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/quicksand"
-                        android:padding="10dp"
+                        android:padding="6dp"
                         android:text="State"
                         android:textColor="@color/PrimaryText"
                         android:textSize="15dp" />
@@ -311,8 +314,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Other Information"
-                android:padding="10dp"
-                android:textSize="20dp"
+                android:padding="6dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="15dp"
                 android:fontFamily="@font/quicksandbold"
                 android:textColor="@color/PrimaryText"
                 />
@@ -332,7 +336,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="&#xf224;"
-                    android:padding="10dp"
+                    android:padding="6dp"
                     android:textColor="@color/PrimaryText"
                     android:textSize="15dp"
                     android:id="@+id/gendericon"/>
@@ -342,7 +346,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/quicksand"
-                    android:padding="10dp"
+                    android:padding="6dp"
                     android:text="Gender"
                     android:textColor="@color/PrimaryText"
                     android:textSize="15dp" />
@@ -357,7 +361,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="&#xf1fd;"
-                    android:padding="10dp"
+                    android:padding="6dp"
                     android:textColor="@color/PrimaryText"
                     android:textSize="15dp"
                     android:id="@+id/bdayicon"/>
@@ -365,7 +369,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Birthday"
-                    android:padding="10dp"
+                    android:padding="6dp"
                     android:textSize="15dp"
                     android:fontFamily="@font/quicksand"
                     android:textColor="@color/PrimaryText"

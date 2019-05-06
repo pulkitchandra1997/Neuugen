@@ -17,8 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Wedding Phtography"
-            android:padding="15dp"
-            android:textSize="20dp"
+            android:padding="10dp"
+            android:textSize="@dimen/normaheading"
             android:fontFamily="@font/quicksandbold"
             android:textColor="@color/colorAccent"
             />
@@ -54,7 +54,7 @@
                         android:text="Wedding Packages"
                         android:gravity="center"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="25dp"
+                        android:textSize="@dimen/headingtext"
                         android:fontFamily="@font/quicksandbold"
                         />
 
@@ -84,7 +84,7 @@
                                     android:text="Normal"
                                     android:gravity="start"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="25dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:fontFamily="@font/quicksandbold"
                                     />
                                 <androidx.appcompat.widget.AppCompatTextView
@@ -94,7 +94,7 @@
                                     android:gravity="end"
                                     android:id="@+id/normalpkgicon"
                                     android:textColor="@color/PrimaryText"
-                                    android:textSize="25dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:fontFamily="@font/quicksandbold"
                                     />
                             </LinearLayout>
@@ -106,7 +106,7 @@
                                 android:lineSpacingExtra="5dp"
                                 android:gravity="start"
                                 android:textColor="@color/SecondaryText"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/contenttext"
                                 android:fontFamily="@font/quicksand"
                                 />
                             <androidx.appcompat.widget.AppCompatTextView
@@ -116,7 +116,7 @@
                                 android:id="@+id/normalprice"
                                 android:gravity="start"
                                 android:textColor="@color/PrimaryText"
-                                android:textSize="20dp"
+                                android:textSize="@dimen/headingtext"
                                 android:padding="10dp"
                                 android:fontFamily="@font/quicksandbold"
                                 />
@@ -150,7 +150,7 @@
                                     android:text="Standard"
                                     android:gravity="start"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="25dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:fontFamily="@font/quicksandbold"
                                     />
                                 <androidx.appcompat.widget.AppCompatTextView
@@ -160,7 +160,7 @@
                                     android:id="@+id/standardpkgicon"
                                     android:gravity="end"
                                     android:textColor="@color/PrimaryText"
-                                    android:textSize="25dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:fontFamily="@font/quicksandbold"
                                     />
                             </LinearLayout>
@@ -172,7 +172,7 @@
                                 android:layout_marginTop="10dp"
                                 android:gravity="start"
                                 android:textColor="@color/SecondaryText"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/contenttext"
                                 android:fontFamily="@font/quicksand"
                                 />
                             <androidx.appcompat.widget.AppCompatTextView
@@ -181,7 +181,7 @@
                                 android:text=""
                                 android:gravity="start"
                                 android:textColor="@color/PrimaryText"
-                                android:textSize="20dp"
+                                android:textSize="@dimen/headingtext"
                                 android:id="@+id/standardprice"
                                 android:padding="10dp"
                                 android:fontFamily="@font/quicksandbold"
@@ -214,7 +214,7 @@
                                     android:text="Premium"
                                     android:gravity="start"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="25dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:fontFamily="@font/quicksandbold"
                                     />
                                 <androidx.appcompat.widget.AppCompatTextView
@@ -224,7 +224,7 @@
                                     android:id="@+id/premiumpkgicon"
                                     android:gravity="end"
                                     android:textColor="@color/PrimaryText"
-                                    android:textSize="25dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:fontFamily="@font/quicksandbold"
                                     />
                             </LinearLayout>
@@ -236,7 +236,7 @@
                                 android:layout_marginTop="10dp"
                                 android:gravity="start"
                                 android:textColor="@color/SecondaryText"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/contenttext"
                                 android:fontFamily="@font/quicksand"
                                 />
                             <androidx.appcompat.widget.AppCompatTextView
@@ -246,7 +246,7 @@
                                 android:id="@+id/premiumprice"
                                 android:gravity="start"
                                 android:textColor="@color/PrimaryText"
-                                android:textSize="20dp"
+                                android:textSize="@dimen/headingtext"
                                 android:padding="10dp"
                                 android:fontFamily="@font/quicksandbold"
                                 />
@@ -271,7 +271,7 @@
                     android:text="@string/weddingpkgtext"
                     android:gravity="start"
                     android:textColor="@color/PrimaryText"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/normaheading"
                     android:fontFamily="@font/quicksandbold"
                     />
             </LinearLayout>
@@ -292,7 +292,7 @@
                         android:text="&#xf017;"
                         android:gravity="start"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:id="@+id/timericon"
                         android:fontFamily="@font/quicksandbold"
                         />
@@ -301,7 +301,7 @@
                         android:layout_height="wrap_content"
                         android:text="Availabile all year"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:layout_marginLeft="15dp"
                         android:fontFamily="@font/quicksand"
                         />
@@ -318,7 +318,7 @@
                         android:text="&#xf1ae;"
                         android:gravity="start"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:id="@+id/trainericon"
                         android:fontFamily="@font/quicksandbold"
                         />
@@ -327,7 +327,7 @@
                         android:layout_height="wrap_content"
                         android:text="Trained photographers for every service."
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:layout_marginLeft="15dp"
                         android:fontFamily="@font/quicksand"
                         />
@@ -344,7 +344,7 @@
                         android:text="&#xf057;"
                         android:gravity="start"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:id="@+id/cleanicon"
                         android:fontFamily="@font/quicksandbold"
                         />
@@ -353,7 +353,7 @@
                         android:layout_height="wrap_content"
                         android:text="Quality work assured."
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:layout_marginLeft="15dp"
                         android:fontFamily="@font/quicksand"
                         android:layout_marginBottom="10dp"

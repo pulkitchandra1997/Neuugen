@@ -35,8 +35,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Post your Advertisement Here"
-            android:padding="15dp"
-            android:textSize="20dp"
+            android:padding="10dp"
+            android:textSize="@dimen/normaheading"
             android:fontFamily="@font/quicksandbold"
             android:textColor="@color/colorAccent"
             />
@@ -54,7 +54,7 @@
             android:text="Are you looking to:"
             android:gravity="center"
             android:textColor="@color/PrimaryText"
-            android:textSize="30dp"
+            android:textSize="@dimen/headingtext"
             android:fontFamily="@font/quicksandbold"
             />
         <RadioGroup
@@ -71,9 +71,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="RENT (Houses / Apartments / Villas / Hostel)"
-                android:textSize="18dp"
+                android:textSize="@dimen/normaheading"
                 android:id="@+id/renthouses"
-                android:padding="15dp"
+                android:padding="10dp"
                 android:fontFamily="@font/quicksand"
                 android:buttonTint="@color/colorPrimaryDark"
                 />
@@ -85,9 +85,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SELL (Houses / Apartments / Villas)"
-                android:textSize="18dp"
+                android:textSize="@dimen/normaheading"
                 android:id="@+id/sellhouses"
-                android:padding="15dp"
+                android:padding="10dp"
                 android:fontFamily="@font/quicksand"
                 android:buttonTint="@color/colorPrimaryDark"/>
             <View
@@ -98,9 +98,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="RENT (Shop / Office Area)"
-                android:textSize="18dp"
+                android:textSize="@dimen/normaheading"
                 android:id="@+id/rentoffice"
-                android:padding="15dp"
+                android:padding="10dp"
                 android:fontFamily="@font/quicksand"
                 android:buttonTint="@color/colorPrimaryDark"
                 />
@@ -113,9 +113,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SELL (Lands / Plots)"
-                android:textSize="18dp"
+                android:textSize="@dimen/normaheading"
                 android:id="@+id/sellplots"
-                android:padding="15dp"
+                android:padding="10dp"
                 android:fontFamily="@font/quicksand"
                 android:buttonTint="@color/colorPrimaryDark"/>
             <View
@@ -138,9 +138,9 @@
             android:text="Next"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:fontFamily="@font/quicksandbold"
-            android:padding="15dp"
+            android:padding="10dp"
             android:id="@+id/nextbutton"
-            android:textSize="18sp"/>
+            android:textSize="@dimen/normaheading"/>
 
     </LinearLayout>
         </LinearLayout>

@@ -16,8 +16,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
-            android:padding="15dp"
-            android:textSize="20dp"
+            android:padding="10dp"
+            android:textSize="@dimen/normaheading"
             android:fontFamily="@font/quicksandbold"
             android:textColor="@color/colorAccent"
             android:id="@+id/salonservicehead"
@@ -83,7 +83,7 @@
                                     android:text="Men's Haircut"
                                     android:gravity="start"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="20dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:fontFamily="@font/quicksandbold"
                                     />
 
@@ -95,7 +95,7 @@
                                 android:lineSpacingExtra="10dp"
                                 android:gravity="start"
                                 android:textColor="@color/SecondaryText"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/contenttext"
                                 android:fontFamily="@font/quicksand"
                                 />
                             <RelativeLayout
@@ -109,7 +109,7 @@
                                     android:id="@+id/menhaircutprice"
                                     android:gravity="start"
                                     android:textColor="@color/PrimaryText"
-                                    android:textSize="20dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:padding="10dp"
                                     android:fontFamily="@font/quicksandbold"
                                     />
@@ -120,7 +120,7 @@
                                     android:layout_alignParentRight="true"
                                     android:id="@+id/menhaircutbtn"
                                     android:textColor="@color/colorAccent"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/normaheading"
                                     android:backgroundTint="@color/DividerColor"
                                     android:fontFamily="@font/quicksandbold"
                                     />
@@ -164,7 +164,7 @@
                                     android:text="Men's Haircut &amp; Beard"
                                     android:gravity="start"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="20dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:fontFamily="@font/quicksandbold"
                                     />
 
@@ -176,7 +176,7 @@
                                 android:layout_marginTop="10dp"
                                 android:gravity="start"
                                 android:textColor="@color/SecondaryText"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/contenttext"
                                 android:fontFamily="@font/quicksand"
                                 />
                             <RelativeLayout
@@ -190,7 +190,7 @@
                                     android:id="@+id/menbeardprice"
                                     android:gravity="start"
                                     android:textColor="@color/PrimaryText"
-                                    android:textSize="20dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:padding="10dp"
                                     android:fontFamily="@font/quicksandbold"
                                     />
@@ -201,7 +201,7 @@
                                     android:layout_alignParentRight="true"
                                     android:id="@+id/menbeardbtn"
                                     android:textColor="@color/colorAccent"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/normaheading"
                                     android:backgroundTint="@color/DividerColor"
                                     android:fontFamily="@font/quicksandbold"
                                     />
@@ -246,7 +246,7 @@
                                     android:text="Men's Party Grooming"
                                     android:gravity="start"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="20dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:fontFamily="@font/quicksandbold"
                                     />
 
@@ -258,7 +258,7 @@
                                 android:layout_marginTop="10dp"
                                 android:gravity="start"
                                 android:textColor="@color/SecondaryText"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/contenttext"
                                 android:fontFamily="@font/quicksand"
                                 />
                             <RelativeLayout
@@ -272,7 +272,7 @@
                                     android:gravity="start"
                                     android:id="@+id/menpartyprice"
                                     android:textColor="@color/PrimaryText"
-                                    android:textSize="20dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:padding="10dp"
                                     android:fontFamily="@font/quicksandbold"
                                     />
@@ -283,7 +283,7 @@
                                     android:layout_alignParentRight="true"
                                     android:id="@+id/menpartybtn"
                                     android:textColor="@color/colorAccent"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/normaheading"
                                     android:backgroundTint="@color/DividerColor"
                                     android:fontFamily="@font/quicksandbold"
                                     />
@@ -321,7 +321,7 @@
                         android:text="Choose a service"
                         android:gravity="start"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="25dp"
+                        android:textSize="@dimen/headingtext"
                         android:fontFamily="@font/quicksandbold"
                         />
 
@@ -348,7 +348,7 @@
                                 android:text="Women's Haircut &amp; styling"
                                 android:gravity="start"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="20dp"
+                                android:textSize="@dimen/headingtext"
                                 android:fontFamily="@font/quicksandbold"
                                 />
 
@@ -360,7 +360,7 @@
                                 android:lineSpacingExtra="10dp"
                                 android:gravity="start"
                                 android:textColor="@color/SecondaryText"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/contenttext"
                                 android:fontFamily="@font/quicksand"
                                 />
                             <RelativeLayout
@@ -385,7 +385,7 @@
                                     android:layout_alignParentRight="true"
                                     android:id="@+id/womenhaircutbtn"
                                     android:textColor="@color/colorAccent"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/normaheading"
                                     android:backgroundTint="@color/DividerColor"
                                     android:fontFamily="@font/quicksandbold"
                                     />
@@ -430,7 +430,7 @@
                                 android:gravity="start"
                                 android:id="@+id/womenpartymakeuptext"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="20dp"
+                                android:textSize="@dimen/headingtext"
                                 android:fontFamily="@font/quicksandbold"
                                 />
 
@@ -442,7 +442,7 @@
                                 android:layout_marginTop="10dp"
                                 android:gravity="start"
                                 android:textColor="@color/SecondaryText"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/contenttext"
                                 android:fontFamily="@font/quicksand"
                                 />
                             <RelativeLayout
@@ -467,7 +467,7 @@
                                     android:layout_alignParentRight="true"
                                     android:id="@+id/womenpartymakeupbtn"
                                     android:textColor="@color/colorAccent"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/normaheading"
                                     android:backgroundTint="@color/DividerColor"
                                     android:fontFamily="@font/quicksandbold"
                                     />
@@ -512,7 +512,7 @@
                                 android:text="Women's Wedding makeup"
                                 android:gravity="start"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="20dp"
+                                android:textSize="@dimen/headingtext"
                                 android:fontFamily="@font/quicksandbold"
                                 />
 
@@ -524,7 +524,7 @@
                                 android:layout_marginTop="10dp"
                                 android:gravity="start"
                                 android:textColor="@color/SecondaryText"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/contenttext"
                                 android:fontFamily="@font/quicksand"
                                 />
                             <RelativeLayout
@@ -549,7 +549,7 @@
                                     android:layout_alignParentRight="true"
                                     android:id="@+id/womenweddingmakeupbtn"
                                     android:textColor="@color/colorAccent"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/normaheading"
                                     android:backgroundTint="@color/DividerColor"
                                     android:fontFamily="@font/quicksandbold"
                                     />

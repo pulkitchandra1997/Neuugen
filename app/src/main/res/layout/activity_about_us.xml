@@ -16,12 +16,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="About Us"
-            android:padding="15dp"
-            android:textSize="20dp"
+            android:padding="10dp"
+            android:textSize="@dimen/normaheading"
             android:fontFamily="@font/quicksandbold"
             android:textColor="@color/colorAccent"
             />
     </LinearLayout>
+
+    <ProgressBar
+        android:foregroundGravity="center"
+        android:id="@+id/progress"
+        style="@style/Animation.Design.BottomSheetDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone"
+        android:indeterminateTint="@color/colorPrimaryDark"/>
 
     <WebView
         android:layout_width="wrap_content"

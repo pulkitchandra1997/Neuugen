@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -50,7 +51,7 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
 
     AppCompatImageView lcimg1, lcimg2, lcimg3;
 
-    AppCompatTextView dancingmsg, actingmsg, makeupmsg;
+    AppCompatTextView trainericon,timericon,cleanicon,dancingmsg, actingmsg, makeupmsg;
 
     String id = null;
 
@@ -72,6 +73,12 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
         loading.setCancelable(false);
         loading.setMessage("Sending Request...");
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+
+        Typeface font = Typeface.createFromAsset(getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
+        timericon.setTypeface(font);
+        cleanicon.setTypeface(font);
+        trainericon.setTypeface(font);
+
         sp = getSharedPreferences("NeuuGen_data", MODE_PRIVATE);
         checkActive();
 
@@ -426,6 +433,9 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
         actingcard = findViewById(R.id.actingcard);
         dancingcard = findViewById(R.id.dancingcard);
         makeupcard = findViewById(R.id.makeupcard);
+        cleanicon=findViewById(R.id.cleanicon);
+        trainericon=findViewById(R.id.trainericon);
+        timericon=findViewById(R.id.timericon);
     }
 
     private void listenerLink() {

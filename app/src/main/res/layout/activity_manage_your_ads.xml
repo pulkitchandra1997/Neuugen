@@ -16,8 +16,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Manage Your Ads"
-            android:padding="15dp"
-            android:textSize="20dp"
+            android:padding="10dp"
+            android:textSize="@dimen/normaheading"
             android:fontFamily="@font/quicksandbold"
             android:textColor="@color/colorAccent"
             />
@@ -33,7 +33,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your Advertisments"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textSize="@dimen/headingtext"
+                android:fontFamily="@font/quicksandbold"
+                android:textColor="@color/PrimaryText"
+                />
 
                 <ListView
                     android:background="#FFF"

@@ -17,8 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Home Renovation"
-            android:padding="15dp"
-            android:textSize="20dp"
+            android:padding="10dp"
+            android:textSize="@dimen/normaheading"
             android:fontFamily="@font/quicksandbold"
             android:textColor="@color/colorAccent"
             />
@@ -96,7 +96,7 @@
                         android:text="What type of service do you need?"
                         android:gravity="center"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="20dp"
+                        android:textSize="@dimen/headingtext"
                         android:fontFamily="@font/quicksandbold"
                         />
 
@@ -124,9 +124,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Plumbing"
-                                    android:gravity="start"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="25dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:fontFamily="@font/quicksandbold"
                                     />
                                 <androidx.appcompat.widget.AppCompatTextView
@@ -136,7 +135,7 @@
                                     android:gravity="end"
                                     android:id="@+id/plumbingicon"
                                     android:textColor="@color/PrimaryText"
-                                    android:textSize="25dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:fontFamily="@font/quicksandbold"
                                     />
                             </LinearLayout>
@@ -148,7 +147,7 @@
                                 android:lineSpacingExtra="5dp"
                                 android:gravity="start"
                                 android:textColor="@color/SecondaryText"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/contenttext"
                                 android:fontFamily="@font/quicksand"
                                 />
                             <androidx.appcompat.widget.AppCompatTextView
@@ -193,9 +192,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Electrician"
-                                    android:gravity="start"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="25dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:fontFamily="@font/quicksandbold"
                                     />
                                 <androidx.appcompat.widget.AppCompatTextView
@@ -205,7 +203,7 @@
                                     android:gravity="end"
                                     android:id="@+id/electricianicon"
                                     android:textColor="@color/PrimaryText"
-                                    android:textSize="25dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:fontFamily="@font/quicksandbold"
                                     />
                             </LinearLayout>
@@ -217,7 +215,7 @@
                                 android:lineSpacingExtra="5dp"
                                 android:gravity="start"
                                 android:textColor="@color/SecondaryText"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/contenttext"
                                 android:fontFamily="@font/quicksand"
                                 />
                             <androidx.appcompat.widget.AppCompatTextView
@@ -263,7 +261,7 @@
                                     android:text="Carpentry"
                                     android:gravity="start"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="25dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:fontFamily="@font/quicksandbold"
                                     />
                                 <androidx.appcompat.widget.AppCompatTextView
@@ -273,7 +271,7 @@
                                     android:id="@+id/carpentryicon"
                                     android:gravity="end"
                                     android:textColor="@color/PrimaryText"
-                                    android:textSize="25dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:fontFamily="@font/quicksandbold"
                                     />
                             </LinearLayout>
@@ -285,7 +283,7 @@
                                 android:layout_marginTop="10dp"
                                 android:gravity="start"
                                 android:textColor="@color/SecondaryText"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/contenttext"
                                 android:fontFamily="@font/quicksand"
                                 />
                             <androidx.appcompat.widget.AppCompatTextView
@@ -371,7 +369,7 @@
                         android:text="&#xf3ed;"
                         android:gravity="start"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:id="@+id/custprotecticonHR"
                         android:fontFamily="@font/quicksandbold"
                         />
@@ -380,7 +378,7 @@
                         android:layout_height="wrap_content"
                         android:text="Customer Protection of upto Rs. 10,000/- for damages."
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:layout_marginLeft="15dp"
                         android:fontFamily="@font/quicksand"
                         />
@@ -397,7 +395,7 @@
                         android:text="&#xf0ad;"
                         android:gravity="start"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:id="@+id/sparepartsiconHR"
                         android:fontFamily="@font/quicksandbold"
                         />
@@ -406,7 +404,7 @@
                         android:layout_height="wrap_content"
                         android:text="Fixed Price for spare parts."
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:layout_marginLeft="15dp"
                         android:fontFamily="@font/quicksand"
                         />
@@ -422,7 +420,7 @@
                         android:text="&#xf274;"
                         android:gravity="start"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:id="@+id/servicegrntyiconHR"
                         android:fontFamily="@font/quicksandbold"
                         />
@@ -431,7 +429,7 @@
                         android:layout_height="wrap_content"
                         android:text="30 days service guarantee."
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:layout_marginLeft="15dp"
                         android:fontFamily="@font/quicksand"
                         android:layout_marginBottom="10dp"

@@ -16,8 +16,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Home Salon Services"
-            android:padding="15dp"
-            android:textSize="20dp"
+            android:padding="10dp"
+            android:textSize="@dimen/normaheading"
             android:fontFamily="@font/quicksandbold"
             android:textColor="@color/colorAccent"
             />
@@ -95,7 +95,7 @@
                         android:text="All Services"
                         android:gravity="center"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="25dp"
+                        android:textSize="@dimen/headingtext"
                         android:fontFamily="@font/quicksandbold"
                         />
 
@@ -126,7 +126,7 @@
                                     android:text="Men's salon at home"
                                     android:gravity="start"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="25dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:fontFamily="@font/quicksandbold"
                                     />
                                 <androidx.appcompat.widget.AppCompatTextView
@@ -136,7 +136,7 @@
                                     android:gravity="end"
                                     android:id="@+id/mensalonicon"
                                     android:textColor="@color/PrimaryText"
-                                    android:textSize="25dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:fontFamily="@font/quicksandbold"
                                     />
                             </LinearLayout>
@@ -148,7 +148,7 @@
                                 android:lineSpacingExtra="5dp"
                                 android:gravity="start"
                                 android:textColor="@color/SecondaryText"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/contenttext"
                                 android:fontFamily="@font/quicksand"
                                 />
                             <androidx.appcompat.widget.AppCompatTextView
@@ -194,7 +194,7 @@
                                     android:text="Women's salon at home"
                                     android:gravity="start"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="25dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:fontFamily="@font/quicksandbold"
                                     />
                                 <androidx.appcompat.widget.AppCompatTextView
@@ -204,7 +204,7 @@
                                     android:id="@+id/womensalonicon"
                                     android:gravity="end"
                                     android:textColor="@color/PrimaryText"
-                                    android:textSize="25dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:fontFamily="@font/quicksandbold"
                                     />
                             </LinearLayout>
@@ -216,7 +216,7 @@
                                 android:layout_marginTop="10dp"
                                 android:gravity="start"
                                 android:textColor="@color/SecondaryText"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/contenttext"
                                 android:fontFamily="@font/quicksand"
                                 />
                             <androidx.appcompat.widget.AppCompatTextView
@@ -252,7 +252,7 @@
                     android:text="@string/salonservicetext"
                     android:gravity="start"
                     android:textColor="@color/PrimaryText"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/normaheading"
                     android:fontFamily="@font/quicksandbold"
                     />
             </LinearLayout>
@@ -273,7 +273,7 @@
                         android:text="&#xf017;"
                         android:gravity="start"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:id="@+id/timericon"
                         android:fontFamily="@font/quicksandbold"
                         />
@@ -282,7 +282,7 @@
                         android:layout_height="wrap_content"
                         android:text="Availability from 9 am to 8 pm."
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:layout_marginLeft="15dp"
                         android:fontFamily="@font/quicksand"
                         />
@@ -299,7 +299,7 @@
                         android:text="&#xf1ae;"
                         android:gravity="start"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:id="@+id/trainericon"
                         android:fontFamily="@font/quicksandbold"
                         />
@@ -308,7 +308,7 @@
                         android:layout_height="wrap_content"
                         android:text="Trained specialist for every service."
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:layout_marginLeft="15dp"
                         android:fontFamily="@font/quicksand"
                         />
@@ -324,7 +324,7 @@
                         android:text="&#xf057;"
                         android:gravity="start"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:id="@+id/cleanicon"
                         android:fontFamily="@font/quicksandbold"
                         />
@@ -333,7 +333,7 @@
                         android:layout_height="wrap_content"
                         android:text="No mess left behind."
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:layout_marginLeft="15dp"
                         android:fontFamily="@font/quicksand"
                         android:layout_marginBottom="10dp"

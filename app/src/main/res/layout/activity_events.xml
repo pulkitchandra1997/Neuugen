@@ -17,8 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Event Services"
-            android:padding="15dp"
-            android:textSize="20dp"
+            android:padding="10dp"
+            android:textSize="@dimen/normaheading"
             android:fontFamily="@font/quicksandbold"
             android:textColor="@color/colorAccent"
             />
@@ -96,7 +96,7 @@
                         android:text="All Services"
                         android:gravity="center"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="25dp"
+                        android:textSize="@dimen/headingtext"
                         android:fontFamily="@font/quicksandbold"
                         />
 
@@ -124,7 +124,7 @@
                                     android:text="Photography &amp; Videography"
                                     android:gravity="start"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="20dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:fontFamily="@font/quicksandbold"
                                     />
                             <RadioGroup
@@ -172,7 +172,7 @@
                                 android:text="PROCEED"
                                 android:id="@+id/photoproceedbtn"
                                 android:textColor="@color/colorAccent"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/normaheading"
                                 android:backgroundTint="@color/DividerColor"
                                 android:fontFamily="@font/quicksandbold"
                                 />
@@ -214,7 +214,7 @@
                                     android:text="Events Arrangements"
                                     android:gravity="start"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="20dp"
+                                    android:textSize="@dimen/headingtext"
                                     android:fontFamily="@font/quicksandbold"
                                     />
                             <RadioGroup
@@ -272,7 +272,7 @@
                                 android:text="PROCEED"
                                 android:id="@+id/eventproceedbtn"
                                 android:textColor="@color/colorAccent"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/normaheading"
                                 android:backgroundTint="@color/DividerColor"
                                 android:fontFamily="@font/quicksandbold"
                                 />
@@ -308,7 +308,7 @@
                     android:text="@string/eventservicetext"
                     android:gravity="start"
                     android:textColor="@color/PrimaryText"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/normaheading"
                     android:fontFamily="@font/quicksandbold"
                     />
             </LinearLayout>
@@ -329,7 +329,7 @@
                         android:text="&#xf017;"
                         android:gravity="start"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:id="@+id/timericon"
                         android:fontFamily="@font/quicksandbold"
                         />
@@ -338,7 +338,7 @@
                         android:layout_height="wrap_content"
                         android:text="Availabile all seasons"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:layout_marginLeft="15dp"
                         android:fontFamily="@font/quicksand"
                         />
@@ -355,7 +355,7 @@
                         android:text="&#xf1ae;"
                         android:gravity="start"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:id="@+id/trainericon"
                         android:fontFamily="@font/quicksandbold"
                         />
@@ -364,7 +364,7 @@
                         android:layout_height="wrap_content"
                         android:text="Trained and expert Phtographers and Management."
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:layout_marginLeft="15dp"
                         android:fontFamily="@font/quicksand"
                         />
@@ -380,7 +380,7 @@
                         android:text="&#xf057;"
                         android:gravity="start"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:id="@+id/cleanicon"
                         android:fontFamily="@font/quicksandbold"
                         />
@@ -389,7 +389,7 @@
                         android:layout_height="wrap_content"
                         android:text="Quality Work"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/contenttext"
                         android:layout_marginLeft="15dp"
                         android:fontFamily="@font/quicksand"
                         android:layout_marginBottom="10dp"

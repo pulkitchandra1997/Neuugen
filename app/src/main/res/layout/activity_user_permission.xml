@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:text="The following permissions are required before proceeding."
         android:gravity="center"
-        android:textSize="20sp"
+        android:textSize="@dimen/headingtext"
         android:fontFamily="@font/quicksandbold"
         android:textColor="@color/PrimaryText"
         android:paddingBottom="20dp"/>
@@ -86,8 +86,8 @@
             android:backgroundTint="@color/DividerColor"
             android:layout_marginTop="20dp"
             app:cornerRadius="10dp"
-            android:textSize="20sp"
-            android:padding="15dp"
+            android:textSize="@dimen/normaheading"
+            android:padding="10dp"
             android:id="@+id/allowbtn"/>
 
     </LinearLayout>

@@ -16,8 +16,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Property Details"
-            android:padding="15dp"
-            android:textSize="20dp"
+            android:padding="@dimen/normaheading"
+            android:textSize="@dimen/normaheading"
             android:fontFamily="@font/quicksandbold"
             android:textColor="@color/colorAccent"
             />
@@ -50,7 +50,7 @@
 
 
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="400dp"
+                            android:layout_width="380dp"
                             android:layout_height="200dp"
                             android:layout_margin="10dp"
                             android:id="@+id/houseimg1"
@@ -59,7 +59,7 @@
                             />
 
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="400dp"
+                            android:layout_width="380dp"
                             android:layout_margin="10dp"
                             android:layout_height="200dp"
                             android:id="@+id/houseimg2"
@@ -68,7 +68,7 @@
                             />
 
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="400dp"
+                            android:layout_width="380dp"
                             android:layout_height="200dp"
                             android:layout_margin="10dp"
                             android:id="@+id/houseimg3"
@@ -106,7 +106,7 @@
                                     android:text="&#xf236;"
                                     android:gravity="start"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/normaheading"
                                     android:id="@+id/bedicon"
                                     android:fontFamily="@font/quicksand"
                                     />
@@ -117,18 +117,18 @@
                                     android:layout_marginLeft="10dp"
                                     android:gravity="start"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/normaheading"
                                     android:fontFamily="@font/quicksand"
                                     />
                                 <androidx.appcompat.widget.AppCompatTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="Beds"
-                                    android:layout_marginLeft="15dp"
+                                    android:layout_marginLeft="@dimen/normaheading"
                                     android:gravity="end"
                                     android:id="@+id/numofbeds"
                                     android:textColor="@color/PrimaryText"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/normaheading"
                                     android:fontFamily="@font/quicksand"
                                     />
 
@@ -146,7 +146,7 @@
                                 android:text="&#xf2cd;"
                                 android:gravity="start"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/normaheading"
                                 android:id="@+id/bathicon"
                                 android:fontFamily="@font/quicksand"
                                 />
@@ -157,18 +157,18 @@
                                 android:layout_marginLeft="10dp"
                                 android:gravity="start"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/normaheading"
                                 android:fontFamily="@font/quicksand"
                                 />
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Bath"
-                                android:layout_marginLeft="15dp"
+                                android:layout_marginLeft="@dimen/normaheading"
                                 android:gravity="end"
                                 android:id="@+id/numofbath"
                                 android:textColor="@color/PrimaryText"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/normaheading"
                                 android:fontFamily="@font/quicksand"
                                 />
 
@@ -208,7 +208,7 @@
                                 android:text="&#xf14a;"
                                 android:gravity="start"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/normaheading"
                                 android:id="@+id/furnishicon"
                                 android:fontFamily="@font/quicksand"
                                 />
@@ -219,18 +219,18 @@
                                 android:layout_marginLeft="10dp"
                                 android:gravity="start"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/normaheading"
                                 android:fontFamily="@font/quicksand"
                                 />
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Furnish"
-                                android:layout_marginLeft="15dp"
+                                android:layout_marginLeft="@dimen/normaheading"
                                 android:gravity="end"
                                 android:id="@+id/furnishtype"
                                 android:textColor="@color/PrimaryText"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/normaheading"
                                 android:fontFamily="@font/quicksand"
                                 />
 
@@ -249,7 +249,7 @@
                                 android:text="&#xf1ad;"
                                 android:gravity="start"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/normaheading"
                                 android:id="@+id/consnicon"
                                 android:fontFamily="@font/quicksand"
                                 />
@@ -260,18 +260,18 @@
                                 android:layout_marginLeft="10dp"
                                 android:gravity="start"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/normaheading"
                                 android:fontFamily="@font/quicksand"
                                 />
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="ready"
-                                android:layout_marginLeft="15dp"
+                                android:layout_marginLeft="@dimen/normaheading"
                                 android:gravity="end"
                                 android:id="@+id/constructiontatus"
                                 android:textColor="@color/PrimaryText"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/normaheading"
                                 android:fontFamily="@font/quicksand"
                                 />
 
@@ -290,7 +290,7 @@
                                 android:text="&#xf015;"
                                 android:gravity="start"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/normaheading"
                                 android:id="@+id/posesnicon"
                                 android:fontFamily="@font/quicksand"
                                 />
@@ -301,18 +301,18 @@
                                 android:layout_marginLeft="10dp"
                                 android:gravity="start"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/normaheading"
                                 android:fontFamily="@font/quicksand"
                                 />
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="immediate"
-                                android:layout_marginLeft="15dp"
+                                android:layout_marginLeft="@dimen/normaheading"
                                 android:gravity="end"
                                 android:id="@+id/possessionstatus"
                                 android:textColor="@color/PrimaryText"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/normaheading"
                                 android:fontFamily="@font/quicksand"
                                 />
 
@@ -354,7 +354,7 @@
                                 android:gravity="start"
                                 android:id="@+id/costicon"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/normaheading"
                                 android:fontFamily="@font/quicksand"
                                 />
                             <androidx.appcompat.widget.AppCompatTextView
@@ -364,7 +364,7 @@
                                 android:gravity="start"
                                 android:layout_marginLeft="10dp"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/normaheading"
                                 android:fontFamily="@font/quicksand"
                                 />
 
@@ -376,7 +376,7 @@
                                 android:gravity="end"
                                 android:id="@+id/price"
                                 android:textColor="@color/PrimaryText"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/normaheading"
                                 android:fontFamily="@font/quicksand"
                                 />
 
@@ -394,7 +394,7 @@
                                 android:text="&#xf156;"
                                 android:gravity="start"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/normaheading"
                                 android:id="@+id/renticon"
                                 android:fontFamily="@font/quicksand"
                                 />
@@ -405,7 +405,7 @@
                                 android:gravity="start"
                                 android:layout_marginLeft="10dp"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/normaheading"
                                 android:fontFamily="@font/quicksand"
                                 />
                             <androidx.appcompat.widget.AppCompatTextView
@@ -416,7 +416,7 @@
                                 android:gravity="end"
                                 android:id="@+id/monthlyrent"
                                 android:textColor="@color/PrimaryText"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/normaheading"
                                 android:fontFamily="@font/quicksand"
                                 />
 
@@ -435,7 +435,7 @@
                             android:gravity="start"
                             android:id="@+id/builtareaicon"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textSize="15dp"
+                            android:textSize="@dimen/normaheading"
                             android:fontFamily="@font/quicksand"
                                 />
                         <androidx.appcompat.widget.AppCompatTextView
@@ -445,17 +445,17 @@
                             android:layout_marginLeft="10dp"
                             android:gravity="start"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textSize="15dp"
+                            android:textSize="@dimen/normaheading"
                             android:fontFamily="@font/quicksand"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="3000"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginLeft="@dimen/normaheading"
                             android:gravity="end"
                             android:textColor="@color/PrimaryText"
-                            android:textSize="15dp"
+                            android:textSize="@dimen/normaheading"
                             android:id="@+id/builtarea"
                             android:fontFamily="@font/quicksand"
                             />
@@ -479,7 +479,7 @@
                                     android:gravity="start"
                                     android:id="@+id/plotareaicon"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/normaheading"
                                     android:fontFamily="@font/quicksand"
                                     />
 
@@ -490,17 +490,17 @@
                                     android:gravity="start"
                                     android:layout_marginLeft="10dp"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/normaheading"
                                     android:fontFamily="@font/quicksand"
                                     />
                                 <androidx.appcompat.widget.AppCompatTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="3000"
-                                    android:layout_marginLeft="15dp"
+                                    android:layout_marginLeft="@dimen/normaheading"
                                     android:gravity="end"
                                     android:textColor="@color/PrimaryText"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/normaheading"
                                     android:id="@+id/plotarea"
                                     android:fontFamily="@font/quicksand"
                                     />
@@ -520,7 +520,7 @@
                                     android:gravity="start"
                                     android:id="@+id/lengthicon"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/normaheading"
                                     android:fontFamily="@font/quicksand"
                                     />
 
@@ -531,18 +531,18 @@
                                     android:gravity="start"
                                     android:layout_marginLeft="10dp"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/normaheading"
                                     android:fontFamily="@font/quicksand"
                                     />
                                 <androidx.appcompat.widget.AppCompatTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="3000"
-                                    android:layout_marginLeft="15dp"
+                                    android:layout_marginLeft="@dimen/normaheading"
                                     android:gravity="end"
                                     android:id="@+id/lengthofplot"
                                     android:textColor="@color/PrimaryText"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/normaheading"
                                     android:fontFamily="@font/quicksand"
                                     />
 
@@ -560,7 +560,7 @@
                                     android:gravity="start"
                                     android:id="@+id/widthicon"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/normaheading"
                                     android:fontFamily="@font/quicksand"
                                     />
 
@@ -571,17 +571,17 @@
                                     android:gravity="start"
                                     android:layout_marginLeft="10dp"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/normaheading"
                                     android:fontFamily="@font/quicksand"
                                     />
                                 <androidx.appcompat.widget.AppCompatTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="3000"
-                                    android:layout_marginLeft="15dp"
+                                    android:layout_marginLeft="@dimen/normaheading"
                                     android:gravity="end"
                                     android:textColor="@color/PrimaryText"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/normaheading"
                                     android:id="@+id/widthofplot"
                                     android:fontFamily="@font/quicksand"
                                     />
@@ -601,7 +601,7 @@
                                     android:gravity="start"
                                     android:id="@+id/roadicon"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/normaheading"
                                     android:fontFamily="@font/quicksand"
                                     />
 
@@ -611,7 +611,7 @@
                                     android:text="Width of facing Road (ft.)"
                                     android:gravity="start"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/normaheading"
                                     android:layout_marginLeft="10dp"
                                     android:fontFamily="@font/quicksand"
                                     />
@@ -619,11 +619,11 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="3000"
-                                    android:layout_marginLeft="15dp"
+                                    android:layout_marginLeft="@dimen/normaheading"
                                     android:gravity="end"
                                     android:id="@+id/widthroad"
                                     android:textColor="@color/PrimaryText"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/normaheading"
                                     android:fontFamily="@font/quicksand"
                                     />
                                 <androidx.appcompat.widget.AppCompatTextView
@@ -633,7 +633,7 @@
                                     android:layout_marginLeft="10dp"
                                     android:gravity="start"
                                     android:textColor="@color/PrimaryText"
-                                    android:textSize="15dp"
+                                    android:textSize="@dimen/normaheading"
                                     android:fontFamily="@font/quicksand"
                                     />
 
@@ -674,7 +674,7 @@
                             android:gravity="start"
                             android:id="@+id/addicon"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textSize="15dp"
+                            android:textSize="@dimen/normaheading"
                             android:fontFamily="@font/quicksand"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
@@ -684,7 +684,7 @@
                             android:layout_marginLeft="10dp"
                             android:gravity="start"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textSize="15dp"
+                            android:textSize="@dimen/normaheading"
                             android:fontFamily="@font/quicksand"
                             />
 
@@ -705,7 +705,7 @@
                                 android:text="Locality"
                                 android:gravity="start"
                                 android:textColor="@color/PrimaryText"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/normaheading"
                                 android:id="@+id/localitypd"
                                 android:fontFamily="@font/quicksand"
                                 />
@@ -716,7 +716,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:gravity="start"
                                 android:textColor="@color/PrimaryText"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/normaheading"
                                 android:id="@+id/landmarkpd"
                                 android:fontFamily="@font/quicksand"
                                 />
@@ -738,7 +738,7 @@
                             android:text="City"
                             android:gravity="start"
                             android:textColor="@color/PrimaryText"
-                            android:textSize="15dp"
+                            android:textSize="@dimen/normaheading"
                             android:id="@+id/citypd"
                             android:fontFamily="@font/quicksand"
                             />
@@ -749,7 +749,7 @@
                             android:layout_marginLeft="10dp"
                             android:gravity="start"
                             android:textColor="@color/PrimaryText"
-                            android:textSize="15dp"
+                            android:textSize="@dimen/normaheading"
                             android:id="@+id/pincodepd"
                             android:fontFamily="@font/quicksand"
                             />

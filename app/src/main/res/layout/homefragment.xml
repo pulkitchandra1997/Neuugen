@@ -37,6 +37,7 @@
                 android:paddingTop="5dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
+                android:textSize="@dimen/normaheading"
                 android:fontFamily="@font/quicksand"
                 android:textColor="@color/colorAccent"
                 />
@@ -52,7 +53,7 @@
                     android:text="Lucknow"
                     android:id="@+id/locationtext"
                     android:padding="5dp"
-                    android:textSize="20dp"
+                    android:textSize="@dimen/headingtext"
                     android:fontFamily="@font/quicksandbold"
                     android:textColor="@color/colorAccent"
                     />
@@ -142,7 +143,7 @@
             android:text="SERVICES"
             android:padding="10dp"
             android:id="@+id/serviceheadtext"
-            android:textSize="15dp"
+            android:textSize="@dimen/normaheading"
             android:fontFamily="@font/quicksandbold"
             android:textColor="@color/PrimaryText"
             />
@@ -157,7 +158,7 @@
         >
         <TableRow>
             <LinearLayout
-                android:layout_height="120dp"
+                android:layout_height="90dp"
                 android:layout_width="0dp"
                 android:orientation="vertical"
                 android:padding="3dp"
@@ -167,22 +168,21 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/realestate" />
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Properties"
-                    android:textSize="15dp"
+                    android:textSize="12dp"
                     android:layout_gravity="center"
-                    android:padding="5dp"
                     android:fontFamily="@font/quicksandbold"
                     android:textColor="@color/PrimaryText"
                     />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_height="120dp"
+                android:layout_height="90dp"
                 android:layout_width="0dp"
                 android:orientation="vertical"
                 android:padding="5dp"
@@ -192,21 +192,20 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/hairsalon" />
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Grooming"
-                    android:textSize="15dp"
+                    android:textSize="12dp"
                     android:layout_gravity="center"
-                    android:padding="5dp"
                     android:fontFamily="@font/quicksandbold"
                     android:textColor="@color/PrimaryText"
                     />
             </LinearLayout>
             <LinearLayout
-                android:layout_height="120dp"
+                android:layout_height="90dp"
                 android:layout_width="0dp"
                 android:orientation="vertical"
                 android:padding="3dp"
@@ -216,15 +215,14 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/eventicon" />
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Events"
-                    android:textSize="15dp"
+                    android:textSize="12dp"
                     android:layout_gravity="center"
-                    android:padding="5dp"
                     android:fontFamily="@font/quicksandbold"
                     android:textColor="@color/PrimaryText"
                     />
@@ -234,7 +232,7 @@
         <TableRow>
 
             <LinearLayout
-                android:layout_height="120dp"
+                android:layout_height="90dp"
                 android:layout_width="0dp"
                 android:orientation="vertical"
                 android:padding="3dp"
@@ -244,21 +242,20 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/applianceicon" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/quicksandbold"
-                    android:gravity="center"
-                    android:padding="5dp"
+                    android:layout_gravity="center"
                     android:text="Appliance Repair"
                     android:textColor="@color/PrimaryText"
-                    android:textSize="15dp" />
+                    android:textSize="12dp" />
             </LinearLayout>
             <LinearLayout
-                android:layout_height="120dp"
+                android:layout_height="90dp"
                 android:layout_width="0dp"
                 android:orientation="vertical"
                 android:padding="3dp"
@@ -268,22 +265,21 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/renovationicon"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Home Renovation"
-                    android:textSize="15dp"
-                    android:gravity="center"
-                    android:padding="5dp"
+                    android:textSize="12dp"
+                    android:layout_gravity="center"
                     android:fontFamily="@font/quicksandbold"
                     android:textColor="@color/PrimaryText"
                     />
             </LinearLayout>
             <LinearLayout
-                android:layout_height="120dp"
+                android:layout_height="90dp"
                 android:layout_width="0dp"
                 android:orientation="vertical"
                 android:padding="3dp"
@@ -293,15 +289,14 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/learningicon" />
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Learning"
-                    android:textSize="15dp"
+                    android:textSize="12dp"
                     android:layout_gravity="center"
-                    android:padding="5dp"
                     android:fontFamily="@font/quicksandbold"
                     android:textColor="@color/PrimaryText"
                     />
@@ -321,7 +316,7 @@
                 android:layout_height="wrap_content"
                 android:text="PROTECTION PROGRAM"
                 android:padding="10dp"
-                android:textSize="15dp"
+                android:textSize="@dimen/normaheading"
                 android:fontFamily="@font/quicksandbold"
                 android:textColor="@color/PrimaryText"
                 />
@@ -342,7 +337,7 @@
                 >
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="120dp"
-                    android:layout_height="160dp"
+                    android:layout_height="100dp"
                     android:src="@drawable/insurancelogo"
                     />
             </LinearLayout>
@@ -355,8 +350,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Neuugen Insurance Protection Program for Services"
-                    android:padding="10dp"
-                    android:textSize="25dp"
+                    android:padding="6dp"
+                    android:textSize="@dimen/headingtext"
                     android:fontFamily="@font/quicksandbold"
                     android:textColor="@color/PrimaryText"
                     />
@@ -364,8 +359,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="upto Rs. 5,000 insurance protection with every request"
-                    android:padding="10dp"
-                    android:textSize="15dp"
+                    android:padding="6dp"
+                    android:textSize="@dimen/contenttext"
                     android:fontFamily="@font/quicksand"
                     android:textColor="@color/PrimaryText"
                     />
@@ -374,7 +369,7 @@
                     android:layout_height="wrap_content"
                     android:text="Learn more"
                     android:padding="10dp"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:fontFamily="@font/quicksandbold"
                     android:textColor="@color/DividerColor"
                     />
@@ -400,7 +395,7 @@
         android:layout_alignParentEnd="true"
         android:tooltipText="Post Your Advertisement"
         android:layout_above="@+id/navigation"
-        app:fabCustomSize="70dp"
+        app:fabCustomSize="60dp"
         app:maxImageSize="40dp"
         app:rippleColor="@color/colorPrimary"
         app:srcCompat="@drawable/postform" />
