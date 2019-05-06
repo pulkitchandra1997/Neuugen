@@ -60,6 +60,7 @@ public class WelcomeScreen extends AppCompatActivity {
 
         loading = new ProgressDialog(WelcomeScreen.this,R.style.AppCompatAlertDialogStyle);
         loading.setCancelable(false);
+        loading.setCanceledOnTouchOutside(false);
         loading.setMessage("Checking Latest Version of app...");
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 

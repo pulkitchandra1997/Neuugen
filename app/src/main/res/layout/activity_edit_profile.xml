@@ -17,8 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="&#xf060;"
-            android:padding="15dp"
-            android:textSize="20dp"
+            android:padding="10dp"
+            android:textSize="@dimen/normaheading"
             android:fontFamily="@font/quicksandbold"
             android:textColor="@color/colorAccent"
             android:id="@+id/backtoprofile"
@@ -27,8 +27,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Edit Profile"
-            android:padding="15dp"
-            android:textSize="20dp"
+            android:padding="10dp"
+            android:textSize="@dimen/normaheading"
             android:fontFamily="@font/quicksandbold"
             android:textColor="@color/colorAccent"
             />
@@ -69,7 +69,7 @@
                 android:singleLine="true"
                 android:textCursorDrawable="@color/colorPrimaryDark"
                 android:maxLines="1"
-                android:textSize="18sp"
+                android:textSize="@dimen/normaheading"
                 android:padding="10dp"
                 android:fontFamily="@font/quicksandregular"
                 android:id="@+id/name"
@@ -94,7 +94,7 @@
                 android:inputType="textEmailAddress"
                 android:singleLine="true"
                 android:maxLines="1"
-                android:textSize="18sp"
+                android:textSize="@dimen/normaheading"
                 android:fontFamily="@font/quicksandregular"
                 android:padding="10dp"
                 android:textCursorDrawable="@color/colorPrimaryDark"
@@ -120,7 +120,7 @@
                 android:inputType="text"
                 android:fontFamily="@font/quicksandregular"
                 android:textCursorDrawable="@color/colorPrimaryDark"
-                android:textSize="18sp"
+                android:textSize="@dimen/normaheading"
                 android:padding="10dp"
                 android:id="@+id/address"
                 />
@@ -145,7 +145,7 @@
                 android:singleLine="true"
                 android:maxLines="1"
                 android:textCursorDrawable="@color/colorPrimaryDark"
-                android:textSize="18sp"
+                android:textSize="@dimen/normaheading"
                 android:padding="10dp"
                 android:id="@+id/city"
                 />
@@ -170,7 +170,7 @@
                 android:singleLine="true"
                 android:maxLines="1"
                 android:textCursorDrawable="@color/colorPrimaryDark"
-                android:textSize="18sp"
+                android:textSize="@dimen/normaheading"
                 android:padding="10dp"
                 android:id="@+id/state"
                 />
@@ -198,7 +198,7 @@
                 android:maxLines="1"
                 android:fontFamily="@font/quicksandregular"
                 android:textCursorDrawable="@color/colorPrimaryDark"
-                android:textSize="18sp"
+                android:textSize="@dimen/normaheading"
                 android:padding="10dp"
                 android:id="@+id/pincode"
                 />
@@ -222,7 +222,7 @@
                 android:inputType="text"
                 android:fontFamily="@font/quicksandregular"
                 android:textCursorDrawable="@color/colorPrimaryDark"
-                android:textSize="18sp"
+                android:textSize="@dimen/normaheading"
                 android:padding="10dp"
                 android:maxLines="1"
                 android:singleLine="true"
@@ -235,7 +235,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Gender"
-            android:textSize="20dp"
+            android:textSize="@dimen/headingtext"
             android:fontFamily="@font/quicksandbold"
             android:textColor="@color/PrimaryText"
             />
@@ -250,20 +250,19 @@
 
 
                 <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/male"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Male"
-                    android:textSize="18sp"
-                    android:id="@+id/male"
-                    android:padding="5dp"
                     android:buttonTint="@color/colorPrimaryDark"
-                    />
+                    android:padding="5dp"
+                    android:text="Male"
+                    android:textSize="@dimen/normaheading" />
 
                 <androidx.appcompat.widget.AppCompatRadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Female"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/normaheading"
                     android:id="@+id/female"
                     android:padding="5dp"
                     android:buttonTint="@color/colorPrimaryDark"/>
@@ -275,13 +274,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Update"
-            android:textSize="20sp"
+            android:textSize="@dimen/normaheading"
             android:fontFamily="@font/quicksandbold"
             android:textColor="@color/colorAccent"
             android:layout_marginTop="15dp"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:backgroundTint="@color/DividerColor"
-            android:padding="15dp"
+            android:padding="10dp"
             android:id="@+id/update"
             />
     </LinearLayout>

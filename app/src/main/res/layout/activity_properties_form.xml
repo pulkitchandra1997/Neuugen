@@ -47,7 +47,7 @@
                     android:text="What are you looking for?"
                     android:gravity="center"
                     android:textColor="@color/colorAccent"
-                    android:textSize="25dp"
+                    android:textSize="@dimen/headingtext"
                     android:fontFamily="@font/quicksandbold"
                     />
 
@@ -67,7 +67,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="BUY"
-                            android:textSize="15dp"
+                            android:textSize="@dimen/normaheading"
                             android:id="@+id/buybtn"
                             android:textColor="@color/colorAccent"
                             android:padding="10dp"
@@ -79,7 +79,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="RENT"
-                            android:textSize="15dp"
+                            android:textSize="@dimen/normaheading"
                             android:id="@+id/rentbtn"
                             android:textColor="@color/colorAccent"
                             android:padding="10dp"
@@ -122,9 +122,9 @@
                     android:text="Search"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:fontFamily="@font/quicksandbold"
-                    android:padding="15dp"
+                    android:padding="10dp"
                     android:id="@+id/searchbutton"
-                    android:textSize="18sp"/>
+                    android:textSize="@dimen/normaheading"/>
 
 
             </LinearLayout>

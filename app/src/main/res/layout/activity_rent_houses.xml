@@ -18,19 +18,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/quicksandbold"
-            android:padding="15dp"
+            android:padding="10dp"
             android:text="&#xf060;"
             android:textColor="@color/colorAccent"
-            android:textSize="20dp" />
+            android:textSize="@dimen/normaheading" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/quicksandbold"
-            android:padding="15dp"
+            android:padding="10dp"
             android:text="Rent House Advertisement"
             android:textColor="@color/colorAccent"
-            android:textSize="20dp" />
+            android:textSize="@dimen/normaheading" />
     </LinearLayout>
 
 
@@ -57,7 +57,7 @@
                     android:fontFamily="@font/quicksandbold"
                     android:text="Location"
                     android:textColor="@color/PrimaryText"
-                    android:textSize="25dp" />
+                    android:textSize="@dimen/headingtext" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
@@ -79,7 +79,7 @@
                         android:inputType="text"
                         android:padding="10dp"
                         android:textCursorDrawable="@color/colorPrimaryDark"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/normaheading" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -103,7 +103,7 @@
                         android:inputType="text"
                         android:padding="10dp"
                         android:textCursorDrawable="@color/colorPrimaryDark"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/normaheading" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -128,7 +128,7 @@
                         android:padding="10dp"
                         android:singleLine="true"
                         android:textCursorDrawable="@color/colorPrimaryDark"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/normaheading" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -153,7 +153,7 @@
                         android:padding="10dp"
                         android:singleLine="true"
                         android:textCursorDrawable="@color/colorPrimaryDark"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/normaheading" />
                 </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -176,7 +176,7 @@
             android:maxLines="1"
             android:fontFamily="@font/quicksandregular"
             android:textCursorDrawable="@color/colorPrimaryDark"
-            android:textSize="18sp"
+            android:textSize="@dimen/normaheading"
             android:imeOptions="actionDone"
             android:padding="10dp"
             android:id="@+id/pincoderh"
@@ -190,7 +190,7 @@
                     android:fontFamily="@font/quicksandbold"
                     android:text="Property Type"
                     android:textColor="@color/PrimaryText"
-                    android:textSize="25dp" />
+                    android:textSize="@dimen/headingtext" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/propertytyperh"
@@ -198,7 +198,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/spinnerborder"
                     android:entries="@array/propertytype"
-                    android:padding="10dp">
+                    android:padding="8dp">
 
                 </androidx.appcompat.widget.AppCompatSpinner>
 
@@ -210,7 +210,7 @@
                     android:fontFamily="@font/quicksandbold"
                     android:text="Bedrooms"
                     android:textColor="@color/PrimaryText"
-                    android:textSize="25dp" />
+                    android:textSize="@dimen/headingtext" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/numofbedrh"
@@ -218,7 +218,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/spinnerborder"
                     android:entries="@array/roomslist"
-                    android:padding="10dp">
+                    android:padding="8dp">
 
                 </androidx.appcompat.widget.AppCompatSpinner>
 
@@ -230,7 +230,7 @@
                     android:fontFamily="@font/quicksandbold"
                     android:text="Bathrooms"
                     android:textColor="@color/PrimaryText"
-                    android:textSize="25dp" />
+                    android:textSize="@dimen/headingtext" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/numofbathrh"
@@ -238,7 +238,9 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/spinnerborder"
                     android:entries="@array/roomslist"
-                    android:padding="10dp"></androidx.appcompat.widget.AppCompatSpinner>
+                    android:padding="8dp">
+
+                </androidx.appcompat.widget.AppCompatSpinner>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
@@ -248,7 +250,7 @@
                     android:fontFamily="@font/quicksandbold"
                     android:text="Furnish Type"
                     android:textColor="@color/PrimaryText"
-                    android:textSize="25dp" />
+                    android:textSize="@dimen/headingtext" />
 
                 <HorizontalScrollView
                     android:layout_width="match_parent"
@@ -309,7 +311,7 @@
                     android:fontFamily="@font/quicksandbold"
                     android:text="Builtup Area"
                     android:textColor="@color/PrimaryText"
-                    android:textSize="25dp" />
+                    android:textSize="@dimen/headingtext" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
@@ -334,7 +336,7 @@
                         android:imeOptions="actionDone"
                         android:singleLine="true"
                         android:textCursorDrawable="@color/colorPrimaryDark"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/normaheading" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -345,7 +347,7 @@
                     android:fontFamily="@font/quicksandbold"
                     android:text="Monthly Rent"
                     android:textColor="@color/PrimaryText"
-                    android:textSize="25dp" />
+                    android:textSize="@dimen/headingtext" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
@@ -370,7 +372,7 @@
                         android:padding="10dp"
                         android:singleLine="true"
                         android:textCursorDrawable="@color/colorPrimaryDark"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/normaheading" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
@@ -385,7 +387,7 @@
                         android:fontFamily="@font/quicksandbold"
                         android:text="Add Photos"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="25dp" />
+                        android:textSize="@dimen/headingtext" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
@@ -394,7 +396,7 @@
                         android:fontFamily="@font/quicksand"
                         android:text="(* add 3 photos)"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="20dp" />
+                        android:textSize="@dimen/normaheading" />
 
                 </LinearLayout>
 
@@ -424,7 +426,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Add Pic 1"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/normaheading"
                     android:layout_gravity="center"
                     android:padding="5dp"
                     android:id="@+id/addimgrh1"
@@ -451,7 +453,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Add Pic 2"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/normaheading"
                     android:layout_gravity="center"
                     android:padding="5dp"
                     android:id="@+id/addimgrh2"
@@ -483,7 +485,7 @@
                                 android:padding="5dp"
                                 android:text="Add Pic 3"
                                 android:textColor="@color/PrimaryText"
-                                android:textSize="15dp" />
+                                android:textSize="@dimen/normaheading" />
                         </LinearLayout>
 
                     </TableRow>
@@ -497,9 +499,9 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/DividerColor"
                     android:fontFamily="@font/quicksandbold"
-                    android:padding="15dp"
+                    android:padding="10dp"
                     android:text="Submit"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/normaheading" />
 
 
             </LinearLayout>

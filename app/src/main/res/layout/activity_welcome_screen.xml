@@ -15,7 +15,7 @@
         android:text="NG"
         android:textColor="#FFF"
         android:textStyle="bold"
-        android:textSize="70sp"
+        android:textSize="50sp"
         android:fontFamily="@font/quicksand"
         />
     <androidx.appcompat.widget.AppCompatTextView
@@ -25,8 +25,8 @@
         android:text="All Home Services at one Place"
         android:textColor="#FFF"
         android:textStyle="bold"
-        android:textSize="15sp"
-        android:fontFamily="@font/quicksand"
+        android:textSize="@dimen/normaheading"
+        android:fontFamily="@font/quicksandbold"
         />
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
         android:text="SIMPLE . AFFORDABLE . USEFUL"
         android:textColor="#FFF"
         android:textStyle="bold"
-        android:textSize="10sp"
+        android:textSize="@dimen/contenttext"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/quicksandbold"
         />

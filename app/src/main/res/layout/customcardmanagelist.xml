@@ -38,7 +38,7 @@
                     android:gravity="start"
                     android:id="@+id/properttype"
                     android:textColor="@color/PrimaryText"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/normaheading"
                     android:fontFamily="@font/quicksand"
                     />
                 <LinearLayout
@@ -53,7 +53,7 @@
                         android:text="&#xf156;"
                         android:gravity="start"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/normaheading"
                         android:id="@+id/rupeeicon"
                         android:fontFamily="@font/quicksandbold"
                         />
@@ -65,7 +65,7 @@
                         android:id="@+id/cost"
                         android:layout_marginLeft="5dp"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/normaheading"
                         android:fontFamily="@font/quicksandbold"
                         />
 
@@ -91,7 +91,7 @@
                         android:gravity="start"
                         android:id="@+id/area"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/normaheading"
                         android:fontFamily="@font/quicksand"
                         />
                     <androidx.appcompat.widget.AppCompatTextView
@@ -102,7 +102,7 @@
                         android:layout_marginLeft="5dp"
                         android:gravity="start"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/normaheading"
                         android:fontFamily="@font/quicksand"
                         />
                 </LinearLayout>
@@ -120,7 +120,7 @@
                         android:text="view"
                         android:id="@+id/viewbtn"
                         android:textColor="@color/colorAccent"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/normaheading"
                         android:backgroundTint="@color/DividerColor"
                         android:fontFamily="@font/quicksandbold"
 
@@ -132,7 +132,7 @@
                         android:layout_marginLeft="10dp"
                         android:id="@+id/deletebtn"
                         android:textColor="@color/colorAccent"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/normaheading"
                         android:backgroundTint="@color/DividerColor"
                         android:fontFamily="@font/quicksandbold"
 
