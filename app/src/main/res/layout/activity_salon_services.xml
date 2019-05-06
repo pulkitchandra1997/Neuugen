@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="10dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="15dp"
                     android:id="@+id/mensalonlayout"
                     android:visibility="gone">
 
@@ -54,9 +54,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Choose a service"
-                        android:gravity="start"
+                        android:gravity="center"
                         android:textColor="@color/PrimaryText"
-                        android:textSize="25dp"
+                        android:textSize="@dimen/headingtext"
                         android:fontFamily="@font/quicksandbold"
                         />
 
@@ -312,14 +312,14 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="10dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="15dp"
                     android:id="@+id/womensalonlayout">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Choose a service"
-                        android:gravity="start"
+                        android:gravity="center"
                         android:textColor="@color/PrimaryText"
                         android:textSize="@dimen/headingtext"
                         android:fontFamily="@font/quicksandbold"
