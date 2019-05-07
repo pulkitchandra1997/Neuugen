@@ -40,11 +40,6 @@
         <activity android:name=".HomeServices.LearningServices.LearningActivity" />
         <activity android:name=".properties.PropertyDetails" />
         <activity android:name=".properties.PropertyList" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".properties.PropertiesForm"
