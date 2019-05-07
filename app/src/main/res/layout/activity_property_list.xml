@@ -188,38 +188,7 @@
 
                     </LinearLayout>
                 </RadioGroup>
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Number of Bedrooms"
-                    android:textSize="@dimen/headingtext"
-                    android:fontFamily="@font/quicksandbold"
-                    android:textColor="@color/PrimaryText"
-                    />
 
-                <com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar
-                    android:id="@+id/bedsrangeSeekbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:absoluteMaxValue="10"
-                    app:absoluteMinValue="1"
-                    />
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Number of Bathrooms"
-                    android:textSize="@dimen/headingtext"
-                    android:fontFamily="@font/quicksandbold"
-                    android:textColor="@color/PrimaryText"
-                    />
-
-                <com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar
-                    android:id="@+id/bathsrangeSeekbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:absoluteMaxValue="10"
-                    app:absoluteMinValue="1"
-                    />
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -227,15 +196,188 @@
                     android:textSize="@dimen/headingtext"
                     android:fontFamily="@font/quicksandbold"
                     android:textColor="@color/PrimaryText"
+                    android:layout_marginBottom="10dp"
                     />
-
-                <com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar
+                <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
                     android:id="@+id/pricerangeSeekbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:absoluteMaxValue="100"
-                    app:absoluteMinValue="1"
+                    app:corner_radius="6"
+                    app:bar_highlight_color="@color/colorPrimaryDark"
+                    app:bar_color="@color/colorPrimary"
+                    app:left_thumb_color="@color/colorPrimaryDark"
+                    app:right_thumb_color="@color/colorPrimaryDark"
+                    app:left_thumb_color_pressed="@color/colorPrimary"
+                    app:right_thumb_color_pressed="@color/colorPrimary"
+                    app:min_value="1"
+                    app:max_value="100"
+                    app:gap="1"
+                    app:data_type="_integer"
                     />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Min"
+                        android:textSize="@dimen/normaheading"
+                        android:fontFamily="@font/quicksand"
+                        android:textColor="@color/PrimaryText"
+                        android:id="@+id/minprice"
+                        />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Max"
+                        android:layout_weight="1"
+                        android:id="@+id/maxprice"
+                        android:gravity="right"
+                        android:textSize="@dimen/normaheading"
+                        android:fontFamily="@font/quicksand"
+                        android:textColor="@color/PrimaryText"
+                        />
+                </LinearLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Number of Bedrooms"
+                    android:textSize="@dimen/headingtext"
+                    android:fontFamily="@font/quicksandbold"
+                    android:textColor="@color/PrimaryText"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    />
+                <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
+                    android:id="@+id/bedrangeSeekbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:corner_radius="6"
+                    app:bar_color="@color/colorPrimary"
+                    app:min_value="1"
+                    app:left_thumb_color_pressed="@color/colorPrimary"
+                    app:right_thumb_color_pressed="@color/colorPrimary"
+                    app:max_value="100"
+                    app:data_type="_integer"
+                    app:left_thumb_color="@color/colorPrimaryDark"
+                    app:right_thumb_color="@color/colorPrimaryDark"
+                    app:gap="1"
+                    app:bar_highlight_color="@color/colorPrimaryDark"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Min"
+                        android:textSize="@dimen/normaheading"
+                        android:fontFamily="@font/quicksand"
+                        android:textColor="@color/PrimaryText"
+                        android:id="@+id/minbed"
+                        />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Max"
+                        android:layout_weight="1"
+                        android:id="@+id/maxbed"
+                        android:gravity="right"
+                        android:textSize="@dimen/normaheading"
+                        android:fontFamily="@font/quicksand"
+                        android:textColor="@color/PrimaryText"
+                        />
+                </LinearLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Number of Bathrooms"
+                    android:textSize="@dimen/headingtext"
+                    android:fontFamily="@font/quicksandbold"
+                    android:textColor="@color/PrimaryText"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    />
+                <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
+                    android:id="@+id/bathrangeSeekbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:corner_radius="6"
+                    app:bar_color="@color/colorPrimary"
+                    app:min_value="1"
+                    app:max_value="100"
+                    app:left_thumb_color_pressed="@color/colorPrimary"
+                    app:right_thumb_color_pressed="@color/colorPrimary"
+                    app:data_type="_integer"
+                    app:left_thumb_color="@color/colorPrimaryDark"
+                    app:right_thumb_color="@color/colorPrimaryDark"
+                    app:gap="1"
+                    app:bar_highlight_color="@color/colorPrimaryDark"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Min"
+                        android:textSize="@dimen/normaheading"
+                        android:fontFamily="@font/quicksand"
+                        android:textColor="@color/PrimaryText"
+                        android:id="@+id/minbath"
+                        />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Max"
+                        android:layout_weight="1"
+                        android:id="@+id/maxbath"
+                        android:gravity="right"
+                        android:textSize="@dimen/normaheading"
+                        android:fontFamily="@font/quicksand"
+                        android:textColor="@color/PrimaryText"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cancel"
+                        android:textColor="@color/PrimaryText"
+                        android:paddingLeft="30dp"
+                        android:paddingRight="30dp"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:textSize="@dimen/normaheading"
+                        android:backgroundTint="@color/Greybg"
+                        android:layout_margin="10dp"
+                        android:id="@+id/cancelbtn"
+                        />
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Apply"
+                        android:textColor="@color/PrimaryText"
+                        android:paddingLeft="30dp"
+                        android:paddingRight="30dp"
+                        android:paddingBottom="10dp"
+                        android:id="@+id/applybtn"
+                        android:paddingTop="10dp"
+                        android:layout_margin="10dp"
+                        android:textSize="@dimen/normaheading"
+                        android:backgroundTint="@color/Greybg"/>
+
+                </LinearLayout>
             </LinearLayout>
 
 
@@ -249,7 +391,7 @@
         android:backgroundTint="@color/DividerColor"
         android:layout_marginBottom="10dp"
         android:layout_marginRight="25dp"
-        android:layout_gravity="right|bottom"
+        android:layout_gravity="end|bottom"
         android:tooltipText="Filters"
         app:fabCustomSize="60dp"
         app:maxImageSize="40dp"
