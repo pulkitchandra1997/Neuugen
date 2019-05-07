@@ -6,6 +6,8 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -17,6 +19,8 @@ import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarFinalValueListen
 import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
 
 import peoplecitygroup.neuugen.R;
 
@@ -33,7 +37,12 @@ public class PropertyList extends AppCompatActivity implements View.OnClickListe
     RadioGroup furnishtypeFI,constatusFI,posesnstatusFI;
     AppCompatRadioButton fullfurnishFI,semifurnishFI,unfurnishFI,immediateFI,infutureFI,readytomoveFI,underconFI;
     FloatingActionButton filters;
-
+    Intent intent;
+    String adtype,propertytype;
+    ProgressDialog loading = null;
+    ArrayList<String> results=new ArrayList<String>();
+    String verified,available;
+    ArrayList<String> propertytypes,city,bedrooms,bathrooms,furnishtype,price,constructionstatus,possessionastatus;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +50,21 @@ public class PropertyList extends AppCompatActivity implements View.OnClickListe
 
         idlink();
         listenerlink();
-
-
+        intent=getIntent();
+        if(intent==null)
+            finish();
+        adtype=intent.getStringExtra("adtype");
+        results=intent.getStringArrayListExtra("results");
+        propertytypes=intent.getStringArrayListExtra("propertytype");
+        city=intent.getStringArrayListExtra("city");
+        bedrooms=intent.getStringArrayListExtra("bedrooms");
+        bathrooms=intent.getStringArrayListExtra("bathrooms");
+        furnishtype=intent.getStringArrayListExtra("furnishtype");
+        price=intent.getStringArrayListExtra("price");
+        constructionstatus=intent.getStringArrayListExtra("constructionstatus");
+        possessionastatus=intent.getStringArrayListExtra("possessionastatus");
+        verified=intent.getStringExtra("verified");
+        available=intent.getStringExtra("available");
         pricerangebar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
             @Override
             public void valueChanged(Number minValue, Number maxValue) {
@@ -90,6 +112,7 @@ public class PropertyList extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(PropertyList.this, String.valueOf(minValue)+String.valueOf(maxValue), Toast.LENGTH_SHORT).show();
             }
         });
+
 
     }
 

@@ -20,6 +20,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -91,7 +92,9 @@ public class PropertiesForm extends AppCompatActivity implements View.OnClickLis
                 if(rentbtn.isChecked()){
                     adtype="0";
                     if(rentpropertytype.getSelectedItem().toString().trim().equalsIgnoreCase("Select Property Type")){
-
+                        Snackbar.make(findViewById(R.id.parentview), "Select property type.", Snackbar.LENGTH_LONG)
+                                .show();
+                        rentpropertytype.requestFocus();
                     }
                     else{
                         String temp=rentpropertytype.getSelectedItem().toString().trim();
@@ -108,11 +111,59 @@ public class PropertiesForm extends AppCompatActivity implements View.OnClickLis
                         if(temp.equalsIgnoreCase("Shop Area"))
                             propertytype="5";
                         fillArray();
+                        if(propertytype=="0"||propertytype=="1"||propertytype=="2"||propertytype=="3"){
+                            for(int i=1;i<11;i++) {
+                                bedrooms.add(String.valueOf(i));
+                                bathrooms.add(String.valueOf(i));
+                            }
+                            furnishtype.add("0");
+                            furnishtype.add("1");
+                            furnishtype.add("2");
+                        }
+                        if(propertytype=="4"||propertytype=="5"){
+                            constructionstatus.add("0");
+                            constructionstatus.add("1");
+                        }
                         requestData(0,1,1);
                     }
                 }
                 else{
-
+                    if(buybtn.isChecked()){
+                        adtype="1";
+                        if(rentpropertytype.getSelectedItem().toString().trim().equalsIgnoreCase("Select Property Type")){
+                            Snackbar.make(findViewById(R.id.parentview), "Select property type.", Snackbar.LENGTH_LONG)
+                                    .show();
+                            buypropertytype.requestFocus();
+                        }
+                        else{
+                            String temp=buypropertytype.getSelectedItem().toString().trim();
+                            if(temp.equalsIgnoreCase("Apartment"))
+                                propertytype="0";
+                            if(temp.equalsIgnoreCase("Independent House"))
+                                propertytype="1";
+                            if(temp.equalsIgnoreCase("Villa"))
+                                propertytype="2";
+                            if(temp.equalsIgnoreCase("Plots"))
+                                propertytype="6";
+                            fillArray();
+                            if(propertytype=="0"||propertytype=="1"||propertytype=="2"){
+                                for(int i=1;i<11;i++) {
+                                    bedrooms.add(String.valueOf(i));
+                                    bathrooms.add(String.valueOf(i));
+                                }
+                                furnishtype.add("0");
+                                furnishtype.add("1");
+                                furnishtype.add("2");
+                                constructionstatus.add("0");
+                                constructionstatus.add("1");
+                            }
+                            if(propertytype=="6"){
+                                possessionastatus.add("0");
+                                possessionastatus.add("1");
+                            }
+                            requestData(0,1,1);
+                        }
+                    }
                 }
             }
         }
@@ -167,7 +218,7 @@ public class PropertiesForm extends AppCompatActivity implements View.OnClickLis
 
     private void nextActivity() {
         Intent intent = new Intent(PropertiesForm.this, PropertyList.class);
-        intent.putExtra("result", results);
+        intent.putExtra("results", results);
         intent.putExtra("adtype",adtype);
         intent.putExtra("propertytype",propertytypes);
         intent.putExtra("city",city);
@@ -188,21 +239,18 @@ public class PropertiesForm extends AppCompatActivity implements View.OnClickLis
     }
 
     private void fillArray() {
+        propertytypes.clear();
+        city.clear();
+        bedrooms.clear();
+        bathrooms.clear();
+        furnishtype.clear();
+        price.clear();
+        constructionstatus.clear();
+        possessionastatus.clear();
         propertytypes.add(propertytype);
         SharedPreferences sp;
         sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
         city.add(sp.getString("city",null));
-        for(int i=1;i<11;i++) {
-            bedrooms.add(String.valueOf(i));
-            bathrooms.add(String.valueOf(i));
-        }
-        furnishtype.add("0");
-        furnishtype.add("1");
-        furnishtype.add("2");
         price.add("0");
-        constructionstatus.add("0");
-        constructionstatus.add("1");
-        possessionastatus.add("0");
-        possessionastatus.add("1");
     }
 }
