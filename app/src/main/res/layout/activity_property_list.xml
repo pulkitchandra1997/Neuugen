@@ -293,7 +293,7 @@
                     android:layout_gravity="center"
                      app:cardElevation="6dp"
                     app:cardBackgroundColor="@color/colorSecondary"
-                    android:id="@+id/bedcardcard"
+                    android:id="@+id/bedcard"
                     >
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -319,7 +319,7 @@
                     app:min_value="1"
                     app:left_thumb_color_pressed="@color/colorPrimary"
                     app:right_thumb_color_pressed="@color/colorPrimary"
-                    app:max_value="100"
+                    app:max_value="10"
                     app:data_type="_integer"
                     app:left_thumb_color="@color/colorPrimaryDark"
                     app:right_thumb_color="@color/colorPrimaryDark"
@@ -384,7 +384,7 @@
                     app:corner_radius="6"
                     app:bar_color="@color/colorPrimary"
                     app:min_value="1"
-                    app:max_value="100"
+                    app:max_value="10"
                     app:left_thumb_color_pressed="@color/colorPrimary"
                     app:right_thumb_color_pressed="@color/colorPrimary"
                     app:data_type="_integer"

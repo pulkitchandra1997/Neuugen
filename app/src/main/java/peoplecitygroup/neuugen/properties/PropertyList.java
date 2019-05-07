@@ -3,6 +3,7 @@ package peoplecitygroup.neuugen.properties;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -24,6 +25,8 @@ public class PropertyList extends AppCompatActivity implements View.OnClickListe
     CrystalRangeSeekbar pricerangebar,bedrangebar,bathrangebar;
 
     AppCompatTextView minbed,maxbed,minprice,maxprice,minbath,maxbath;
+
+    CardView furnishcard,constatuscard,posesnstatuscard,bedcard,bathcard,pricecard;
 
     MaterialButton applybtn,cancelbtn;
     LinearLayout filterlayout,propertylayout;
@@ -116,6 +119,12 @@ public class PropertyList extends AppCompatActivity implements View.OnClickListe
         filters=findViewById(R.id.filters);
         applybtn=findViewById(R.id.applybtn);
         cancelbtn=findViewById(R.id.cancelbtn);
+        furnishcard=findViewById(R.id.furnishcard);
+        posesnstatuscard=findViewById(R.id.posesnstatuscard);
+        constatuscard=findViewById(R.id.constatuscard);
+        pricecard=findViewById(R.id.pricecard);
+        bedcard=findViewById(R.id.bedcard);
+        bathcard=findViewById(R.id.bathcard);
 
     }
 
