@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.appcompat.widget.AppCompatSpinner;
 
+import android.app.ActivityOptions;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -21,12 +23,16 @@ import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 
+import peoplecitygroup.neuugen.HomeServices.ApplianceRepairServices.Appliancerepair;
 import peoplecitygroup.neuugen.HomeServices.EventServices.EventsActivity;
+import peoplecitygroup.neuugen.HomeServices.SparePartsActivity;
 import peoplecitygroup.neuugen.R;
 import peoplecitygroup.neuugen.common_req_files.SearchResult;
 import peoplecitygroup.neuugen.common_req_files.ServiceCheck;
 import peoplecitygroup.neuugen.common_req_files.UrlNeuugen;
 import peoplecitygroup.neuugen.common_req_files.VolleyCallback;
+
+import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
 public class PropertiesForm extends AppCompatActivity implements View.OnClickListener {
 
@@ -37,7 +43,7 @@ public class PropertiesForm extends AppCompatActivity implements View.OnClickLis
     String adtype,propertytype;
     ProgressDialog loading = null;
     ArrayList<String> results=new ArrayList<String>();
-    ArrayList<String> propertytypes,city,bedrooms,bathrooms,furnishtype,price,constructionstatus,possessionastatus=new ArrayList<String>();
+    ArrayList<String> propertytypes,city,bedrooms,bathrooms,furnishtype,price,constructionstatus,possessionastatus;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +55,7 @@ public class PropertiesForm extends AppCompatActivity implements View.OnClickLis
         loading.setCancelable(false);
         loading.setMessage("Loading");
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        propertytypes=new ArrayList<String>();city=new ArrayList<String>();bedrooms=new ArrayList<String>();bathrooms=new ArrayList<String>();furnishtype=new ArrayList<String>();price=new ArrayList<String>();constructionstatus=new ArrayList<String>();possessionastatus=new ArrayList<String>();
     }
 
     private void idLink() {
@@ -101,7 +108,7 @@ public class PropertiesForm extends AppCompatActivity implements View.OnClickLis
                         if(temp.equalsIgnoreCase("Shop Area"))
                             propertytype="5";
                         fillArray();
-                        requestData(0);
+                        requestData(0,1,1);
                     }
                 }
                 else{
@@ -111,18 +118,18 @@ public class PropertiesForm extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    private void requestData(final int resultshown) {
+    private void requestData(final int resultshown,final int verified,final int available) {
         loading.setMessage("Searching for Ads...");
         loading.show();
         SearchResult searchResult=new SearchResult();
-        searchResult.SearchAd(adtype,propertytypes.toArray(new String[propertytypes.size()]),city.toArray(new String[city.size()]),bedrooms.toArray(new String[bedrooms.size()]),bathrooms.toArray(new String[bathrooms.size()]),furnishtype.toArray(new String[furnishtype.size()]),price.toArray(new String[price.size()]),constructionstatus.toArray(new String[constructionstatus.size()]),possessionastatus.toArray(new String[possessionastatus.size()]),resultshown,this, new VolleyCallback() {
+        searchResult.SearchAd(adtype,propertytypes.toArray(new String[propertytypes.size()]),city.toArray(new String[city.size()]),bedrooms.toArray(new String[bedrooms.size()]),bathrooms.toArray(new String[bathrooms.size()]),furnishtype.toArray(new String[furnishtype.size()]),price.toArray(new String[price.size()]),constructionstatus.toArray(new String[constructionstatus.size()]),possessionastatus.toArray(new String[possessionastatus.size()]),resultshown,verified,available,this, new VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 Log.d("receivedmsg",result);
                 results.add(result);
                 if(resultshown==0) {
                     loading.setMessage("Displaying Ads...");
-                    requestData(15);
+                    requestData(15,verified,available);
                 }
                 if (resultshown==15) {
                     loading.dismiss();
@@ -159,7 +166,25 @@ public class PropertiesForm extends AppCompatActivity implements View.OnClickLis
     }
 
     private void nextActivity() {
-        Toast.makeText(this, "done", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(PropertiesForm.this, PropertyList.class);
+        intent.putExtra("result", results);
+        intent.putExtra("adtype",adtype);
+        intent.putExtra("propertytype",propertytypes);
+        intent.putExtra("city",city);
+        intent.putExtra("bedrooms",bedrooms);
+        intent.putExtra("bathrooms",bathrooms);
+        intent.putExtra("furnishtype",furnishtype);
+        intent.putExtra("price",price);
+        intent.putExtra("constructionstatus",constructionstatus);
+        intent.putExtra("possessionastatus",possessionastatus);
+        intent.putExtra("verified","1");
+        intent.putExtra("available","1");
+        if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+            ActivityOptions options = ActivityOptions.makeCustomAnimation(PropertiesForm.this, R.anim.fade_in, R.anim.fade_out);
+            startActivity(intent, options.toBundle());
+        } else {
+            startActivity(intent);
+        }
     }
 
     private void fillArray() {

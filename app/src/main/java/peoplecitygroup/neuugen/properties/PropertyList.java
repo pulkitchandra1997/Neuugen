@@ -16,7 +16,6 @@ import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarFinalValueListen
 import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar;
 
 import peoplecitygroup.neuugen.R;
 

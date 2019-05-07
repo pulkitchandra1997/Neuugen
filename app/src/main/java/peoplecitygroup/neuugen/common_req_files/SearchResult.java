@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.Html;
+import android.util.Log;
 import android.widget.Button;
 
 import androidx.appcompat.app.AlertDialog;
@@ -26,7 +27,7 @@ import java.util.Map;
 import peoplecitygroup.neuugen.R;
 
 public class SearchResult {
-    public void SearchAd(final String adtype, final String propertytype[],final String city[], final String bedrooms[],final String bathrooms[], final String furnishtype[],final String price[], final String constructionstatus[], final String possessionstatus[], final int resultshown, final Context context, final VolleyCallback volleyCallback) {
+    public void SearchAd(final String adtype, final String propertytype[],final String city[], final String bedrooms[],final String bathrooms[], final String furnishtype[],final String price[], final String constructionstatus[], final String possessionstatus[], final int resultshown,final int verified,final int available, final Context context, final VolleyCallback volleyCallback) {
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.searchAd, new Response.Listener<String>() {
             @Override
@@ -81,6 +82,9 @@ public class SearchResult {
                 params.put("constructionstatus",  new JSONArray(Arrays.asList(constructionstatus)).toString());
                 params.put("possessionstatus", new JSONArray(Arrays.asList(possessionstatus)).toString());
                 params.put("resultshown", String.valueOf(resultshown));
+                params.put("verified",String.valueOf(verified));
+                params.put("available",String.valueOf(available));
+                Log.d("checksenddata","?adtype="+adtype+"&propertytype="+new JSONArray(Arrays.asList(propertytype)).toString()+"&city="+new JSONArray(Arrays.asList(city)).toString()+"&bedrooms="+new JSONArray(Arrays.asList(bedrooms)).toString()+"&bathrooms="+new JSONArray(Arrays.asList(bathrooms)).toString()+"&furnishtype="+new JSONArray(Arrays.asList(furnishtype)).toString()+"&price="+new JSONArray(Arrays.asList(price)).toString()+"&constructionstatus="+new JSONArray(Arrays.asList(constructionstatus)).toString()+"&possessionstatus="+new JSONArray(Arrays.asList(possessionstatus)).toString()+"&resultshown="+String.valueOf(resultshown));
                 return params;
             }
         };
