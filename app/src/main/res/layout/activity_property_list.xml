@@ -54,6 +54,107 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/filterlayout"
                 android:orientation="vertical">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    app:cardElevation="6dp"
+                    app:cardBackgroundColor="@color/colorSecondary"
+                    android:id="@+id/adtypecard"
+                    >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="You are looking for:"
+                        android:textSize="@dimen/headingtext"
+                        android:fontFamily="@font/quicksandbold"
+                        android:textColor="@color/PrimaryText"
+                        />
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/adtypeFI"
+                        android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/buyFI"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorPrimaryDark"
+                        android:padding="5dp"
+                        android:text="Buy"
+                        android:textSize="@dimen/normaheading" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rent"
+                        android:textSize="@dimen/normaheading"
+                        android:id="@+id/rentFI"
+                        android:padding="5dp"
+                        android:buttonTint="@color/colorPrimaryDark"/>
+
+
+                </RadioGroup>
+                </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    app:cardElevation="6dp"
+                    app:cardBackgroundColor="@color/colorSecondary"
+                    android:id="@+id/propertytypecard"
+                    android:visibility="gone"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="15dp">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Property Type"
+                            android:textSize="@dimen/headingtext"
+                            android:fontFamily="@font/quicksandbold"
+                            android:textColor="@color/PrimaryText"
+                            />
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/rentpropertytype"
+                            android:padding="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="10dp"
+                            android:id="@+id/renttypeFI"
+                            android:visibility="visible"
+                            android:background="@drawable/spinnerborder"
+                            >
+                        </androidx.appcompat.widget.AppCompatSpinner>
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/buypropertytype"
+                            android:padding="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="10dp"
+                            android:id="@+id/buytypeFI"
+                            android:visibility="visible"
+                            android:background="@drawable/spinnerborder"
+                            >
+                        </androidx.appcompat.widget.AppCompatSpinner>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -68,7 +169,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="10dp">
+                    android:padding="15dp">
 
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -80,24 +181,16 @@
                     android:textColor="@color/PrimaryText"
                     />
 
-                    <RadioGroup
-                        android:layout_width="match_parent"
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/fullfurnishFI"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/furnishtypeFI"
-                        android:padding="10dp"
-                        >
+                        android:buttonTint="@color/colorPrimaryDark"
+                        android:padding="5dp"
+                        android:text="Fully Furnished"
+                        android:textSize="@dimen/normaheading" />
 
-
-                            <androidx.appcompat.widget.AppCompatRadioButton
-                                android:id="@+id/fullfurnishFI"
-                                android:layout_width="wrap_content"
-                                android:layout_height="42dp"
-                                android:buttonTint="@color/colorPrimaryDark"
-                                android:padding="5dp"
-                                android:text="Fully Furnished"
-                                android:textSize="@dimen/normaheading" />
-
-                        <androidx.appcompat.widget.AppCompatRadioButton
+                    <androidx.appcompat.widget.AppCompatCheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Semi Furnished"
@@ -105,7 +198,7 @@
                             android:id="@+id/semifurnishFI"
                             android:padding="5dp"
                             android:buttonTint="@color/colorPrimaryDark"/>
-                        <androidx.appcompat.widget.AppCompatRadioButton
+                    <androidx.appcompat.widget.AppCompatCheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="UnFurnished"
@@ -114,7 +207,6 @@
                             android:padding="5dp"
                             android:buttonTint="@color/colorPrimaryDark"/>
 
-                    </RadioGroup>
                 </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -131,7 +223,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="10dp">
+                    android:padding="15dp">
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -141,13 +233,8 @@
                     android:textColor="@color/PrimaryText"
                     />
 
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/constatusFI"
-                    android:padding="10dp">
 
-                        <androidx.appcompat.widget.AppCompatRadioButton
+                        <androidx.appcompat.widget.AppCompatCheckBox
                             android:id="@+id/readytomoveFI"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -156,7 +243,7 @@
                             android:text="Ready to move"
                             android:textSize="@dimen/normaheading" />
 
-                        <androidx.appcompat.widget.AppCompatRadioButton
+                        <androidx.appcompat.widget.AppCompatCheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Under Construction"
@@ -165,7 +252,6 @@
                             android:padding="5dp"
                             android:buttonTint="@color/colorPrimaryDark"/>
 
-                </RadioGroup>
                 </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -182,7 +268,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="10dp">
+                    android:padding="15dp">
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -192,13 +278,7 @@
                     android:textColor="@color/PrimaryText"
                     />
 
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/posesnstatusFi"
-                    android:padding="10dp">
-
-                        <androidx.appcompat.widget.AppCompatRadioButton
+                        <androidx.appcompat.widget.AppCompatCheckBox
                             android:id="@+id/immediateFI"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -207,7 +287,7 @@
                             android:text="Immediate"
                             android:textSize="@dimen/normaheading" />
 
-                        <androidx.appcompat.widget.AppCompatRadioButton
+                        <androidx.appcompat.widget.AppCompatCheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="In Future"
@@ -216,8 +296,6 @@
                             android:padding="5dp"
                             android:buttonTint="@color/colorPrimaryDark"/>
 
-
-                </RadioGroup>
                 </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -234,7 +312,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="10dp">
+                    android:padding="15dp">
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -299,7 +377,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="10dp">
+                    android:padding="15dp">
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -366,7 +444,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="10dp">
+                    android:padding="15dp">
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -433,7 +511,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="10dp">
+                    android:padding="15dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

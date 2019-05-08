@@ -7,7 +7,8 @@
     tools:context=".properties.PropertiesForm"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@color/colorAccent">
+    android:background="@color/colorAccent"
+    android:id="@+id/propertyformlayout">
 
     <ScrollView
         android:layout_width="match_parent"

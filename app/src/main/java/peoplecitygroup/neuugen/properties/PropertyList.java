@@ -1,7 +1,9 @@
 package peoplecitygroup.neuugen.properties;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatCheckBox;
 import androidx.appcompat.widget.AppCompatRadioButton;
+import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.cardview.widget.CardView;
 
@@ -30,12 +32,15 @@ public class PropertyList extends AppCompatActivity implements View.OnClickListe
 
     AppCompatTextView minbed,maxbed,minprice,maxprice,minbath,maxbath;
 
-    CardView furnishcard,constatuscard,posesnstatuscard,bedcard,bathcard,pricecard;
+    CardView furnishcard,constatuscard,posesnstatuscard,bedcard,bathcard,pricecard,adtypecard,propertytypecard;
+
+    AppCompatSpinner buytypeFI,renttypeFI;
 
     MaterialButton applybtn,cancelbtn;
     LinearLayout filterlayout,propertylayout;
-    RadioGroup furnishtypeFI,constatusFI,posesnstatusFI;
-    AppCompatRadioButton fullfurnishFI,semifurnishFI,unfurnishFI,immediateFI,infutureFI,readytomoveFI,underconFI;
+    RadioGroup adtypeFI;
+    AppCompatCheckBox fullfurnishFI,semifurnishFI,unfurnishFI,immediateFI,infutureFI,readytomoveFI,underconFI;
+    AppCompatRadioButton buyFI,rentFI;
     FloatingActionButton filters;
     Intent intent;
     String adtype,propertytype;
@@ -50,6 +55,7 @@ public class PropertyList extends AppCompatActivity implements View.OnClickListe
 
         idlink();
         listenerlink();
+
         intent=getIntent();
         if(intent==null)
             finish();
@@ -65,6 +71,7 @@ public class PropertyList extends AppCompatActivity implements View.OnClickListe
         possessionastatus=intent.getStringArrayListExtra("possessionastatus");
         verified=intent.getStringExtra("verified");
         available=intent.getStringExtra("available");
+
         pricerangebar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
             @Override
             public void valueChanged(Number minValue, Number maxValue) {
@@ -129,9 +136,6 @@ public class PropertyList extends AppCompatActivity implements View.OnClickListe
         bathrangebar=findViewById(R.id.bathrangeSeekbar);
         filterlayout=findViewById(R.id.filterlayout);
         propertylayout=findViewById(R.id.propertylayout);
-        furnishtypeFI=findViewById(R.id.furnishtypeFI);
-        constatusFI=findViewById(R.id.constatusFI);
-        posesnstatusFI=findViewById(R.id.posesnstatusFi);
         fullfurnishFI=findViewById(R.id.fullfurnishFI);
         semifurnishFI=findViewById(R.id.semifurnishFI);
         unfurnishFI=findViewById(R.id.unfurnishFI);
@@ -148,7 +152,13 @@ public class PropertyList extends AppCompatActivity implements View.OnClickListe
         pricecard=findViewById(R.id.pricecard);
         bedcard=findViewById(R.id.bedcard);
         bathcard=findViewById(R.id.bathcard);
-
+        adtypeFI=findViewById(R.id.adtypeFI);
+        buyFI=findViewById(R.id.buyFI);
+        rentFI=findViewById(R.id.rentFI);
+        adtypecard=findViewById(R.id.adtypecard);
+        buytypeFI=findViewById(R.id.buytypeFI);
+        renttypeFI=findViewById(R.id.renttypeFI);
+        propertytypecard=findViewById(R.id.propertytypecard);
     }
 
     public void listenerlink(){
@@ -156,6 +166,8 @@ public class PropertyList extends AppCompatActivity implements View.OnClickListe
         filters.setOnClickListener(this);
         applybtn.setOnClickListener(this);
         cancelbtn.setOnClickListener(this);
+        buyFI.setOnClickListener(this);
+        rentFI.setOnClickListener(this);
     }
 
     @SuppressLint("RestrictedApi")
@@ -171,6 +183,18 @@ public class PropertyList extends AppCompatActivity implements View.OnClickListe
             filterlayout.setVisibility(View.GONE);
             propertylayout.setVisibility(View.VISIBLE);
             filters.setVisibility(View.VISIBLE);
+        }
+        if (v.getId()==R.id.buyFI)
+        {
+            propertytypecard.setVisibility(View.VISIBLE);
+            renttypeFI.setVisibility(View.GONE);
+            buytypeFI.setVisibility(View.VISIBLE);
+        }
+        if(v.getId()==R.id.rentFI)
+        {
+            propertytypecard.setVisibility(View.VISIBLE);
+            renttypeFI.setVisibility(View.VISIBLE);
+            buytypeFI.setVisibility(View.GONE);
         }
     }
 }

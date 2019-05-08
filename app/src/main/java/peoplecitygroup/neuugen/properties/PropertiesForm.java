@@ -92,7 +92,7 @@ public class PropertiesForm extends AppCompatActivity implements View.OnClickLis
                 if(rentbtn.isChecked()){
                     adtype="0";
                     if(rentpropertytype.getSelectedItem().toString().trim().equalsIgnoreCase("Select Property Type")){
-                        Snackbar.make(findViewById(R.id.parentview), "Select property type.", Snackbar.LENGTH_LONG)
+                        Snackbar.make(findViewById(R.id.propertyformlayout), "Select property type.", Snackbar.LENGTH_LONG)
                                 .show();
                         rentpropertytype.requestFocus();
                     }
@@ -130,8 +130,8 @@ public class PropertiesForm extends AppCompatActivity implements View.OnClickLis
                 else{
                     if(buybtn.isChecked()){
                         adtype="1";
-                        if(rentpropertytype.getSelectedItem().toString().trim().equalsIgnoreCase("Select Property Type")){
-                            Snackbar.make(findViewById(R.id.parentview), "Select property type.", Snackbar.LENGTH_LONG)
+                        if(buypropertytype.getSelectedItem().toString().trim().equalsIgnoreCase("Select Property Type")){
+                            Snackbar.make(findViewById(R.id.propertyformlayout), "Select property type.", Snackbar.LENGTH_LONG)
                                     .show();
                             buypropertytype.requestFocus();
                         }
