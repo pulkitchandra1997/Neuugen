@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".properties.PropertyList"
-    android:orientation="vertical">
+    tools:context=".properties.PropertyList">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:id="@+id/tophead">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
@@ -25,7 +26,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollproperty"
+        android:layout_below="@+id/tophead">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,7 +56,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/filterlayout"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -560,14 +564,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/DividerColor"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="30dp"
         android:layout_marginRight="25dp"
         android:layout_gravity="end|bottom"
         android:tooltipText="Filters"
         app:fabCustomSize="60dp"
         app:maxImageSize="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         app:rippleColor="@color/colorPrimary"
         app:srcCompat="@drawable/filtericon" />
 
 
-</LinearLayout>
+</RelativeLayout>
