@@ -2,11 +2,15 @@ package peoplecitygroup.neuugen;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 
@@ -27,9 +31,11 @@ import peoplecitygroup.neuugen.HomeServices.EventServices.EventsActivity;
 import peoplecitygroup.neuugen.HomeServices.HomeRenovationServices.HomeRenovation;
 import peoplecitygroup.neuugen.HomeServices.LearningServices.LearningActivity;
 import peoplecitygroup.neuugen.HomeServices.SalonServices.HomeSalon;
+import peoplecitygroup.neuugen.common_req_files.PROFILE;
 import peoplecitygroup.neuugen.properties.PostAd;
 import peoplecitygroup.neuugen.properties.PropertiesForm;
 
+import static android.content.Context.MODE_PRIVATE;
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
 public class HomeFrag extends Fragment implements View.OnClickListener {
@@ -51,8 +57,12 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     String titlearr[]={"Change Location","Post Your ads"};
     String contentarr[]={"Select your city where you want service","Post your Properties adverisements by clicking here"};
 
-    View viewarr[]={location,postformfab};
-    ShowcaseView showcaseView,showcaseView2,showcaseView3;
+    ShowcaseView showcaseView1,showcaseView2,showcaseView3;
+
+    ViewTarget[] viewTargets;
+    String[] titles=new String[]{"Post your Ads","Change your location","Choose Service"};
+    String[] contents=new String[]{"Post your Properties advertisements by clicking here","Choose your city where you want services","Choose one of the services according to your need."};
+    SharedPreferences sp;
 
     @Nullable
     @Override
@@ -63,53 +73,88 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         listenerLink();
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
         locationicon.setTypeface(font);
-
-        showcaseView=new ShowcaseView.Builder(getActivity())
-                .withMaterialShowcase()
-                .setTarget(new ViewTarget(postformfab))
-                .setContentTitle("Post your Ads")
-                .setStyle(R.style.CustomShowcaseTheme2)
-                .setContentText("Post your Properties advertisements by clicking here")
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        nextShowcase();
-                    }
-                })
-                .build();
-
+        sp=this.getActivity().getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
+        viewTargets=new ViewTarget[]{new ViewTarget(postformfab),new ViewTarget(locationtext),new ViewTarget(serviceheadtext)};
+        Handler handler=new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                checkFirstTime();
+            }
+        },2000);
         return v;
     }
 
-    private void nextShowcase() {
-        showcaseView.hide();
-        showcaseView2=new ShowcaseView.Builder(getActivity())
-                .withMaterialShowcase()
-                .setTarget(new ViewTarget(locationtext))
-                .setContentTitle("Change your location")
+    private void checkFirstTime() {
+        if(sp!=null) {
+            int firsttime=sp.getInt("firsttime",1);
+            if(firsttime!=0) {
+                showCase(0);
+            }
+        }
+    }
+
+    private void showCase(int i) {
+        Log.d("showcase",String.valueOf(i));
+        switch (i){
+            case 0:showcaseView1(titles[i],contents[i],viewTargets[i],i);break;
+            case 1:showcaseView2(titles[i],contents[i],viewTargets[i],i);break;
+            case 2:showcaseView3(titles[i],contents[i],viewTargets[i],i);break;
+            default:SharedPreferences.Editor se=sp.edit();
+                    se.putInt("firsttime",0);
+                    se.commit();
+        }
+    }
+
+    private void showcaseView3(final String title, final String content, ViewTarget viewTarget, final int i) {
+        showcaseView1=new ShowcaseView.Builder(getActivity())
+                .withHoloShowcase()
                 .setStyle(R.style.CustomShowcaseTheme2)
-                .setContentText("Choose your city where you want your services")
+                .setTarget(viewTarget)
+                .setContentTitle(title)
+                .setContentText(content)
+                .useDecorViewAsParent()
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        lastShowcase();
+                        showcaseView1.hide();
+                        showCase(i+1);
                     }
                 })
                 .build();
     }
 
-    private void lastShowcase() {
-        showcaseView2.hide();
+    private void showcaseView2(final String title, final String content, ViewTarget viewTarget,final int i) {
+        showcaseView2=new ShowcaseView.Builder(getActivity())
+                .setStyle(R.style.CustomShowcaseTheme)
+                .withHoloShowcase()
+                .setTarget(viewTarget)
+                .setContentTitle(title)
+                .useDecorViewAsParent()
+                .setContentText(content)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showcaseView2.hide();
+                        showCase(i+1);
+                    }
+                })
+                .build();
+    }
+
+    private void showcaseView1(final String title, final String content, ViewTarget viewTarget,final int i) {
         showcaseView3=new ShowcaseView.Builder(getActivity())
-                .withMaterialShowcase()
-                .setTarget(new ViewTarget(serviceheadtext))
-                .setContentTitle("Choose Service")
-                .setStyle(R.style.CustomShowcaseTheme2)
-                .setContentText("Choose one of the services according to your need.")
+                .withHoloShowcase()
+                .setStyle(R.style.CustomShowcaseTheme)
+                .setTarget(viewTarget)
+                .setContentTitle(title)
+                .setContentText(content)
+                .useDecorViewAsParent()
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         showcaseView3.hide();
+                        showCase(i+1);
                     }
                 })
                 .build();

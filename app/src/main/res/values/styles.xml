@@ -30,20 +30,26 @@
 
     </style>
 
-    <style name="CustomShowcaseTheme2" parent="ShowcaseView">
-        <item name="sv_backgroundColor">#F56E45</item>
-        <item name="sv_showcaseColor">@color/DividerColor</item>
+    <style name="CustomShowcaseTheme" parent="">
+        <item name="sv_backgroundColor">#FC8C7B</item>
+        <item name="sv_showcaseColor">#F0513C</item>
         <item name="sv_buttonText">Next</item>
-        <item name="sv_titleTextAppearance">@style/CustomTitle2</item>
-        <item name="sv_detailTextAppearance">@style/CustomText2</item>
+        <item name="sv_titleTextAppearance">@style/CustomTitle</item>
+        <item name="sv_detailTextAppearance">@style/CustomText</item>
+    </style>
+    <style name="CustomShowcaseTheme2" parent="">
+        <item name="sv_backgroundColor">#FC8C7B</item>
+        <item name="sv_showcaseColor">#F0513C</item>
+        <item name="sv_buttonText">Done</item>
+        <item name="sv_titleTextAppearance">@style/CustomTitle</item>
+        <item name="sv_detailTextAppearance">@style/CustomText</item>
     </style>
 
-    <style name="CustomTitle2" parent="TextAppearance.ShowcaseView.Title.Light">
-        <item name="android:textColor">@color/PrimaryText</item>
+    <style name="CustomTitle" parent="TextAppearance.ShowcaseView.Title">
+        <item name="android:textColor">#FFFFFF</item>
     </style>
-
-    <style name="CustomText2" parent="TextAppearance.ShowcaseView.Detail.Light">
-        <item name="android:textColor">@color/PrimaryText</item>
+    <style name="CustomText" parent="TextAppearance.ShowcaseView.Detail.Light">
+        <item name="android:textColor">#FFFFFF</item>
     </style>
 
     <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
