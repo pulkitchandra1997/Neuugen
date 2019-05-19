@@ -22,38 +22,217 @@
             android:textColor="@color/colorAccent"
             />
     </LinearLayout>
-
-
-    <ScrollView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:text="Your Advertisments"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textSize="@dimen/headingtext"
+        android:fontFamily="@font/quicksandbold"
+        android:textColor="@color/PrimaryText"
+        />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/noadsfoundlayout"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:visibility="gone">
+<ImageView
+    android:layout_width="400px"
+    android:layout_height="400px"
+    android:src="@drawable/noadsposted" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:textSize="15dp"
+        android:text="No Ads has been posted."/>
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Post Ad"
+        android:textSize="@dimen/normaheading"
+        android:fontFamily="@font/quicksandbold"
+        android:textColor="@color/colorAccent"
+        android:layout_marginTop="10dp"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:backgroundTint="@color/DividerColor"
+        android:padding="15dp"
+        android:id="@+id/postad"
+        />
+</LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.appcompat.widget.AppCompatTextView
+            android:layout_height="match_parent"
+            android:id="@+id/resultlist"
+            android:visibility="gone">
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Your Advertisments"
-                android:gravity="center"
-                android:padding="10dp"
-                android:textSize="@dimen/headingtext"
-                android:fontFamily="@font/quicksandbold"
-                android:textColor="@color/PrimaryText"
-                />
-
-                <ListView
-                    android:background="#FFF"
-                    android:id="@+id/managelistview"
-                    android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:background="#FFF"
+                        android:id="@+id/managelistview"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:drawSelectorOnTop="true"/>
+                </ScrollView>
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="visible"
-                    android:drawSelectorOnTop="true"/>
-            
+                    android:orientation="vertical"
+                    android:background="#fff">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/filterlayoutmanage"
+                        android:orientation="vertical"
+                        android:gravity="bottom"
+                        android:layout_weight="2"
+                        android:padding="15dp"
+                        android:visibility="gone">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:padding="15dp">
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Show only Verified Ads.:"
+                                    android:textSize="@dimen/headingtext"
+                                    android:fontFamily="@font/quicksandbold"
+                                    android:textColor="@color/PrimaryText"
+                                    android:layout_gravity="left|center"
+                                    android:layout_weight="1"
+                                    />
+                                <androidx.appcompat.widget.SwitchCompat
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:theme="@style/SCBSwitch"
+                                    android:layout_gravity="right|center_vertical"
+                                    android:id="@+id/verifiedtoggle"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:padding="15dp">
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Show only Available Ads.:"
+                                    android:textSize="@dimen/headingtext"
+                                    android:fontFamily="@font/quicksandbold"
+                                    android:layout_weight="1"
+                                    android:textColor="@color/PrimaryText"
+                                    android:layout_gravity="left|center"
+                                    />
+                                <androidx.appcompat.widget.SwitchCompat
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:theme="@style/SCBSwitch"
+                                    android:layout_gravity="right|center_vertical"
+                                    android:id="@+id/availabletoggle"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="10dp">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:gravity="center">
+
+                                    <com.google.android.material.button.MaterialButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Cancel"
+                                        android:textColor="@color/PrimaryText"
+                                        android:paddingLeft="30dp"
+                                        android:paddingRight="30dp"
+                                        android:paddingBottom="10dp"
+                                        android:paddingTop="10dp"
+                                        android:textSize="@dimen/normaheading"
+                                        android:backgroundTint="@color/Greybg"
+                                        android:layout_margin="10dp"
+                                        android:id="@+id/cancelbtnm"
+                                        />
+                                    <com.google.android.material.button.MaterialButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Apply"
+                                        android:textColor="@color/PrimaryText"
+                                        android:paddingLeft="30dp"
+                                        android:paddingRight="30dp"
+                                        android:paddingBottom="10dp"
+                                        android:id="@+id/applybtnm"
+                                        android:paddingTop="10dp"
+                                        android:layout_margin="10dp"
+                                        android:textSize="@dimen/normaheading"
+                                        android:backgroundTint="@color/Greybg"/>
+
+                                </LinearLayout>
+                            </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center">
+                            <com.google.android.material.button.MaterialButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Show All"
+                                android:textColor="@color/PrimaryText"
+                                android:paddingLeft="30dp"
+                                android:paddingRight="30dp"
+                                android:paddingBottom="10dp"
+                                android:paddingTop="10dp"
+                                android:textSize="@dimen/normaheading"
+                                android:backgroundTint="@color/Greybg"
+                                android:layout_margin="10dp"
+                                android:id="@+id/showallbtnm"
+                                />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:gravity="bottom"
+                        android:layout_weight="2"
+                        android:layout_gravity="bottom"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:onClick="onClick"
+                        android:contextClickable="true"
+                        android:id="@+id/filtersmanage">
+                        <com.beardedhen.androidbootstrap.AwesomeTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:text="FILTER"
+                            android:fontFamily="@font/quicksandbold"
+                            android:padding="10dp"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
         </LinearLayout>
-    </ScrollView>
-
-
 </LinearLayout>

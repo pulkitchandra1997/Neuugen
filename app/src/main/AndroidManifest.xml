@@ -44,20 +44,6 @@
         <activity
             android:name=".properties.PropertiesForm"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".HomeServices.EventServices.WeddingPackages" />
-        <activity
-            android:name=".HomeServices.EventServices.EventPhotographyForm"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".HomeServices.EventServices.WeddingShootForm"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".HomeServices.EventServices.PreWedShootForm"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".HomeServices.EventServices.EventArrangementForm"
-            android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".HomeServices.EventServices.EventsActivity" />
         <activity
             android:name=".HomeServices.HomeRenovationServices.HomeRenovationForm"
             android:windowSoftInputMode="stateHidden" />
