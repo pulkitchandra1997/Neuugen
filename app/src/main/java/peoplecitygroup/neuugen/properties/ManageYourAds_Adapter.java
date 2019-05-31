@@ -45,16 +45,30 @@ public class ManageYourAds_Adapter extends RecyclerView.Adapter<ManageYourAds_Ad
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
         final AD ad = adList.get(position);
-        holder.propertytype.setText(ad.getPropertytype());
+        String temp="";
+        switch (Integer.parseInt(ad.getPropertytype().trim())){
+            case 0:temp="Apartment";break;
+            case 1:temp="Independent House";break;
+            case 2:temp="Villa";break;
+            case 3:temp="Hostel";break;
+            case 4:temp="Office Area";break;
+            case 5:temp="Shop Area";break;
+            case 6:temp="Plot";break;
+        }
+        holder.propertytype.setText(temp);
         holder.cost.setText(ad.getPrice());
-        holder.area.setText(ad.getArea());
-        holder.city.setText(ad.getCity());
-        if(ad.getVerified().trim().equalsIgnoreCase("1"))
+        holder.area.setText(ad.getArea().trim()+", "+ad.getCity().trim());
+        Log.d("verifiedcheck",ad.getPrice()+ad.getVerified());
+        if(ad.getVerified().trim().equalsIgnoreCase("1")) {
             holder.verified.setVisibility(View.VISIBLE);
-        else holder.notverified.setVisibility(View.VISIBLE);
-        if(ad.getAvailable().trim().equalsIgnoreCase("1"))
-            holder.available.setVisibility(View.VISIBLE);
-        else holder.notavailable.setVisibility(View.VISIBLE);
+            holder.notverified.setVisibility(View.GONE);
+        }
+        else{ holder.notverified.setVisibility(View.VISIBLE);holder.verified.setVisibility(View.GONE);
+        }
+        if(ad.getAvailable().trim().equalsIgnoreCase("1")) {
+            holder.available.setVisibility(View.VISIBLE);holder.notavailable.setVisibility(View.GONE);
+        }
+        else {holder.notavailable.setVisibility(View.VISIBLE);holder.available.setVisibility(View.GONE);}
         if(ad.getPic1()!=null||ad.getPic1().trim()!="")
             Picasso.with(activity).load(ad.getPic1())
                     .placeholder(R.drawable.placeholder)
@@ -105,16 +119,15 @@ public class ManageYourAds_Adapter extends RecyclerView.Adapter<ManageYourAds_Ad
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView propertytype,cost,area,city,rupeeicon;
+        public TextView propertytype,cost,area,rupeeicon;
         public LinearLayout verified,notverified,available,notavailable;
-        public ImageView image1,image2,image3;
+        public ImageView image1;
         public MaterialButton viewbtn,deletebtn;
         public MyViewHolder(View view) {
             super(view);
             propertytype = (TextView) view.findViewById(R.id.properttype);
             cost = (TextView) view.findViewById(R.id.cost);
             area = (TextView) view.findViewById(R.id.area);
-            city = (TextView) view.findViewById(R.id.city);
             verified = (LinearLayout) view.findViewById(R.id.verified);
             notverified = (LinearLayout) view.findViewById(R.id.notverified);
             available = (LinearLayout) view.findViewById(R.id.available);

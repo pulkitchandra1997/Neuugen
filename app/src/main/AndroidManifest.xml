@@ -38,6 +38,12 @@
         <activity android:name=".Termsofuse" />
         <activity android:name=".AboutUs" />
         <activity android:name=".HomeServices.LearningServices.LearningActivity" />
+        <activity android:name=".HomeServices.EventServices.EventArrangementForm" />
+        <activity android:name=".HomeServices.EventServices.EventPhotographyForm" />
+        <activity android:name=".HomeServices.EventServices.EventsActivity" />
+        <activity android:name=".HomeServices.EventServices.PreWedShootForm" />
+        <activity android:name=".HomeServices.EventServices.WeddingPackages" />
+        <activity android:name=".HomeServices.EventServices.WeddingShootForm" />
         <activity android:name=".properties.PropertyDetails" />
         <activity android:name=".properties.PropertyList" >
         </activity>

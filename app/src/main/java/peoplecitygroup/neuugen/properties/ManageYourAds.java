@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -54,7 +55,7 @@ public class ManageYourAds extends AppCompatActivity implements View.OnClickList
     ProgressDialog loading = null;
     String number="";
     LinearLayout noadsfoundlayout,filterlayoutmanage;
-    LinearLayout resultlist;
+    ScrollView resultlist;
     MaterialButton postad;
     RecyclerView adslistview;
     ManageYourAds_Adapter manageYourAds_adapter;
@@ -308,6 +309,7 @@ public class ManageYourAds extends AppCompatActivity implements View.OnClickList
                 j=1;
             else
                 j=0;
+            Toast.makeText(this, String.valueOf(i)+"*"+String.valueOf(j), Toast.LENGTH_SHORT).show();
             sendData(0,i,j,true);
             filterlayoutmanage.setVisibility(View.GONE);
 

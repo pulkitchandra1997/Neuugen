@@ -128,12 +128,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dp"
                     android:gravity="center_vertical">
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:scrollHorizontally="true"
                         android:layout_height="wrap_content"
                         android:text="Area"
@@ -144,52 +144,43 @@
                         android:textSize="@dimen/normaheading"
                         android:fontFamily="@font/quicksand"
                         />
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="City"
-                        android:scrollbars="horizontal"
-                        android:id="@+id/city"
-                        android:layout_marginLeft="5dp"
-                        android:gravity="start"
-                        android:textColor="@color/PrimaryText"
-                        android:textSize="@dimen/normaheading"
-                        android:fontFamily="@font/quicksand"
-                        />
-                    <LinearLayout
+                </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="5dp"
+                android:gravity="center_vertical"
+                android:layout_marginRight="5dp"
+                android:weightSum="2"
+                >
+                    <com.google.android.material.button.MaterialButton
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="end"
-                        android:layout_marginRight="5dp">
+                        android:text="view"
+                        android:id="@+id/viewbtn"
+                        android:layout_weight="1"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/normaheading"
+                        android:backgroundTint="@color/DividerColor"
+                        android:fontFamily="@font/quicksandbold"
 
-                        <com.google.android.material.button.MaterialButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="view"
-                            android:id="@+id/viewbtn"
+                        />
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Delete"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:id="@+id/deletebtn"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/normaheading"
+                        android:backgroundTint="#EE9090"
+                        android:fontFamily="@font/quicksandbold"
 
-                            android:textColor="@color/colorAccent"
-                            android:textSize="@dimen/normaheading"
-                            android:backgroundTint="@color/DividerColor"
-                            android:fontFamily="@font/quicksandbold"
-
-                            />
-                        <com.google.android.material.button.MaterialButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Delete"
-                            android:layout_marginLeft="10dp"
-                            android:id="@+id/deletebtn"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="@dimen/normaheading"
-                            android:backgroundTint="#EE9090"
-                            android:fontFamily="@font/quicksandbold"
-
-                            />
-
-                    </LinearLayout>
-                </LinearLayout>
+                        />
+            </LinearLayout>
         </LinearLayout>
 
 <LinearLayout
