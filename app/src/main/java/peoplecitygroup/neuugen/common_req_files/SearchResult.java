@@ -84,7 +84,7 @@ public class SearchResult {
                 params.put("resultshown", String.valueOf(resultshown));
                 params.put("verified",String.valueOf(verified));
                 params.put("available",String.valueOf(available));
-                Log.d("checksenddata","?adtype="+adtype+"&propertytype="+new JSONArray(Arrays.asList(propertytype)).toString()+"&city="+new JSONArray(Arrays.asList(city)).toString()+"&bedrooms="+new JSONArray(Arrays.asList(bedrooms)).toString()+"&bathrooms="+new JSONArray(Arrays.asList(bathrooms)).toString()+"&furnishtype="+new JSONArray(Arrays.asList(furnishtype)).toString()+"&price="+new JSONArray(Arrays.asList(price)).toString()+"&constructionstatus="+new JSONArray(Arrays.asList(constructionstatus)).toString()+"&possessionstatus="+new JSONArray(Arrays.asList(possessionstatus)).toString()+"&resultshown="+String.valueOf(resultshown));
+                Log.d("checksenddata","?adtype="+adtype+"&propertytype="+new JSONArray(Arrays.asList(propertytype)).toString()+"&city="+new JSONArray(Arrays.asList(city)).toString()+"&bedrooms="+new JSONArray(Arrays.asList(bedrooms)).toString()+"&bathrooms="+new JSONArray(Arrays.asList(bathrooms)).toString()+"&furnishtype="+new JSONArray(Arrays.asList(furnishtype)).toString()+"&price="+new JSONArray(Arrays.asList(price)).toString()+"&constructionstatus="+new JSONArray(Arrays.asList(constructionstatus)).toString()+"&possessionstatus="+new JSONArray(Arrays.asList(possessionstatus)).toString()+"&resultshown="+String.valueOf(resultshown)+"&verified=1&available=1");
                 return params;
             }
         };

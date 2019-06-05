@@ -43,7 +43,7 @@ public class PropertiesForm extends AppCompatActivity implements View.OnClickLis
     MaterialButton searchbutton;
     String adtype,propertytype;
     ProgressDialog loading = null;
-    ArrayList<String> results=new ArrayList<String>();
+    String results;
     ArrayList<String> propertytypes,city,bedrooms,bathrooms,furnishtype,price,constructionstatus,possessionastatus;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +111,7 @@ public class PropertiesForm extends AppCompatActivity implements View.OnClickLis
                         if(temp.equalsIgnoreCase("Shop Area"))
                             propertytype="5";
                         fillArray();
-                        if(propertytype=="0"||propertytype=="1"||propertytype=="2"||propertytype=="3"){
+                        /*if(propertytype=="0"||propertytype=="1"||propertytype=="2"||propertytype=="3"){
                             for(int i=1;i<11;i++) {
                                 bedrooms.add(String.valueOf(i));
                                 bathrooms.add(String.valueOf(i));
@@ -123,7 +123,7 @@ public class PropertiesForm extends AppCompatActivity implements View.OnClickLis
                         if(propertytype=="4"||propertytype=="5"){
                             constructionstatus.add("0");
                             constructionstatus.add("1");
-                        }
+                        }*/
                         requestData(0,1,1);
                     }
                 }
@@ -146,7 +146,7 @@ public class PropertiesForm extends AppCompatActivity implements View.OnClickLis
                             if(temp.equalsIgnoreCase("Plots"))
                                 propertytype="6";
                             fillArray();
-                            if(propertytype=="0"||propertytype=="1"||propertytype=="2"){
+                            /*if(propertytype=="0"||propertytype=="1"||propertytype=="2"){
                                 for(int i=1;i<11;i++) {
                                     bedrooms.add(String.valueOf(i));
                                     bathrooms.add(String.valueOf(i));
@@ -160,7 +160,7 @@ public class PropertiesForm extends AppCompatActivity implements View.OnClickLis
                             if(propertytype=="6"){
                                 possessionastatus.add("0");
                                 possessionastatus.add("1");
-                            }
+                            }*/
                             requestData(0,1,1);
                         }
                     }
@@ -177,15 +177,10 @@ public class PropertiesForm extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onSuccess(String result) {
                 Log.d("receivedmsg",result);
-                results.add(result);
-                if(resultshown==0) {
-                    loading.setMessage("Displaying Ads...");
-                    requestData(15,verified,available);
-                }
-                if (resultshown==15) {
+                results=result;
                     loading.dismiss();
                     nextActivity();
-                }
+
             }
 
             @Override
@@ -252,5 +247,10 @@ public class PropertiesForm extends AppCompatActivity implements View.OnClickLis
         sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
         city.add(sp.getString("city",null));
         price.add("0");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }

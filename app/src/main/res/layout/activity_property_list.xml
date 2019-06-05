@@ -1,579 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".properties.PropertyList">
-
+    tools:context=".properties.PropertyList"
+    android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
-        android:orientation="horizontal"
-        android:id="@+id/tophead">
+        android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Properties"
-            android:padding="15dp"
+            android:padding="10dp"
             android:textSize="@dimen/normaheading"
             android:fontFamily="@font/quicksandbold"
             android:textColor="@color/colorAccent"
             />
     </LinearLayout>
-
-    <ScrollView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollproperty"
-        android:layout_below="@+id/tophead">
+        android:text="Your Advertisments"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textSize="@dimen/headingtext"
+        android:fontFamily="@font/quicksandbold"
+        android:textColor="@color/PrimaryText"
+        />
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/propertylayout">
-
-            <ListView
-                android:background="@color/colorSecondary"
-                android:id="@+id/listview"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="visible"
-                android:drawSelectorOnTop="true"/>
+                android:layout_height="match_parent"
+                android:id="@+id/noadsfoundlayout"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:visibility="gone">
+                <ImageView
+                    android:layout_width="400px"
+                    android:layout_height="400px"
+                    android:src="@drawable/noadsposted" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:textSize="15dp"
+                    android:text="No Ads Found."/>
 
-
-        </LinearLayout>
-
+            </LinearLayout>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/resultlistlist"
+                android:visibility="gone">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:background="#FFF"
+                    android:id="@+id/managelistviewlist"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:drawSelectorOnTop="true"/>
+            </ScrollView>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/filterlayout"
                 android:orientation="vertical"
-                android:visibility="gone">
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center"
-                    app:cardElevation="6dp"
-                    app:cardBackgroundColor="@color/colorSecondary"
-                    android:id="@+id/adtypecard"
-                    >
+                android:background="#fff">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#C0BEBE"
+                    android:gravity="bottom"
+                    android:layout_weight="2"
+                    android:layout_gravity="bottom"
                     android:orientation="vertical"
-                    android:padding="15dp">
-                    <androidx.appcompat.widget.AppCompatTextView
+                    android:clickable="true"
+                    android:onClick="onClick"
+                    android:contextClickable="true"
+                    android:id="@+id/filtersmanagelist">
+                    <com.beardedhen.androidbootstrap.AwesomeTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="You are looking for:"
-                        android:textSize="@dimen/headingtext"
+                        android:clickable="false"
+                        android:text="FILTER"
+                        android:textColor="#000"
                         android:fontFamily="@font/quicksandbold"
-                        android:textColor="@color/PrimaryText"
-                        />
-                    <RadioGroup
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/adtypeFI"
-                        android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/buyFI"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/colorPrimaryDark"
-                        android:padding="5dp"
-                        android:text="Buy"
-                        android:textSize="@dimen/normaheading" />
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Rent"
-                        android:textSize="@dimen/normaheading"
-                        android:id="@+id/rentFI"
-                        android:padding="5dp"
-                        android:buttonTint="@color/colorPrimaryDark"/>
-
-
-                </RadioGroup>
-                </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center"
-                    app:cardElevation="6dp"
-                    app:cardBackgroundColor="@color/colorSecondary"
-                    android:id="@+id/propertytypecard"
-                    android:visibility="gone"
-                    >
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="15dp">
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Property Type"
-                            android:textSize="@dimen/headingtext"
-                            android:fontFamily="@font/quicksandbold"
-                            android:textColor="@color/PrimaryText"
-                            />
-                        <androidx.appcompat.widget.AppCompatSpinner
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:entries="@array/rentpropertytype"
-                            android:padding="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginTop="10dp"
-                            android:id="@+id/renttypeFI"
-                            android:visibility="visible"
-                            android:background="@drawable/spinnerborder"
-                            >
-                        </androidx.appcompat.widget.AppCompatSpinner>
-
-                        <androidx.appcompat.widget.AppCompatSpinner
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:entries="@array/buypropertytype"
-                            android:padding="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginTop="10dp"
-                            android:id="@+id/buytypeFI"
-                            android:visibility="visible"
-                            android:background="@drawable/spinnerborder"
-                            >
-                        </androidx.appcompat.widget.AppCompatSpinner>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center"
-                     app:cardElevation="6dp"
-                    app:cardBackgroundColor="@color/colorSecondary"
-                    android:id="@+id/furnishcard"
-                    >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="15dp">
-
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Furnish Type"
-                    android:textSize="@dimen/headingtext"
-                    android:fontFamily="@font/quicksandbold"
-                    android:textColor="@color/PrimaryText"
-                    />
-
-                    <androidx.appcompat.widget.AppCompatCheckBox
-                        android:id="@+id/fullfurnishFI"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/colorPrimaryDark"
-                        android:padding="5dp"
-                        android:text="Fully Furnished"
-                        android:textSize="@dimen/normaheading" />
-
-                    <androidx.appcompat.widget.AppCompatCheckBox
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Semi Furnished"
-                            android:textSize="@dimen/normaheading"
-                            android:id="@+id/semifurnishFI"
-                            android:padding="5dp"
-                            android:buttonTint="@color/colorPrimaryDark"/>
-                    <androidx.appcompat.widget.AppCompatCheckBox
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="UnFurnished"
-                            android:textSize="@dimen/normaheading"
-                            android:id="@+id/unfurnishFI"
-                            android:padding="5dp"
-                            android:buttonTint="@color/colorPrimaryDark"/>
-
-                </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center"
-                     app:cardElevation="6dp"
-                    app:cardBackgroundColor="@color/colorSecondary"
-                    android:id="@+id/constatuscard"
-                    >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="15dp">
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Construction Status"
-                    android:textSize="@dimen/headingtext"
-                    android:fontFamily="@font/quicksandbold"
-                    android:textColor="@color/PrimaryText"
-                    />
-
-
-                        <androidx.appcompat.widget.AppCompatCheckBox
-                            android:id="@+id/readytomoveFI"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:buttonTint="@color/colorPrimaryDark"
-                            android:padding="5dp"
-                            android:text="Ready to move"
-                            android:textSize="@dimen/normaheading" />
-
-                        <androidx.appcompat.widget.AppCompatCheckBox
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Under Construction"
-                            android:textSize="@dimen/normaheading"
-                            android:id="@+id/underconFI"
-                            android:padding="5dp"
-                            android:buttonTint="@color/colorPrimaryDark"/>
-
-                </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center"
-                     app:cardElevation="6dp"
-                    app:cardBackgroundColor="@color/colorSecondary"
-                    android:id="@+id/posesnstatuscard"
-                    >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="15dp">
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Possession Status"
-                    android:textSize="@dimen/headingtext"
-                    android:fontFamily="@font/quicksandbold"
-                    android:textColor="@color/PrimaryText"
-                    />
-
-                        <androidx.appcompat.widget.AppCompatCheckBox
-                            android:id="@+id/immediateFI"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:buttonTint="@color/colorPrimaryDark"
-                            android:padding="5dp"
-                            android:text="Immediate"
-                            android:textSize="@dimen/normaheading" />
-
-                        <androidx.appcompat.widget.AppCompatCheckBox
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="In Future"
-                            android:textSize="@dimen/normaheading"
-                            android:id="@+id/infutureFI"
-                            android:padding="5dp"
-                            android:buttonTint="@color/colorPrimaryDark"/>
-
-                </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center"
-                     app:cardElevation="6dp"
-                    app:cardBackgroundColor="@color/colorSecondary"
-                    android:id="@+id/pricecard"
-                    >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="15dp">
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Price Range"
-                    android:textSize="@dimen/headingtext"
-                    android:fontFamily="@font/quicksandbold"
-                    android:textColor="@color/PrimaryText"
-                    android:layout_marginBottom="10dp"
-                    />
-                <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
-                    android:id="@+id/pricerangeSeekbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:corner_radius="6"
-                    app:bar_highlight_color="@color/colorPrimaryDark"
-                    app:bar_color="@color/colorPrimary"
-                    app:left_thumb_color="@color/colorPrimaryDark"
-                    app:right_thumb_color="@color/colorPrimaryDark"
-                    app:left_thumb_color_pressed="@color/colorPrimary"
-                    app:right_thumb_color_pressed="@color/colorPrimary"
-                    app:min_value="1"
-                    app:max_value="100"
-                    app:gap="1"
-                    app:data_type="_integer"
-                    />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Min"
-                        android:textSize="@dimen/normaheading"
-                        android:fontFamily="@font/quicksand"
-                        android:textColor="@color/PrimaryText"
-                        android:id="@+id/minprice"
-                        />
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Max"
-                        android:layout_weight="1"
-                        android:id="@+id/maxprice"
-                        android:gravity="right"
-                        android:textSize="@dimen/normaheading"
-                        android:fontFamily="@font/quicksand"
-                        android:textColor="@color/PrimaryText"
+                        android:padding="10dp"
                         />
                 </LinearLayout>
-                </LinearLayout></androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center"
-                     app:cardElevation="6dp"
-                    app:cardBackgroundColor="@color/colorSecondary"
-                    android:id="@+id/bedcard"
-                    >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="15dp">
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Number of Bedrooms"
-                    android:textSize="@dimen/headingtext"
-                    android:fontFamily="@font/quicksandbold"
-                    android:textColor="@color/PrimaryText"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    />
-                <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
-                    android:id="@+id/bedrangeSeekbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:corner_radius="6"
-                    app:bar_color="@color/colorPrimary"
-                    app:min_value="1"
-                    app:left_thumb_color_pressed="@color/colorPrimary"
-                    app:right_thumb_color_pressed="@color/colorPrimary"
-                    app:max_value="10"
-                    app:data_type="_integer"
-                    app:left_thumb_color="@color/colorPrimaryDark"
-                    app:right_thumb_color="@color/colorPrimaryDark"
-                    app:gap="1"
-                    app:bar_highlight_color="@color/colorPrimaryDark"
-                    />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Min"
-                        android:textSize="@dimen/normaheading"
-                        android:fontFamily="@font/quicksand"
-                        android:textColor="@color/PrimaryText"
-                        android:id="@+id/minbed"
-                        />
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Max"
-                        android:layout_weight="1"
-                        android:id="@+id/maxbed"
-                        android:gravity="right"
-                        android:textSize="@dimen/normaheading"
-                        android:fontFamily="@font/quicksand"
-                        android:textColor="@color/PrimaryText"
-                        />
-                </LinearLayout>
-                </LinearLayout>
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center"
-                     app:cardElevation="6dp"
-                    app:cardBackgroundColor="@color/colorSecondary"
-                    android:id="@+id/bathcard"
-                    >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="15dp">
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Number of Bathrooms"
-                    android:textSize="@dimen/headingtext"
-                    android:fontFamily="@font/quicksandbold"
-                    android:textColor="@color/PrimaryText"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    />
-                <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
-                    android:id="@+id/bathrangeSeekbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:corner_radius="6"
-                    app:bar_color="@color/colorPrimary"
-                    app:min_value="1"
-                    app:max_value="10"
-                    app:left_thumb_color_pressed="@color/colorPrimary"
-                    app:right_thumb_color_pressed="@color/colorPrimary"
-                    app:data_type="_integer"
-                    app:left_thumb_color="@color/colorPrimaryDark"
-                    app:right_thumb_color="@color/colorPrimaryDark"
-                    app:gap="1"
-                    app:bar_highlight_color="@color/colorPrimaryDark"
-                    />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Min"
-                        android:textSize="@dimen/normaheading"
-                        android:fontFamily="@font/quicksand"
-                        android:textColor="@color/PrimaryText"
-                        android:id="@+id/minbath"
-                        />
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Max"
-                        android:layout_weight="1"
-                        android:id="@+id/maxbath"
-                        android:gravity="right"
-                        android:textSize="@dimen/normaheading"
-                        android:fontFamily="@font/quicksand"
-                        android:textColor="@color/PrimaryText"
-                        />
-                </LinearLayout>
-                </LinearLayout>
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center"
-                     app:cardElevation="6dp"
-                    app:cardBackgroundColor="@color/colorSecondary"
-                    android:id="@+id/furnishfiltercard"
-                    >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="15dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Cancel"
-                        android:textColor="@color/PrimaryText"
-                        android:paddingLeft="30dp"
-                        android:paddingRight="30dp"
-                        android:paddingBottom="10dp"
-                        android:paddingTop="10dp"
-                        android:textSize="@dimen/normaheading"
-                        android:backgroundTint="@color/Greybg"
-                        android:layout_margin="10dp"
-                        android:id="@+id/cancelbtn"
-                        />
-                    <com.google.android.material.button.MaterialButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Apply"
-                        android:textColor="@color/PrimaryText"
-                        android:paddingLeft="30dp"
-                        android:paddingRight="30dp"
-                        android:paddingBottom="10dp"
-                        android:id="@+id/applybtn"
-                        android:paddingTop="10dp"
-                        android:layout_margin="10dp"
-                        android:textSize="@dimen/normaheading"
-                        android:backgroundTint="@color/Greybg"/>
-
-                </LinearLayout>
-                </LinearLayout>
-                </androidx.cardview.widget.CardView>
             </LinearLayout>
 
-
         </LinearLayout>
-    </ScrollView>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/filters"
-        style="@style/Widget.MaterialComponents.FloatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/DividerColor"
-        android:layout_marginBottom="30dp"
-        android:layout_marginRight="25dp"
-        android:layout_gravity="end|bottom"
-        android:tooltipText="Filters"
-        app:fabCustomSize="60dp"
-        app:maxImageSize="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        app:rippleColor="@color/colorPrimary"
-        app:srcCompat="@drawable/filtericon" />
-
-
-</RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

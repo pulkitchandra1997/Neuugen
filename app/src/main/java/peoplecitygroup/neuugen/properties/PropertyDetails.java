@@ -5,7 +5,9 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.cardview.widget.CardView;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +19,8 @@ import com.squareup.picasso.Picasso;
 
 import peoplecitygroup.neuugen.R;
 import peoplecitygroup.neuugen.common_req_files.AD;
+
+import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
 public class PropertyDetails extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,6 +36,7 @@ public class PropertyDetails extends AppCompatActivity implements View.OnClickLi
 
     AppCompatTextView numofbeds,numofbath,furnishtype,constructiontatus,possessionstatus,price,monthlyrent,builtarea,plotarea,lengthofplot,widthofplot,widthroad,landmarkpd,localitypd,citypd,pincodepd;
     AD ad;
+    boolean flag=false;//ownAD ornot?
     LinearLayout bathbedcard;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +62,11 @@ public class PropertyDetails extends AppCompatActivity implements View.OnClickLi
         addicon.setTypeface(font);
 
         Intent intent=getIntent();
+        if(intent==null)
+            finish();
         String flag=intent.getStringExtra("flag");
         if(flag.trim().equalsIgnoreCase("object")){
             ad=(AD)intent.getSerializableExtra("object");
-            Toast.makeText(this, ad.getUniqueid(), Toast.LENGTH_SHORT).show();
             fill(ad);
         }
     }
@@ -119,11 +125,52 @@ public class PropertyDetails extends AppCompatActivity implements View.OnClickLi
             monthlyrentlayout.setVisibility(View.GONE);
             price.setText(ad.getPrice().trim());
         }
-        if(ad.getBuiltuparea()!=null||ad.getBuiltuparea().trim()!="")
-            builtarea.setText(ad.getBuiltuparea());
-        else
-            builtarea.setVisibility(View.GONE);
-        ///////continue
+        if(ad.getPropertytype().trim()=="6"){
+            builtarealayout.setVisibility(View.GONE);
+            if(ad.getBuiltuparea()!=null||ad.getBuiltuparea().trim()!="")
+                plotarea.setText(ad.getBuiltuparea());
+            else
+                plotarea.setText("Data not Available");
+            if(ad.getLength()!=null||ad.getLength().trim()!="")
+                lengthofplot.setText(ad.getLength());
+            else
+                lengthofplot.setText("Data not Available");
+            if(ad.getWidth()!=null||ad.getWidth().trim()!="")
+                widthofplot.setText(ad.getWidth());
+            else
+                widthofplot.setText("Data not Available");
+            if(ad.getWidthoffacingroad()!=null||ad.getWidthoffacingroad().trim()!="")
+                widthroad.setText(ad.getWidthoffacingroad());
+            else
+                widthroad.setText("Data not Available");
+        }
+        else{
+            if(ad.getBuiltuparea()!=null||ad.getBuiltuparea().trim()!="")
+                builtarea.setText(ad.getBuiltuparea());
+            else
+                builtarea.setText("Data not Available");
+            plotarealayout.setVisibility(View.GONE);
+        }
+        if(ad.getArea()!=null||ad.getArea().trim()!="")
+            localitypd.setText(ad.getArea());
+        if(ad.getLandmark()!=null||ad.getLandmark().trim()!="")
+            landmarkpd.setText(ad.getLandmark());
+        if(ad.getCity()!=null||ad.getCity().trim()!="")
+            citypd.setText(ad.getCity());
+        if(ad.getPincode()!=null||ad.getPincode().trim()!="")
+            pincodepd.setText(ad.getPincode());
+
+        SharedPreferences sp;
+        sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
+        String number=sp.getString("mobileno", null);
+        if(number.trim().equalsIgnoreCase(ad.getMobileno().trim())){
+            contactbtn.setText("EDIT");
+            flag=true;
+        }
+        else{
+            contactbtn.setText("SHOW INTEREST");
+            flag=false;
+        }
     }
 
     private void idLink() {
@@ -178,6 +225,29 @@ public class PropertyDetails extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-
+        if(v.getId()==R.id.contactbtn){
+            if(flag){
+                Intent intent;
+                if(ad.getAdtype().trim()=="0"){
+                    if(ad.getPropertytype().trim()=="4"||ad.getPropertytype().trim()=="5")
+                        intent=new Intent(PropertyDetails.this,RentOffice.class);
+                    else
+                        intent=new Intent(PropertyDetails.this,RentHouses.class);
+                }
+                else{
+                    if(ad.getPropertytype().trim()=="6")
+                        intent=new Intent(PropertyDetails.this,SellPlots.class);
+                    else
+                        intent=new Intent(PropertyDetails.this,SellHouses.class);
+                }
+                intent.putExtra("object",ad);
+                if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                    ActivityOptions options = ActivityOptions.makeCustomAnimation(PropertyDetails.this, R.anim.fade_in, R.anim.fade_out);
+                    startActivity(intent, options.toBundle());
+                } else {
+                    startActivity(intent);
+                }
+            }
+        }
     }
 }

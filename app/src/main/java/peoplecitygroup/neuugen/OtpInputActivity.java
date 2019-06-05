@@ -130,6 +130,7 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
                             .show();
                     checkPermission();
                     startTimer();
+                    Toast.makeText(OtpInputActivity.this, "DEMO:"+String.valueOf(otptext), Toast.LENGTH_SHORT).show();
                 }
                 else{
                     new AlertDialog.Builder(OtpInputActivity.this,R.style.Theme_AppCompat_DayNight_Dialog_Alert)

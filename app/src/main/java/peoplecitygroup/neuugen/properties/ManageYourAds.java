@@ -309,7 +309,6 @@ public class ManageYourAds extends AppCompatActivity implements View.OnClickList
                 j=1;
             else
                 j=0;
-            Toast.makeText(this, String.valueOf(i)+"*"+String.valueOf(j), Toast.LENGTH_SHORT).show();
             sendData(0,i,j,true);
             filterlayoutmanage.setVisibility(View.GONE);
 

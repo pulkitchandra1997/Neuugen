@@ -25,7 +25,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".HomeServices.SparePartsActivity"></activity>
+        <activity android:name=".properties.FilterManage"></activity>
+        <activity android:name=".HomeServices.SparePartsActivity" />
         <activity android:name=".ProtectionProgram" />
         <activity
             android:name=".properties.PropertiesCityCheck"
@@ -45,8 +46,7 @@
         <activity android:name=".HomeServices.EventServices.WeddingPackages" />
         <activity android:name=".HomeServices.EventServices.WeddingShootForm" />
         <activity android:name=".properties.PropertyDetails" />
-        <activity android:name=".properties.PropertyList" >
-        </activity>
+        <activity android:name=".properties.PropertyList"></activity>
         <activity
             android:name=".properties.PropertiesForm"
             android:windowSoftInputMode="stateHidden" />

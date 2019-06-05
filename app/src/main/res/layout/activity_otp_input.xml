@@ -43,7 +43,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OTP sent to mobile number "
+            android:text="OTP sent to "
             android:gravity="center"
             android:textSize="15sp"
             android:fontFamily="@font/quicksandbold"

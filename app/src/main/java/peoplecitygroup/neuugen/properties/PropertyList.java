@@ -1,19 +1,34 @@
 package peoplecitygroup.neuugen.properties;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatCheckBox;
 import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityOptions;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Html;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
@@ -22,32 +37,30 @@ import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import peoplecitygroup.neuugen.R;
+import peoplecitygroup.neuugen.common_req_files.AD;
+
+import static android.content.DialogInterface.BUTTON_POSITIVE;
+import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
 public class PropertyList extends AppCompatActivity implements View.OnClickListener {
 
-    CrystalRangeSeekbar pricerangebar,bedrangebar,bathrangebar;
+    ScrollView resultlistlist;
+    LinearLayout filtersmanagelist,noadsfoundlayout;
+    RecyclerView managelistviewlist;
 
-    AppCompatTextView minbed,maxbed,minprice,maxprice,minbath,maxbath;
-
-    CardView furnishcard,constatuscard,posesnstatuscard,bedcard,bathcard,pricecard,adtypecard,propertytypecard;
-
-    AppCompatSpinner buytypeFI,renttypeFI;
-
-    MaterialButton applybtn,cancelbtn;
-    LinearLayout filterlayout,propertylayout;
-    RadioGroup adtypeFI;
-    AppCompatCheckBox fullfurnishFI,semifurnishFI,unfurnishFI,immediateFI,infutureFI,readytomoveFI,underconFI;
-    AppCompatRadioButton buyFI,rentFI;
-    FloatingActionButton filters;
     Intent intent;
-    String adtype,propertytype;
+    String adtype,results;
     ProgressDialog loading = null;
-    ArrayList<String> results=new ArrayList<String>();
     String verified,available;
     ArrayList<String> propertytypes,city,bedrooms,bathrooms,furnishtype,price,constructionstatus,possessionastatus;
+    private Ad_Adapter Ad_Adapter;
+    ArrayList<AD>adsArrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,12 +68,15 @@ public class PropertyList extends AppCompatActivity implements View.OnClickListe
 
         idlink();
         listenerlink();
-
+        adsArrayList=new ArrayList<AD>();
+        Ad_Adapter=new Ad_Adapter(this,adsArrayList);
+        managelistviewlist.setAdapter(Ad_Adapter);
+        managelistviewlist.setLayoutManager(new LinearLayoutManager(this));
         intent=getIntent();
         if(intent==null)
             finish();
         adtype=intent.getStringExtra("adtype");
-        results=intent.getStringArrayListExtra("results");
+        results=intent.getStringExtra("results");
         propertytypes=intent.getStringArrayListExtra("propertytype");
         city=intent.getStringArrayListExtra("city");
         bedrooms=intent.getStringArrayListExtra("bedrooms");
@@ -71,130 +87,99 @@ public class PropertyList extends AppCompatActivity implements View.OnClickListe
         possessionastatus=intent.getStringArrayListExtra("possessionastatus");
         verified=intent.getStringExtra("verified");
         available=intent.getStringExtra("available");
-
-        pricerangebar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
-            @Override
-            public void valueChanged(Number minValue, Number maxValue) {
-                minprice.setText(String.valueOf(minValue));
-                maxprice.setText(String.valueOf(maxValue));
-            }
-        });
-
-        // set final value listener
-        pricerangebar.setOnRangeSeekbarFinalValueListener(new OnRangeSeekbarFinalValueListener() {
-            @Override
-            public void finalValue(Number minValue, Number maxValue) {
-                Toast.makeText(PropertyList.this, String.valueOf(minValue)+String.valueOf(maxValue), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        bedrangebar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
-            @Override
-            public void valueChanged(Number minValue, Number maxValue) {
-                minbed.setText(String.valueOf(minValue));
-                maxbed.setText(String.valueOf(maxValue));
-            }
-        });
-
-        // set final value listener
-        bedrangebar.setOnRangeSeekbarFinalValueListener(new OnRangeSeekbarFinalValueListener() {
-            @Override
-            public void finalValue(Number minValue, Number maxValue) {
-                Toast.makeText(PropertyList.this, String.valueOf(minValue)+String.valueOf(maxValue), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        bathrangebar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
-            @Override
-            public void valueChanged(Number minValue, Number maxValue) {
-                minbath.setText(String.valueOf(minValue));
-                maxbath.setText(String.valueOf(maxValue));
-            }
-        });
-
-        // set final value listener
-        bathrangebar.setOnRangeSeekbarFinalValueListener(new OnRangeSeekbarFinalValueListener() {
-            @Override
-            public void finalValue(Number minValue, Number maxValue) {
-                Toast.makeText(PropertyList.this, String.valueOf(minValue)+String.valueOf(maxValue), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
+        if(results.trim().equalsIgnoreCase("No Result Found.")){
+            noadsfoundlayout.setVisibility(View.VISIBLE);
+            resultlistlist.setVisibility(View.GONE);
+        }
+        else{
+            noadsfoundlayout.setVisibility(View.GONE);
+            resultlistlist.setVisibility(View.VISIBLE);
+            showResult(results);
+        }
     }
 
     public void idlink()
     {
-        pricerangebar=findViewById(R.id.pricerangeSeekbar);
-        minbed=findViewById(R.id.minbed);
-        maxbed=findViewById(R.id.maxbed);
-        minbath=findViewById(R.id.minbath);
-        maxbath=findViewById(R.id.maxbath);
-        minprice=findViewById(R.id.minprice);
-        maxprice=findViewById(R.id.maxprice);
-        bedrangebar=findViewById(R.id.bedrangeSeekbar);
-        bathrangebar=findViewById(R.id.bathrangeSeekbar);
-        filterlayout=findViewById(R.id.filterlayout);
-        propertylayout=findViewById(R.id.propertylayout);
-        fullfurnishFI=findViewById(R.id.fullfurnishFI);
-        semifurnishFI=findViewById(R.id.semifurnishFI);
-        unfurnishFI=findViewById(R.id.unfurnishFI);
-        readytomoveFI=findViewById(R.id.readytomoveFI);
-        infutureFI=findViewById(R.id.infutureFI);
-        immediateFI=findViewById(R.id.immediateFI);
-        underconFI=findViewById(R.id.underconFI);
-        filters=findViewById(R.id.filters);
-        applybtn=findViewById(R.id.applybtn);
-        cancelbtn=findViewById(R.id.cancelbtn);
-        furnishcard=findViewById(R.id.furnishcard);
-        posesnstatuscard=findViewById(R.id.posesnstatuscard);
-        constatuscard=findViewById(R.id.constatuscard);
-        pricecard=findViewById(R.id.pricecard);
-        bedcard=findViewById(R.id.bedcard);
-        bathcard=findViewById(R.id.bathcard);
-        adtypeFI=findViewById(R.id.adtypeFI);
-        buyFI=findViewById(R.id.buyFI);
-        rentFI=findViewById(R.id.rentFI);
-        adtypecard=findViewById(R.id.adtypecard);
-        buytypeFI=findViewById(R.id.buytypeFI);
-        renttypeFI=findViewById(R.id.renttypeFI);
-        propertytypecard=findViewById(R.id.propertytypecard);
+        resultlistlist=findViewById(R.id.resultlistlist);
+        filtersmanagelist=findViewById(R.id.filtersmanagelist);
+        noadsfoundlayout=findViewById(R.id.noadsfoundlayout);
+        managelistviewlist=findViewById(R.id.managelistviewlist);
     }
+    private void showResult(String results) {
+        try {
+            JSONArray resultarray=new JSONArray(results.toString());
+            for(int i=0;i<resultarray.length();i++) {
+                JSONObject result = resultarray.getJSONObject(i);
+                Log.d("checkdata",result.toString());
+                adsArrayList.add(new AD(result.getString("uniqueid"), result.getString("mobileno"), result.getString("adtype"), result.getString("houseno"), result.getString("area"), result.getString("city"), result.getString("city_id"), result.getString("landmark"), result.getString("pincode"), result.getString("propertytype"), result.getString("bedrooms"), result.getString("bathrooms"), result.getString("furnishtype"), result.getString("builtuparea"), result.getString("price"), result.getString("constructionstatus"), result.getString("ageofproperty"), result.getString("possessionstatus"), result.getString("length"), result.getString("width"), result.getString("widthoffacingroad"), result.getString("pic1"), result.getString("pic2"), result.getString("pic3"), result.getString("verified"), result.getString("available"), result.getString("created")));
+            }
+            managelistviewlist.setVisibility(View.VISIBLE);
+            noadsfoundlayout.setVisibility(View.GONE);
+            Ad_Adapter.notifyDataSetChanged();
+        }
+        catch (Exception e){
+            Log.d("jsonerror",e.toString());
+            AlertDialog.Builder builder = new AlertDialog.Builder(PropertyList.this);
+            builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+            builder.setMessage("Error in Server.")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    })
+                    .setIcon(R.mipmap.ic_launcher_round);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            Button positiveButton = dialog.getButton(BUTTON_POSITIVE);
+            positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+        }
+    }
+
+
 
     public void listenerlink(){
-
-        filters.setOnClickListener(this);
-        applybtn.setOnClickListener(this);
-        cancelbtn.setOnClickListener(this);
-        buyFI.setOnClickListener(this);
-        rentFI.setOnClickListener(this);
+        filtersmanagelist.setOnClickListener(this);
     }
 
-    @SuppressLint("RestrictedApi")
     @Override
     public void onClick(View v) {
-        if(v.getId()==R.id.filters){
-            filterlayout.setVisibility(View.VISIBLE);
-            propertylayout.setVisibility(View.GONE);
-            filters.setVisibility(View.GONE);
+        if(v.getId()==R.id.filtersmanagelist){
+            Intent intent = new Intent(PropertyList.this, FilterManage.class);
+            intent.putExtra("adtype",adtype);
+            intent.putExtra("propertytype",propertytypes);
+            intent.putExtra("city",city);
+            intent.putExtra("bedrooms",bedrooms);
+            intent.putExtra("bathrooms",bathrooms);
+            intent.putExtra("furnishtype",furnishtype);
+            intent.putExtra("price",price);
+            intent.putExtra("constructionstatus",constructionstatus);
+            intent.putExtra("possessionastatus",possessionastatus);
+            intent.putExtra("verified","1");
+            intent.putExtra("available","1");
+            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                ActivityOptions options = ActivityOptions.makeCustomAnimation(PropertyList.this, R.anim.fade_in, R.anim.fade_out);
+                startActivityForResult(intent,101, options.toBundle());
+            } else {
+                startActivityForResult(intent,101);
+            }
         }
-        if (v.getId()==R.id.cancelbtn)
-        {
-            filterlayout.setVisibility(View.GONE);
-            propertylayout.setVisibility(View.VISIBLE);
-            filters.setVisibility(View.VISIBLE);
-        }
-        if (v.getId()==R.id.buyFI)
-        {
-            propertytypecard.setVisibility(View.VISIBLE);
-            renttypeFI.setVisibility(View.GONE);
-            buytypeFI.setVisibility(View.VISIBLE);
-        }
-        if(v.getId()==R.id.rentFI)
-        {
-            propertytypecard.setVisibility(View.VISIBLE);
-            renttypeFI.setVisibility(View.VISIBLE);
-            buytypeFI.setVisibility(View.GONE);
+    }
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == 101) {
+            if (resultCode == RESULT_OK) {
+                adtype=intent.getStringExtra("adtype");
+                propertytypes=intent.getStringArrayListExtra("propertytype");
+                city=intent.getStringArrayListExtra("city");
+                bedrooms=intent.getStringArrayListExtra("bedrooms");
+                bathrooms=intent.getStringArrayListExtra("bathrooms");
+                furnishtype=intent.getStringArrayListExtra("furnishtype");
+                price=intent.getStringArrayListExtra("price");
+                constructionstatus=intent.getStringArrayListExtra("constructionstatus");
+                possessionastatus=intent.getStringArrayListExtra("possessionastatus");
+                verified=intent.getStringExtra("verified");
+                available=intent.getStringExtra("available");
+            }
         }
     }
 }
