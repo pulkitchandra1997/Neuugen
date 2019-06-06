@@ -1,25 +1,49 @@
 package peoplecitygroup.neuugen.properties;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.cardview.widget.CardView;
 
 import android.app.ActivityOptions;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.text.Html;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.button.MaterialButton;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import peoplecitygroup.neuugen.OtpInputActivity;
 import peoplecitygroup.neuugen.R;
 import peoplecitygroup.neuugen.common_req_files.AD;
+import peoplecitygroup.neuugen.common_req_files.MySingleton;
+import peoplecitygroup.neuugen.common_req_files.UrlNeuugen;
 
+import static android.content.DialogInterface.BUTTON_NEGATIVE;
+import static android.content.DialogInterface.BUTTON_POSITIVE;
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
 public class PropertyDetails extends AppCompatActivity implements View.OnClickListener {
@@ -29,7 +53,7 @@ public class PropertyDetails extends AppCompatActivity implements View.OnClickLi
     MaterialButton contactbtn;
 
     AppCompatTextView bedicon,bathicon,furnishicon,consnicon,posesnicon,costicon,renticon,builtareaicon,plotareaicon,lengthicon,widthicon,roadicon,addicon;
-
+    ProgressDialog loading = null;
     CardView bedbathcard,fcpcard;
 
     LinearLayout furnishlayout,consnlayout,posesnlayout,costlayout,monthlyrentlayout,builtarealayout,plotarealayout;
@@ -45,7 +69,10 @@ public class PropertyDetails extends AppCompatActivity implements View.OnClickLi
         
         idLink();
         listenerLink();
-
+        loading = new ProgressDialog(PropertyDetails.this,R.style.AppCompatAlertDialogStyle);
+        loading.setCancelable(false);
+        loading.setMessage("Loading...");
+        loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         Typeface font = Typeface.createFromAsset(getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
         bedicon.setTypeface(font);
         bathicon.setTypeface(font);
@@ -168,9 +195,122 @@ public class PropertyDetails extends AppCompatActivity implements View.OnClickLi
             flag=true;
         }
         else{
-            contactbtn.setText("SHOW INTEREST");
+            checkStatus();
+            //contactbtn.setText("SHOW INTEREST");
             flag=false;
         }
+    }
+
+    private void checkStatus() {
+        SharedPreferences sp;
+        sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
+        final String number=sp.getString("mobileno", null);
+        loading.show();
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, UrlNeuugen.checkStatus, new Response.Listener<String>()
+        {
+            @Override
+            public void onResponse(String response) {
+                Log.i("checkerror",response);
+                loading.dismiss();
+                if(response.toLowerCase().contains("error in server")){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
+
+                    builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                    builder.setMessage("Error in server. Try Again")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            })
+                            .setIcon(R.mipmap.ic_launcher_round);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                    positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+                }
+                else{
+                    if(response.trim().equalsIgnoreCase("0")||response.trim().equalsIgnoreCase("1"))
+                            contactbtn.setText("INTERESTED");
+                    else
+                            contactbtn.setText("SHOW INTEREST");
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+                loading.dismiss();
+                boolean haveConnectedWifi = false;
+                boolean haveConnectedMobile = false;
+                ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+                for (NetworkInfo ni : netInfo) {
+                    if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+                        if (ni.isConnected())
+                            haveConnectedWifi = true;
+                    if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+                        if (ni.isConnected())
+                            haveConnectedMobile = true;
+                }
+                if( !haveConnectedWifi && !haveConnectedMobile)
+                {
+                    AlertDialog alertDialog = new AlertDialog.Builder(PropertyDetails.this).create();
+                    alertDialog.setMessage("No Internet Connection");
+                    alertDialog.setIcon(R.mipmap.ic_launcher_round);
+                    alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                    alertDialog.show();
+                }
+                else {
+                    AlertDialog alertDialog = new AlertDialog.Builder(PropertyDetails.this).create();
+                    alertDialog.setMessage("Connection Error!");
+                    alertDialog.setIcon(R.mipmap.ic_launcher_round);
+                    alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                    alertDialog.show();
+                }
+            }
+        })
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError
+            {
+                Map<String, String> params = new HashMap<>();
+                params.put("number",number);
+                params.put("uniqueid",ad.getUniqueid());
+                return params;
+            }
+        };
+        stringRequest.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
+
+                builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                builder.setMessage("Connection")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        })
+                        .setIcon(R.mipmap.ic_launcher_round);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+
+            }
+        });
+        MySingleton.getInstance(PropertyDetails.this).addToRequestQueue(stringRequest);
     }
 
     private void idLink() {
@@ -248,6 +388,146 @@ public class PropertyDetails extends AppCompatActivity implements View.OnClickLi
                     startActivity(intent);
                 }
             }
+            else{
+                String message="Do you want to mark this AD as interested?";
+                if(contactbtn.getText().toString().trim().equalsIgnoreCase("INTERESTED"))
+                    message="Do you want to cancel your interest?";
+                final AlertDialog.Builder builder = new AlertDialog.Builder(PropertyDetails.this);
+                builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                builder.setMessage(message)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ShowInterest();
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setIcon(R.mipmap.ic_launcher_round);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                Button positiveButton = dialog.getButton(BUTTON_POSITIVE);
+                positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+                Button negativeButton = dialog.getButton(BUTTON_NEGATIVE);
+                negativeButton.setTextColor(Color.parseColor("#FF12B2FA"));
+            }
         }
+    }
+
+    private void ShowInterest() {
+        SharedPreferences sp;
+        sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
+        final String number=sp.getString("mobileno", null);
+        loading.show();
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, UrlNeuugen.showInterest, new Response.Listener<String>()
+        {
+            @Override
+            public void onResponse(String response) {
+                Log.i("checkerror",response);
+                loading.dismiss();
+                if(response.toLowerCase().contains("error")){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
+
+                    builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                    builder.setMessage(response.trim())
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            })
+                            .setIcon(R.mipmap.ic_launcher_round);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                    positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+                }
+                else{
+                    if(response.trim().equalsIgnoreCase("success")){
+                        if(contactbtn.getText().toString().trim().equalsIgnoreCase("INTERESTED"))
+                            contactbtn.setText("SHOW INTEREST");
+                        else
+                            contactbtn.setText("INTERESTED");
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+                loading.dismiss();
+                boolean haveConnectedWifi = false;
+                boolean haveConnectedMobile = false;
+                ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+                for (NetworkInfo ni : netInfo) {
+                    if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+                        if (ni.isConnected())
+                            haveConnectedWifi = true;
+                    if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+                        if (ni.isConnected())
+                            haveConnectedMobile = true;
+                }
+                if( !haveConnectedWifi && !haveConnectedMobile)
+                {
+                    AlertDialog alertDialog = new AlertDialog.Builder(PropertyDetails.this).create();
+                    alertDialog.setMessage("No Internet Connection");
+                    alertDialog.setIcon(R.mipmap.ic_launcher_round);
+                    alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                    alertDialog.show();
+                }
+                else {
+                    AlertDialog alertDialog = new AlertDialog.Builder(PropertyDetails.this).create();
+                    alertDialog.setMessage("Connection Error!");
+                    alertDialog.setIcon(R.mipmap.ic_launcher_round);
+                    alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                    alertDialog.show();
+                }
+            }
+        })
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError
+            {
+                Map<String, String> params = new HashMap<>();
+                params.put("number",number);
+                params.put("uniqueid",ad.getUniqueid());
+                return params;
+            }
+        };
+        stringRequest.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getApplication());
+
+                builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                builder.setMessage("Connection")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        })
+                        .setIcon(R.mipmap.ic_launcher_round);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+
+            }
+        });
+        MySingleton.getInstance(PropertyDetails.this).addToRequestQueue(stringRequest);
     }
 }

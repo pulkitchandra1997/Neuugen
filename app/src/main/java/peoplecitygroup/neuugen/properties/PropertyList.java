@@ -73,6 +73,10 @@ public class PropertyList extends AppCompatActivity implements View.OnClickListe
         managelistviewlist.setAdapter(Ad_Adapter);
         managelistviewlist.setLayoutManager(new LinearLayoutManager(this));
         intent=getIntent();
+        loading = new ProgressDialog(PropertyList.this,R.style.AppCompatAlertDialogStyle);
+        loading.setCancelable(false);
+        loading.setMessage("Loading");
+        loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         if(intent==null)
             finish();
         adtype=intent.getStringExtra("adtype");
