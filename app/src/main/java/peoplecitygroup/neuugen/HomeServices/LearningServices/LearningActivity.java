@@ -71,7 +71,7 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
         listenerLink();
         loading = new ProgressDialog(LearningActivity.this, R.style.AppCompatAlertDialogStyle);
         loading.setCancelable(false);
-        loading.setMessage("Sending Request...");
+        loading.setMessage("Loading...");
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
         Typeface font = Typeface.createFromAsset(getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
