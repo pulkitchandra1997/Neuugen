@@ -42,6 +42,7 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
@@ -63,6 +64,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 import peoplecitygroup.neuugen.R;
 import peoplecitygroup.neuugen.UserMainActivity;
+import peoplecitygroup.neuugen.common_req_files.AD;
 import peoplecitygroup.neuugen.common_req_files.MySingleton;
 import peoplecitygroup.neuugen.common_req_files.SendMail;
 import peoplecitygroup.neuugen.common_req_files.UrlNeuugen;
@@ -96,6 +98,7 @@ public class RentHouses extends AppCompatActivity implements View.OnClickListene
 JSONObject jsonObject= new JSONObject();
 String uniqueid=null;
 Intent intent=null;
+AD ad;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,7 +118,116 @@ Intent intent=null;
         cityrhtext=intent.getStringExtra("city").toUpperCase();
         cityrh.setText(cityrhtext.toUpperCase());
         cityrh.setEnabled(false);
+
+        Intent intent=getIntent();
+        if(intent!=null) {
+            ad = (AD) intent.getSerializableExtra("object");
+            //fill(ad);
+        }
     }
+
+    /*private void fill(AD ad) {
+        if(ad.getPic1()!=null||ad.getPic1().trim()!="")
+            Picasso.with(this).load(ad.getPic1())
+                    .placeholder(R.drawable.placeholder)
+                    .into(houseimg1);
+        if(ad.getPic2()!=null||ad.getPic2().trim()!="")
+            Picasso.with(this).load(ad.getPic2())
+                    .placeholder(R.drawable.placeholder)
+                    .into(houseimg2);
+        if(ad.getPic2()!=null||ad.getPic2().trim()!="")
+            Picasso.with(this).load(ad.getPic3())
+                    .placeholder(R.drawable.placeholder)
+                    .into(houseimg3);
+        if (ad.getPropertytype().trim()=="0"||ad.getPropertytype().trim()=="1"||ad.getPropertytype().trim()=="2"||ad.getPropertytype().trim()=="3"){
+            if(ad.getBedrooms()!=null||ad.getBedrooms().trim()!="")
+                numofbeds.setText(ad.getBedrooms());
+            else
+                numofbeds.setText("Data not available");
+            if(ad.getBathrooms()!=null||ad.getBathrooms().trim()!="")
+                numofbath.setText(ad.getBathrooms());
+            else numofbath.setText("Data not available");
+            if(ad.getFurnishtype()!=null||ad.getFurnishtype().trim()!="")
+                furnishtype.setText(ad.getFurnishtype());
+            else
+                furnishtype.setText("Data not available");
+        }
+        else{
+            bedbathcard.setVisibility(View.GONE);
+            furnishlayout.setVisibility(View.GONE);
+        }
+        if(ad.getConstructionstatus()!=null||ad.getConstructionstatus().trim()!=""){
+            if(ad.getConstructionstatus().trim()=="0")
+                constructiontatus.setText("Ready to move");
+            else
+                constructiontatus.setText("Under Construction");
+        }
+        else
+            consnlayout.setVisibility(View.GONE);
+        if(ad.getPossessionstatus()!=null||ad.getPossessionstatus().trim()!=""){
+            if(ad.getPossessionstatus().trim()=="0")
+                possessionstatus.setText("Immediate");
+            else
+                possessionstatus.setText("In future");
+        }
+        else
+            posesnlayout.setVisibility(View.GONE);
+        if (ad.getAdtype().trim()=="0"){
+            monthlyrent.setText(ad.getPrice().trim());
+            costlayout.setVisibility(View.GONE);
+        }
+        else{
+            monthlyrentlayout.setVisibility(View.GONE);
+            price.setText(ad.getPrice().trim());
+        }
+        if(ad.getPropertytype().trim()=="6"){
+            builtarealayout.setVisibility(View.GONE);
+            if(ad.getBuiltuparea()!=null||ad.getBuiltuparea().trim()!="")
+                plotarea.setText(ad.getBuiltuparea());
+            else
+                plotarea.setText("Data not Available");
+            if(ad.getLength()!=null||ad.getLength().trim()!="")
+                lengthofplot.setText(ad.getLength());
+            else
+                lengthofplot.setText("Data not Available");
+            if(ad.getWidth()!=null||ad.getWidth().trim()!="")
+                widthofplot.setText(ad.getWidth());
+            else
+                widthofplot.setText("Data not Available");
+            if(ad.getWidthoffacingroad()!=null||ad.getWidthoffacingroad().trim()!="")
+                widthroad.setText(ad.getWidthoffacingroad());
+            else
+                widthroad.setText("Data not Available");
+        }
+        else{
+            if(ad.getBuiltuparea()!=null||ad.getBuiltuparea().trim()!="")
+                builtarea.setText(ad.getBuiltuparea());
+            else
+                builtarea.setText("Data not Available");
+            plotarealayout.setVisibility(View.GONE);
+        }
+        if(ad.getArea()!=null||ad.getArea().trim()!="")
+            localitypd.setText(ad.getArea());
+        if(ad.getLandmark()!=null||ad.getLandmark().trim()!="")
+            landmarkpd.setText(ad.getLandmark());
+        if(ad.getCity()!=null||ad.getCity().trim()!="")
+            citypd.setText(ad.getCity());
+        if(ad.getPincode()!=null||ad.getPincode().trim()!="")
+            pincodepd.setText(ad.getPincode());
+
+        SharedPreferences sp;
+        sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
+        String number=sp.getString("mobileno", null);
+        if(number.trim().equalsIgnoreCase(ad.getMobileno().trim())){
+            contactbtn.setText("EDIT");
+            flag=true;
+        }
+        else{
+            checkStatus();
+            //contactbtn.setText("SHOW INTEREST");
+            flag=false;
+        }
+    }*/
 
     public void hideSoftKeyboard() {
         if (getCurrentFocus() != null) {
