@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_gravity="center"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        android:backgroundTint="#fff"
+        android:id="@+id/customcard"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="5dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Service Name: "
+                    android:gravity="start"
+                    android:textColor="@color/PrimaryText"
+                    android:textSize="@dimen/normaheading"
+                    android:fontFamily="@font/quicksand"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:gravity="right">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="SERVICE NAME"
+                        android:gravity="right"
+                        android:id="@+id/servicename"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/PrimaryText"
+                        android:textSize="@dimen/normaheading"
+                        android:fontFamily="@font/quicksandbold"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:scrollHorizontally="true"
+                        android:layout_height="wrap_content"
+                        android:text="Area"
+                        android:scrollbars="horizontal"
+                        android:gravity="start"
+                        android:id="@+id/areabooking"
+                        android:textColor="@color/PrimaryText"
+                        android:textSize="@dimen/normaheading"
+                        android:fontFamily="@font/quicksand"
+                        />
+                </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="5dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date of service: "
+                    android:gravity="start"
+                    android:textColor="@color/PrimaryText"
+                    android:textSize="@dimen/normaheading"
+                    android:fontFamily="@font/quicksand"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:gravity="right">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="DATE OF SERVICE"
+                        android:id="@+id/dateofservice"
+                        android:gravity="right"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/PrimaryText"
+                        android:textSize="@dimen/normaheading"
+                        android:fontFamily="@font/quicksandbold"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="5dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status: "
+                    android:gravity="start"
+                    android:textColor="@color/PrimaryText"
+                    android:textSize="@dimen/normaheading"
+                    android:fontFamily="@font/quicksand"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="right">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="STATUS"
+                        android:id="@+id/status"
+                        android:gravity="right"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/PrimaryText"
+                        android:textSize="@dimen/normaheading"
+                        android:fontFamily="@font/quicksandbold"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="5dp"
+                android:gravity="center_vertical"
+                android:layout_marginRight="5dp"
+                >
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cancel Request"
+                        android:layout_marginLeft="10dp"
+                        android:id="@+id/cancelrequest"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/normaheading"
+                        android:backgroundTint="#EE9090"
+                        android:fontFamily="@font/quicksandbold"
+
+                        />
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

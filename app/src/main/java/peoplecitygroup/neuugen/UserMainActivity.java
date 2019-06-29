@@ -63,11 +63,7 @@ public class UserMainActivity extends AppCompatActivity {
                     flag=0;
                     switchFragment();
                     return true;
-                case R.id.navigation_settings:
-                    fragment=new SettingsFrag();
-                    flag=2;
-                    switchFragment();
-                    return true;
+
                 case R.id.navigation_bookings:
                     fragment=new BookingsFrag();
                     flag=1;

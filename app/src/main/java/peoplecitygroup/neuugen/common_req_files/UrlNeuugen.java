@@ -1,5 +1,7 @@
 package peoplecitygroup.neuugen.common_req_files;
 
+import java.util.ArrayList;
+
 public class UrlNeuugen {
     private static final String URL="http://neuugen.com/app/neuugen/backendcode/";
     public static final String send_otp=URL+"sendOtp.php";
@@ -28,6 +30,8 @@ public class UrlNeuugen {
     public static String getOwnAds=URL+"getOwnAds.php";
     public static String showInterest=URL+"showInterest.php";
     public static String checkStatus=URL+"checkStatus.php";
+    public static String viewBookings=URL+"viewBookings.php";
+    public static String cancelBooking=URL+"cancelBooking.php";
 
     public static final String csemail="peoplecitygroup@gmail.com";
     public static final String csphone="";
@@ -75,4 +79,12 @@ public class UrlNeuugen {
     public static final String propertiesserviceid="34";
 
 
+
+    public static final ArrayList<String> createId() {
+        ArrayList<String> idList = new ArrayList<String>();
+        for (int i = 1; i < 35; i++)
+            idList.add(String.valueOf(i));
+        return idList;
+    }
+    public static final String[] serviceName={"","Grooming","Men's Salon","Women's Salon","Men's Haircut","Men's Haircut and Beard","Men's Party Grooming","Women's Haircut and Styling","Women's Party Makeup","Women's Wedding Makeup","Appliance Repair","Repairing","Installation","Home Renovation","Plumbing","Electrician","Carpentry","Learning","Acting Classes","Makeup and Grooming Classes","Dancing Classes","Events","Photography and Videography","Events Arrangements","Pre Wedding Shoot","Wedding Shoot","Event Photography","Normal Package","Standard Package","Premium Package","Dance Performers","Anchors or Hosts","Singers","Bands and Musicians","Properties"};
 }
