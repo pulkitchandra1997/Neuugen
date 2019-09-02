@@ -30,7 +30,8 @@ public class AD implements Serializable {
     String verified;
     String available;
     String created;
-    public AD(String uniqueid, String mobileno, String adtype, String houseno, String area, String city, String city_id, String landmark, String pincode, String propertytype, String bedrooms, String bathrooms, String furnishtype, String builtuparea, String price, String constructionstatus, String ageofproperty, String possessionstatus, String length, String width, String widthoffacingroad, String pic1, String pic2, String pic3, String verified, String available, String created) {
+    String status;
+    public AD(String uniqueid, String mobileno, String adtype, String houseno, String area, String city, String city_id, String landmark, String pincode, String propertytype, String bedrooms, String bathrooms, String furnishtype, String builtuparea, String price, String constructionstatus, String ageofproperty, String possessionstatus, String length, String width, String widthoffacingroad, String pic1, String pic2, String pic3, String verified, String available, String created, String status) {
         this.uniqueid = uniqueid;
         this.mobileno = mobileno;
         this.adtype = adtype;
@@ -58,6 +59,7 @@ public class AD implements Serializable {
         this.verified = verified;
         this.available = available;
         this.created = created;
+        this.status = status;
     }
 
     public String getUniqueid() {
@@ -274,5 +276,13 @@ public class AD implements Serializable {
 
     public void setCreated(String created) {
         this.created = created;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

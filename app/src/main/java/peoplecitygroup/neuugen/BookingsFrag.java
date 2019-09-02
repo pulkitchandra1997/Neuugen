@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -17,9 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,7 +32,6 @@ import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONArray;
@@ -45,13 +41,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import peoplecitygroup.neuugen.HomeServices.LearningServices.LearningActivity;
-import peoplecitygroup.neuugen.common_req_files.AD;
+import peoplecitygroup.neuugen.Adapters.Bookings_Adapter;
 import peoplecitygroup.neuugen.common_req_files.Bookings;
 import peoplecitygroup.neuugen.common_req_files.MySingleton;
 import peoplecitygroup.neuugen.common_req_files.UrlNeuugen;
-import peoplecitygroup.neuugen.properties.ManageYourAds;
-import peoplecitygroup.neuugen.properties.ManageYourAds_Adapter;
 
 import static android.content.Context.MODE_PRIVATE;
 import static android.content.DialogInterface.BUTTON_POSITIVE;
@@ -61,7 +54,6 @@ public class BookingsFrag extends Fragment implements View.OnClickListener {
 
 
     ProgressDialog loading = null;
-    LinearLayout nobookings;
     ScrollView bookinglist;
     RecyclerView currentlist,previouslist;
     CardView adscard,noItems;
@@ -88,8 +80,8 @@ public class BookingsFrag extends Fragment implements View.OnClickListener {
         number=sp.getString("mobileno", null);
         cbookingsArrayList=new ArrayList<Bookings>();
         pbookingsArrayList=new ArrayList<Bookings>();
-        cbookings_adapter=new Bookings_Adapter(getActivity(),cbookingsArrayList);
-        pbookings_adapter=new Bookings_Adapter(getActivity(),pbookingsArrayList);
+        cbookings_adapter=new Bookings_Adapter(getActivity(),cbookingsArrayList,pbookingsArrayList,BookingsFrag.this);
+        pbookings_adapter=new Bookings_Adapter(getActivity(),pbookingsArrayList,cbookingsArrayList,BookingsFrag.this);
         currentlist.setAdapter(cbookings_adapter);
         previouslist.setAdapter(pbookings_adapter);
         currentlist.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -102,7 +94,6 @@ public class BookingsFrag extends Fragment implements View.OnClickListener {
     }
     public void idLink(View v)
     {
-        nobookings=v.findViewById(R.id.nobookingslayout);
         bookinglist=v.findViewById(R.id.bookinglist);
         currentlist=v.findViewById(R.id.currentlist);
         previouslist=v.findViewById(R.id.previouslist);
@@ -133,7 +124,6 @@ public class BookingsFrag extends Fragment implements View.OnClickListener {
     }
 
     private void switchtab(int position) {
-        Toast.makeText(getActivity(), String.valueOf(position)+"#"+String.valueOf(flag), Toast.LENGTH_SHORT).show();
         noItems.setVisibility(View.GONE);
         if(position==0){
             if(flag!=0){
@@ -159,7 +149,6 @@ public class BookingsFrag extends Fragment implements View.OnClickListener {
 
     private void requestData() {
         loading.show();
-
         StringRequest stringRequest=new StringRequest(Request.Method.POST, UrlNeuugen.viewBookings, new Response.Listener<String>()
         {
             @Override
@@ -182,11 +171,10 @@ public class BookingsFrag extends Fragment implements View.OnClickListener {
                     positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
                 } else {
                     if (response.toLowerCase().contains("nobookings")) {
-                        nobookings.setVisibility(View.VISIBLE);
+                        noItems.setVisibility(View.VISIBLE);
                         bookinglist.setVisibility(View.GONE);
                     }
                     else{
-                        nobookings.setVisibility(View.GONE);
                         bookinglist.setVisibility(View.VISIBLE);
                         //ADAPTER
                         showResult(response);
@@ -267,14 +255,13 @@ public class BookingsFrag extends Fragment implements View.OnClickListener {
         });
         MySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
     }
-
     private void showResult(String response) {
         try {
             Log.d("json",response);
             JSONArray results=new JSONArray(response);
             for(int i=0;i<results.length();i++) {
                 JSONObject result = results.getJSONObject(i);
-                if(result.getString("status").trim().equalsIgnoreCase("3")){
+                if(result.getString("status").trim().equalsIgnoreCase("3")||result.getString("status").trim().equalsIgnoreCase("2")){
                     pbookingsArrayList.add(new Bookings(result.getString("requestid"),number,result.getString("serviceid"),result.getString("houseno"),result.getString("area"),result.getString("city"),result.getString("city_id"),result.getString("landmark"),result.getString("pincode"),result.getString("dateofservice"),result.getString("dateofrequest"),result.getString("status"),result.getString("completiondate"),result.getString("remark"),result.getString("servicetype"),result.getString("noofdays"),result.getString("eventtype")));
                 }
                 else{
@@ -282,14 +269,7 @@ public class BookingsFrag extends Fragment implements View.OnClickListener {
                 }
             }
 
-            bookinglist.setVisibility(View.VISIBLE);
-            nobookings.setVisibility(View.GONE);
-            cbookings_adapter.notifyDataSetChanged();
-            pbookings_adapter.notifyDataSetChanged();
-            if(flag==0)
-                currentlist.setVisibility(View.VISIBLE);
-            else
-                previouslist.setVisibility(View.VISIBLE);
+            showListView(pbookingsArrayList,cbookingsArrayList);
         }catch(Exception e){
             Log.d("jsonerror",e.toString());
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -309,6 +289,29 @@ public class BookingsFrag extends Fragment implements View.OnClickListener {
         }
     }
 
+    public void showListView(ArrayList<Bookings> pbookingsArray, ArrayList<Bookings> cbookingsArray) {
+        this.pbookingsArrayList=pbookingsArray;
+        this.cbookingsArrayList=cbookingsArray;
+        bookinglist.setVisibility(View.VISIBLE);
+        noItems.setVisibility(View.GONE);
+        cbookings_adapter.notifyDataSetChanged();
+        pbookings_adapter.notifyDataSetChanged();
+        if(flag==0) {
+            currentlist.setVisibility(View.VISIBLE);
+            if(cbookingsArrayList.size()==0){
+                currentlist.setVisibility(View.GONE);
+                noItems.setVisibility(View.VISIBLE);
+            }
+        }
+        else {
+            previouslist.setVisibility(View.VISIBLE);
+            if(pbookingsArrayList.size()==0){
+                currentlist.setVisibility(View.GONE);
+                noItems.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
     @Override
     public void onClick(View v) {
         if(v.getId()==R.id.adscard){
@@ -320,6 +323,7 @@ public class BookingsFrag extends Fragment implements View.OnClickListener {
                 startActivity(intent);
             }
         }
-
     }
+
+
 }

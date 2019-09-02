@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".properties.FilterManage"
+    android:id="@+id/filtermanage"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
@@ -103,6 +104,29 @@
                                 android:buttonTint="@color/colorPrimaryDark"
                                 />
                         </RadioGroup>
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/rentpropertytype"
+                            android:padding="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:id="@+id/rentpropertytypeli"
+                            android:visibility="gone"
+                            android:background="@drawable/spinnerborder"
+                            >
+                        </androidx.appcompat.widget.AppCompatSpinner>
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/buypropertytype"
+                            android:padding="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:id="@+id/buypropertytypeli"
+                            android:visibility="gone"
+                            android:background="@drawable/spinnerborder"
+                            >
+                        </androidx.appcompat.widget.AppCompatSpinner>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
                 <androidx.cardview.widget.CardView
@@ -162,13 +186,16 @@
                     app:cardCornerRadius="10dp"
                     android:padding="15dp"
                     android:layout_margin="10dp"
+                    android:id="@+id/furnishtypeform"
+                    android:visibility="gone"
                     >
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="10dp"
-                        android:gravity="center_vertical">
+                        android:gravity="center_vertical"
+                        >
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -214,6 +241,7 @@
                     android:padding="15dp"
                     android:layout_margin="10dp"
                     android:id="@+id/constatuscardlist"
+                    android:visibility="gone"
                     >
 
                     <LinearLayout
@@ -259,12 +287,14 @@
                     android:padding="15dp"
                     android:layout_margin="10dp"
                     android:id="@+id/posesnstatuscardlist"
+                    android:visibility="gone"
                     >
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+
                         android:padding="10dp">
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -373,6 +403,7 @@
                     android:padding="15dp"
                     android:layout_margin="10dp"
                     android:id="@+id/bedcardlist"
+                    android:visibility="gone"
                     >
 
                     <LinearLayout
@@ -443,6 +474,7 @@
                     android:padding="15dp"
                     android:layout_margin="10dp"
                     android:id="@+id/bathcardlist"
+                    android:visibility="gone"
                     >
 
                     <LinearLayout

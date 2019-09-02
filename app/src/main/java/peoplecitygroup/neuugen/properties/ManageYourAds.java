@@ -22,10 +22,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
-import android.widget.Switch;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -34,7 +31,6 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -43,6 +39,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import peoplecitygroup.neuugen.Adapters.Ads_Adapter;
 import peoplecitygroup.neuugen.R;
 import peoplecitygroup.neuugen.common_req_files.AD;
 import peoplecitygroup.neuugen.common_req_files.MySingleton;
@@ -58,7 +55,7 @@ public class ManageYourAds extends AppCompatActivity implements View.OnClickList
     ScrollView resultlist;
     MaterialButton postad;
     RecyclerView adslistview;
-    ManageYourAds_Adapter manageYourAds_adapter;
+    Ads_Adapter ads_adapter;
     ArrayList<AD>adsArrayList;
     LinearLayout filtersmanage;
     MaterialButton cancel,apply,showall;
@@ -76,8 +73,8 @@ public class ManageYourAds extends AppCompatActivity implements View.OnClickList
         adsArrayList=new ArrayList<AD>();
         link();
         listener();
-        manageYourAds_adapter=new ManageYourAds_Adapter(this,adsArrayList);
-        adslistview.setAdapter(manageYourAds_adapter);
+        ads_adapter =new Ads_Adapter(this,adsArrayList,"ManageYourAds",ManageYourAds.this,null,null);
+        adslistview.setAdapter(ads_adapter);
         adslistview.setLayoutManager(new LinearLayoutManager(this));
         SharedPreferences sp;
         sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
@@ -117,8 +114,6 @@ public class ManageYourAds extends AppCompatActivity implements View.OnClickList
         });*/
     }
 
-    private void showResult(int position) {
-    }
 
     private void link() {
         noadsfoundlayout=findViewById(R.id.noadsfoundlayout);
@@ -138,7 +133,7 @@ public class ManageYourAds extends AppCompatActivity implements View.OnClickList
         loading.show();
         if(fresh){
             adsArrayList.clear();
-            manageYourAds_adapter.notifyDataSetChanged();
+            ads_adapter.notifyDataSetChanged();
         }
         StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.getOwnAds, new Response.Listener<String>() {
             @Override
@@ -239,12 +234,9 @@ public class ManageYourAds extends AppCompatActivity implements View.OnClickList
             JSONArray results=new JSONArray(response);
             for(int i=0;i<results.length();i++) {
                 JSONObject result = results.getJSONObject(i);
-                adsArrayList.add(new AD(result.getString("uniqueid"), number, result.getString("adtype"), result.getString("houseno"), result.getString("area"), result.getString("city"), result.getString("city_id"), result.getString("landmark"), result.getString("pincode"), result.getString("propertytype"), result.getString("bedrooms"), result.getString("bathrooms"), result.getString("furnishtype"), result.getString("builtuparea"), result.getString("price"), result.getString("constructionstatus"), result.getString("ageofproperty"), result.getString("possessionstatus"), result.getString("length"), result.getString("width"), result.getString("widthoffacingroad"), result.getString("pic1"), result.getString("pic2"), result.getString("pic3"), result.getString("verified"), result.getString("available"), result.getString("created")));
+                adsArrayList.add(new AD(result.getString("uniqueid"), number, result.getString("adtype"), result.getString("houseno"), result.getString("area"), result.getString("city"), result.getString("city_id"), result.getString("landmark"), result.getString("pincode"), result.getString("propertytype"), result.getString("bedrooms"), result.getString("bathrooms"), result.getString("furnishtype"), result.getString("builtuparea"), result.getString("price"), result.getString("constructionstatus"), result.getString("ageofproperty"), result.getString("possessionstatus"), result.getString("length"), result.getString("width"), result.getString("widthoffacingroad"), result.getString("pic1"), result.getString("pic2"), result.getString("pic3"), result.getString("verified"), result.getString("available"), result.getString("created"),null));
             }
-
-            resultlist.setVisibility(View.VISIBLE);
-            noadsfoundlayout.setVisibility(View.GONE);
-            manageYourAds_adapter.notifyDataSetChanged();
+            showListView(adsArrayList);
         }catch(Exception e){
             Log.d("jsonerror",e.toString());
             AlertDialog.Builder builder = new AlertDialog.Builder(ManageYourAds.this);
@@ -262,6 +254,17 @@ public class ManageYourAds extends AppCompatActivity implements View.OnClickList
             Button positiveButton = dialog.getButton(BUTTON_POSITIVE);
             positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
         }
+    }
+
+    public void showListView(ArrayList<AD> adsArray) {
+        adsArrayList=adsArray;
+        resultlist.setVisibility(View.VISIBLE);
+        noadsfoundlayout.setVisibility(View.GONE);
+        if(adsArrayList.size()==0){
+            resultlist.setVisibility(View.GONE);
+            noadsfoundlayout.setVisibility(View.VISIBLE);
+        }
+        ads_adapter.notifyDataSetChanged();
     }
 
     @Override

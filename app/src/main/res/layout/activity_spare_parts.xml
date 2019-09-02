@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/container"
     android:layout_height="match_parent"
     tools:context=".HomeServices.SparePartsActivity"
     android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,10 +28,6 @@
             />
     </LinearLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,17 +44,59 @@
                 android:layout_margin="10dp"
                 android:fontFamily="@font/quicksandbold"
                 />
-
-
-            <ListView
-                    android:background="#FFF"
-                    android:id="@+id/listview"
-                    android:layout_width="fill_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/nopartsfound"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:visibility="gone">
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="visible"
+                    android:padding="20dp"
+                    android:textSize="15dp"
+                    android:text="No Spare Parts are available."/>
+            </LinearLayout>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/sparelist"
+                android:visibility="gone">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:background="#FFF"
+                    android:id="@+id/sparelistview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:drawSelectorOnTop="true"/>
+            </ScrollView>
+        </LinearLayout>
+
 
         </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/backview"
+        android:visibility="visible"
+        android:background="#9E9797"
+        android:alpha="0.4">
+        <ImageView
+            android:id="@+id/expanded_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            />
+    </LinearLayout>
+
+
+</FrameLayout>

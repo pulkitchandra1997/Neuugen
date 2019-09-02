@@ -50,7 +50,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lucknow"
+                    android:text=""
                     android:id="@+id/locationtext"
                     android:padding="5dp"
                     android:textSize="@dimen/headingtext"

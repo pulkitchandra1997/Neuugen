@@ -32,6 +32,10 @@ public class UrlNeuugen {
     public static String checkStatus=URL+"checkStatus.php";
     public static String viewBookings=URL+"viewBookings.php";
     public static String cancelBooking=URL+"cancelBooking.php";
+    public static String viewInterestedAds=URL+"viewInterestedAds.php";
+    public static String cancelInterestedAd=URL+"cancelInterestedAd.php";
+    public static String deleteAd=URL+"deleteAd.php";
+    public static String getSpareparts=URL+"getSpareParts.php";
 
     public static final String csemail="peoplecitygroup@gmail.com";
     public static final String csphone="";
@@ -78,8 +82,10 @@ public class UrlNeuugen {
     public static final String bandsmusiciansid="33";
     public static final String propertiesserviceid="34";
 
-
-
+    private static final String GoogleApiKey="AIzaSyBbVx9oB9B6c41mad-ZZdCvN9zwJD8xbO0";
+    public static String returnKey(){
+        return GoogleApiKey;
+    }
     public static final ArrayList<String> createId() {
         ArrayList<String> idList = new ArrayList<String>();
         for (int i = 1; i < 35; i++)

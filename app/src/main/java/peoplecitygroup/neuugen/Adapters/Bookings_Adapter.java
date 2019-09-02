@@ -1,22 +1,16 @@
-package peoplecitygroup.neuugen;
+package peoplecitygroup.neuugen.Adapters;
 
 import android.app.Activity;
-import android.app.ActivityOptions;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.Html;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,29 +24,27 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.button.MaterialButton;
-import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import peoplecitygroup.neuugen.common_req_files.AD;
+import peoplecitygroup.neuugen.BookingsFrag;
+import peoplecitygroup.neuugen.R;
 import peoplecitygroup.neuugen.common_req_files.Bookings;
 import peoplecitygroup.neuugen.common_req_files.MySingleton;
 import peoplecitygroup.neuugen.common_req_files.UrlNeuugen;
-import peoplecitygroup.neuugen.properties.PropertyDetails;
-import peoplecitygroup.neuugen.properties.SellPlots;
 
 import static android.content.DialogInterface.BUTTON_NEGATIVE;
 import static android.content.DialogInterface.BUTTON_POSITIVE;
-import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
 public class Bookings_Adapter extends RecyclerView.Adapter<Bookings_Adapter.MyViewHolder> {
-     List<Bookings> bookingsList;
+     ArrayList<Bookings> bookingsList,otherlist;
      Activity activity;
     ProgressDialog loading = null;
+    BookingsFrag fragment;
 
     @NonNull
     @Override
@@ -62,7 +54,7 @@ public class Bookings_Adapter extends RecyclerView.Adapter<Bookings_Adapter.MyVi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         final Bookings bookings = bookingsList.get(position);
         holder.servicename.setText(UrlNeuugen.serviceName[Integer.parseInt(bookings.getServiceid())]);
         holder.area.setText(bookings.getArea().trim()+", "+bookings.getCity().trim());
@@ -78,7 +70,7 @@ public class Bookings_Adapter extends RecyclerView.Adapter<Bookings_Adapter.MyVi
             case "3":temp="Completed";break;
         }
         holder.status.setText(temp);
-        if(bookings.getStatus().trim()=="3")
+        if(bookings.getStatus().trim().equalsIgnoreCase("3")||bookings.getStatus().trim().equalsIgnoreCase("2"))
             holder.cancelrequest.setVisibility(View.GONE);
         holder.cancelrequest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,13 +81,13 @@ public class Bookings_Adapter extends RecyclerView.Adapter<Bookings_Adapter.MyVi
                 alertDialog.setButton(BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        cancelRequest(holder.cancelrequest,bookings);
+                        cancelRequest(holder.cancelrequest,bookings,position,holder);
                     }
                 });
                 alertDialog.setButton(BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        activity.finish();
+
                     }
                 });
                 alertDialog.setIcon(R.mipmap.ic_launcher_round);
@@ -109,14 +101,15 @@ public class Bookings_Adapter extends RecyclerView.Adapter<Bookings_Adapter.MyVi
         });
     }
 
-    private void cancelRequest(MaterialButton cancelrequest, final Bookings bookings) {
+    public void cancelRequest(final MaterialButton cancelrequest, final Bookings bookings, final int position, final MyViewHolder holder) {
         //CANCEL BOOKING
         loading.show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.cancelBooking, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                loading.dismiss();
                 if (response.toLowerCase().contains("error")) {
-                    loading.dismiss();
+
 
                     AlertDialog alertDialog = new AlertDialog.Builder(activity).create();
                     alertDialog.setMessage(response);
@@ -128,8 +121,12 @@ public class Bookings_Adapter extends RecyclerView.Adapter<Bookings_Adapter.MyVi
                     positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
 
                 } else {
-                    if(response.toLowerCase().contains("success")){
 
+                    if(response.toLowerCase().trim().contains("success")){
+                        bookingsList.remove(position);
+                        bookings.setStatus("2");
+                        otherlist.add(bookings);
+                        fragment.showListView(bookingsList,otherlist);
                     }
                 }
             }
@@ -225,9 +222,10 @@ public class Bookings_Adapter extends RecyclerView.Adapter<Bookings_Adapter.MyVi
             cancelrequest=(MaterialButton) view.findViewById(R.id.cancelrequest);
         }
     }
-    public Bookings_Adapter(Activity activity, List<Bookings> bookingsList){
-        //this.mContext=mContext;
+    public Bookings_Adapter(Activity activity, ArrayList<Bookings> bookingsList,ArrayList<Bookings> otherlist,BookingsFrag fragment){
+        this.fragment=fragment;
         this.bookingsList=bookingsList;
+        this.otherlist=otherlist;
         this.activity=activity;
     }
 

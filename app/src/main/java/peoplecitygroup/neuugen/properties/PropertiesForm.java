@@ -44,6 +44,7 @@ public class PropertiesForm extends AppCompatActivity implements View.OnClickLis
     String adtype,propertytype;
     ProgressDialog loading = null;
     String results;
+    String number;
     ArrayList<String> propertytypes,city,bedrooms,bathrooms,furnishtype,price,constructionstatus,possessionastatus;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,9 @@ public class PropertiesForm extends AppCompatActivity implements View.OnClickLis
 
         idLink();
         listenerLink();
+        SharedPreferences sp;
+        sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
+        number=sp.getString("mobileno", null);
         loading = new ProgressDialog(PropertiesForm.this,R.style.AppCompatAlertDialogStyle);
         loading.setCancelable(false);
         loading.setMessage("Loading");
@@ -173,7 +177,7 @@ public class PropertiesForm extends AppCompatActivity implements View.OnClickLis
         loading.setMessage("Searching for Ads...");
         loading.show();
         SearchResult searchResult=new SearchResult();
-        searchResult.SearchAd(adtype,propertytypes.toArray(new String[propertytypes.size()]),city.toArray(new String[city.size()]),bedrooms.toArray(new String[bedrooms.size()]),bathrooms.toArray(new String[bathrooms.size()]),furnishtype.toArray(new String[furnishtype.size()]),price.toArray(new String[price.size()]),constructionstatus.toArray(new String[constructionstatus.size()]),possessionastatus.toArray(new String[possessionastatus.size()]),resultshown,verified,available,this, new VolleyCallback() {
+        searchResult.SearchAd(adtype,propertytypes.toArray(new String[propertytypes.size()]),city.toArray(new String[city.size()]),bedrooms.toArray(new String[bedrooms.size()]),bathrooms.toArray(new String[bathrooms.size()]),furnishtype.toArray(new String[furnishtype.size()]),price.toArray(new String[price.size()]),constructionstatus.toArray(new String[constructionstatus.size()]),possessionastatus.toArray(new String[possessionastatus.size()]),resultshown,verified,available,number,this, new VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 Log.d("receivedmsg",result);
@@ -187,7 +191,7 @@ public class PropertiesForm extends AppCompatActivity implements View.OnClickLis
             public void onError(String response) {
                 loading.dismiss();
                 AlertDialog.Builder builder = new AlertDialog.Builder(PropertiesForm.this);
-                if (response.equalsIgnoreCase("error")) {
+                if (response.toLowerCase().trim().contains("error:")) {
                     builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
                     builder.setMessage("Error in server. Try Again")
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {

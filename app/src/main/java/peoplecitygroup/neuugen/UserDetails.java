@@ -2,6 +2,7 @@ package peoplecitygroup.neuugen;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.app.ActivityOptions;
 import android.app.ProgressDialog;
@@ -9,15 +10,18 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -25,14 +29,26 @@ import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.PlaceLikelihood;
+import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest;
+import com.google.android.libraries.places.api.net.FindCurrentPlaceResponse;
+import com.google.android.libraries.places.api.net.PlacesClient;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import peoplecitygroup.neuugen.common_req_files.MySingleton;
 import peoplecitygroup.neuugen.common_req_files.PROFILE;
 import peoplecitygroup.neuugen.common_req_files.UrlNeuugen;
 import peoplecitygroup.neuugen.common_req_files.Validation;
+
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
 public class UserDetails extends AppCompatActivity implements View.OnClickListener {
 
@@ -56,8 +72,8 @@ public class UserDetails extends AppCompatActivity implements View.OnClickListen
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         Intent intent=getIntent();
         number=intent.getStringExtra("number");
-        if (number == null)
-            finish();
+        //if (number == null)
+          //  finish();
         Typeface font = Typeface.createFromAsset(getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
         autodetecticon.setTypeface(font);
     }
@@ -87,7 +103,8 @@ public class UserDetails extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         if(v.getId()==R.id.autodetect)
         {
-
+            loading.show(); 
+            getCurrentLocation();
         }
         if (v.getId()==R.id.submit)
         {
@@ -96,6 +113,52 @@ public class UserDetails extends AppCompatActivity implements View.OnClickListen
             }
         }
 
+    }
+
+    private void getCurrentLocation() {
+
+        Places.initialize(getApplicationContext(), UrlNeuugen.returnKey());
+
+// Create a new Places client instance.
+        PlacesClient placesClient = Places.createClient(this);
+
+
+// Use fields to define the data types to return.
+        List<Place.Field> placeFields = Arrays.asList(Place.Field.ADDRESS_COMPONENTS);
+
+// Use the builder to create a FindCurrentPlaceRequest.
+        FindCurrentPlaceRequest request =
+                FindCurrentPlaceRequest.builder(placeFields).build();
+
+// Call findCurrentPlace and handle the response (first check that the user has granted permission).
+        if (ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            Task<FindCurrentPlaceResponse> placeResponse = placesClient.findCurrentPlace(request);
+            placeResponse.addOnCompleteListener(task -> {
+                loading.dismiss();
+                if (task.isSuccessful()){
+                    FindCurrentPlaceResponse response = task.getResult();
+                    for (PlaceLikelihood placeLikelihood : response.getPlaceLikelihoods()) {
+                        Log.i("placesapi",
+                                placeLikelihood.getPlace().toString());
+                    }
+                } else {
+                    Exception exception = task.getException();
+                    if (exception instanceof ApiException) {
+                        ApiException apiException = (ApiException) exception;
+                        Log.e("placesapi", "Place not found: " + apiException.getStatusCode());
+                    }
+                }
+            });
+        } else {
+            // A local method to request required permissions;
+            // See https://developer.android.com/training/permissions/requesting
+            getLocationPermission();
+        }
+    }
+
+    private void getLocationPermission() {
+        loading.dismiss();
+        Toast.makeText(this, "permission", Toast.LENGTH_SHORT).show();
     }
 
     @Override

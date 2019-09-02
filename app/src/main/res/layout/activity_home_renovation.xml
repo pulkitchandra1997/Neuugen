@@ -293,7 +293,6 @@
                                 android:layout_marginTop="10dp"
                                 android:lineSpacingExtra="5dp"
                                 android:gravity="start"
-                                android:id="@+id/carpentrymsg"
                                 android:visibility="gone"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:textSize="15dp"

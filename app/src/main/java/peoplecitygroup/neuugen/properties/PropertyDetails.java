@@ -190,6 +190,8 @@ public class PropertyDetails extends AppCompatActivity implements View.OnClickLi
         SharedPreferences sp;
         sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
         String number=sp.getString("mobileno", null);
+        Log.d("numberown1",number);
+        Log.d("numberown2",ad.getMobileno());
         if(number.trim().equalsIgnoreCase(ad.getMobileno().trim())){
             contactbtn.setText("EDIT");
             flag=true;

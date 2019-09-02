@@ -185,7 +185,6 @@
                     android:layout_height="wrap_content"
                     android:text="Makeup &amp; Grooming Classes"
                     android:gravity="start"
-                    android:id="@+id/womenpartymakeuptext"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="@dimen/headingtext"
                     android:fontFamily="@font/quicksandbold"

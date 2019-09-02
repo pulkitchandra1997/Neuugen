@@ -1,9 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewInterestedAds">
+    tools:context=".ViewInterestedAds"
+    android:orientation="vertical">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="horizontal">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Interested Ads"
+        android:padding="10dp"
+        android:textSize="@dimen/normaheading"
+        android:fontFamily="@font/quicksandbold"
+        android:textColor="@color/colorAccent"
+        />
+</LinearLayout>
+<androidx.appcompat.widget.AppCompatTextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Ads Interested by you"
+    android:gravity="center"
+    android:padding="10dp"
+    android:textSize="@dimen/headingtext"
+    android:fontFamily="@font/quicksandbold"
+    android:textColor="@color/PrimaryText"
+    />
+
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/noadsfoundlayoutia"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:visibility="gone">
+            <ImageView
+                android:layout_width="400px"
+                android:layout_height="400px"
+                android:src="@drawable/noadsposted" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:textSize="15dp"
+                android:text="No Ads has been interested."/>
+        </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/resultlistia"
+            android:visibility="gone">
+            <androidx.recyclerview.widget.RecyclerView
+                android:background="#FFF"
+                android:id="@+id/managelistviewia"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawSelectorOnTop="true"/>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>
+</LinearLayout>

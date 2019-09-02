@@ -9,21 +9,29 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_gravity="center"
-        app:cardCornerRadius="6dp"
-        app:cardElevation="6dp"
+        android:layout_gravity="center_horizontal"
+
         android:backgroundTint="#fff"
-        android:id="@+id/customcard"
+        android:id="@+id/customcardspare"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardElevation="6dp"
+        card_view:cardCornerRadius="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="3dp"
         >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
+                android:background="#969393"
+                android:layout_gravity="center_horizontal"
                 android:id="@+id/placeimage"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

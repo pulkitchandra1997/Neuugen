@@ -243,9 +243,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="6dp"
-            android:id="@+id/shareapp"
-            >
+            android:layout_margin="6dp">
 
             <ImageView
                 android:layout_width="26dp"
