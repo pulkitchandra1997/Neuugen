@@ -24,27 +24,25 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.appyvet.materialrangebar.RangeBar;
 import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
-
-import peoplecitygroup.neuugen.R;
-import peoplecitygroup.neuugen.common_req_files.SearchResult;
 import peoplecitygroup.neuugen.common_req_files.VolleyCallback;
 
 public class FilterManage extends AppCompatActivity implements View.OnClickListener {
     LinearLayout filterlayoutmanagelist,filtermanage;
     RadioGroup propertytagslist;
-    String number;
+    String number,MinPrice,MaxPrice;
     ProgressDialog loading = null;
     String results;
     RadioButton buybtnlist,rentbtnlist;
     CardView furnishtypeform,propertytypecardlist,constatuscardlist,posesnstatuscardlist,pricecardlist,bedcardlist,bathcardlist;
     Spinner renttypeFIlist,buytypeFIlist;
     CheckBox fullfurnishFIlist,semifurnishFIlist,unfurnishFIlist,readytomoveFIlist,underconFIlist,immediateFIlist,infutureFIlist;
-    CrystalRangeSeekbar pricerangeSeekbar,bedrangeSeekbar,bathrangeSeekbar;
+    CrystalRangeSeekbar bedrangeSeekbar,bathrangeSeekbar;
     TextView minprice,maxprice,minbed,maxbed,minbath,maxbath;
     SwitchCompat verifiedtogglelist,availabletogglelist;
     MaterialButton cancelbtnmlist,applybtnmlist,showallbtnmlist;
@@ -52,7 +50,8 @@ public class FilterManage extends AppCompatActivity implements View.OnClickListe
     ArrayList<String> propertytypes=new ArrayList<String>(),city=new ArrayList<String>(),bedrooms=new ArrayList<String>(),bathrooms=new ArrayList<String>(),furnishtype=new ArrayList<String>(),price=new ArrayList<String>(),constructionstatus=new ArrayList<String>(),possessionastatus=new ArrayList<String>();
     String adtype=null,propertytype=null,verified="1",available="1";
     Boolean flag_bath_bed=false;
-
+    Intent resultIntent = null;
+    RangeBar pricerangeSeekbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,9 +63,29 @@ public class FilterManage extends AppCompatActivity implements View.OnClickListe
         loading.setCancelable(false);
         loading.setMessage("Loading");
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        resultIntent = new Intent(FilterManage.this,PropertyList.class);
         idlink();
         listenerlink();
         applybtnmlist.setEnabled(false);
+
+        Intent intent=getIntent();
+        if(intent==null){
+            finish();
+        }
+        MinPrice=intent.getStringExtra("minprice");
+        MaxPrice=intent.getStringExtra("maxprice");
+
+       /* pricerangeSeekbar.setMinStartValue(Integer.parseInt(MinPrice));
+        pricerangeSeekbar.setMaxStartValue(Integer.parseInt(MaxPrice));
+
+        pricerangeSeekbar.setLeft(Integer.parseInt(MinPrice));
+        pricerangeSeekbar.setRight(Integer.parseInt(MaxPrice));
+
+        pricerangeSeekbar.setMinValue(Integer.parseInt(MinPrice));
+        pricerangeSeekbar.setMaxValue(Integer.parseInt(MaxPrice));*/
+
+
+
     }
     public void idlink()
     {
@@ -144,7 +163,7 @@ public class FilterManage extends AppCompatActivity implements View.OnClickListe
                 if(position!=0) {
                     if (position < 5) {
                         furnishtypeform.setVisibility(View.VISIBLE);
-                       furnishTypeDefault(false);
+                        furnishTypeDefault(false);
 
                         constatuscardlist.setVisibility(View.GONE);
                         constructionDefault(false);
@@ -257,7 +276,7 @@ public class FilterManage extends AppCompatActivity implements View.OnClickListe
     }
 
     private void sendDataBack(boolean b) {
-        Intent resultIntent = new Intent(FilterManage.this,PropertyList.class);
+
         if(b){
             if(rentbtnlist.isChecked()||buybtnlist.isChecked()&&(rentpropertytype.getSelectedItemPosition()!=0||buypropertytype.getSelectedItemPosition()!=0)) {
                 if (rentbtnlist.isChecked()) {
@@ -328,9 +347,7 @@ public class FilterManage extends AppCompatActivity implements View.OnClickListe
         resultIntent.putExtra("verified","1");
         resultIntent.putExtra("available","1");*/
         requestnewData();
-        resultIntent.putExtra("result",results);
-        setResult(RESULT_OK,resultIntent);
-        finish();
+
     }
 
     private void fillArray() {
@@ -347,8 +364,8 @@ public class FilterManage extends AppCompatActivity implements View.OnClickListe
         SharedPreferences sp;
         sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
         city.add(sp.getString("city",null));
-        price.add(pricerangeSeekbar.getSelectedMinValue().toString());
-        price.add(pricerangeSeekbar.getSelectedMaxValue().toString());
+        /*price.add(pricerangeSeekbar.getSelectedMinValue().toString());
+        price.add(pricerangeSeekbar.getSelectedMaxValue().toString());*/
         if(fullfurnishFIlist.isChecked())
             furnishtype.add("0");
         if(semifurnishFIlist.isChecked())
@@ -364,6 +381,7 @@ public class FilterManage extends AppCompatActivity implements View.OnClickListe
         if(infutureFIlist.isChecked())
             possessionastatus.add("1");
         if(flag_bath_bed){
+
             bedrooms.add(bedrangeSeekbar.getSelectedMinValue().toString());
             bedrooms.add(bedrangeSeekbar.getSelectedMaxValue().toString());
             bathrooms.add(bathrangeSeekbar.getSelectedMinValue().toString());
@@ -402,7 +420,9 @@ public class FilterManage extends AppCompatActivity implements View.OnClickListe
                 Log.i("CheckResult",result);
                 results=result;
                 loading.dismiss();
-
+                resultIntent.putExtra("result",results);
+                setResult(RESULT_OK,resultIntent);
+                finish();
             }
 
             @Override
@@ -416,6 +436,9 @@ public class FilterManage extends AppCompatActivity implements View.OnClickListe
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     //finish
+                                    //resultIntent.putExtra("result",results);
+                                    setResult(RESULT_CANCELED,resultIntent);
+                                    finish();
                                 }
                             })
                             .setIcon(R.mipmap.ic_launcher_round);

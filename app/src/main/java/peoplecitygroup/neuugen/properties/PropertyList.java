@@ -43,7 +43,7 @@ public class PropertyList extends AppCompatActivity implements View.OnClickListe
     Intent intent;
     String adtype,results;
     ProgressDialog loading = null;
-    String verified,available;
+    String verified,available,minprice,maxprice;
     ArrayList<String> propertytypes,city,bedrooms,bathrooms,furnishtype,price,constructionstatus,possessionastatus;
     private Ads_Adapter Ad_Adapter;
     ArrayList<AD>adsArrayList;
@@ -99,8 +99,26 @@ public class PropertyList extends AppCompatActivity implements View.OnClickListe
         managelistviewlist=findViewById(R.id.managelistviewlist);
     }
     private void showResult(String results) {
+
+            String resarr[] = results.split("##--##--##");
+            minprice=resarr[0];
+            maxprice=resarr[2];
+            results=resarr[1];
+            Log.d("resultdata",results);
+            if(results.trim().equalsIgnoreCase("No Result Found.")){
+                noadsfoundlayout.setVisibility(View.VISIBLE);
+                resultlistlist.setVisibility(View.GONE);
+            }
+            else {
+                noadsfoundlayout.setVisibility(View.GONE);
+                resultlistlist.setVisibility(View.VISIBLE);
+                displayResult(results);
+            }
+    }
+
+    private void displayResult(String res) {
         try {
-            JSONArray resultarray=new JSONArray(results.toString());
+            JSONArray resultarray=new JSONArray(res);
             for(int i=0;i<resultarray.length();i++) {
                 JSONObject result = resultarray.getJSONObject(i);
                 Log.d("checkdata",result.toString());
@@ -130,7 +148,6 @@ public class PropertyList extends AppCompatActivity implements View.OnClickListe
     }
 
 
-
     public void listenerlink(){
         filtersmanagelist.setOnClickListener(this);
     }
@@ -150,6 +167,8 @@ public class PropertyList extends AppCompatActivity implements View.OnClickListe
             intent.putExtra("possessionastatus",possessionastatus);
             intent.putExtra("verified","1");
             intent.putExtra("available","1");
+            intent.putExtra("minprice",minprice);
+            intent.putExtra("maxprice",maxprice);
             if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
                 ActivityOptions options = ActivityOptions.makeCustomAnimation(PropertyList.this, R.anim.fade_in, R.anim.fade_out);
                 startActivityForResult(intent,101, options.toBundle());
@@ -166,7 +185,10 @@ public class PropertyList extends AppCompatActivity implements View.OnClickListe
             Log.i("Check","inhere1");
             if (resultCode == RESULT_OK) {
                 Log.i("Check","inhere2");
-                adtype = intent.getStringExtra("adtype");
+                results = intent.getStringExtra("result");
+                adsArrayList.clear();
+                showResult(results);
+                /*adtype = intent.getStringExtra("adtype");
                 propertytypes = intent.getStringArrayListExtra("propertytype");
                 city = intent.getStringArrayListExtra("city");
                 bedrooms = intent.getStringArrayListExtra("bedrooms");
@@ -176,8 +198,8 @@ public class PropertyList extends AppCompatActivity implements View.OnClickListe
                 constructionstatus = intent.getStringArrayListExtra("constructionstatus");
                 possessionastatus = intent.getStringArrayListExtra("possessionastatus");
                 verified = intent.getStringExtra("verified");
-                available = intent.getStringExtra("available");
-                requestnewData();
+                available = intent.getStringExtra("available");*/
+                //requestnewData();
                 //Toast.makeText(this, adtype+propertytypes+city+bedrooms+bathrooms+furnishtype+price+constructionstatus+possessionastatus+verified+available, Toast.LENGTH_LONG).show();
             }
         }

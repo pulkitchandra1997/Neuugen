@@ -351,8 +351,26 @@
                             android:layout_marginBottom="5dp"
                             android:textSize="@dimen/headingtext" />
 
-
-                        <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
+                        <com.appyvet.materialrangebar.RangeBar xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/pricerangeSeekbar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="40dp"
+                            android:layout_marginEnd="40dp"
+                            app:mrb_barWeight="2dp"
+                            app:mrb_pinColor="#6c3f6a"
+                            app:mrb_pinMaxFont="15sp"
+                            app:mrb_pinMinFont="12sp"
+                            app:mrb_pinRadius="14dp"
+                            app:mrb_rangeBar="true"
+                            app:mrb_rangeBarPaddingBottom="30dp"
+                            app:mrb_rangeBar_rounded="true"
+                            app:mrb_rightSelectorColor="#1E88E5"
+                            app:mrb_selectorBoundarySize="2dp"
+                            app:mrb_selectorSize="10dp"
+                            app:mrb_temporaryPins="true"
+                            />
+                        <!--<com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
                             android:id="@+id/pricerangeSeekbar"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -367,7 +385,7 @@
                             app:max_value="100"
                             app:gap="1"
                             app:data_type="_integer"
-                            />
+                            />-->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
