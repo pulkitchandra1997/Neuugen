@@ -30,6 +30,9 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+
+import peoplecitygroup.neuugen.R;
+import peoplecitygroup.neuugen.common_req_files.SearchResult;
 import peoplecitygroup.neuugen.common_req_files.VolleyCallback;
 
 public class FilterManage extends AppCompatActivity implements View.OnClickListener {

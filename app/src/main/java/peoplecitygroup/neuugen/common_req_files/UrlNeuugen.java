@@ -46,6 +46,10 @@ public class UrlNeuugen {
     public static final String protectionprogram=URL+"protection.php";
 
 
+    public static final String fill_EditProfile=URL+"fillEditProfile.php";
+    public static final String fill_Customercare=URL+"fillCustomercare.php";
+
+
 
     public static final String salonServiceId="1";
     public static final String mensalonServiceId="2";
