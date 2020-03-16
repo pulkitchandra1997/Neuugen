@@ -23,13 +23,17 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.appyvet.materialrangebar.RangeBar;
+import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+
+import peoplecitygroup.neuugen.R;
+import peoplecitygroup.neuugen.common_req_files.SearchResult;
 import peoplecitygroup.neuugen.common_req_files.VolleyCallback;
 
 public class FilterManage extends AppCompatActivity implements View.OnClickListener {
@@ -49,9 +53,10 @@ public class FilterManage extends AppCompatActivity implements View.OnClickListe
     AppCompatSpinner buypropertytype,rentpropertytype;
     ArrayList<String> propertytypes=new ArrayList<String>(),city=new ArrayList<String>(),bedrooms=new ArrayList<String>(),bathrooms=new ArrayList<String>(),furnishtype=new ArrayList<String>(),price=new ArrayList<String>(),constructionstatus=new ArrayList<String>(),possessionastatus=new ArrayList<String>();
     String adtype=null,propertytype=null,verified="1",available="1";
-    Boolean flag_bath_bed=false;
+    Boolean flag_bath_bed=false,flag_price=false;
     Intent resultIntent = null;
-    RangeBar pricerangeSeekbar;
+
+    CrystalRangeSeekbar pricerangeSeekbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,20 +77,45 @@ public class FilterManage extends AppCompatActivity implements View.OnClickListe
         if(intent==null){
             finish();
         }
+
+
+        bedrangeSeekbar.setMinValue(0).setMaxValue(10).apply();
+        bedrangeSeekbar.setMinStartValue(0).setMaxStartValue(10).apply();
+        bathrangeSeekbar.setMinValue(0).setMaxValue(10).apply();
+        bathrangeSeekbar.setMinStartValue(0).setMaxStartValue(10).apply();
+
+        bedrangeSeekbar.setFixGap(0);
+        bathrangeSeekbar.setFixGap(0);
+
         MinPrice=intent.getStringExtra("minprice");
         MaxPrice=intent.getStringExtra("maxprice");
 
-       /* pricerangeSeekbar.setMinStartValue(Integer.parseInt(MinPrice));
-        pricerangeSeekbar.setMaxStartValue(Integer.parseInt(MaxPrice));
+        pricerangeSeekbar.setMinValue(Integer.parseInt(MinPrice)).setMaxValue(Integer.parseInt(MaxPrice)).apply();
 
-        pricerangeSeekbar.setLeft(Integer.parseInt(MinPrice));
-        pricerangeSeekbar.setRight(Integer.parseInt(MaxPrice));
+        pricerangeSeekbar.setMinStartValue(Integer.parseInt(MinPrice)).setMaxStartValue(Integer.parseInt(MaxPrice)).apply();
 
-        pricerangeSeekbar.setMinValue(Integer.parseInt(MinPrice));
-        pricerangeSeekbar.setMaxValue(Integer.parseInt(MaxPrice));*/
-
-
-
+        pricerangeSeekbar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
+            @Override
+            public void valueChanged(Number minValue, Number maxValue) {
+                minprice.setText(String.valueOf(minValue));
+                maxprice.setText(String.valueOf(maxValue));
+                flag_price = true;
+            }
+        });
+        bedrangeSeekbar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
+            @Override
+            public void valueChanged(Number minValue, Number maxValue) {
+                minbed.setText(String.valueOf(minValue));
+                maxbed.setText(String.valueOf(maxValue));
+            }
+        });
+        bathrangeSeekbar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
+            @Override
+            public void valueChanged(Number minValue, Number maxValue) {
+                minbath.setText(String.valueOf(minValue));
+                maxbath.setText(String.valueOf(maxValue));
+            }
+        });
     }
     public void idlink()
     {
@@ -112,12 +142,12 @@ public class FilterManage extends AppCompatActivity implements View.OnClickListe
         pricerangeSeekbar=findViewById(R.id.pricerangeSeekbar);
         bathrangeSeekbar=findViewById(R.id.bathrangeSeekbar);
         bedrangeSeekbar=findViewById(R.id.bedrangeSeekbar);
-        minprice=findViewById(R.id.minprice);
-        maxprice=findViewById(R.id.maxprice);
-        minbath=findViewById(R.id.minbath);
-        maxbed=findViewById(R.id.maxbed);
-        minbed=findViewById(R.id.minbed);
-        maxbath=findViewById(R.id.maxbath);
+        minprice=findViewById(R.id.pricemintext);
+        maxprice=findViewById(R.id.pricemaxtext);
+        minbath=findViewById(R.id.bathmintext);
+        maxbed=findViewById(R.id.bedmaxtext);
+        minbed=findViewById(R.id.bedmintext);
+        maxbath=findViewById(R.id.bathmaxtext);
         verifiedtogglelist=findViewById(R.id.verifiedtogglelist);
         availabletogglelist=findViewById(R.id.availabletogglelist);
         applybtnmlist=findViewById(R.id.applybtnmlist);
@@ -364,8 +394,10 @@ public class FilterManage extends AppCompatActivity implements View.OnClickListe
         SharedPreferences sp;
         sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
         city.add(sp.getString("city",null));
-        /*price.add(pricerangeSeekbar.getSelectedMinValue().toString());
-        price.add(pricerangeSeekbar.getSelectedMaxValue().toString());*/
+        if(flag_price) {
+            price.add(pricerangeSeekbar.getSelectedMinValue().toString());
+            price.add(pricerangeSeekbar.getSelectedMaxValue().toString());
+        }
         if(fullfurnishFIlist.isChecked())
             furnishtype.add("0");
         if(semifurnishFIlist.isChecked())
@@ -381,11 +413,12 @@ public class FilterManage extends AppCompatActivity implements View.OnClickListe
         if(infutureFIlist.isChecked())
             possessionastatus.add("1");
         if(flag_bath_bed){
-
-            bedrooms.add(bedrangeSeekbar.getSelectedMinValue().toString());
-            bedrooms.add(bedrangeSeekbar.getSelectedMaxValue().toString());
-            bathrooms.add(bathrangeSeekbar.getSelectedMinValue().toString());
-            bathrooms.add(bathrangeSeekbar.getSelectedMaxValue().toString());
+            for(int i = bedrangeSeekbar.getSelectedMinValue().intValue() ; i<=bedrangeSeekbar.getSelectedMaxValue().intValue() ; i++ ){
+                bedrooms.add(String.valueOf(i));
+            }
+            for(int i = bathrangeSeekbar.getSelectedMinValue().intValue() ; i<=bathrangeSeekbar.getSelectedMaxValue().intValue() ; i++ ){
+                bathrooms.add(String.valueOf(i));
+            }
         }
     }
 

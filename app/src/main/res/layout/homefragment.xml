@@ -400,7 +400,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:tooltipText="Post Your Advertisement"
-        android:layout_above="@+id/navigation"
         app:fabCustomSize="60dp"
         app:maxImageSize="40dp"
         app:rippleColor="@color/colorPrimary"
