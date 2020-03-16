@@ -4,27 +4,53 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
 
+import android.app.ActivityOptions;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.Html;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.RadioGroup;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
+import org.json.JSONObject;
+
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
+import peoplecitygroup.neuugen.common_req_files.MySingleton;
+import peoplecitygroup.neuugen.common_req_files.UrlNeuugen;
 import peoplecitygroup.neuugen.common_req_files.Validation;
+import peoplecitygroup.neuugen.properties.RentHouses;
+
+import static android.content.DialogInterface.BUTTON_POSITIVE;
+import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 
 public class EditProfile extends AppCompatActivity implements View.OnClickListener {
 
@@ -36,8 +62,11 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
     RadioGroup gender;
     AppCompatRadioButton male,female;
 
+    ProgressDialog loading = null;
     SharedPreferences sp;
+    JSONObject jsonObject= new JSONObject();
 
+    String uniqueid=null;
     SharedPreferences.Editor se;
 
     @Override
@@ -48,6 +77,10 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         idLink();
         listenerLink();
         hideSoftKeyboard();
+        loading = new ProgressDialog(EditProfile.this,R.style.AppCompatAlertDialogStyle);
+        loading.setCancelable(false);
+        loading.setMessage("Loading");
+        loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
         sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
         se=sp.edit();
@@ -207,7 +240,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                 }
             }else
             {
-
+                toserver();
             }
 
 
@@ -243,5 +276,170 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
             }
 
 
+    }
+    private boolean createJsonObject() {
+        SharedPreferences sp;
+        sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
+        if(sp!=null) {
+            try {
+                jsonObject.put("mobileno",sp.getString("mobileno",null));
+                jsonObject.put("email",emailtext);
+                jsonObject.put("name",nametext);
+                jsonObject.put("address",addresstext);
+                jsonObject.put("city",citytext);
+                jsonObject.put("pincode",pincodetext);
+                jsonObject.put("state",statetext);
+                jsonObject.put("dob",dobtext);
+                jsonObject.put("gender",gendertext);
+                return true;
+            } catch (Exception e) {
+                Log.i("errorrent",e.getMessage());
+                return false;
+
+            }
+        }
+        return false;
+    }
+
+    private void toSharedPreferences() {
+        SharedPreferences sp;
+        SharedPreferences.Editor se;
+        sp=getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
+        se=sp.edit();
+        se.putString("name", nametext);
+        se.putString("email", emailtext);
+        se.putString("city", citytext);
+        se.putString("address", addresstext);
+        se.putString("state", statetext);
+        se.putString("pincode", pincodetext);
+        se.putString("gender", gendertext);
+        se.putString("dob", dobtext);
+        se.commit();
+    }
+
+    public void toserver() {
+        loading.show();
+        if (createJsonObject()) {
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlNeuugen.fill_EditProfile, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    if (response.toLowerCase().contains("error")) {
+                        loading.dismiss();
+
+                        AlertDialog alertDialog = new AlertDialog.Builder(EditProfile.this).create();
+                        alertDialog.setMessage(response);
+                        alertDialog.setButton(BUTTON_POSITIVE,"Ok", (DialogInterface.OnClickListener) null);
+                        alertDialog.setIcon(R.mipmap.ic_launcher_round);
+                        alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                        alertDialog.show();
+                        Button positiveButton = alertDialog.getButton(BUTTON_POSITIVE);
+                        positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+
+                    } else {
+                        if(response.toLowerCase().contains("success")){
+                            uniqueid=response.substring(7);
+                            loading.dismiss();
+                            toSharedPreferences();
+                            AlertDialog alertDialog = new AlertDialog.Builder(EditProfile.this).create();
+                            alertDialog.setMessage(Html.fromHtml("<b>Your profile has been updated successfully.</b>"));
+                            alertDialog.setIcon(R.mipmap.ic_launcher_round);
+                            alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>NeuuGen</font>"));
+                            alertDialog.show();
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent intent = new Intent(EditProfile.this, UserMainActivity.class);
+                                    if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                                        ActivityOptions options = ActivityOptions.makeCustomAnimation(EditProfile.this, R.anim.fade_in, R.anim.fade_out);
+                                        startActivity(intent, options.toBundle());
+                                    } else {
+                                        startActivity(intent);
+                                    }
+                                    finish();
+                                }
+                            },2000);
+                        }
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    loading.dismiss();
+                    boolean haveConnectedWifi = false;
+                    boolean haveConnectedMobile = false;
+                    ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                    NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+                    for (NetworkInfo ni : netInfo) {
+                        if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+                            if (ni.isConnected())
+                                haveConnectedWifi = true;
+                        if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+                            if (ni.isConnected())
+                                haveConnectedMobile = true;
+                    }
+                    if (!haveConnectedWifi && !haveConnectedMobile) {
+                        AlertDialog alertDialog = new AlertDialog.Builder(EditProfile.this).create();
+                        alertDialog.setMessage("No Internet Connection");
+                        alertDialog.setIcon(R.mipmap.ic_launcher_round);
+                        alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                        alertDialog.show();
+                    } else {
+                        AlertDialog alertDialog = new AlertDialog.Builder(EditProfile.this).create();
+                        alertDialog.setMessage(error.toString());
+                        alertDialog.setIcon(R.mipmap.ic_launcher_round);
+                        alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                        alertDialog.show();
+                    }
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<>();
+                    Log.i("dataflag",jsonObject.toString());
+                    params.put("data", jsonObject.toString());
+                    return params;
+                }
+            };
+            stringRequest.setRetryPolicy(new RetryPolicy() {
+                @Override
+                public int getCurrentTimeout() {
+                    return 50000;
+                }
+                @Override
+                public int getCurrentRetryCount() {
+                    return 50000;
+                }
+                @Override
+                public void retry(VolleyError error) throws VolleyError {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(EditProfile.this);
+                    builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                    builder.setMessage("Connection")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                }
+                            })
+                            .setIcon(R.mipmap.ic_launcher_round);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    Button positiveButton = dialog.getButton(BUTTON_POSITIVE);
+                    positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+                }
+            });
+            MySingleton.getInstance(EditProfile.this).addToRequestQueue(stringRequest);
+        }
+        else{
+            AlertDialog.Builder builder = new AlertDialog.Builder(EditProfile.this);
+
+            builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+            builder.setMessage("Error in connection.")
+                    .setPositiveButton("OK", null)
+                    .setIcon(R.mipmap.ic_launcher_round);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            Button positiveButton = dialog.getButton(BUTTON_POSITIVE);
+            positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+        }
     }
 }

@@ -69,7 +69,7 @@
                         android:layout_height="wrap_content"
                         android:text="Area"
                         android:scrollbars="horizontal"
-                        android:gravity="start"
+                        android:gravity="end"
                         android:id="@+id/areabooking"
                         android:textColor="@color/PrimaryText"
                         android:textSize="@dimen/normaheading"
