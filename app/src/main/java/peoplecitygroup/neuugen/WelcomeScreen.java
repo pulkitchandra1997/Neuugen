@@ -36,7 +36,6 @@ import peoplecitygroup.neuugen.common_req_files.PROFILE;
 import peoplecitygroup.neuugen.common_req_files.UrlNeuugen;
 
 import static android.Manifest.permission.ACCESS_NETWORK_STATE;
-import static android.Manifest.permission.CALL_PHONE;
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.GET_ACCOUNTS;
 import static android.Manifest.permission.INTERNET;
@@ -44,7 +43,6 @@ import static android.Manifest.permission.READ_CONTACTS;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.READ_PHONE_NUMBERS;
 import static android.Manifest.permission.READ_PHONE_STATE;
-import static android.Manifest.permission.READ_SMS;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class WelcomeScreen extends AppCompatActivity {
@@ -309,16 +307,14 @@ public class WelcomeScreen extends AppCompatActivity {
     private void checkPermission() {
         int result1 = ContextCompat.checkSelfPermission(getApplicationContext(), CAMERA);
         int result2 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_EXTERNAL_STORAGE);
-        int result3 = ContextCompat.checkSelfPermission(getApplicationContext(), CALL_PHONE);
         int result4 = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
         int result5 = ContextCompat.checkSelfPermission(getApplicationContext(), ACCESS_NETWORK_STATE);
         int result6 = ContextCompat.checkSelfPermission(getApplicationContext(), INTERNET);
         int result7 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_CONTACTS);
         int result8 = ContextCompat.checkSelfPermission(getApplicationContext(), GET_ACCOUNTS);
-        int result9 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_SMS);
         int result10=ContextCompat.checkSelfPermission(getApplicationContext(), READ_PHONE_STATE);
         int result11=ContextCompat.checkSelfPermission(getApplicationContext(), READ_PHONE_NUMBERS);
-        if (!(result1 == PackageManager.PERMISSION_GRANTED && result2 == PackageManager.PERMISSION_GRANTED && result3 == PackageManager.PERMISSION_GRANTED && result4 == PackageManager.PERMISSION_GRANTED && result5 == PackageManager.PERMISSION_GRANTED && result6 == PackageManager.PERMISSION_GRANTED && result7 == PackageManager.PERMISSION_GRANTED && result8 == PackageManager.PERMISSION_GRANTED && result9 == PackageManager.PERMISSION_GRANTED && result10 == PackageManager.PERMISSION_GRANTED && result11 == PackageManager.PERMISSION_GRANTED)){
+        if (!(result1 == PackageManager.PERMISSION_GRANTED && result2 == PackageManager.PERMISSION_GRANTED && result4 == PackageManager.PERMISSION_GRANTED && result5 == PackageManager.PERMISSION_GRANTED && result6 == PackageManager.PERMISSION_GRANTED && result7 == PackageManager.PERMISSION_GRANTED && result8 == PackageManager.PERMISSION_GRANTED && result10 == PackageManager.PERMISSION_GRANTED && result11 == PackageManager.PERMISSION_GRANTED)){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
             builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));

@@ -3,40 +3,35 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.telephony.SmsMessage;
 
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import com.google.android.gms.auth.api.phone.SmsRetriever;
+import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.common.api.Status;
 
-public class MySMSBroadCastReceiver extends BroadcastReceiver
-{
+/**
+ * BroadcastReceiver to wait for SMS messages. This can be registered either
+ * in the AndroidManifest or at runtime.  Should filter Intents on
+ * SmsRetriever.SMS_RETRIEVED_ACTION.
+ */
+public class MySMSBroadCastReceiver extends BroadcastReceiver {
 
     @Override
-    public void onReceive(Context context, Intent intent)
-    {
-        // Get Bundle object contained in the SMS intent passed in
-        Bundle bundle = intent.getExtras();
-        SmsMessage[] smsm = null;
-        String sms_str ="";
+    public void onReceive(Context context, Intent intent) {
+        if (SmsRetriever.SMS_RETRIEVED_ACTION.equals(intent.getAction())) {
+            Bundle extras = intent.getExtras();
+            Status status = (Status) extras.get(SmsRetriever.EXTRA_STATUS);
 
-        if (bundle != null)
-        {
-            // Get the SMS message
-            Object[] pdus = (Object[]) bundle.get("pdus");
-            smsm = new SmsMessage[pdus.length];
-            for (int i=0; i<smsm.length; i++){
-                smsm[i] = SmsMessage.createFromPdu((byte[])pdus[i]);
-
-                sms_str += "\r\nMessage: ";
-                sms_str += smsm[i].getMessageBody().toString();
-                sms_str+= "\r\n";
-
-                String Sender = smsm[i].getOriginatingAddress();
-                //Check here sender is yours
-                Intent smsIntent = new Intent("otp");
-                smsIntent.putExtra("message",sms_str);
-
-                LocalBroadcastManager.getInstance(context).sendBroadcast(smsIntent);
-
+            switch(status.getStatusCode()) {
+                case CommonStatusCodes.SUCCESS:
+                    // Get SMS message contents
+                    String message = (String) extras.get(SmsRetriever.EXTRA_SMS_MESSAGE);
+                    // Extract one-time code from the message and complete verification
+                    // by sending the code back to your server.
+                    break;
+                case CommonStatusCodes.TIMEOUT:
+                    // Waiting for SMS timed out (5 minutes)
+                    // Handle the error ...
+                    break;
             }
         }
     }

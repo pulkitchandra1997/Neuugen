@@ -2,8 +2,6 @@ package peoplecitygroup.neuugen;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.app.ActivityOptions;
@@ -14,11 +12,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
@@ -50,9 +46,6 @@ import peoplecitygroup.neuugen.common_req_files.PROFILE;
 import peoplecitygroup.neuugen.common_req_files.SendMsg;
 import peoplecitygroup.neuugen.common_req_files.UrlNeuugen;
 import peoplecitygroup.neuugen.common_req_files.VolleyCallback;
-
-import static android.Manifest.permission.READ_SMS;
-import static android.Manifest.permission.RECEIVE_SMS;
 
 public class OtpInputActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -98,7 +91,7 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
                         nextActivity();
                     else{
                         Toast.makeText(OtpInputActivity.this, "Incorrect OTP", Toast.LENGTH_SHORT).show();
-                }
+                    }
                 }
             }
 
@@ -128,7 +121,6 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
 
                     Snackbar.make(findViewById(R.id.parentview), "OTP sent", Snackbar.LENGTH_LONG)
                             .show();
-                    checkPermission();
                     startTimer();
                     Toast.makeText(OtpInputActivity.this, "DEMO:"+String.valueOf(otptext), Toast.LENGTH_SHORT).show();
                 }
@@ -160,47 +152,6 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
-    private void checkPermission() {
-        int result1 = ContextCompat.checkSelfPermission(getApplicationContext(), RECEIVE_SMS);
-        int result2 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_SMS);
-        if (!(result1 == PackageManager.PERMISSION_GRANTED && result2 == PackageManager.PERMISSION_GRANTED)) {
-            ActivityCompat.requestPermissions(this, new String[]{RECEIVE_SMS,READ_SMS}, PERMISSION_REQUEST_CODE);
-        }
-    }
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case PERMISSION_REQUEST_CODE:
-                if (grantResults.length > 0) {
-                    boolean readSms=grantResults[1]==PackageManager.PERMISSION_GRANTED;
-                    boolean receiveSms=grantResults[0]==PackageManager.PERMISSION_GRANTED;
-                    if (!(receiveSms&&readSms))
-                    {
-                        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-                        alertDialog.setMessage("Permission Denied");
-                        alertDialog.setIcon(R.mipmap.ic_launcher_round);
-                        alertDialog.setTitle(Html.fromHtml("<font color='#FF0000'>NeuuGen</font>"));
-                        alertDialog.show();
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            if (shouldShowRequestPermissionRationale(RECEIVE_SMS)) {
-                                showMessageOKCancel("You need to allow access to all the permissions",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                                    requestPermissions(new String[]{RECEIVE_SMS,READ_SMS},
-                                                            PERMISSION_REQUEST_CODE);
-                                                }
-                                            }
-                                        });
-                                return;
-                            }
-                        }
-                    }
-                }
-                break;
-        }
-    }
     private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
         new AlertDialog.Builder(OtpInputActivity.this)
                 .setMessage(message)

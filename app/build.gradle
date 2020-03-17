@@ -51,7 +51,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-places:17.0.0'
     //implementation 'com.google.android.libraries.places:places-compat:1.1.0'
 
-
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    implementation 'com.google.android.gms:play-services-auth-api-phone:17.4.0'
 
 }
 
