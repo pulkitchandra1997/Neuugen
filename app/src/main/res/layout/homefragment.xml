@@ -94,7 +94,7 @@
                     android:theme="@style/Base.Widget.AppCompat.ImageButton"
                     android:src="@drawable/homeimage1"
                     android:fitsSystemWindows="true"
-                    android:scaleType="centerCrop"
+                    android:scaleType="center"
                     />
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -105,7 +105,7 @@
                     android:theme="@style/Base.Widget.AppCompat.ImageButton"
                     android:src="@drawable/homeimage2"
                     android:fitsSystemWindows="true"
-                    android:scaleType="centerCrop"                    />
+                    android:scaleType="center"                    />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="380dp"
@@ -115,7 +115,7 @@
                     android:theme="@style/Base.Widget.AppCompat.ImageButton"
                     android:src="@drawable/homeimage3"
                     android:fitsSystemWindows="true"
-                    android:scaleType="centerCrop"                    />
+                    android:scaleType="center"                    />
                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="380dp"
                     android:layout_height="200dp"
@@ -124,7 +124,7 @@
                    android:theme="@style/Base.Widget.AppCompat.ImageButton"
                    android:src="@drawable/homeimage4"
                    android:fitsSystemWindows="true"
-                   android:scaleType="centerCrop"                    />
+                   android:scaleType="center"                    />
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="380dp"
                 android:layout_height="200dp"
@@ -133,7 +133,7 @@
                 android:theme="@style/Base.Widget.AppCompat.ImageButton"
                 android:src="@drawable/homeimage5"
                 android:fitsSystemWindows="true"
-                android:scaleType="centerCrop"                />
+                android:scaleType="center"                />
         </LinearLayout>
     </HorizontalScrollView>
     <LinearLayout

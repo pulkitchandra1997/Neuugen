@@ -87,9 +87,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:id="@+id/backview"
-        android:visibility="visible"
+        android:visibility="gone"
         android:background="#9E9797"
-        android:alpha="0.4">
+        android:alpha="1">
         <ImageView
             android:id="@+id/expanded_image"
             android:layout_width="match_parent"

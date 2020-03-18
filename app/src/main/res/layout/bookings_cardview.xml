@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:layout_width="1000px"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:layout_gravity="center"
@@ -40,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_weight="1"
-                    android:gravity="right">
+                    android:gravity="end">
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -95,14 +95,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_weight="1"
-                    android:gravity="right">
+                    android:layout_weight="1">
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="DATE OF SERVICE"
                         android:id="@+id/dateofservice"
-                        android:gravity="right"
+                        android:gravity="end"
                         android:layout_marginLeft="5dp"
                         android:textColor="@color/PrimaryText"
                         android:textSize="@dimen/normaheading"
@@ -130,14 +129,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="right">
+                    android:layout_weight="1">
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="STATUS"
                         android:id="@+id/status"
-                        android:gravity="right"
+                        android:gravity="end"
                         android:layout_marginLeft="5dp"
                         android:textColor="@color/PrimaryText"
                         android:textSize="@dimen/normaheading"
