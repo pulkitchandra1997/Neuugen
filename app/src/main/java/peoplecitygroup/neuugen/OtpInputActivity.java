@@ -1,5 +1,6 @@
 package peoplecitygroup.neuugen;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -32,6 +33,11 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.chaos.view.PinView;
+import com.google.android.gms.auth.api.phone.SmsRetriever;
+import com.google.android.gms.auth.api.phone.SmsRetrieverClient;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 
 
@@ -46,8 +52,10 @@ import peoplecitygroup.neuugen.common_req_files.PROFILE;
 import peoplecitygroup.neuugen.common_req_files.SendMsg;
 import peoplecitygroup.neuugen.common_req_files.UrlNeuugen;
 import peoplecitygroup.neuugen.common_req_files.VolleyCallback;
+import peoplecitygroup.neuugen.utility.AppSignatureHashHelper;
+import peoplecitygroup.neuugen.utility.SMSReceiver;
 
-public class OtpInputActivity extends AppCompatActivity implements View.OnClickListener {
+public class OtpInputActivity extends AppCompatActivity implements View.OnClickListener,SMSReceiver.OTPReceiveListener {
 
     androidx.appcompat.widget.AppCompatTextView timer,phone,resendotp;
     PinView pinView;
@@ -57,6 +65,8 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
     private static final int PERMISSION_REQUEST_CODE = 200;
     ProgressDialog loading = null;
     PROFILE profile=null;
+    private SMSReceiver smsReceiver;
+    AppSignatureHashHelper appSignatureHashHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -70,6 +80,11 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
         loading.setCancelable(false);
         loading.setMessage("Loading");
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+
+        appSignatureHashHelper = new AppSignatureHashHelper(this);
+
+        // This code requires one time to get Hash keys do comment and share key
+        Log.i(OtpInputActivity.class.getSimpleName(), "HashKey: " + appSignatureHashHelper.getAppSignatures().get(0));
 
         resendotp.setVisibility(View.INVISIBLE);
         Intent intent=getIntent();
@@ -100,19 +115,13 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
 
             }
         });
-    }
 
-    private String parseCode(String message) {
-        boolean isFound = message.indexOf(getResources().getString(R.string.OTP_PRETEXT)) !=-1? true: false;
-        if(isFound)
-            return message.substring(message.length()-6);
-        else
-            return "";
+
     }
 
     private void sendOtp() {
         SendMsg sendMsg=new SendMsg();
-        sendMsg.SendOtp(phonetext, String.valueOf(otptext), this, new VolleyCallback() {
+        sendMsg.SendOtp(phonetext, String.valueOf(otptext),appSignatureHashHelper.getAppSignatures().get(0), this, new VolleyCallback() {
             @Override
             public void onSuccess(String response) {
                 response.trim();
@@ -122,6 +131,7 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
                     Snackbar.make(findViewById(R.id.parentview), "OTP sent", Snackbar.LENGTH_LONG)
                             .show();
                     startTimer();
+                    startSMSListener();
                     Toast.makeText(OtpInputActivity.this, "DEMO:"+String.valueOf(otptext), Toast.LENGTH_SHORT).show();
                 }
                 else{
@@ -162,7 +172,7 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
                 .create()
                 .show();
     }
-    BroadcastReceiver receiver = new BroadcastReceiver() {
+/*    BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equalsIgnoreCase("otp")) {
@@ -170,14 +180,9 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
                 autoDetectOtp(message);
             }
         }
-    };
+    };*/
 
-    private void autoDetectOtp(String message) {
-        String code=parseCode(message);
-        boolean isFound = code.indexOf(String.valueOf(otptext)) !=-1? true: false;
-        if(isFound)
-            pinView.setText(code);
-    }
+
 
     private void nextActivity() {
 
@@ -406,8 +411,6 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onResume() {
         super.onResume();
-        LocalBroadcastManager.getInstance(this).
-                registerReceiver(receiver, new IntentFilter("otp"));
     }
 
     @Override
@@ -423,14 +426,61 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onStop() {
         super.onStop();
+        this.unregisterReceiver(smsReceiver);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
     }
 
 
+
+
+    private void startSMSListener() {
+        try {
+            smsReceiver = new SMSReceiver(getResources().getString(R.string.OTP_PRETEXT),otptext);
+            smsReceiver.setOTPListener(this);
+
+            IntentFilter intentFilter = new IntentFilter();
+            intentFilter.addAction(SmsRetriever.SMS_RETRIEVED_ACTION);
+            this.registerReceiver(smsReceiver, intentFilter);
+
+            SmsRetrieverClient client = SmsRetriever.getClient(this);
+            Task<Void> task = client.startSmsRetriever();
+            task.addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    // API successfully started
+                }
+            });
+            task.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    // Fail to start API
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onOTPReceived(String otp) {
+        this.unregisterReceiver(smsReceiver);
+        pinView.setText(otp);
+    }
+
+    @Override
+    public void onOTPTimeOut() {
+        this.unregisterReceiver(smsReceiver);
+        Log.d("otpcheck","onotptimeout");
+    }
+
+    @Override
+    public void onOTPReceivedError(String error) {
+        this.unregisterReceiver(smsReceiver);
+        Log.d("otpcheck","onotpreceived error: "+error);
+    }
 
 }

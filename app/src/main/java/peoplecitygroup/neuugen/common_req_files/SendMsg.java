@@ -20,7 +20,7 @@ import java.util.Map;
 import peoplecitygroup.neuugen.R;
 
 public class SendMsg {
-    public void SendOtp(final String number,final String otp,final Context context, final VolleyCallback volleyCallback){
+    public void SendOtp(final String number,final String otp,final String hashkey,final Context context, final VolleyCallback volleyCallback){
         StringRequest stringRequest=new StringRequest(Request.Method.POST, UrlNeuugen.send_otp, new Response.Listener<String>()
         {
             @Override
@@ -69,6 +69,7 @@ public class SendMsg {
                 Map<String, String> params = new HashMap<>();
                 params.put("number", number);
                 params.put("otp", otp);
+                params.put("hashkey",hashkey);
                 return params;
             }
         };
