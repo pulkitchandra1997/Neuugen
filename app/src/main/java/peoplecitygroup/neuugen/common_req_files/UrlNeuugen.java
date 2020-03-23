@@ -41,7 +41,8 @@ public class UrlNeuugen {
     public static final String csphone="+917318112255";
 
     public static final String aboutus=URL+"aboutneuugen.php";
-    public static final String termsofuse="http://neuugen.com/termsofuse.html";
+    public static final String termsofuse="http://neuugen.com/tnc.php";
+    public static final String privacy="http://neuugen.com/pp.php";
     public static final String helpSupportActivity=URL+"neuugenfaq.php";
     public static final String protectionprogram=URL+"protection.php";
 
