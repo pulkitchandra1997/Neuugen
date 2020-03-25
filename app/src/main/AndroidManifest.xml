@@ -98,7 +98,7 @@
             android:windowSoftInputMode="stateHidden"></activity>
         <activity
             android:name=".OtpInputActivity"
-            android:noHistory="true" />
+            android:noHistory="false" />
         <activity
             android:name=".MobileNumberInput"
             android:windowSoftInputMode="stateHidden" />

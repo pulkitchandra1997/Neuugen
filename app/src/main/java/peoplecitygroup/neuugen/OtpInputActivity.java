@@ -423,11 +423,11 @@ public class OtpInputActivity extends AppCompatActivity implements View.OnClickL
         super.onStart();
     }
 
-    @Override
+ /*   @Override
     protected void onStop() {
         super.onStop();
         this.unregisterReceiver(smsReceiver);
-    }
+    }*/
 
     @Override
     protected void onPause() {
