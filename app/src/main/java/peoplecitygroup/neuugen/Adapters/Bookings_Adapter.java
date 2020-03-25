@@ -39,12 +39,14 @@ import peoplecitygroup.neuugen.common_req_files.UrlNeuugen;
 
 import static android.content.DialogInterface.BUTTON_NEGATIVE;
 import static android.content.DialogInterface.BUTTON_POSITIVE;
+import static com.google.android.gms.common.internal.safeparcel.SafeParcelable.NULL;
 
 public class Bookings_Adapter extends RecyclerView.Adapter<Bookings_Adapter.MyViewHolder> {
      ArrayList<Bookings> bookingsList,otherlist;
      Activity activity;
     ProgressDialog loading = null;
     BookingsFrag fragment;
+    String area=null;
 
     @NonNull
     @Override
@@ -56,8 +58,15 @@ public class Bookings_Adapter extends RecyclerView.Adapter<Bookings_Adapter.MyVi
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         final Bookings bookings = bookingsList.get(position);
+        if ((bookings.getArea().trim()=="null")){
+            area="";
+        }
+        else
+        {
+            area=bookings.getArea().trim()+", ";
+        }
         holder.servicename.setText(UrlNeuugen.serviceName[Integer.parseInt(bookings.getServiceid())]);
-        holder.area.setText(bookings.getArea().trim()+", "+bookings.getCity().trim());
+        holder.area.setText(area+bookings.getCity().trim());
         if(bookings.getDateofservice().equalsIgnoreCase("null")||bookings.getDateofservice()==null)
             holder.dateofservice.setText("Not Applicable");
         else
