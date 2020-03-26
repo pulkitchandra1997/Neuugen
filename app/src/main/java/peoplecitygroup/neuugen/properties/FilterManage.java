@@ -365,6 +365,31 @@ public class FilterManage extends AppCompatActivity implements View.OnClickListe
             }
         }
         else{
+            if(rentbtnlist.isChecked()||buybtnlist.isChecked()) {
+                if (rentbtnlist.isChecked()) {
+                    adtype = "0";
+                }else
+                if(buybtnlist.isChecked()){
+                    adtype = "1";
+                }
+            }
+            else{
+                AlertDialog.Builder builder = new AlertDialog.Builder(FilterManage.this);
+                builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                builder.setMessage("Select either Buy or Rent to view all its ads.")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setIcon(R.mipmap.ic_launcher_round);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+                return;
+            }
             propertytype=null;
             fillArray();
         }

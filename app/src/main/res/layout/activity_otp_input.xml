@@ -83,7 +83,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Trying to auto-fill OTP "
+                android:text="Resend OTP "
                 android:gravity="center"
                 android:textSize="15sp"
                 android:fontFamily="@font/quicksandbold"
