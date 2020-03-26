@@ -33,7 +33,7 @@ public class ProfileFrag extends Fragment implements View.OnClickListener {
 
     ImageView editprofile;
     androidx.appcompat.widget.AppCompatTextView logout,username,emailid,mobilenum;
-    LinearLayout postad,help,manageads,customersupport,rateus,aboutus,termsofuse;
+    LinearLayout postad,help,manageads,customersupport,rateus,aboutus,termsofuse,pnp;
     BootstrapCircleThumbnail profilepic;
 
     SharedPreferences sp;
@@ -82,6 +82,7 @@ public class ProfileFrag extends Fragment implements View.OnClickListener {
         postad=v.findViewById(R.id.postad);
         manageads=v.findViewById(R.id.manageads);
         help=v.findViewById(R.id.help);
+        pnp=v.findViewById(R.id.pnp);
         rateus=v.findViewById(R.id.rateus);
         aboutus=v.findViewById(R.id.aboutus);
         termsofuse=v.findViewById(R.id.termsofuse);
@@ -99,6 +100,7 @@ public class ProfileFrag extends Fragment implements View.OnClickListener {
         termsofuse.setOnClickListener(this);
         manageads.setOnClickListener(this);
         aboutus.setOnClickListener(this);
+        pnp.setOnClickListener(this);
     }
 
     @Override
@@ -192,6 +194,16 @@ public class ProfileFrag extends Fragment implements View.OnClickListener {
         if (v.getId()==R.id.aboutus)
         {
             Intent intent = new Intent(getActivity(), AboutUs.class);
+            if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
+                ActivityOptions options = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.fade_in, R.anim.fade_out);
+                startActivity(intent, options.toBundle());
+            } else {
+                startActivity(intent);
+            }
+        }
+        if (v.getId()==R.id.pnp)
+        {
+            Intent intent = new Intent(getActivity(), Privacy.class);
             if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
                 ActivityOptions options = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.fade_in, R.anim.fade_out);
                 startActivity(intent, options.toBundle());

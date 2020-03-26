@@ -92,7 +92,7 @@
                     android:layout_margin="10dp"
                     android:id="@+id/homeimg1"
                     android:theme="@style/Base.Widget.AppCompat.ImageButton"
-                    android:src="@drawable/homeimage1"
+                    android:src="@drawable/imgplaceholder"
                     android:fitsSystemWindows="true"
                     android:scaleType="center"
                     />
@@ -103,7 +103,7 @@
                     android:layout_height="200dp"
                     android:id="@+id/homeimg2"
                     android:theme="@style/Base.Widget.AppCompat.ImageButton"
-                    android:src="@drawable/homeimage2"
+                    android:src="@drawable/imgplaceholder"
                     android:fitsSystemWindows="true"
                     android:scaleType="center"                    />
 
@@ -113,7 +113,7 @@
                     android:layout_margin="10dp"
                     android:id="@+id/homeimg3"
                     android:theme="@style/Base.Widget.AppCompat.ImageButton"
-                    android:src="@drawable/homeimage3"
+                    android:src="@drawable/imgplaceholder"
                     android:fitsSystemWindows="true"
                     android:scaleType="center"                    />
                <androidx.appcompat.widget.AppCompatImageView
@@ -122,7 +122,7 @@
                    android:layout_margin="10dp"
                    android:id="@+id/homeimg4"
                    android:theme="@style/Base.Widget.AppCompat.ImageButton"
-                   android:src="@drawable/homeimage4"
+                   android:src="@drawable/imgplaceholder"
                    android:fitsSystemWindows="true"
                    android:scaleType="center"                    />
             <androidx.appcompat.widget.AppCompatImageView
@@ -131,7 +131,7 @@
                 android:layout_margin="10dp"
                 android:id="@+id/homeimg5"
                 android:theme="@style/Base.Widget.AppCompat.ImageButton"
-                android:src="@drawable/homeimage5"
+                android:src="@drawable/imgplaceholder"
                 android:fitsSystemWindows="true"
                 android:scaleType="center"                />
         </LinearLayout>

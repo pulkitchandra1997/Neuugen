@@ -38,6 +38,7 @@ import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.squareup.picasso.Picasso;
 
 import java.util.Arrays;
 import java.util.List;
@@ -90,8 +91,12 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.homefragment, container, false);
         activity=getActivity();
+
         idLink();
         listenerLink();
+
+        loadhomeimgs();
+
         loading = new ProgressDialog(getContext(),R.style.AppCompatAlertDialogStyle);
         loading.setCancelable(false);
         loading.setMessage("Loading");
@@ -108,6 +113,25 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
             }
         },2000);
         return v;
+    }
+
+    private void loadhomeimgs() {
+        Picasso.with(getContext()).load("http://neuugen.com/app/neuugen/images/services/homeimage1.jpg")
+                .placeholder(R.drawable.imgplaceholder)
+                .into(homeimg1);
+        Picasso.with(getContext()).load("http://neuugen.com/app/neuugen/images/services/homeimage2.jpg")
+                .placeholder(R.drawable.imgplaceholder)
+                .into(homeimg2);
+        Picasso.with(getContext()).load("http://neuugen.com/app/neuugen/images/services/homeimage3.jpg")
+                .placeholder(R.drawable.imgplaceholder)
+                .into(homeimg3);
+        Picasso.with(getContext()).load("http://neuugen.com/app/neuugen/images/services/homeimage4.jpg")
+                .placeholder(R.drawable.imgplaceholder)
+                .into(homeimg4);
+        Picasso.with(getContext()).load("http://neuugen.com/app/neuugen/images/services/homeimage5.jpg")
+                .placeholder(R.drawable.imgplaceholder)
+                .into(homeimg5);
+
     }
 
     private void showcity() {
