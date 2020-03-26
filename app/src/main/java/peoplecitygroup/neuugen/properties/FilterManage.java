@@ -303,6 +303,10 @@ public class FilterManage extends AppCompatActivity implements View.OnClickListe
         if(v.getId()==R.id.showallbtnmlist){
             sendDataBack(false);
         }
+        if (v.getId()==R.id.cancelbtnmlist)
+        {
+            onBackPressed();
+        }
     }
 
     private void sendDataBack(boolean b) {
