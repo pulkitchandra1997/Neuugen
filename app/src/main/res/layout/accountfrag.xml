@@ -275,7 +275,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="6dp">
+            android:layout_margin="6dp"
+            android:id="@+id/sharebtn">
 
             <ImageView
                 android:layout_width="26dp"

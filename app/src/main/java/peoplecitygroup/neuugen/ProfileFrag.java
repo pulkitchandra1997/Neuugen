@@ -1,10 +1,13 @@
 package peoplecitygroup.neuugen;
 
 import android.app.ActivityOptions;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -33,7 +36,7 @@ public class ProfileFrag extends Fragment implements View.OnClickListener {
 
     ImageView editprofile;
     androidx.appcompat.widget.AppCompatTextView logout,username,emailid,mobilenum;
-    LinearLayout postad,help,manageads,customersupport,rateus,aboutus,termsofuse,pnp;
+    LinearLayout postad,help,manageads,customersupport,rateus,aboutus,termsofuse,pnp,sharebtn;
     BootstrapCircleThumbnail profilepic;
 
     SharedPreferences sp;
@@ -83,6 +86,7 @@ public class ProfileFrag extends Fragment implements View.OnClickListener {
         manageads=v.findViewById(R.id.manageads);
         help=v.findViewById(R.id.help);
         pnp=v.findViewById(R.id.pnp);
+        sharebtn=v.findViewById(R.id.sharebtn);
         rateus=v.findViewById(R.id.rateus);
         aboutus=v.findViewById(R.id.aboutus);
         termsofuse=v.findViewById(R.id.termsofuse);
@@ -101,8 +105,39 @@ public class ProfileFrag extends Fragment implements View.OnClickListener {
         manageads.setOnClickListener(this);
         aboutus.setOnClickListener(this);
         pnp.setOnClickListener(this);
+        sharebtn.setOnClickListener(this);
+        rateus.setOnClickListener(this);
+    }
+    public void rateApp()
+    {
+        try
+        {
+            Intent rateIntent = rateIntentForUrl("market://details");
+            startActivity(rateIntent);
+        }
+        catch (ActivityNotFoundException e)
+        {
+            Intent rateIntent = rateIntentForUrl("https://play.google.com/store/apps/details");
+            startActivity(rateIntent);
+        }
     }
 
+    private Intent rateIntentForUrl(String url)
+    {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(String.format("%s?id=%s", url, getActivity().getPackageName())));
+        int flags = Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_MULTIPLE_TASK;
+        if (Build.VERSION.SDK_INT >= 21)
+        {
+            flags |= Intent.FLAG_ACTIVITY_NEW_DOCUMENT;
+        }
+        else
+        {
+            //noinspection deprecation
+            flags |= Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET;
+        }
+        intent.addFlags(flags);
+        return intent;
+    }
     @Override
     public void onClick(View v) {
         if(v.getId()==R.id.editprofile)
@@ -191,7 +226,26 @@ public class ProfileFrag extends Fragment implements View.OnClickListener {
                 startActivity(intent);
             }
         }
-        if (v.getId()==R.id.aboutus)
+
+        if (v.getId()==R.id.sharebtn)
+        {
+            try {
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Neuugen");
+                String shareMessage= "\nLet me recommend you this application\n\n";
+                shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID +"\n\n";
+                shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                startActivity(Intent.createChooser(shareIntent, "choose one"));
+            } catch(Exception e) {
+                //e.toString();
+            }
+        }
+        if (v.getId()==R.id.rateus)
+        {
+           rateApp();
+        }
+            if (v.getId()==R.id.aboutus)
         {
             Intent intent = new Intent(getActivity(), AboutUs.class);
             if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN) {
