@@ -203,7 +203,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Grooming"
+                    android:text="Home Salon"
                     android:textSize="12dp"
                     android:layout_gravity="center"
                     android:fontFamily="@font/quicksandbold"

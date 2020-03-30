@@ -5,17 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".WelcomeScreen"
-    android:background="@color/colorPrimaryDark"
+    android:background="@drawable/bg"
     android:orientation="vertical"
     android:gravity="center">
-    <androidx.appcompat.widget.AppCompatTextView
+   <!-- <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="NG"
-        android:textColor="#FFF"
+        android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold"
-        android:textSize="50sp"
+        android:textSize="70sp"
         android:fontFamily="@font/quicksand"
         />
     <androidx.appcompat.widget.AppCompatTextView
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="All Home Services at one Place"
-        android:textColor="#FFF"
+        android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold"
         android:textSize="@dimen/normaheading"
         android:fontFamily="@font/quicksandbold"
@@ -33,10 +33,10 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="SIMPLE . AFFORDABLE . USEFUL"
-        android:textColor="#FFF"
+        android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold"
         android:textSize="@dimen/contenttext"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/quicksandbold"
-        />
+        />-->
 </LinearLayout>
