@@ -300,21 +300,38 @@ public class ManageYourAds extends AppCompatActivity implements View.OnClickList
             //propertylayout.setVisibility(View.GONE);
             //filtersma.setVisibility(View.GONE);
         }
-        if(v.getId()==R.id.applybtnm){
-            verifiedflag=filterverified;
-            availableflag=filteravailable;
-            int i,j;
-            if(verifiedflag)
-                i=1;
+        if(v.getId()==R.id.applybtnm) {
+            verifiedflag = filterverified;
+            availableflag = filteravailable;
+            int i, j;
+            if (verifiedflag)
+                i = 1;
             else
-                i=0;
-            if(availableflag)
-                j=1;
+                i = 0;
+            if (availableflag)
+                j = 1;
             else
-                j=0;
-            sendData(0,i,j,true);
-            filterlayoutmanage.setVisibility(View.GONE);
+                j = 0;
+            if (verifiedflag && availableflag) {
+                sendData(0, i, j, true);
+                filterlayoutmanage.setVisibility(View.GONE);
+            }
+            else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ManageYourAds.this);
+                builder.setTitle(Html.fromHtml("<font color='#FF0000'>Neuugen</font>"));
+                builder.setMessage("Select both options to see the ads.")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
+                            }
+                        })
+                        .setIcon(R.mipmap.ic_launcher_round);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                Button positiveButton = dialog.getButton(BUTTON_POSITIVE);
+                positiveButton.setTextColor(Color.parseColor("#FF12B2FA"));
+            }
         }
         if(v.getId()==R.id.cancelbtnm){
             if(verifiedflag)

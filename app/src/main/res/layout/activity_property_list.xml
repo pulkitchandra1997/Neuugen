@@ -93,10 +93,11 @@
                     android:onClick="onClick"
                     android:contextClickable="true"
                     android:id="@+id/filtersmanagelist">
-                    <com.beardedhen.androidbootstrap.AwesomeTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:clickable="false"
+                        android:gravity="center"
                         android:text="FILTER"
                         android:textColor="#fff"
                         android:fontFamily="@font/quicksandbold"
