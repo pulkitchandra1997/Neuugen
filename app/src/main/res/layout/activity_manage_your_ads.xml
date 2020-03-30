@@ -101,6 +101,7 @@
                         android:gravity="bottom"
                         android:layout_weight="2"
                         android:padding="15dp"
+                        android:background="#FA9F83"
                         android:visibility="gone">
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -225,11 +226,13 @@
                         android:onClick="onClick"
                         android:contextClickable="true"
                         android:id="@+id/filtersmanage">
-                        <com.beardedhen.androidbootstrap.AwesomeTextView
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:clickable="false"
+                            android:gravity="center"
                             android:text="FILTER"
+                            android:textColor="@color/colorAccent"
                             android:fontFamily="@font/quicksandbold"
                             android:padding="10dp"
                             />
