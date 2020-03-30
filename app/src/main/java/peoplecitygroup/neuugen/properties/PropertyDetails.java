@@ -195,6 +195,8 @@ public class PropertyDetails extends AppCompatActivity implements View.OnClickLi
         if(number.trim().equalsIgnoreCase(ad.getMobileno().trim())){
             contactbtn.setText("EDIT");
             flag=true;
+            //TEMPORARY
+            contactbtn.setVisibility(View.GONE);
         }
         else{
             checkStatus();
