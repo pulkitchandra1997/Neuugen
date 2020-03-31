@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 
 import androidx.annotation.NonNull;
@@ -168,7 +169,11 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     }
 
     private void showcaseView3(final String title, final String content, ViewTarget viewTarget, final int i) {
-        showcaseView1=new ShowcaseView.Builder(getActivity())
+        RelativeLayout.LayoutParams lps = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        lps.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+        lps.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+
+        showcaseView3=new ShowcaseView.Builder(getActivity())
                 .withHoloShowcase()
                 .setStyle(R.style.CustomShowcaseTheme2)
                 .setTarget(viewTarget)
@@ -178,14 +183,18 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        showcaseView1.hide();
+                        showcaseView3.hide();
                         showCase(i+1);
                     }
                 })
                 .build();
+        showcaseView3.setButtonPosition(lps);
     }
 
     private void showcaseView2(final String title, final String content, ViewTarget viewTarget,final int i) {
+        RelativeLayout.LayoutParams lps = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        lps.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+        lps.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
         showcaseView2=new ShowcaseView.Builder(getActivity())
                 .setStyle(R.style.CustomShowcaseTheme)
                 .withHoloShowcase()
@@ -201,10 +210,14 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
                     }
                 })
                 .build();
+        showcaseView2.setButtonPosition(lps);
     }
 
     private void showcaseView1(final String title, final String content, ViewTarget viewTarget,final int i) {
-        showcaseView3=new ShowcaseView.Builder(getActivity())
+        RelativeLayout.LayoutParams lps = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        lps.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+        lps.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        showcaseView1=new ShowcaseView.Builder(getActivity())
                 .withHoloShowcase()
                 .setStyle(R.style.CustomShowcaseTheme)
                 .setTarget(viewTarget)
@@ -214,11 +227,12 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        showcaseView3.hide();
+                        showcaseView1.hide();
                         showCase(i+1);
                     }
                 })
                 .build();
+        showcaseView1.setButtonPosition(lps);
     }
 
 
