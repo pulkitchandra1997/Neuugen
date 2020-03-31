@@ -17,6 +17,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -117,7 +118,15 @@ public class UserDetails extends AppCompatActivity implements View.OnClickListen
 
     private void getCurrentLocation() {
 
-        Places.initialize(getApplicationContext(), UrlNeuugen.returnKey());
+        Places.initialize(getApplicationContext(), new String(
+                Base64.decode(
+                        Base64.decode(
+                                UrlNeuugen.returnKey_1()+
+                                        UrlNeuugen.returnKey_2()+
+                                        UrlNeuugen.returnKey_3()+
+                                        UrlNeuugen.returnKey_4(),
+                                Base64.DEFAULT),
+                        Base64.DEFAULT)));
 
 // Create a new Places client instance.
         PlacesClient placesClient = Places.createClient(this);

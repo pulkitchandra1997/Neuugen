@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -22,7 +23,6 @@ import static android.Manifest.permission.ACCESS_NETWORK_STATE;
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.GET_ACCOUNTS;
 import static android.Manifest.permission.INTERNET;
-import static android.Manifest.permission.READ_CONTACTS;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.READ_PHONE_NUMBERS;
 import static android.Manifest.permission.READ_PHONE_STATE;
@@ -57,13 +57,12 @@ public class UserPermission extends AppCompatActivity implements View.OnClickLis
         int result4 = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
         int result5 = ContextCompat.checkSelfPermission(getApplicationContext(), ACCESS_NETWORK_STATE);
         int result6 = ContextCompat.checkSelfPermission(getApplicationContext(), INTERNET);
-        int result7 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_CONTACTS);
         int result8 = ContextCompat.checkSelfPermission(getApplicationContext(), GET_ACCOUNTS);
         int result10 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_PHONE_STATE);
         int result11 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_PHONE_NUMBERS);
-        if (!(result1 == PackageManager.PERMISSION_GRANTED && result2 == PackageManager.PERMISSION_GRANTED && result4 == PackageManager.PERMISSION_GRANTED && result5 == PackageManager.PERMISSION_GRANTED && result6 == PackageManager.PERMISSION_GRANTED && result7 == PackageManager.PERMISSION_GRANTED && result8 == PackageManager.PERMISSION_GRANTED && result10 == PackageManager.PERMISSION_GRANTED && result11 == PackageManager.PERMISSION_GRANTED )) {
+        if (!(result1 == PackageManager.PERMISSION_GRANTED && result2 == PackageManager.PERMISSION_GRANTED && result4 == PackageManager.PERMISSION_GRANTED && result5 == PackageManager.PERMISSION_GRANTED && result6 == PackageManager.PERMISSION_GRANTED && result8 == PackageManager.PERMISSION_GRANTED && result10 == PackageManager.PERMISSION_GRANTED && result11 == PackageManager.PERMISSION_GRANTED )) {
             if(Build.VERSION.SDK_INT>Build.VERSION_CODES.M)
-            ActivityCompat.requestPermissions(this, new String[]{CAMERA, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE, ACCESS_NETWORK_STATE, INTERNET, READ_CONTACTS, GET_ACCOUNTS, READ_PHONE_STATE, READ_PHONE_NUMBERS}, PERMISSION_REQUEST_CODE);
+            ActivityCompat.requestPermissions(this, new String[]{CAMERA, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE, ACCESS_NETWORK_STATE, INTERNET, GET_ACCOUNTS, READ_PHONE_STATE, READ_PHONE_NUMBERS}, PERMISSION_REQUEST_CODE);
             else
                 openSettings();
         } else {
@@ -94,13 +93,21 @@ public class UserPermission extends AppCompatActivity implements View.OnClickLis
                     boolean writeExternalStorage=grantResults[2]==PackageManager.PERMISSION_GRANTED;
                     boolean accessNetworkState=grantResults[3]==PackageManager.PERMISSION_GRANTED;
                     boolean internet=grantResults[4]==PackageManager.PERMISSION_GRANTED;
-                    boolean readContacts=grantResults[5]==PackageManager.PERMISSION_GRANTED;
-                    boolean getAccounts=grantResults[6]==PackageManager.PERMISSION_GRANTED;
+                    boolean getAccounts=grantResults[5]==PackageManager.PERMISSION_GRANTED;
                    // boolean readSms=grantResults[8]==PackageManager.PERMISSION_GRANTED;
-                    boolean readPhoneState=grantResults[7]==PackageManager.PERMISSION_GRANTED;
-                    boolean readPhoneNumbers=grantResults[8]==PackageManager.PERMISSION_GRANTED;
+                    boolean readPhoneState=grantResults[6]==PackageManager.PERMISSION_GRANTED;
+                    boolean readPhoneNumbers=grantResults[7]==PackageManager.PERMISSION_GRANTED;
                     //boolean receiveSms=grantResults[11]==PackageManager.PERMISSION_GRANTED;
-                    if (!(camera&&readExternalStorage&&writeExternalStorage&&accessNetworkState&&internet&&readContacts&&getAccounts&&readPhoneState&&readPhoneNumbers))
+                    Log.i("perout camera",camera?"true":"false");
+                    Log.i("perout readExternal",readExternalStorage?"true":"false");
+                    Log.i("perout writeExternal",writeExternalStorage?"true":"false");
+                    Log.i("perout accessNetwor",accessNetworkState?"true":"false");
+                    Log.i("perout internet",internet?"true":"false");
+                    Log.i("perout getAccounts",getAccounts?"true":"false");
+                    Log.i("perout readPhoneState",readPhoneState?"true":"false");
+                    Log.i("perout readPhoneNumbers",readPhoneNumbers?"true":"false");
+
+                    if (!(camera&&readExternalStorage&&writeExternalStorage&&accessNetworkState&&internet&&getAccounts&&readPhoneState&&readPhoneNumbers))
                     {
                         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
                         alertDialog.setMessage("Permission Denied");
@@ -120,7 +127,7 @@ public class UserPermission extends AppCompatActivity implements View.OnClickLis
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                                    requestPermissions(new String[]{CAMERA,READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE,ACCESS_NETWORK_STATE,INTERNET,READ_CONTACTS,GET_ACCOUNTS,READ_PHONE_STATE,READ_PHONE_NUMBERS},
+                                                    requestPermissions(new String[]{CAMERA,READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE,ACCESS_NETWORK_STATE,INTERNET,GET_ACCOUNTS,READ_PHONE_STATE,READ_PHONE_NUMBERS},
                                                             PERMISSION_REQUEST_CODE);
                                                 }
                                             }

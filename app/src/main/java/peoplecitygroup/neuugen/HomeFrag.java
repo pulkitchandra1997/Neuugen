@@ -11,6 +11,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -398,7 +399,15 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
                 new LatLng(28.20453, 97.34466));
 
         if (!Places.isInitialized()) {
-            Places.initialize(getActivity().getApplicationContext(), UrlNeuugen.returnKey());
+            Places.initialize(getActivity().getApplicationContext(), new String(
+                    Base64.decode(
+                            Base64.decode(
+                                    UrlNeuugen.returnKey_1()+
+                                            UrlNeuugen.returnKey_2()+
+                                            UrlNeuugen.returnKey_3()+
+                                            UrlNeuugen.returnKey_4(),
+                                    Base64.DEFAULT),
+                            Base64.DEFAULT)));
         }
         List<Place.Field> fields = Arrays.asList(Place.Field.NAME);
         Intent intent = new Autocomplete.IntentBuilder(

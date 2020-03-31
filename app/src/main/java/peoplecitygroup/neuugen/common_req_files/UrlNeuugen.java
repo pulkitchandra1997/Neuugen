@@ -87,10 +87,27 @@ public class UrlNeuugen {
     public static final String bandsmusiciansid="33";
     public static final String propertiesserviceid="34";
 
-    private static final String GoogleApiKey="AIzaSyBbVx9oB9B6c41mad-ZZdCvN9zwJD8xbO0";
-    public static String returnKey(){
-        return GoogleApiKey;
+    private static final String GoogleApiKey_1="UVVsNllWTjVRbUpXZU";
+    private static final String GoogleApiKey_2="RsdlFqbENObU0wTVcx";
+    private static final String GoogleApiKey_3="aFpDMWFXbVJEZGs0NW";
+    private static final String GoogleApiKey_4="VuZEtSRGg0WWs4dwo=";
+
+
+    public static String returnKey_1(){
+        return GoogleApiKey_1;
     }
+    public static String returnKey_2(){
+        return GoogleApiKey_2;
+    }
+    public static String returnKey_3(){
+        return GoogleApiKey_3;
+    }
+    public static String returnKey_4(){
+        return GoogleApiKey_4;
+    }
+
+
+
     public static final ArrayList<String> createId() {
         ArrayList<String> idList = new ArrayList<String>();
         for (int i = 1; i < 35; i++)
