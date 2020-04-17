@@ -6,6 +6,10 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.cardview.widget.CardView;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.app.ActivityOptions;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -13,6 +17,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -20,7 +26,9 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -49,6 +57,9 @@ import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 public class PropertyDetails extends AppCompatActivity implements View.OnClickListener {
 
     AppCompatImageView houseimg1,houseimg2,houseimg3;
+    ImageView expandimg;
+    private Animator currentAnimator;
+    View thumbView;
 
     MaterialButton contactbtn;
 
@@ -56,11 +67,13 @@ public class PropertyDetails extends AppCompatActivity implements View.OnClickLi
     ProgressDialog loading = null;
     CardView bedbathcard,fcpcard;
 
-    LinearLayout furnishlayout,consnlayout,posesnlayout,costlayout,monthlyrentlayout,builtarealayout,plotarealayout;
+    LinearLayout furnishlayout,consnlayout,posesnlayout,costlayout,monthlyrentlayout,builtarealayout,plotarealayout,backview;
 
     AppCompatTextView numofbeds,numofbath,furnishtype,constructiontatus,possessionstatus,price,monthlyrent,builtarea,plotarea,lengthofplot,widthofplot,widthroad,landmarkpd,localitypd,citypd,pincodepd;
     AD ad;
-    boolean flag=false;//ownAD ornot?
+    boolean flag=false,flag1=false;//ownAD ornot?
+
+    private int shortAnimationDuration;
     LinearLayout bathbedcard;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,10 +82,14 @@ public class PropertyDetails extends AppCompatActivity implements View.OnClickLi
         
         idLink();
         listenerLink();
+
+        shortAnimationDuration = getResources().getInteger(
+                android.R.integer.config_shortAnimTime);
         loading = new ProgressDialog(PropertyDetails.this,R.style.AppCompatAlertDialogStyle);
         loading.setCancelable(false);
         loading.setMessage("Loading...");
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+
         Typeface font = Typeface.createFromAsset(getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
         bedicon.setTypeface(font);
         bathicon.setTypeface(font);
@@ -361,14 +378,32 @@ public class PropertyDetails extends AppCompatActivity implements View.OnClickLi
         pincodepd=findViewById(R.id.pincodepd);
         citypd=findViewById(R.id.citypd);
         bathbedcard=findViewById(R.id.bathbedcard);
+        backview=findViewById(R.id.backview);
+        expandimg=findViewById(R.id.expanded_image);
     }
 
     private void listenerLink() {
         contactbtn.setOnClickListener(this);
+        houseimg1.setOnClickListener(this);
+        houseimg2.setOnClickListener(this);
+        houseimg3.setOnClickListener(this);
+        expandimg.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
+        if (v.getId()==R.id.houseimg1)
+        {
+            zoomImageFromThumb(houseimg1,ad.getPic1(),true);
+        }
+        if (v.getId()==R.id.houseimg2)
+        {
+            zoomImageFromThumb(houseimg2,ad.getPic2(),true);
+        }
+        if (v.getId()==R.id.houseimg3)
+        {
+            zoomImageFromThumb(houseimg3,ad.getPic3(),true);
+        }
         if(v.getId()==R.id.contactbtn){
             if(flag){
                 Intent intent;
@@ -534,4 +569,167 @@ public class PropertyDetails extends AppCompatActivity implements View.OnClickLi
         });
         MySingleton.getInstance(PropertyDetails.this).addToRequestQueue(stringRequest);
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        if(flag1){
+            expandimg.setVisibility(View.GONE);
+            backview.setVisibility(View.GONE);
+            thumbView.setAlpha(1f);
+            flag1=false;
+        }
+        else
+            super.onBackPressed();
+    }
+    public void zoomImageFromThumb(final View thumb, String imageResId, boolean f) {
+        thumbView=thumb;
+        // If there's an animation in progress, cancel it
+        // immediately and proceed with this one.
+        if (currentAnimator != null) {
+            currentAnimator.cancel();
+        }
+
+        // Load the high-resolution "zoomed-in" image.
+        Picasso.with(this).load(imageResId)
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.placeholder)
+                .into(expandimg);
+
+
+
+        // Calculate the starting and ending bounds for the zoomed-in image.
+        // This step involves lots of math. Yay, math.
+        final Rect startBounds = new Rect();
+        final Rect finalBounds = new Rect();
+        final Point globalOffset = new Point();
+
+        // The start bounds are the global visible rectangle of the thumbnail,
+        // and the final bounds are the global visible rectangle of the container
+        // view. Also set the container view's offset as the origin for the
+        // bounds, since that's the origin for the positioning animation
+        // properties (X, Y).
+        thumbView.getGlobalVisibleRect(startBounds);
+        findViewById(R.id.container)
+                .getGlobalVisibleRect(finalBounds, globalOffset);
+        startBounds.offset(-globalOffset.x, -globalOffset.y);
+        finalBounds.offset(-globalOffset.x, -globalOffset.y);
+        // Adjust the start bounds to be the same aspect ratio as the final
+        // bounds using the "center crop" technique. This prevents undesirable
+        // stretching during the animation. Also calculate the start scaling
+        // factor (the end scaling factor is always 1.0).
+        float startScale;
+        if ((float) finalBounds.width() / finalBounds.height()
+                > (float) startBounds.width() / startBounds.height()) {
+            // Extend start bounds horizontally
+            startScale = (float) startBounds.height() / finalBounds.height();
+            float startWidth = startScale * finalBounds.width();
+            float deltaWidth = (startWidth - startBounds.width()) / 2;
+            startBounds.left -= deltaWidth;
+            startBounds.right += deltaWidth;
+        } else {
+            // Extend start bounds vertically
+            startScale = (float) startBounds.width() / finalBounds.width();
+            float startHeight = startScale * finalBounds.height();
+            float deltaHeight = (startHeight - startBounds.height()) / 2;
+            startBounds.top -= deltaHeight;
+            startBounds.bottom += deltaHeight;
+        }
+
+        // Hide the thumbnail and show the zoomed-in view. When the animation
+        // begins, it will position the zoomed-in view in the place of the
+        // thumbnail.
+        thumbView.setAlpha(0f);
+        backview.setVisibility(View.VISIBLE);
+        expandimg.setVisibility(View.VISIBLE);
+
+        // Set the pivot point for SCALE_X and SCALE_Y transformations
+        // to the top-left corner of the zoomed-in view (the default
+        // is the center of the view).
+        expandimg.setPivotX(0f);
+        expandimg.setPivotY(0f);
+
+        // Construct and run the parallel animation of the four translation and
+        // scale properties (X, Y, SCALE_X, and SCALE_Y).
+        AnimatorSet set = new AnimatorSet();
+        set
+                .play(ObjectAnimator.ofFloat(expandimg, View.X,
+                        startBounds.left, finalBounds.left))
+                .with(ObjectAnimator.ofFloat(expandimg, View.Y,
+                        startBounds.top, finalBounds.top))
+                .with(ObjectAnimator.ofFloat(expandimg, View.SCALE_X,
+                        startScale, 1f))
+                .with(ObjectAnimator.ofFloat(expandimg,
+                        View.SCALE_Y, startScale, 1f));
+        set.setDuration(shortAnimationDuration);
+        set.setInterpolator(new DecelerateInterpolator());
+        set.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                currentAnimator = null;
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+                currentAnimator = null;
+            }
+        });
+
+        set.start();
+        currentAnimator = set;
+
+        // Upon clicking the zoomed-in image, it should zoom back down
+        // to the original bounds and show the thumbnail instead of
+        // the expanded image.
+
+
+        final float startScaleFinal = startScale;
+        expandimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (currentAnimator != null) {
+                    currentAnimator.cancel();
+                }
+
+                // Animate the four positioning/sizing properties in parallel,
+                // back to their original values.
+                AnimatorSet set = new AnimatorSet();
+                set.play(ObjectAnimator
+                        .ofFloat(expandimg, View.X, startBounds.left))
+                        .with(ObjectAnimator
+                                .ofFloat(expandimg,
+                                        View.Y,startBounds.top))
+                        .with(ObjectAnimator
+                                .ofFloat(expandimg,
+                                        View.SCALE_X, startScaleFinal))
+                        .with(ObjectAnimator
+                                .ofFloat(expandimg,
+                                        View.SCALE_Y, startScaleFinal));
+                set.setDuration(shortAnimationDuration);
+                set.setInterpolator(new DecelerateInterpolator());
+                set.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        thumbView.setAlpha(1f);
+                        backview.setVisibility(View.GONE);
+                        expandimg.setVisibility(View.GONE);
+                        currentAnimator = null;
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+                        thumbView.setAlpha(1f);
+                        backview.setVisibility(View.GONE);
+                        expandimg.setVisibility(View.GONE);
+                        currentAnimator = null;
+                    }
+                });
+                set.start();
+                currentAnimator = set;
+                flag1=false;
+            }
+        });
+        flag1=true;
+    }
+    
 }
