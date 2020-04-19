@@ -134,33 +134,30 @@
 
 
                                 <androidx.appcompat.widget.AppCompatRadioButton
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="Pre Wedding Shoot"
                                     android:textSize="15dp"
                                     android:id="@+id/prewedshoot"
-                                    android:padding="10dp"
                                     android:fontFamily="@font/quicksand"
                                     android:buttonTint="@color/colorPrimaryDark"
                                     />
 
                                 <androidx.appcompat.widget.AppCompatRadioButton
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Wedding Shoot"
-                                    android:textSize="15dp"
                                     android:id="@+id/wedshoot"
-                                    android:padding="10dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:buttonTint="@color/colorPrimaryDark"
                                     android:fontFamily="@font/quicksand"
-                                    android:buttonTint="@color/colorPrimaryDark"/>
+                                    android:text="Wedding Shoot"
+                                    android:textSize="15dp" />
 
                                 <androidx.appcompat.widget.AppCompatRadioButton
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="Event Photography"
                                     android:textSize="15dp"
                                     android:id="@+id/eventshoot"
-                                    android:padding="10dp"
                                     android:fontFamily="@font/quicksand"
                                     android:buttonTint="@color/colorPrimaryDark"
                                     />

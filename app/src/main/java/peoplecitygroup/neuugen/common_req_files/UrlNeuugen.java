@@ -37,8 +37,8 @@ public class UrlNeuugen {
     public static String deleteAd=URL+"deleteAd.php";
     public static String getSpareparts=URL+"getSpareParts.php";
 
-    public static final String csemail="peoplecitygroup@gmail.com";
-    public static final String csphone="+917318112255";
+    public static final String csemail="support@neuugen.com";
+    public static final String csphone="+919335927026";
 
     public static final String aboutus=URL+"aboutneuugen.php";
     public static final String termsofuse="http://neuugen.com/tnc.php";
