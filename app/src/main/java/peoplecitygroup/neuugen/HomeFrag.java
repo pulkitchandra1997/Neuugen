@@ -78,7 +78,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
 
     LinearLayout properties,salon,events,appliancerepair,homerenovation,learning,protectionprgrm;
 
-    String titlearr[]={"Change Location","Post Your ads"};
+    /*String titlearr[]={"Change Location","Post Your ads"};
     String contentarr[]={"Select your city where you want service","Post your Properties adverisements by clicking here"};
 
     ShowcaseView showcaseView1,showcaseView2,showcaseView3;
@@ -86,7 +86,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
     ViewTarget[] viewTargets;
     String[] titles=new String[]{"Post your Ads","Change your location","Choose Service"};
     String[] contents=new String[]{"Post your Properties advertisements by clicking here","Choose your city where you want services","Choose one of the services according to your need."};
-    SharedPreferences sp;
+    */SharedPreferences sp;
 
     @Nullable
     @Override
@@ -106,8 +106,8 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "Font Awesome 5 Free-Solid-900.otf" );
         locationicon.setTypeface(font);
         sp=this.getActivity().getSharedPreferences("NeuuGen_data",MODE_PRIVATE);
-        viewTargets=new ViewTarget[]{new ViewTarget(postformfab),new ViewTarget(locationtext),new ViewTarget(serviceheadtext)};
-        Handler handler=new Handler();
+        /*viewTargets=new ViewTarget[]{new ViewTarget(postformfab),new ViewTarget(locationtext),new ViewTarget(serviceheadtext)};
+        */Handler handler=new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -149,14 +149,18 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         if(sp!=null) {
             int firsttime=sp.getInt("firsttime",1);
             if(firsttime!=0) {
-                showCase(0);
+               /* showCase(0);*/
+                SharedPreferences.Editor se=sp.edit();
+                se.putInt("firsttime",0);
+                se.commit();
+                showcity();
             }
             else
                 showcity();
         }
     }
 
-    private void showCase(int i) {
+    /*private void showCase(int i) {
         Log.d("showcase",String.valueOf(i));
         switch (i){
             case 0:showcaseView1(titles[i],contents[i],viewTargets[i],i);break;
@@ -167,9 +171,9 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
                     se.commit();
                     showcity();
         }
-    }
+    }*/
 
-    private void showcaseView3(final String title, final String content, ViewTarget viewTarget, final int i) {
+   /* private void showcaseView3(final String title, final String content, ViewTarget viewTarget, final int i) {
         RelativeLayout.LayoutParams lps = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         lps.addRule(RelativeLayout.ALIGN_PARENT_TOP);
         lps.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
@@ -236,7 +240,7 @@ public class HomeFrag extends Fragment implements View.OnClickListener {
         showcaseView1.setButtonPosition(lps);
     }
 
-
+*/
     public void idLink()
     {
         locationicon=v.findViewById(R.id.locationicon);
